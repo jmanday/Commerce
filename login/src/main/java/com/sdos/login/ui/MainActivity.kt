@@ -1,21 +1,16 @@
-package com.sdos.commerce.ui
+package com.sdos.login.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
-import com.sdos.commerce.R
-import com.sdos.commerce.ui.fragments.SplashFragmentListener
+import com.sdos.login.R
 
-class MainActivity : AppCompatActivity(), SplashFragmentListener {
+class MainActivity : AppCompatActivity() {
 
     private val navController by lazy { findNavController(R.id.nav_host_fragment) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-    }
-
-    override fun onSplahLoaded() {
-        navController.navigate(R.id.loginFragment)
     }
 }
