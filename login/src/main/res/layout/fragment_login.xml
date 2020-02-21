@@ -4,18 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.LoginFragment">
+    tools:context=".ui.fragments.LoginFragment">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/colorPrimary"
-        android:elevation="8dp"
-        app:itemIconTint="@color/colorWhite"
-        app:itemTextColor="@color/colorWhite"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_navigation_menu" />
 
 </FrameLayout>
