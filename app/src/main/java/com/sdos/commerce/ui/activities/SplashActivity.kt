@@ -1,10 +1,9 @@
-package com.sdos.commerce.ui
+package com.sdos.commerce.ui.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.sdos.commerce.R
-import com.sdos.login.ui.MainActivity
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
@@ -19,7 +18,8 @@ class SplashActivity : AppCompatActivity() {
             .schedule({
                 startActivity(Intent(applicationContext, MainActivity::class.java))
                 finishAffinity()
-            }, DELAY, TimeUnit.SECONDS)
+            },
+                DELAY, TimeUnit.SECONDS)
     }
 
     companion object {

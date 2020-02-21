@@ -1,4 +1,4 @@
-package com.sdos.login.ui
+package com.sdos.commerce.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
