@@ -4,7 +4,9 @@ import com.sdos.login.domain.LoginRepository
 
 class LoginRepositoryImpl: LoginRepository {
 
-    override fun login(param1: String, param2: String) {
 
+
+    override fun login(param1: String, param2: String): Boolean {
+        return true
     }
 }
