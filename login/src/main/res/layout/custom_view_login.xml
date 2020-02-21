@@ -17,13 +17,13 @@
 
 
     <EditText
-        android:id="@+id/inMobile"
+        android:id="@+id/ed_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Usuario" />
 
     <EditText
-        android:id="@+id/inPassword"
+        android:id="@+id/ed_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Contraseña"
