@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.sdos.commerce.R
+import com.sdos.commerce.ui.viewmodels.LoginDialogViewModel
 
 class LoginFragment : Fragment() {
 
@@ -15,7 +16,7 @@ class LoginFragment : Fragment() {
         fun newInstance() = LoginFragment()
     }
 
-    private lateinit var viewModel: LoginViewModel
+    private lateinit var viewModel: LoginDialogViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +27,7 @@ class LoginFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(LoginDialogViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

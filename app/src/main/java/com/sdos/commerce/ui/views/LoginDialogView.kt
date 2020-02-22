@@ -7,15 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProviders
 import com.sdos.commerce.R
+import com.sdos.commerce.ui.viewmodels.LoginDialogViewModel
 import kotlinx.android.synthetic.main.login_custom_view.*
 
 
 class LoginDialogView: DialogFragment() {
-    /*
-    private val loginViewModel: LoginViewModel by lazy {
-        ViewModelProviders.of(requireActivity()).get(LoginViewModel::class.java)
+
+    private val loginDialogViewModel: LoginDialogViewModel by lazy {
+        ViewModelProviders.of(requireActivity()).get(LoginDialogViewModel::class.java)
     }
-     */
+
 
 
     override fun onCreateView(
@@ -34,7 +35,7 @@ class LoginDialogView: DialogFragment() {
 
     private fun initializeListeners() {
         btnDone.setOnClickListener {
-            //loginViewModel.loginUser(ed_user.text.toString(), ed_pass.text.toString())
+            loginDialogViewModel.loginUser(ed_user.text.toString(), ed_pass.text.toString())
         }
     }
 
