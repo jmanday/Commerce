@@ -38,6 +38,7 @@ dependencies {
     implementation "org.koin:koin-core:$koinVersion"
     implementation "org.koin:koin-android:$koinVersion"
     implementation "android.arch.persistence.room:runtime:$room_version"
+    implementation "com.google.code.gson:gson:2.8.6"
     
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
