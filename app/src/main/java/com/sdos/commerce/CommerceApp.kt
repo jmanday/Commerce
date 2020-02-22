@@ -7,6 +7,7 @@ import com.sdos.commerce.data.datasource.database.RoomController
 import com.sdos.commerce.data.injector.DataInjector
 import com.sdos.commerce.data.room.CommerceDatabase
 import com.sdos.commerce.domain.injector.DomainInjector
+import com.sdos.commerce.domain.interactors.GetEmployeesInteractor
 import com.sdos.login.domain.EmployeeRepository
 import com.sdos.login.domain.LoginInteractor
 
@@ -17,10 +18,17 @@ class CommerceApp: Application(), DomainInjector, DataInjector {
         CommerceDatabase.getInstance(applicationContext)
     }
 
+    // BEGIN - injections layer domain
     override fun provideLoginInteractor(): LoginInteractor {
         return LoginInteractor(provideEmployeeRepository())
     }
 
+    override fun provideGetEmployeesInteractor(): GetEmployeesInteractor {
+        return GetEmployeesInteractor(provideEmployeeRepository())
+    }
+    // END - injections layer domain
+
+    // BEGIN - injections layer data
     override fun provideEmployeeRepository(): EmployeeRepository {
         return EmployeeRepositoryImpl(provideEmployeeDataSource())
     }
@@ -28,6 +36,7 @@ class CommerceApp: Application(), DomainInjector, DataInjector {
     override fun provideEmployeeDataSource(): EmployeeDataSource {
         return RoomController(this)
     }
+    // END - injections layer data
 
     companion object {
         private var instance: CommerceApp? = null

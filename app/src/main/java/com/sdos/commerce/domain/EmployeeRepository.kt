@@ -6,4 +6,6 @@ import com.sdos.commerce.entities.Employee
 interface EmployeeRepository {
 
     fun login(param1: String, param2: String): LiveData<List<Employee>>?
+
+    fun getEmployees(): LiveData<List<Employee>>?
 }
