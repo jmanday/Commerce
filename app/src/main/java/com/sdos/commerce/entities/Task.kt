@@ -3,7 +3,7 @@ package com.sdos.commerce.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "task")
+@Entity(tableName = "tasks")
 data class Task(
 
     var name: String,
