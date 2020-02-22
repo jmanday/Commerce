@@ -17,8 +17,6 @@ class LoginDialogView: DialogFragment() {
         ViewModelProviders.of(requireActivity()).get(LoginDialogViewModel::class.java)
     }
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
