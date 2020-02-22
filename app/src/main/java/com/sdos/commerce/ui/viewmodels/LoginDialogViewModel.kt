@@ -1,14 +1,23 @@
 package com.sdos.commerce.ui.viewmodels
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sdos.commerce.CommerceApp
-import com.sdos.login.domain.LoginInteractor
+import com.sdos.commerce.domain.injector.DomainInjector
+import com.sdos.commerce.entities.Employee
 
 class LoginDialogViewModel : ViewModel() {
-    
-    private val interactor = LoginInteractor()
+
+    var employeeList = MutableLiveData<List<Employee>>()
+    private val loginUserInteractor = (CommerceApp.getInstance() as DomainInjector).provideLoginInteractor()
+
+    init {
+
+    }
 
     fun loginUser(param1: String, param2: String) {
-        interactor.invoke(param1, param2)
+        loginUserInteractor.invoke(param1, param2)?.let {
+            employeeList.value = it.value
+        }
     }
 }

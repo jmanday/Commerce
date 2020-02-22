@@ -1,14 +1,15 @@
-package com.sdos.commerce.data
+package com.sdos.commerce.data.datasource.database
 
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.LiveData
 import com.sdos.commerce.dao.EmployeeDao
 import com.sdos.commerce.data.datasource.EmployeeDataSource
 import com.sdos.commerce.data.room.CommerceDatabase
+import com.sdos.commerce.entities.Employee
 
 
-class RoomController(context: Context):
-    EmployeeDataSource {
+class RoomController(context: Context): EmployeeDataSource {
 
     private var db: CommerceDatabase? = null
     private var employeeDao: EmployeeDao? = null
@@ -19,16 +20,7 @@ class RoomController(context: Context):
     }
 
 
-    override fun login(param1: String, param2: String): Boolean {
-        val a = employeeDao?.getAllEmployees()?.value
-
-        if (a.isNullOrEmpty()) {
-            Log.d("COMMERCE", "Null")
-        }
-        else {
-            Log.d("COMMERCE", "NOOO Null")
-        }
-
-        return true
+    override fun login(param1: String, param2: String): LiveData<List<Employee>>?  {
+        return employeeDao?.getAllEmployees()
     }
 }

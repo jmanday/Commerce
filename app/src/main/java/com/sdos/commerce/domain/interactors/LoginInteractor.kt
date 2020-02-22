@@ -1,13 +1,12 @@
 package com.sdos.login.domain
 
-import com.sdos.commerce.data.LoginRepositoryImpl
+import androidx.lifecycle.LiveData
+import com.sdos.commerce.entities.Employee
 
-class LoginInteractor(): (String, String) -> Boolean {
+class LoginInteractor(private val repository: EmployeeRepository): (String, String) -> LiveData<List<Employee>>? {
 
-    val respository = LoginRepositoryImpl()
-
-    override fun invoke(user: String, pass: String): Boolean {
-        return respository.login(user, pass)
+    override fun invoke(user: String, pass: String): LiveData<List<Employee>>? {
+        return repository.login(user, pass)
     }
 
 }
