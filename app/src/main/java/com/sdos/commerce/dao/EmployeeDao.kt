@@ -9,20 +9,25 @@ import com.sdos.commerce.entities.Task
 interface EmployeeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(employee: Employee)
+    fun insert(employees: List<Employee>)
 
     @Query("SELECT * FROM employees ")
     fun getAllEmployees(): LiveData<List<Employee>>
 
+    /*
     @Query("SELECT * FROM employees WHERE id = :mId")
-    fun getTasksFromEmploye(mId: Int): LiveData<List<Task>>
+    fun getTasksFromEmploye(mId: Int): LiveData<List<Int>>
 
     @Query("UPDATE employees SET listTask=:listNewTask WHERE id = :idEmployee")
-    fun assignTaskToEmploye(idEmployee: Int, listNewTask: List<Task>)
+    fun assignTaskToEmploye(idEmployee: Int, listNewTask: List<Int>)
+
+
 
     @Update
     suspend fun updateUsers(employee: Employee)
 
     @Delete
     suspend fun deleteUsers(employee: Employee)
+
+     */
 }

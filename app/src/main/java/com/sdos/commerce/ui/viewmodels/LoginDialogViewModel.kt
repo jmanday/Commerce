@@ -1,11 +1,11 @@
 package com.sdos.commerce.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
+import com.sdos.commerce.CommerceApp
 import com.sdos.login.domain.LoginInteractor
 
 class LoginDialogViewModel : ViewModel() {
-
-
+    
     private val interactor = LoginInteractor()
 
     fun loginUser(param1: String, param2: String) {
