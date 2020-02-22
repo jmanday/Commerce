@@ -9,4 +9,18 @@ class CommerceApp: Application() {
         super.onCreate()
         CommerceDatabase.getInstance(applicationContext)
     }
+
+    companion object {
+        private var instance: CommerceApp? = null
+
+        fun getInstance(): CommerceApp? {
+            if (instance == null) {
+                synchronized(CommerceApp::class) {
+                    instance = CommerceApp()
+                }
+            }
+
+            return instance
+        }
+    }
 }
