@@ -1,6 +1,7 @@
 package com.sdos.commerce.ui.views
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,9 @@ class LoginDialogView: DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         this.isCancelable = false
         loginDialogViewModel.employeeList.observe(this, Observer {
-
+            it?.let {
+                Log.d("TEST", it.size.toString())
+            }
         })
         initializeListeners()
     }

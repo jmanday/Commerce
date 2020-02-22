@@ -30,7 +30,7 @@ abstract class CommerceDatabase: RoomDatabase() {
             if (instance == null) {
                 synchronized(CommerceDatabase::class) {
                     instance = Room.databaseBuilder(context.getApplicationContext(),
-                        CommerceDatabase::class.java, "weather1_7_6_46.db")
+                        CommerceDatabase::class.java, "weather1_7_6_49.db")
                         .addCallback(object : Callback() {
                             override fun onCreate(db: SupportSQLiteDatabase) {
                                 super.onCreate(db)

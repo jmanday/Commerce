@@ -1,7 +1,6 @@
 package com.sdos.commerce.data.datasource.database
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import com.sdos.commerce.dao.EmployeeDao
 import com.sdos.commerce.data.datasource.EmployeeDataSource
@@ -20,8 +19,8 @@ class RoomController(context: Context): EmployeeDataSource {
     }
 
 
-    override fun login(param1: String, param2: String): LiveData<List<Employee>>?  {
-        return employeeDao?.getAllEmployees()
+    override fun login(param1: Int, param2: String): LiveData<Employee>?  {
+        return employeeDao?.getEmployee(param1, param2)
     }
 
     override fun getEmployees(): LiveData<List<Employee>>? {

@@ -14,10 +14,10 @@ interface EmployeeDao {
     @Query("SELECT * FROM employees ")
     fun getAllEmployees(): LiveData<List<Employee>>
 
-    /*
-    @Query("SELECT * FROM employees WHERE id = :mId")
-    fun getTasksFromEmploye(mId: Int): LiveData<List<Int>>
 
+    @Query("SELECT * FROM employees WHERE id = :mId and name = :mName")
+    fun getEmployee(mId: Int, mName: String): LiveData<Employee>
+/*
     @Query("UPDATE employees SET listTask=:listNewTask WHERE id = :idEmployee")
     fun assignTaskToEmploye(idEmployee: Int, listNewTask: List<Int>)
 

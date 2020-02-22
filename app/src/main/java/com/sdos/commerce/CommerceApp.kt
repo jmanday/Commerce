@@ -9,7 +9,7 @@ import com.sdos.commerce.data.room.CommerceDatabase
 import com.sdos.commerce.domain.injector.DomainInjector
 import com.sdos.commerce.domain.interactors.GetEmployeesInteractor
 import com.sdos.login.domain.EmployeeRepository
-import com.sdos.login.domain.LoginInteractor
+import com.sdos.login.domain.LoginEmployeeInteractor
 
 class CommerceApp: Application(), DomainInjector, DataInjector {
 
@@ -19,8 +19,8 @@ class CommerceApp: Application(), DomainInjector, DataInjector {
     }
 
     // BEGIN - injections layer domain
-    override fun provideLoginInteractor(): LoginInteractor {
-        return LoginInteractor(provideEmployeeRepository())
+    override fun provideLoginInteractor(): LoginEmployeeInteractor {
+        return LoginEmployeeInteractor(provideEmployeeRepository())
     }
 
     override fun provideGetEmployeesInteractor(): GetEmployeesInteractor {
