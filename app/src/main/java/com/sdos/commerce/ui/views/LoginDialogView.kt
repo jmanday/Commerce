@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
@@ -30,17 +31,25 @@ class LoginDialogView: DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.isCancelable = false
+        /*
         loginDialogViewModel.employeeList.observe(this, Observer {
             it?.let {
-                Log.d("TEST", it.size.toString())
+
             }
         })
+         */
         initializeListeners()
     }
 
     private fun initializeListeners() {
         btnDone.setOnClickListener {
-            loginDialogViewModel.loginUser(ed_user.text.toString(), ed_pass.text.toString())
+            loginDialogViewModel.loginUser(ed_user.text.toString(), ed_pass.text.toString()).observe(this, Observer {
+                if (it == null) {
+                    message.visibility = VISIBLE
+                } else {
+                    this.dismiss()
+                }
+            })
         }
     }
 

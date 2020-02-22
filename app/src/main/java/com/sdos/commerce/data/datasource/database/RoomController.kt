@@ -19,7 +19,7 @@ class RoomController(context: Context): EmployeeDataSource {
     }
 
 
-    override fun login(param1: Int, param2: String): LiveData<Employee>?  {
+    override fun login(param1: String, param2: String): LiveData<Employee>?  {
         return employeeDao?.getEmployee(param1, param2)
     }
 
