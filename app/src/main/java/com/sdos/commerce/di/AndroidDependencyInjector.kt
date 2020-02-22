@@ -1,8 +1,8 @@
 package com.sdos.commerce.di
 
+import com.sdos.commerce.data.LoginDataSource
+import com.sdos.commerce.data.LoginRepositoryImpl
 import com.sdos.commerce.data.RoomController
-import com.sdos.login.data.LoginDataSource
-import com.sdos.login.data.LoginRepositoryImpl
 import com.sdos.login.domain.LoginInteractor
 import com.sdos.login.domain.LoginRepository
 

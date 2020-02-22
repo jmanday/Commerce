@@ -1,6 +1,5 @@
 package com.sdos.commerce.data
 
-import com.sdos.login.data.LoginDataSource
 
 class RoomController: LoginDataSource {
 

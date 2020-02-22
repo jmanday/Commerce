@@ -1,4 +1,4 @@
-package com.sdos.login.data
+package com.sdos.commerce.data
 
 interface LoginDataSource {
 

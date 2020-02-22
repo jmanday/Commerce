@@ -3,8 +3,8 @@ package com.sdos.commerce.ui.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
-import com.sdos.login.R
-import com.sdos.login.ui.views.LoginDialogView
+import com.sdos.commerce.R
+import com.sdos.commerce.ui.views.LoginDialogView
 
 class MainActivity : AppCompatActivity() {
 
