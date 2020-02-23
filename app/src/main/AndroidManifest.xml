@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sdos.commerce">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="CommerceApp"
         android:allowBackup="true"
