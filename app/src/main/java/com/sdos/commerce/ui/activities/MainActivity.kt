@@ -29,9 +29,27 @@ class MainActivity : AppCompatActivity(), LoginDialogView.LoginDialogListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        initialize()
+
         LoginDialogView.newInstance()
             .setListener(this)
             .show(supportFragmentManager, "")
+    }
+
+    private fun initialize() {
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.action_employee -> {
+                    navController.navigate(R.id.loginFragment)
+                    true
+                }
+                R.id.action_task -> {
+                    navController.navigate(R.id.taskFragment)
+                    true
+                }
+                else -> true
+            }
+        }
     }
 
     override fun userLoggedIn() {

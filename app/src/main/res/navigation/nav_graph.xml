@@ -10,4 +10,9 @@
         android:name="com.sdos.commerce.ui.fragments.EmployeeFragment"
         android:label="login_fragment"
         tools:layout="@layout/employee_fragment" />
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.sdos.commerce.ui.fragments.TaskFragment"
+        android:label="fragment_task"
+        tools:layout="@layout/fragment_task" />
 </navigation>

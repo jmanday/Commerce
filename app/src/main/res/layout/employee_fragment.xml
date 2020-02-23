@@ -10,6 +10,7 @@
         android:id="@+id/employee_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackground"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:shimmer_recycler_layout="@layout/list_item_view"
