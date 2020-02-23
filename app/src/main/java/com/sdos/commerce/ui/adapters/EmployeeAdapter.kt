@@ -2,6 +2,7 @@ package com.sdos.commerce.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -31,8 +32,9 @@ class EmployeeAdapter(private val listEmployee: List<Employee>, private val list
             itemView.name.text = employee.name
             itemView.surname.text = employee.surname
             itemView.prof.text = employee.skill.toString()
+            itemView.text_type.visibility = VISIBLE
             if (employee.image.isNotEmpty()) {
-                Glide.with(itemView)  
+                Glide.with(itemView)
                     .load(employee.image)
                     .centerCrop()
                     .placeholder(R.mipmap.placeholder)

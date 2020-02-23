@@ -24,20 +24,21 @@
         tools:text="Molino Fernández"/>
 
     <TextView
-        android:id="@+id/type"
+        android:id="@+id/text_type"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/name"
         app:layout_constraintStart_toStartOf="parent"
         android:textStyle="bold"
-        android:text="Profesión:"/>
+        android:visibility="gone"
+        android:text="@string/text_prof"/>
 
     <TextView
         android:id="@+id/prof"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/name"
-        app:layout_constraintStart_toEndOf="@id/type"
+        app:layout_constraintStart_toEndOf="@id/text_type"
         android:layout_marginStart="4dp"
         tools:text="Cobrador"/>
 
