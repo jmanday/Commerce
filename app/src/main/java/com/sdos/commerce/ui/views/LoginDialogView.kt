@@ -31,13 +31,6 @@ class LoginDialogView: DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.isCancelable = false
-        /*
-        loginDialogViewModel.employeeList.observe(this, Observer {
-            it?.let {
-
-            }
-        })
-         */
         initializeListeners()
     }
 
