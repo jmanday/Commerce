@@ -32,6 +32,10 @@ class EmployeeFragment : Fragment() {
 
     private fun initialize() {
         employee_recycler_view.showShimmer()
+        viewModel.setEmployees()
+    }
+
+    fun userLoggedIn() {
         viewModel.getEmployees().observe(this, Observer {
             if (it != null) {
                 employee_recycler_view.adapter = EmployeeAdapter(it) {

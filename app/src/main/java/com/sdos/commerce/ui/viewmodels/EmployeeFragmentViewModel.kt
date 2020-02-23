@@ -13,14 +13,13 @@ class EmployeeFragmentViewModel : ViewModel() {
 
     private val getEmployeesInteractor = (CommerceApp.getInstance() as DomainInjector).provideGetEmployeesInteractor()
 
-    init {
+    fun setEmployees() {
         getEmployeesInteractor.invoke()?.let {source ->
             employeeList.addSource(source, Observer {
                 employeeList.removeSource(source)
                 employeeList.value = it
             })
         }
-
     }
 
     fun getEmployees() = employeeList
