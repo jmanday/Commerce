@@ -9,7 +9,7 @@
         android:id="@+id/loginFragment"
         android:name="com.sdos.commerce.ui.fragments.EmployeeFragment"
         android:label="login_fragment"
-        tools:layout="@layout/employee_fragment" />
+        tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/taskFragment"
         android:name="com.sdos.commerce.ui.fragments.TaskFragment"

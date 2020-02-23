@@ -2,20 +2,22 @@ package com.sdos.commerce.ui.fragments
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-
 import com.sdos.commerce.R
 import com.sdos.commerce.ui.adapters.EmployeeAdapter
 import com.sdos.commerce.ui.viewmodels.EmployeeFragmentViewModel
-import kotlinx.android.synthetic.main.employee_fragment.*
+import kotlinx.android.synthetic.main.fragment_main.*
 
-class EmployeeFragment : Fragment(R.layout.employee_fragment) {
+class EmployeeFragment : Fragment(R.layout.fragment_main) {
 
     private lateinit var viewModel: EmployeeFragmentViewModel
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        text_head.text = "Empleados"
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -24,19 +26,25 @@ class EmployeeFragment : Fragment(R.layout.employee_fragment) {
     }
 
     private fun initialize() {
-        employee_recycler_view.showShimmer()
+        main_recycler_view.showShimmer()
         viewModel.setEmployees()
+        if (userLogged) userLoggedIn()
     }
 
     fun userLoggedIn() {
+        userLogged = true
         viewModel.getEmployees().observe(this, Observer {
             if (it != null) {
-                employee_recycler_view.adapter = EmployeeAdapter(it) {
+                main_recycler_view.adapter = EmployeeAdapter(it) {
 
                 }
-                employee_recycler_view.hideShimmer()
+                main_recycler_view.hideShimmer()
             }
         })
+    }
+
+    companion object {
+        private var userLogged = false
     }
 
 }

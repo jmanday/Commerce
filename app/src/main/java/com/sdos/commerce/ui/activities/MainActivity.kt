@@ -40,11 +40,13 @@ class MainActivity : AppCompatActivity(), LoginDialogView.LoginDialogListener {
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.action_employee -> {
-                    navController.navigate(R.id.loginFragment)
+                    if (navController.currentDestination?.id != R.id.loginFragment)
+                        navController.navigate(R.id.loginFragment)
                     true
                 }
                 R.id.action_task -> {
-                    navController.navigate(R.id.taskFragment)
+                    if (navController.currentDestination?.id != R.id.taskFragment)
+                        navController.navigate(R.id.taskFragment)
                     true
                 }
                 else -> true

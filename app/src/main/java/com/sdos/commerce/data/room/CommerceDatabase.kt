@@ -7,11 +7,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.sdos.commerce.R
 import com.sdos.commerce.dao.EmployeeDao
+import com.sdos.commerce.dao.TaskDao
 import com.sdos.commerce.entities.*
 import com.sdos.commerce.generator.Generator
-import com.sdos.commerce.util.Converter
 import com.sdos.commerce.util.ListConverter
 import java.util.concurrent.Executors
 
@@ -20,6 +19,8 @@ import java.util.concurrent.Executors
 abstract class CommerceDatabase: RoomDatabase() {
 
     abstract fun employeeDao(): EmployeeDao
+
+    abstract fun taskDao(): TaskDao
 
     companion object {
         private const val DATABASE_NAME = "commerce_database"
@@ -37,6 +38,7 @@ abstract class CommerceDatabase: RoomDatabase() {
                                 Executors.newSingleThreadExecutor().execute {
                                     instance?.let {
                                         it.employeeDao().insert(Generator.getEmployees())
+                                        it.taskDao().insert(Generator.getTasks())
                                     }
 
 

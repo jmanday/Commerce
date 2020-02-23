@@ -18,6 +18,8 @@ object Generator {
     )
 
     fun getTasks() = listOf(
+        Task(null, "Cambiar pantalla portatil", "Se necesita realizar un cambio de pantalla en un portatil debido a una caída", 0.5, 4, null),
+        Task(null, "Cambiar pantalla portatil", "Se necesita realizar un cambio de pantalla en un portatil debido a una caída", 0.5, 4, null),
         Task(null, "Cambiar pantalla portatil", "Se necesita realizar un cambio de pantalla en un portatil debido a una caída", 0.5, 4, null)
     )
 
