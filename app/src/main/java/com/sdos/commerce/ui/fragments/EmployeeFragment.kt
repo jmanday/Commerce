@@ -9,14 +9,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.sdos.commerce.R
+import com.sdos.commerce.ui.adapters.EmployeeAdapter
 import com.sdos.commerce.ui.viewmodels.EmployeeFragmentViewModel
 import kotlinx.android.synthetic.main.employee_fragment.*
 
 class EmployeeFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = EmployeeFragment()
-    }
 
     private lateinit var viewModel: EmployeeFragmentViewModel
 
@@ -34,10 +31,13 @@ class EmployeeFragment : Fragment() {
     }
 
     private fun initialize() {
-        employee_recycler_view
+        employee_recycler_view.showShimmer()
         viewModel.getEmployees().observe(this, Observer {
             if (it != null) {
+                employee_recycler_view.adapter = EmployeeAdapter(it) {
 
+                }
+                employee_recycler_view.hideShimmer()
             }
         })
     }

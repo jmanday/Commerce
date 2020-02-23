@@ -5,10 +5,10 @@ import com.sdos.commerce.entities.*
 object Generator {
 
     fun getEmployees() = listOf(
-        Employee(null, "Antonio", "Molino Fernandez", "amolino@gmail.com",0, "677889933", "1234", 0.0, 0, listOf(), -1),
-        Employee(null, "Julio", "Aparicio Matías", "japaricio@gmail.com",1, "677889933", "1234", 0.0, 0, listOf(), -1),
-        Employee(null, "Miguel", "Lopez Estevez", "mploez@gmail.com",1, "677889933", "1234", 0.0, 0, listOf(), -1),
-        Employee(null, "Alberto", "Espejo Gonzalez", "aespejo@gmail.com",1, "677889933", "1234", 0.0, 0, listOf(), -1))
+        Employee(null, "Antonio", "Molino Fernandez", "amolino@gmail.com",0, "677889933", "1234", 0.0, 0, listOf(), -1, ""),
+        Employee(null, "Julio", "Aparicio Matías", "japaricio@gmail.com",1, "677889933", "1234", 0.0, 0, listOf(), -1, ""),
+        Employee(null, "Miguel", "Lopez Estevez", "mploez@gmail.com",1, "677889933", "1234", 0.0, 0, listOf(), -1, ""),
+        Employee(null, "Alberto", "Espejo Gonzalez", "aespejo@gmail.com",1, "677889933", "1234", 0.0, 0, listOf(), -1, ""))
 
     fun getSkills() = listOf(
         Skill(null, "Cobrador"),

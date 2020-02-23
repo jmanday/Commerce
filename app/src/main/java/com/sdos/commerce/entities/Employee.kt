@@ -38,5 +38,8 @@ data class Employee(
     var listTask: List<Int>,
 
     @ColumnInfo(name = "currenTask")
-    var currenTask: Int
+    var currenTask: Int,
+
+    @ColumnInfo(name = "image")
+    var image: String
 )
