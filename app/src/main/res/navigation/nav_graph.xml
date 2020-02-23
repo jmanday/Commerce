@@ -15,4 +15,9 @@
         android:name="com.sdos.commerce.ui.fragments.TaskFragment"
         android:label="fragment_task"
         tools:layout="@layout/fragment_task" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.sdos.commerce.ui.fragments.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
 </navigation>

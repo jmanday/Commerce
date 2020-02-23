@@ -12,7 +12,7 @@
         android:icon="@drawable/ic_description_black_24dp"/>
 
     <item
-        android:id="@+id/action_navigation"
+        android:id="@+id/action_setting"
         android:title="@string/menu_empty"
         android:icon="@drawable/ic_build_black_24dp"/>
 </menu>

@@ -49,6 +49,11 @@ class MainActivity : AppCompatActivity(), LoginDialogView.LoginDialogListener {
                         navController.navigate(R.id.taskFragment)
                     true
                 }
+                R.id.action_setting -> {
+                    if (navController.currentDestination?.id != R.id.settingFragment)
+                        navController.navigate(R.id.settingFragment)
+                    true
+                }
                 else -> true
             }
         }
