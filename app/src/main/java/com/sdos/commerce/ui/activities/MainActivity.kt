@@ -10,6 +10,7 @@ import com.sdos.commerce.R
 import com.sdos.commerce.dao.EmployeeDao
 import com.sdos.commerce.data.room.CommerceDatabase
 import com.sdos.commerce.entities.Employee
+import com.sdos.commerce.listeners.FragmentListener
 import com.sdos.commerce.ui.fragments.EmployeeFragment
 import com.sdos.commerce.ui.views.LoginDialogView
 import com.sdos.commerce.util.Converter
@@ -21,7 +22,7 @@ import java.io.Reader
 import java.util.concurrent.Executors
 
 
-class MainActivity : AppCompatActivity(), LoginDialogView.LoginDialogListener {
+class MainActivity : AppCompatActivity(), LoginDialogView.LoginDialogListener, FragmentListener {
 
     private val navController by lazy { findNavController(R.id.nav_host_fragment) }
 
@@ -40,8 +41,8 @@ class MainActivity : AppCompatActivity(), LoginDialogView.LoginDialogListener {
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.action_employee -> {
-                    if (navController.currentDestination?.id != R.id.loginFragment)
-                        navController.navigate(R.id.loginFragment)
+                    if (navController.currentDestination?.id != R.id.mainFragment)
+                        navController.navigate(R.id.mainFragment)
                     true
                 }
                 R.id.action_task -> {
@@ -65,4 +66,7 @@ class MainActivity : AppCompatActivity(), LoginDialogView.LoginDialogListener {
         }
     }
 
+    override fun onButtonDoneClicked(actionId: Int) {
+        navController.navigate(actionId)
+    }
 }
