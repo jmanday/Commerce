@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -36,9 +37,8 @@ class LoginDialogView: DialogFragment() {
     }
 
     private fun initializeListeners() {
-        /*
         btnDone.setOnClickListener {
-            loginDialogViewModel.loginUser(ed_user.text.toString(), ed_pass.text.toString()).observe(this, Observer {
+            loginDialogViewModel.loginUser(et_username.text.toString(), ed_pass.text.toString()).observe(this, Observer {
                 if (it == null) {
                     message.visibility = VISIBLE
                 } else {
@@ -47,7 +47,6 @@ class LoginDialogView: DialogFragment() {
                 }
             })
         }
-         */
     }
 
     fun setListener(listener: LoginDialogListener): LoginDialogView {
