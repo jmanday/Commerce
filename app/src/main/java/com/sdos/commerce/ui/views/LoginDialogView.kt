@@ -36,6 +36,7 @@ class LoginDialogView: DialogFragment() {
     }
 
     private fun initializeListeners() {
+        /*
         btnDone.setOnClickListener {
             loginDialogViewModel.loginUser(ed_user.text.toString(), ed_pass.text.toString()).observe(this, Observer {
                 if (it == null) {
@@ -46,6 +47,7 @@ class LoginDialogView: DialogFragment() {
                 }
             })
         }
+         */
     }
 
     fun setListener(listener: LoginDialogListener): LoginDialogView {
