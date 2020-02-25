@@ -8,6 +8,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.sdos.commerce.dao.EmployeeDao
+import com.sdos.commerce.dao.SkillDao
 import com.sdos.commerce.dao.TaskDao
 import com.sdos.commerce.entities.*
 import com.sdos.commerce.generator.Generator
@@ -21,6 +22,8 @@ abstract class CommerceDatabase: RoomDatabase() {
     abstract fun employeeDao(): EmployeeDao
 
     abstract fun taskDao(): TaskDao
+
+    abstract fun skillDao(): SkillDao
 
     companion object {
         private const val DATABASE_NAME = "commerce_database"
@@ -39,6 +42,7 @@ abstract class CommerceDatabase: RoomDatabase() {
                                     instance?.let {
                                         it.employeeDao().insert(Generator.getEmployees())
                                         it.taskDao().insert(Generator.getTasks())
+                                        it.skillDao().insert(Generator.getSkills())
                                     }
 
 

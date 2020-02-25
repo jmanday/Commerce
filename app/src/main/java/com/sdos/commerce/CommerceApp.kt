@@ -2,14 +2,18 @@ package com.sdos.commerce
 
 import android.app.Application
 import com.sdos.commerce.data.EmployeeRepositoryImpl
+import com.sdos.commerce.data.SkillRepositoryImpl
 import com.sdos.commerce.data.TaskRepositoryImpl
 import com.sdos.commerce.data.datasource.EmployeeDataSource
+import com.sdos.commerce.data.datasource.SkillDataSource
 import com.sdos.commerce.data.datasource.TaskDataSource
 import com.sdos.commerce.data.datasource.database.RoomController
 import com.sdos.commerce.data.injector.DataInjector
 import com.sdos.commerce.data.room.CommerceDatabase
+import com.sdos.commerce.domain.SkillRepository
 import com.sdos.commerce.domain.injector.DomainInjector
 import com.sdos.commerce.domain.interactors.GetEmployeesInteractor
+import com.sdos.commerce.domain.interactors.GetListSkillInteractor
 import com.sdos.commerce.domain.interactors.GetTasksInteractor
 import com.sdos.login.domain.EmployeeRepository
 import com.sdos.login.domain.LoginEmployeeInteractor
@@ -34,6 +38,10 @@ class CommerceApp: Application(), DomainInjector, DataInjector {
     override fun provideGetTasksInteractor(): GetTasksInteractor {
         return GetTasksInteractor(provideTaskRepository())
     }
+
+    override fun provideGetListSkillInteractor(): GetListSkillInteractor {
+        return GetListSkillInteractor(provideSkillRepository())
+    }
     // END - injections layer domain
 
     // BEGIN - injections layer data
@@ -51,6 +59,14 @@ class CommerceApp: Application(), DomainInjector, DataInjector {
 
     override fun provideTaskRepository(): TaskRepository {
         return TaskRepositoryImpl(provideTaskDataSource())
+    }
+
+    override fun provideSkillRepository(): SkillRepository {
+        return SkillRepositoryImpl(provideSkillDataSource())
+    }
+
+    override fun provideSkillDataSource(): SkillDataSource {
+        return RoomController(this)
     }
     // END - injections layer data
 
