@@ -1,198 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+<layout>
+    <data>
+        <variable
+            name="test"
+            type="Boolean" />
+    </data>
+    <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="16dp"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".ui.fragments.DetailEmployeeFragment">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/text_head"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:layout_marginTop="4dp"
-            android:text="@string/text_header_detail_employee"
-            android:textColor="@color/colorBlack"/>
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            tools:context=".ui.fragments.DetailEmployeeFragment">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/label_text_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_head"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:helperTextEnabled="true"
-            app:counterEnabled="true"
-            app:counterMaxLength="15"
-            app:startIconDrawable="@drawable/ic_person_black_24dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_name"
+            <TextView
+                android:id="@+id/text_head"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:gravity="center"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                android:text="@string/text_header_detail_employee"
+                android:textColor="@color/colorBlack"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_surname"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/label_text_surname"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:helperTextEnabled="true"
-            app:counterEnabled="true"
-            app:counterMaxLength="15"
-            app:startIconDrawable="@drawable/ic_group_black_24dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_surname"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_name"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"/>
+                android:hint="@string/label_text_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_head"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:helperTextEnabled="true"
+                app:counterEnabled="true"
+                app:counterMaxLength="15"
+                app:startIconDrawable="@drawable/ic_person_black_24dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/label_text_date"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_surname"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:helperTextEnabled="true"
-            app:startIconDrawable="@drawable/ic_calendar_black_24dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_date"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_surname"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="datetime"
-                android:textIsSelectable="false"
-                android:textSize="16sp"/>
+                android:hint="@string/label_text_surname"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:helperTextEnabled="true"
+                app:counterEnabled="true"
+                app:counterMaxLength="15"
+                app:startIconDrawable="@drawable/ic_group_black_24dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_surname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_email"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/label_text_email"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:helperTextEnabled="true"
-            app:startIconDrawable="@drawable/ic_email_black_24dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_email"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_date"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textIsSelectable="false"
-                android:textSize="16sp"/>
+                android:hint="@string/label_text_date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_surname"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:helperTextEnabled="true"
+                app:startIconDrawable="@drawable/ic_calendar_black_24dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="datetime"
+                    android:textIsSelectable="false"
+                    android:textSize="16sp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_phone"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/label_text_phone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_email"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:helperTextEnabled="true"
-            app:startIconDrawable="@drawable/ic_phone_black_24dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_phone"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_email"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="datetime"
-                android:textIsSelectable="false"
-                android:textSize="16sp"/>
+                android:hint="@string/label_text_email"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:helperTextEnabled="true"
+                app:startIconDrawable="@drawable/ic_email_black_24dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="false"
+                    android:textSize="16sp"/>
 
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/spn_rol"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/label_text_phone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_phone"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_pass"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/label_text_pass"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spn_rol"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:helperTextEnabled="true"
-            app:startIconDrawable="@drawable/ic_lock_black_24dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_pass"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_phone"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="numberPassword"
-                android:textIsSelectable="false"
-                android:textSize="16sp"/>
+                android:hint="@string/label_text_phone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_email"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:helperTextEnabled="true"
+                app:startIconDrawable="@drawable/ic_phone_black_24dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="datetime"
+                    android:textIsSelectable="false"
+                    android:textSize="16sp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_repeat_pass"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/label_text_repeat_pass"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_pass"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:helperTextEnabled="true"
-            app:startIconDrawable="@drawable/ic_lock_black_24dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_repeat_pass"
-                android:layout_width="match_parent"
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spn_rol"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="numberPassword"
-                android:textIsSelectable="false"
-                android:textSize="16sp"/>
+                android:hint="@string/label_text_phone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_pass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_text_pass"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/spn_rol"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:helperTextEnabled="true"
+                app:startIconDrawable="@drawable/ic_lock_black_24dp">
 
-        <Button
-            android:id="@+id/btnDone"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_repeat_pass"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="@string/text_button_done" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberPassword"
+                    android:textIsSelectable="false"
+                    android:textSize="16sp"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_repeat_pass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_text_repeat_pass"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_pass"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:helperTextEnabled="true"
+                app:startIconDrawable="@drawable/ic_lock_black_24dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_repeat_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberPassword"
+                    android:textIsSelectable="false"
+                    android:textSize="16sp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnDone"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_repeat_pass"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/text_button_done" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
