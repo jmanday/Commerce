@@ -8,38 +8,38 @@ import androidx.room.PrimaryKey
 data class Employee(
 
     @PrimaryKey(autoGenerate = true)
-    var id: Int? = 0,
+    var id: Int,
 
     @ColumnInfo(name = "name")
-    var name: String,
+    var name: String = String(),
 
     @ColumnInfo(name = "surname")
-    var surname: String,
+    var surname: String = String(),
 
     @ColumnInfo(name = "email")
-    var email: String,
+    var email: String = String(),
 
     @ColumnInfo(name = "typeEmployee")
-    var typeEmployee: Int,
+    var typeEmployee: Int = 0,
 
     @ColumnInfo(name = "phone")
-    var phone: String,
+    var phone: String = String(),
 
     @ColumnInfo(name = "pass")
-    var pass:  String,
+    var pass:  String = String(),
 
     @ColumnInfo(name = "hours")
-    var hours: Double,
+    var hours: Double = 0.0,
 
     @ColumnInfo(name = "skill")
-    var skill: Int,
+    var skill: Int = 0,
 
     @ColumnInfo(name = "listTask")
-    var listTask: List<Int>,
+    var listTask: List<Int> = listOf(),
 
     @ColumnInfo(name = "currenTask")
-    var currenTask: Int,
+    var currenTask: Int = 0,
 
     @ColumnInfo(name = "image")
-    var image: String
+    var image: String = String()
 )
