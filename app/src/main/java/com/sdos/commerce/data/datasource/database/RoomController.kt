@@ -25,6 +25,7 @@ class RoomController(context: Context): EmployeeDataSource, TaskDataSource, Skil
         db = CommerceDatabase.getInstance(context)
         employeeDao = db?.employeeDao()
         taskDao = db?.taskDao()
+        skillDao = db?.skillDao()
     }
 
 

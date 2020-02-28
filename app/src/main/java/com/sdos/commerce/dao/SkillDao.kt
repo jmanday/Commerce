@@ -11,8 +11,8 @@ import com.sdos.commerce.entities.Skill
 interface SkillDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(employees: List<Skill>)
+    fun insert(skills: List<Skill>)
 
-    @Query("SELECT * FROM skills ")
+    @Query("SELECT * FROM skills")
     fun getAllSkills(): LiveData<List<Skill>>
 }
