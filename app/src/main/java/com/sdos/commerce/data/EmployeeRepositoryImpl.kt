@@ -14,4 +14,8 @@ class EmployeeRepositoryImpl(private val dataSource: EmployeeDataSource): Employ
     override fun getEmployees(): LiveData<List<Employee>>? {
         return dataSource.getEmployees()
     }
+
+    override fun addEmployee(employee: Employee) {
+        dataSource.addEmployee(employee)
+    }
 }

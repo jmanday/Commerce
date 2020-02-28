@@ -11,9 +11,11 @@ interface EmployeeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(employees: List<Employee>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addEmployee(employee: Employee)
+
     @Query("SELECT * FROM employees ")
     fun getAllEmployees(): LiveData<List<Employee>>
-
 
     @Query("SELECT * FROM employees WHERE name = :mName AND pass = :mPass")
     fun getEmployee(mName: String, mPass: String): LiveData<Employee>

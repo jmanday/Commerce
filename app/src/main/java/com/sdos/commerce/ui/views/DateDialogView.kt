@@ -29,7 +29,7 @@ class DateDialogView: DialogFragment() {
     private fun initializeListeners() {
         btnDone.setOnClickListener {
             date_picker.apply {
-                val date = String.format(DATE_DIALOG, dayOfMonth, month, year)
+                val date = String.format(DATE_DIALOG, dayOfMonth, month.plus(1), year)
                 btnDoneListener.invoke(date)
                 this@DateDialogView.dismiss()
             }

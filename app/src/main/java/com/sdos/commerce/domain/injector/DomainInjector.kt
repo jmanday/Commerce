@@ -1,5 +1,6 @@
 package com.sdos.commerce.domain.injector
 
+import com.sdos.commerce.domain.interactors.AddEmployeeInteractor
 import com.sdos.commerce.domain.interactors.GetEmployeesInteractor
 import com.sdos.commerce.domain.interactors.GetListSkillInteractor
 import com.sdos.commerce.domain.interactors.GetTasksInteractor
@@ -14,4 +15,6 @@ interface DomainInjector {
     fun provideGetTasksInteractor(): GetTasksInteractor
 
     fun provideGetListSkillInteractor(): GetListSkillInteractor
+
+    fun provideAddEmployeeInteractor(): AddEmployeeInteractor
 }

@@ -42,6 +42,8 @@
                 app:layout_constraintTop_toBottomOf="@id/text_head"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:helperTextEnabled="true"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorRed"
                 app:counterEnabled="true"
                 app:counterMaxLength="15"
                 app:startIconDrawable="@drawable/ic_person_black_24dp">
@@ -63,15 +65,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/input_name"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:helperTextEnabled="true"
                 app:counterEnabled="true"
                 app:counterMaxLength="15"
+                app:helperTextEnabled="true"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorRed"
                 app:startIconDrawable="@drawable/ic_group_black_24dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_surname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@={employee.surname}"
                     android:textSize="16sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -85,6 +90,8 @@
                 app:layout_constraintTop_toBottomOf="@id/input_surname"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:helperTextEnabled="true"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorRed"
                 app:startIconDrawable="@drawable/ic_calendar_black_24dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -92,6 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="datetime"
+                    android:text="@={employee.birthdate}"
                     android:textIsSelectable="false"
                     android:textSize="16sp"/>
 
@@ -113,6 +121,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textIsSelectable="false"
+                    app:helperTextEnabled="true"
+                    app:errorEnabled="true"
+                    app:errorTextColor="@color/colorRed"
+                    android:text="@={employee.email}"
                     android:textSize="16sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -133,7 +145,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="datetime"
+                    app:helperTextEnabled="true"
+                    app:errorEnabled="true"
+                    app:errorTextColor="@color/colorRed"
                     android:textIsSelectable="false"
+                    android:text="@={employee.phone}"
                     android:textSize="16sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -156,27 +172,10 @@
                     android:layout_height="wrap_content"
                     android:inputType="numberPassword"
                     android:textIsSelectable="false"
-                    android:textSize="16sp"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_repeat_pass"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/label_text_repeat_pass"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_pass"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:helperTextEnabled="true"
-                app:startIconDrawable="@drawable/ic_lock_black_24dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ed_repeat_pass"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberPassword"
-                    android:textIsSelectable="false"
+                    app:helperTextEnabled="true"
+                    app:errorEnabled="true"
+                    app:errorTextColor="@color/colorRed"
+                    android:text="@={employee.pass}"
                     android:textSize="16sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -186,7 +185,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_repeat_pass"
+                app:layout_constraintTop_toBottomOf="@id/input_pass"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:orientation="vertical"
                 android:layout_marginStart="4dp"

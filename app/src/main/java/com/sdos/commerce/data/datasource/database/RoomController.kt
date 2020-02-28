@@ -45,4 +45,8 @@ class RoomController(context: Context): EmployeeDataSource, TaskDataSource, Skil
     override fun getSkillList(): LiveData<List<Skill>>? {
         return skillDao?.getAllSkills()
     }
+
+    override fun addEmployee(employee: Employee) {
+        employeeDao?.addEmployee(employee)
+    }
 }
