@@ -38,6 +38,8 @@ class LoginDialogView: DialogFragment() {
 
     private fun initializeListeners() {
         btnDone.setOnClickListener {
+            listener.userLoggedIn()
+            this.dismiss()
             loginDialogViewModel.loginUser(et_username.text.toString(), ed_pass.text.toString()).observe(this, Observer {
                 if (it == null) {
                     message.visibility = VISIBLE

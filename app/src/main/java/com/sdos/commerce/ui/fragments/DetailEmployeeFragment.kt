@@ -31,7 +31,7 @@ class DetailEmployeeFragment : Fragment(){
     ): View? {
         return FragmentDetailEmployeeBinding.inflate(inflater)
             .apply {
-                test = false
+                employee = null
             }.root
     }
 
