@@ -137,15 +137,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spn_rol"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/label_text_phone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_phone"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="16dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_pass"
@@ -153,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/label_text_pass"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/spn_rol"
+                app:layout_constraintTop_toBottomOf="@id/input_phone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/ic_lock_black_24dp">
@@ -189,14 +180,40 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <LinearLayout
+                android:id="@+id/fm_rol"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_repeat_pass"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="vertical"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="16dp">
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spn_rol"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/colorBlack"
+                    />
+            </LinearLayout>
+
             <Button
                 android:id="@+id/btnDone"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_repeat_pass"
+                app:layout_constraintTop_toBottomOf="@id/fm_rol"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/text_button_done" />
 
