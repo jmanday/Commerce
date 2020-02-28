@@ -50,6 +50,7 @@
                     android:id="@+id/ed_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@={employee.name}"
                     android:textSize="16sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
