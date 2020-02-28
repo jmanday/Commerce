@@ -4,6 +4,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_empty"></string>
+    <string name="menu_text_employee">Empleados</string>
+    <string name="menu_text_task">Tareas</string>
+    <string name="menu_text_setting">Ajustes</string>
     <string name="text_prof">Profesión</string>
     <string name="text_title_page_setting">Ajustes</string>
     <string name="text_download">Descargar información</string>
