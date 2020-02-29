@@ -1,6 +1,7 @@
 package com.sdos.commerce.ui.fragments
 
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,21 +15,28 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.textfield.TextInputLayout
 import com.sdos.commerce.databinding.FragmentDetailEmployeeBinding
 import com.sdos.commerce.entities.Employee
+import com.sdos.commerce.listeners.FragmentListener
 import com.sdos.commerce.ui.viewmodels.DetailEmployeView
 import com.sdos.commerce.ui.viewmodels.DetailEmployeeViewModel
 import com.sdos.commerce.ui.views.DateDialogView
 import com.sdos.commerce.ui.views.DateDialogView.Companion.TAG_DATE_DIALOG
 import com.sdos.commerce.util.showMessageError
 import kotlinx.android.synthetic.main.fragment_detail_employee.*
-import java.lang.Error
 
 class DetailEmployeeFragment : Fragment(), DetailEmployeView {
 
-    private var date: String? = null
+    private lateinit var listener: FragmentListener
     private lateinit var viewModel: DetailEmployeeViewModel
     private var employee = Employee()
     private lateinit var binding: FragmentDetailEmployeeBinding
     private lateinit var mapInputText: Map<ErrorField, TextInputLayout>
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is FragmentListener) {
+            listener = context
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -106,6 +114,11 @@ class DetailEmployeeFragment : Fragment(), DetailEmployeView {
         errorFieldList.forEach {
             mapInputText[it]?.showMessageError("Campo incorrecto")
         }
+    }
+
+    override fun showMessage(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        listener.onNavigationUp()
     }
 
     companion object {

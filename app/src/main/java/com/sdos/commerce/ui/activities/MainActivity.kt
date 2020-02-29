@@ -69,4 +69,8 @@ class MainActivity : AppCompatActivity(), LoginDialogView.LoginDialogListener, F
     override fun onButtonDoneClicked(actionId: Int) {
         navController.navigate(actionId)
     }
+
+    override fun onNavigationUp() {
+        navController.navigateUp()
+    }
 }

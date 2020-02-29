@@ -8,9 +8,10 @@ import com.sdos.commerce.domain.injector.DomainInjector
 import com.sdos.commerce.entities.Employee
 import com.sdos.commerce.entities.Skill
 import com.sdos.commerce.ui.fragments.DetailEmployeeFragment
+import com.sdos.commerce.util.ExecutorViewModel
 import com.sdos.commerce.util.isDateValidate
 
-class DetailEmployeeViewModel: ViewModel() {
+class DetailEmployeeViewModel: ExecutorViewModel() {
 
     private lateinit var view: DetailEmployeView
     private val skills = MediatorLiveData<List<Skill>>()
@@ -27,13 +28,6 @@ class DetailEmployeeViewModel: ViewModel() {
                 skills.value = it
             })
         }
-
-        getEmployeesInteractor.invoke()?.let { source ->
-            employees.addSource(source, Observer {
-                employees.removeSource(source)
-                employees.value = it
-            })
-        }
     }
 
     fun onButtonAddClicked(employee: Employee) {
@@ -48,8 +42,12 @@ class DetailEmployeeViewModel: ViewModel() {
             if (it.birthdate.isDateValidate() || it.birthdate.isEmpty()) errorFieldList.add(DetailEmployeeFragment.ErrorField.ERROR_FIELD_DATE)
         }
 
-        if (errorFieldList.isEmpty())
-            addEmployeeInteractor.invoke(employee)
+        if (errorFieldList.isEmpty()) {
+            doInBackground {
+                addEmployeeInteractor.invoke(employee)
+            }
+            view.showMessage("Empleado añadido correctamente")
+        }
         else
             view.showError(errorFieldList)
     }
@@ -61,4 +59,6 @@ class DetailEmployeeViewModel: ViewModel() {
 
 interface DetailEmployeView {
     fun showError(errorFieldList: List<DetailEmployeeFragment.ErrorField>)
+
+    fun showMessage(message: String)
 }
