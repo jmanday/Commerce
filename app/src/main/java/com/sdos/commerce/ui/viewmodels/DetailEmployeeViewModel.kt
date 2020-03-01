@@ -1,5 +1,6 @@
 package com.sdos.commerce.ui.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -42,10 +43,11 @@ class DetailEmployeeViewModel: ExecutorViewModel() {
         }
 
         if (errorFieldList.isEmpty()) {
-            doInBackground {
+            doFirstInBackground({
                 addEmployeeInteractor.invoke(employee)
-            }
-            view.showMessage("Empleado añadido correctamente")
+            }, {
+                view.showMessage("Empleado añadido correctamente")
+            })
         }
         else
             view.showError(errorFieldList)

@@ -1,6 +1,5 @@
 package com.sdos.commerce.util
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
@@ -12,11 +11,12 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
 
-    protected fun doInBackground(funcion: suspend () -> Unit) {
+    protected fun doFirstInBackground(background: suspend () -> Unit, foreground: suspend () -> Unit) {
         launch {
             withContext(Dispatchers.IO) {
-                funcion.invoke()
+                background.invoke()
             }
+            foreground.invoke()
         }
     }
 

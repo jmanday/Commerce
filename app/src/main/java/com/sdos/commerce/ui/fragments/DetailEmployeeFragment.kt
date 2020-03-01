@@ -1,9 +1,7 @@
 package com.sdos.commerce.ui.fragments
 
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +14,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.textfield.TextInputLayout
 import com.sdos.commerce.databinding.FragmentDetailEmployeeBinding
 import com.sdos.commerce.entities.Employee
-import com.sdos.commerce.listeners.FragmentListener
 import com.sdos.commerce.ui.viewmodels.DetailEmployeView
 import com.sdos.commerce.ui.viewmodels.DetailEmployeeViewModel
 import com.sdos.commerce.ui.views.DateDialogView

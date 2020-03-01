@@ -41,7 +41,6 @@ class EmployeeFragment : BaseFragment() {
     }
 
     fun userLoggedIn() {
-
         userLogged = true
         viewModel.getEmployees().observe(this, Observer {
             if (it != null) {
