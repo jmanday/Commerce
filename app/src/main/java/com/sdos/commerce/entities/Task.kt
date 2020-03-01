@@ -23,5 +23,11 @@ data class Task(
     var type: Int,
 
     @ColumnInfo(name = "idEmployee")
-    var idEmployee: Int?
+    var idEmployee: Int?,
+
+    @ColumnInfo(name = "image")
+    var image: String,
+
+    @ColumnInfo(name = "state")
+    var state: Int = 0
 )
