@@ -13,12 +13,10 @@ class EmployeeViewHolder(itemView: View): BaseViewHolder<Employee>(itemView) {
         itemView.surname.text = employee.surname
         itemView.prof.text = employee.skill.toString()
         itemView.text_type.visibility = View.VISIBLE
-        if (employee.image.isNotEmpty()) {
-            Glide.with(itemView)
-                .load(employee.image)
-                .centerCrop()
-                .placeholder(R.mipmap.placeholder)
-                .into(itemView.img)
-        }
+        Glide.with(itemView)
+            .load(employee.image)
+            .centerCrop()
+            .placeholder(R.mipmap.placeholder)
+            .into(itemView.img)
     }
 }
