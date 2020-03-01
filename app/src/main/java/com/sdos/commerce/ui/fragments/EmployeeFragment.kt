@@ -23,11 +23,6 @@ class EmployeeFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_main, null)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        text_head.text = "Empleados"
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(EmployeeFragmentViewModel::class.java)
@@ -35,6 +30,7 @@ class EmployeeFragment : BaseFragment() {
     }
 
     private fun initialize() {
+        text_head.text = "Empleados"
         btnAdd.setOnClickListener {
             onBtnAddEmployeeClicked(R.id.action_mainFragment_to_detailEmployeeFragment)
         }

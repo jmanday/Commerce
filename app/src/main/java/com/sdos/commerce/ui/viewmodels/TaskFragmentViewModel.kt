@@ -11,7 +11,6 @@ import com.sdos.commerce.entities.Task
 class TaskFragmentViewModel : ViewModel() {
 
     private var taskList = MediatorLiveData<List<Task>>()
-
     private val getTasksInteractor = (CommerceApp.getInstance() as DomainInjector).provideGetTasksInteractor()
 
     init {
@@ -22,6 +21,12 @@ class TaskFragmentViewModel : ViewModel() {
             })
         }
     }
+
+    fun getAllTasks() = taskList.value
+
+    fun getPendingTasks() = taskList.value?.filter { it.state == 0 }
+
+    fun getCompletedTasks() = taskList.value?.filter { it.state == 1 }
 
     fun getTasks() = taskList
 }

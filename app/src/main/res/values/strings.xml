@@ -30,4 +30,11 @@
     <string name="text_button_done">Aceptar</string>
     <string name="text_state_free">Libre</string>
     <string name="text_state_busy">Ocupado en la tarea %s</string>
+    <string name="text_filter">Filtar por: </string>
+
+    <string-array name="filter_by">
+        <item>Todas</item>
+        <item>Pendientes</item>
+        <item>Terminadas</item>
+    </string-array>
 </resources>

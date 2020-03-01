@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
@@ -84,6 +85,20 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeView {
     }
 
     private fun prepareListeners() {
+        spn_rol.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                employee.skill = position
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
         ed_date.setOnClickListener { ed ->
             fragmentManager?.let { fm ->
                 DateDialogView.newInstance()
