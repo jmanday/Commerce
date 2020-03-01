@@ -1,8 +1,10 @@
 package com.sdos.commerce.listeners
 
+import android.os.Bundle
+
 interface FragmentListener {
 
-    fun onButtonDoneClicked(actionId: Int)
+    fun onNavigationPush(actionId: Int, bundle: Bundle?)
 
     fun onNavigationUp()
 }

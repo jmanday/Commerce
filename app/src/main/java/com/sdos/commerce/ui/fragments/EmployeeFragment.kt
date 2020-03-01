@@ -36,7 +36,7 @@ class EmployeeFragment : BaseFragment() {
 
     private fun initialize() {
         btnAdd.setOnClickListener {
-            listener.onButtonDoneClicked(R.id.action_mainFragment_to_detailEmployeeFragment)
+            onBtnAddEmployeeClicked(R.id.action_mainFragment_to_detailEmployeeFragment)
         }
         main_recycler_view.showShimmer()
         viewModel.setEmployees()
@@ -44,11 +44,14 @@ class EmployeeFragment : BaseFragment() {
     }
 
     fun userLoggedIn() {
+
         userLogged = true
         viewModel.getEmployees().observe(this, Observer {
             if (it != null) {
                 main_recycler_view.adapter = EmployeeAdapter(it) {
-                    val a = it
+                    onEmployeeClicked(R.id.action_mainFragment_to_detailEmployeeFragment, Bundle().apply {
+                        putSerializable(ARGUMENT_EXTRA_EMPLOYEE, it)
+                    })
                 }
                 main_recycler_view.hideShimmer()
             }

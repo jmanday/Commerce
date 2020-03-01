@@ -62,16 +62,13 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeView {
                 spn_rol.adapter = adapter
             }
         })
-        viewModel.getEmployees().observe(this, Observer {
-            val a = 22
-            val m = 111
-        })
     }
 
     private fun retrieveArguments() {
         arguments?.let {
             it.get(ARGUMENT_EXTRA_EMPLOYEE)?.let {emp ->
                 employee = emp as Employee
+                binding.employee = employee
             }
         }
     }
@@ -112,11 +109,7 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeView {
 
     override fun showMessage(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-        listener.onNavigationUp()
-    }
-
-    companion object {
-        const val ARGUMENT_EXTRA_EMPLOYEE = "ARGUMENT_EXTRA_EMPLOYEE"
+        onBackNavigation()
     }
 
     enum class ErrorField {
