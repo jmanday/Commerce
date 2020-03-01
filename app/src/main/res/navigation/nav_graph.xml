@@ -32,5 +32,11 @@
         android:id="@+id/detailEmployeeFragment"
         android:name="com.sdos.commerce.ui.fragments.DetailEmployeeFragment"
         android:label="fragment_detail_employee"
-        tools:layout="@layout/fragment_detail_employee" />
+        tools:layout="@layout/fragment_detail_employee" >
+        <argument
+            android:name="employee"
+            app:argType="com.sdos.commerce.entities.Employee"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>

@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.sdos.commerce.util.isDateValidate
+import java.io.Serializable
 
 @Entity(tableName = "employees")
 data class Employee(
@@ -46,4 +47,4 @@ data class Employee(
 
     @ColumnInfo(name = "birthdate")
     var birthdate: String = String()
-)
+): Serializable

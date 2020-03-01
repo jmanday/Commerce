@@ -49,7 +49,7 @@ class EmployeeFragment : Fragment(R.layout.fragment_main) {
         viewModel.getEmployees().observe(this, Observer {
             if (it != null) {
                 main_recycler_view.adapter = EmployeeAdapter(it) {
-
+                    val a = it
                 }
                 main_recycler_view.hideShimmer()
             }
