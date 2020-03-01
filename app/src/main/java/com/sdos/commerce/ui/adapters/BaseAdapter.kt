@@ -15,7 +15,7 @@ abstract class BaseAdapter<T, VH: BaseViewHolder<T>>(private val listT: List<T>,
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.onBind(listT.get(position))
+        holder.onBind(listT.get(position), listener)
     }
 
     abstract fun generateViewHolder(parent: ViewGroup, viewType: Int): VH
