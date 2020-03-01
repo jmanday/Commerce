@@ -23,20 +23,12 @@ import com.sdos.commerce.ui.views.DateDialogView.Companion.TAG_DATE_DIALOG
 import com.sdos.commerce.util.showMessageError
 import kotlinx.android.synthetic.main.fragment_detail_employee.*
 
-class DetailEmployeeFragment : Fragment(), DetailEmployeView {
+class DetailEmployeeFragment : BaseFragment(), DetailEmployeView {
 
-    private lateinit var listener: FragmentListener
     private lateinit var viewModel: DetailEmployeeViewModel
     private var employee = Employee()
     private lateinit var binding: FragmentDetailEmployeeBinding
     private lateinit var mapInputText: Map<ErrorField, TextInputLayout>
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is FragmentListener) {
-            listener = context
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -78,7 +70,9 @@ class DetailEmployeeFragment : Fragment(), DetailEmployeView {
 
     private fun retrieveArguments() {
         arguments?.let {
-            employee = it.get(ARGUMENT_EXTRA_EMPLOYEE) as Employee
+            it.get(ARGUMENT_EXTRA_EMPLOYEE)?.let {emp ->
+                employee = emp as Employee
+            }
         }
     }
 
