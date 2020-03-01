@@ -18,7 +18,6 @@ class DetailEmployeeViewModel: ExecutorViewModel() {
     private val employees = MediatorLiveData<List<Employee>>()
     private val getListSkillInteractor =  (CommerceApp.getInstance() as DomainInjector).provideGetListSkillInteractor()
     private val addEmployeeInteractor =  (CommerceApp.getInstance() as DomainInjector).provideAddEmployeeInteractor()
-    private val getEmployeesInteractor =  (CommerceApp.getInstance() as DomainInjector).provideGetEmployeesInteractor()
 
     fun init(view: DetailEmployeView) {
         this.view = view

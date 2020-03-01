@@ -52,7 +52,6 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeView {
     }
 
     private fun initialize() {
-        retrieveArguments()
         prepareListeners()
         populateMap()
         viewModel.getListSkills().observe(this, Observer {
@@ -60,15 +59,15 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeView {
                 val adapter = ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, it.map { it.name })
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 spn_rol.adapter = adapter
+                spn_rol.setSelection(employee.skill)
             }
         })
     }
 
-    private fun retrieveArguments() {
+    override fun retrieveArguments() {
         arguments?.let {
             it.get(ARGUMENT_EXTRA_EMPLOYEE)?.let {emp ->
                 employee = emp as Employee
-                binding.employee = employee
             }
         }
     }

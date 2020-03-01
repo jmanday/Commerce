@@ -11,7 +11,8 @@ class EmployeeViewHolder(itemView: View): BaseViewHolder<Employee>(itemView) {
     override fun onBind(employee: Employee, f: (employee: Employee) -> Unit) {
         itemView.name.text = employee.name
         itemView.surname.text = employee.surname
-        itemView.prof.text = employee.skill.toString()
+        itemView.state.text = if (employee.currenTask == -1) itemView.context.resources.getString(R.string.text_state_free)
+                            else String.format(itemView.context.resources.getString(R.string.text_state_busy),employee.currenTask.toString())
         itemView.text_type.visibility = View.VISIBLE
         Glide.with(itemView)
             .load(employee.image)
