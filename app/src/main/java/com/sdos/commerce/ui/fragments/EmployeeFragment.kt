@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.sdos.commerce.R
+import com.sdos.commerce.databinding.FragmentMainBinding
 import com.sdos.commerce.ui.adapters.EmployeeAdapter
 import com.sdos.commerce.ui.viewmodels.EmployeeFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -20,7 +21,7 @@ class EmployeeFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_main, null)
+        return FragmentMainBinding.inflate(inflater).root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
