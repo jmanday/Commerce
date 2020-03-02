@@ -14,14 +14,13 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.textfield.TextInputLayout
 import com.sdos.commerce.databinding.FragmentDetailEmployeeBinding
 import com.sdos.commerce.entities.Employee
-import com.sdos.commerce.ui.viewmodels.DetailEmployeView
 import com.sdos.commerce.ui.viewmodels.DetailEmployeeViewModel
 import com.sdos.commerce.ui.views.DateDialogView
 import com.sdos.commerce.ui.views.DateDialogView.Companion.TAG_DATE_DIALOG
 import com.sdos.commerce.util.showMessageError
 import kotlinx.android.synthetic.main.fragment_detail_employee.*
 
-class DetailEmployeeFragment : BaseFragment(), DetailEmployeView {
+class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmployeView {
 
     private lateinit var viewModel: DetailEmployeeViewModel
     private var employee = Employee()

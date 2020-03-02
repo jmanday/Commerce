@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.login_custom_view.*
 
 class LoginDialogView: DialogFragment() {
 
-    private lateinit var listener: LoginDialogListener
     private val loginDialogViewModel: LoginDialogViewModel by lazy {
         ViewModelProviders.of(requireActivity()).get(LoginDialogViewModel::class.java)
     }
@@ -38,29 +37,19 @@ class LoginDialogView: DialogFragment() {
 
     private fun initializeListeners() {
         btnDone.setOnClickListener {
-            listener.userLoggedIn()
             this.dismiss()
             loginDialogViewModel.loginUser(et_username.text.toString(), ed_pass.text.toString()).observe(this, Observer {
                 if (it == null) {
                     message.visibility = VISIBLE
                 } else {
-                    listener.userLoggedIn()
                     this.dismiss()
                 }
             })
         }
     }
 
-    fun setListener(listener: LoginDialogListener): LoginDialogView {
-        this.listener = listener
-        return this
-    }
-
     companion object {
         fun newInstance() = LoginDialogView()
     }
 
-    interface LoginDialogListener {
-        fun userLoggedIn()
-    }
 }

@@ -22,11 +22,6 @@ import com.sdos.login.domain.TaskRepository
 
 class CommerceApp: Application(), DomainInjector, DataInjector {
 
-    override fun onCreate() {
-        super.onCreate()
-        CommerceDatabase.getInstance(applicationContext)
-    }
-
     // BEGIN - injections layer domain
     override fun provideLoginInteractor(): LoginEmployeeInteractor {
         return LoginEmployeeInteractor(provideEmployeeRepository())
@@ -55,11 +50,11 @@ class CommerceApp: Application(), DomainInjector, DataInjector {
     }
 
     override fun provideEmployeeDataSource(): EmployeeDataSource {
-        return RoomController(this)
+        return RoomController()
     }
 
     override fun provideTaskDataSource(): TaskDataSource {
-        return RoomController(this)
+        return RoomController()
     }
 
     override fun provideTaskRepository(): TaskRepository {
@@ -71,7 +66,7 @@ class CommerceApp: Application(), DomainInjector, DataInjector {
     }
 
     override fun provideSkillDataSource(): SkillDataSource {
-        return RoomController(this)
+        return RoomController()
     }
     // END - injections layer data
 

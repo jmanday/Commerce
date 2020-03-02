@@ -10,10 +10,9 @@ import com.sdos.commerce.entities.Employee
 class EmployeeFragmentViewModel : ViewModel() {
 
     private var employeeList = MediatorLiveData<List<Employee>>()
-
     private val getEmployeesInteractor = (CommerceApp.getInstance() as DomainInjector).provideGetEmployeesInteractor()
 
-    fun setEmployees() {
+    init {
         getEmployeesInteractor.invoke()?.let {source ->
             employeeList.addSource(source, Observer {
                 employeeList.removeSource(source)

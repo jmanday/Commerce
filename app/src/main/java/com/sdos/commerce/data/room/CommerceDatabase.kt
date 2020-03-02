@@ -30,7 +30,7 @@ abstract class CommerceDatabase: RoomDatabase() {
         @Volatile
         private var instance: CommerceDatabase? = null
 
-        fun getInstance(context: Context): CommerceDatabase? {
+        fun initialize(context: Context, callback: () -> Unit): CommerceDatabase? {
             if (instance == null) {
                 synchronized(CommerceDatabase::class) {
                     instance = Room.databaseBuilder(context.getApplicationContext(),
@@ -43,18 +43,24 @@ abstract class CommerceDatabase: RoomDatabase() {
                                         it.employeeDao().insert(Generator.getEmployees())
                                         it.taskDao().insert(Generator.getTasks())
                                         it.skillDao().insert(Generator.getSkills())
+                                        callback.invoke()
                                     }
 
-
-                                    Log.d("COMMERCE", "Database created")
+                                    Log.d("HOLA", "Database created")
                                 }
                             }
                         })
                         .build()
                 }
             }
+
+            instance?.beginTransaction()
+            instance?.endTransaction()
+
             return instance
         }
+
+        fun getInstance() = instance
 
         fun destroyDataBase(){
             instance = null

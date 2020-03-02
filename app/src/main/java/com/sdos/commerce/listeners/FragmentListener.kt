@@ -7,4 +7,6 @@ interface FragmentListener {
     fun onNavigationPush(actionId: Int, bundle: Bundle?)
 
     fun onNavigationUp()
+
+    fun onDatabaseCreated()
 }

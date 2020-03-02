@@ -1,9 +1,7 @@
 package com.sdos.commerce.ui.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import com.sdos.commerce.CommerceApp
 import com.sdos.commerce.domain.injector.DomainInjector
 import com.sdos.commerce.entities.Employee
@@ -39,7 +37,8 @@ class DetailEmployeeViewModel: ExecutorViewModel() {
             if (it.email.isEmpty()) errorFieldList.add(DetailEmployeeFragment.ErrorField.ERROR_FIELD_EMAIL)
             if (it.phone.isEmpty()) errorFieldList.add(DetailEmployeeFragment.ErrorField.ERROR_FIELD_PHONE)
             if (it.pass.isEmpty()) errorFieldList.add(DetailEmployeeFragment.ErrorField.ERROR_FIELD_PASS)
-            if (it.birthdate.isDateValidate() || it.birthdate.isEmpty()) errorFieldList.add(DetailEmployeeFragment.ErrorField.ERROR_FIELD_DATE)
+            if (it.birthdate.isDateValidate() || it.birthdate.isEmpty()) errorFieldList.add(
+                DetailEmployeeFragment.ErrorField.ERROR_FIELD_DATE)
         }
 
         if (errorFieldList.isEmpty()) {
@@ -56,10 +55,12 @@ class DetailEmployeeViewModel: ExecutorViewModel() {
     fun getListSkills() = skills
 
     fun getEmployees() = employees
+
+
+    interface DetailEmployeView {
+        fun showError(errorFieldList: List<DetailEmployeeFragment.ErrorField>)
+
+        fun showMessage(message: String)
+    }
 }
 
-interface DetailEmployeView {
-    fun showError(errorFieldList: List<DetailEmployeeFragment.ErrorField>)
-
-    fun showMessage(message: String)
-}

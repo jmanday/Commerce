@@ -2,14 +2,20 @@ package com.sdos.commerce.ui.fragments
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.sdos.commerce.R
+import com.sdos.commerce.data.room.CommerceDatabase
+import com.sdos.commerce.ui.viewmodels.SplashViewModel
+import com.sdos.commerce.ui.views.LoginDialogView
+import kotlinx.android.synthetic.main.activity_main.*
 
-class SplashFragment : Fragment() {
+class SplashFragment : BaseFragment() {
+
+    private lateinit var viewModel: SplashViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -18,5 +24,11 @@ class SplashFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
-
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProviders.of(this).get(SplashViewModel::class.java)
+        viewModel.initialize(requireContext()) {
+            onDatabaseCreated()
+        }
+    }
 }

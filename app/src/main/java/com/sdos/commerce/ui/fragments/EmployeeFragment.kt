@@ -36,12 +36,7 @@ class EmployeeFragment : BaseFragment() {
             onBtnAddEmployeeClicked(R.id.action_mainFragment_to_detailEmployeeFragment)
         }
         main_recycler_view.showShimmer()
-        viewModel.setEmployees()
-        if (userLogged) userLoggedIn()
-    }
 
-    fun userLoggedIn() {
-        userLogged = true
         viewModel.getEmployees().observe(this, Observer {
             if (it != null) {
                 main_recycler_view.adapter = EmployeeAdapter(it) {
@@ -53,9 +48,4 @@ class EmployeeFragment : BaseFragment() {
             }
         })
     }
-
-    companion object {
-        private var userLogged = false
-    }
-
 }

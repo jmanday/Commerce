@@ -1,20 +1,27 @@
 package com.sdos.commerce.ui.activities
 
 import android.os.Bundle
+import android.os.Handler
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.sdos.commerce.CommerceApp
 import com.sdos.commerce.R
 import com.sdos.commerce.dao.EmployeeDao
 import com.sdos.commerce.data.room.CommerceDatabase
+import com.sdos.commerce.domain.injector.DomainInjector
 import com.sdos.commerce.entities.Employee
 import com.sdos.commerce.listeners.FragmentListener
 import com.sdos.commerce.ui.fragments.EmployeeFragment
 import com.sdos.commerce.ui.views.LoginDialogView
 import com.sdos.commerce.util.Converter
+import com.sdos.commerce.util.ExecutorViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.CoroutineScope
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -22,7 +29,7 @@ import java.io.Reader
 import java.util.concurrent.Executors
 
 
-class MainActivity : AppCompatActivity(), LoginDialogView.LoginDialogListener, FragmentListener {
+class MainActivity : AppCompatActivity(), FragmentListener {
 
     private val navController by lazy { findNavController(R.id.nav_host_fragment) }
 
@@ -31,13 +38,10 @@ class MainActivity : AppCompatActivity(), LoginDialogView.LoginDialogListener, F
         setContentView(R.layout.activity_main)
 
         initialize()
-
-        LoginDialogView.newInstance()
-            .setListener(this)
-            .show(supportFragmentManager, "")
     }
 
     private fun initialize() {
+        bottom_navigation.visibility = GONE
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.action_employee -> {
@@ -60,17 +64,18 @@ class MainActivity : AppCompatActivity(), LoginDialogView.LoginDialogListener, F
         }
     }
 
-    override fun userLoggedIn() {
-        nav_host_fragment.childFragmentManager.primaryNavigationFragment?.let {
-            (it as EmployeeFragment).userLoggedIn()
-        }
-    }
-
     override fun onNavigationPush(actionId: Int, bundle: Bundle?) {
         navController.navigate(actionId, bundle)
     }
 
     override fun onNavigationUp() {
         navController.navigateUp()
+    }
+
+    override fun onDatabaseCreated() {
+        navController.navigate(R.id.mainFragment)
+        bottom_navigation.visibility = VISIBLE
+        LoginDialogView.newInstance()
+            .show(supportFragmentManager, "")
     }
 }

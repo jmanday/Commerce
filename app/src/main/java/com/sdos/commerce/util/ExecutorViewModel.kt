@@ -12,7 +12,7 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
         get() = job + Dispatchers.Main
 
     protected fun doFirstInBackground(background: suspend () -> Unit, foreground: suspend () -> Unit) {
-        launch {
+        launch(coroutineContext) {
             withContext(Dispatchers.IO) {
                 background.invoke()
             }
@@ -20,7 +20,28 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
         }
     }
 
+    protected fun doInBackgroundAndWait(background: suspend () -> Unit) {
+        launch(coroutineContext) {
+            withContext(Dispatchers.IO) {
+                background.invoke()
+            }
+        }
+    }
+
+    protected fun waitlAndRunInForeground(foreground: suspend () -> Unit) {
+        launch(coroutineContext) {
+            withContext(Dispatchers.IO) {
+                Thread.sleep(DELAY)
+            }
+            foreground.invoke()
+        }
+    }
+
     protected fun cancelExecutor() {
         job.cancel()
+    }
+
+    companion object {
+        private const val DELAY = 5000L
     }
 }

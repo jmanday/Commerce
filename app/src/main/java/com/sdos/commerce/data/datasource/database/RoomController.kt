@@ -14,7 +14,7 @@ import com.sdos.commerce.entities.Skill
 import com.sdos.commerce.entities.Task
 
 
-class RoomController(context: Context): EmployeeDataSource, TaskDataSource, SkillDataSource {
+class RoomController: EmployeeDataSource, TaskDataSource, SkillDataSource {
 
     private var db: CommerceDatabase? = null
     private var employeeDao: EmployeeDao? = null
@@ -22,7 +22,7 @@ class RoomController(context: Context): EmployeeDataSource, TaskDataSource, Skil
     private var skillDao: SkillDao? = null
 
     init {
-        db = CommerceDatabase.getInstance(context)
+        db = CommerceDatabase.getInstance()
         employeeDao = db?.employeeDao()
         taskDao = db?.taskDao()
         skillDao = db?.skillDao()
@@ -36,7 +36,6 @@ class RoomController(context: Context): EmployeeDataSource, TaskDataSource, Skil
     override fun getEmployees(): LiveData<List<Employee>>? {
         return employeeDao?.getAllEmployees()
     }
-
 
     override fun getTasks(): LiveData<List<Task>>? {
         return taskDao?.getAllTasks()

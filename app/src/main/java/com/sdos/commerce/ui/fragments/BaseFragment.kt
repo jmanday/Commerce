@@ -36,6 +36,10 @@ abstract class BaseFragment: Fragment() {
         listener.onNavigationUp()
     }
 
+    protected fun onDatabaseCreated() {
+        listener.onDatabaseCreated()
+    }
+
     open protected fun retrieveArguments() {}
 
     companion object {
