@@ -5,6 +5,7 @@ import android.os.Handler
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.gson.Gson
@@ -72,8 +73,11 @@ class MainActivity : AppCompatActivity(), FragmentListener {
         navController.navigateUp()
     }
 
-    override fun onDatabaseCreated() {
-        navController.navigate(R.id.mainFragment)
+    override fun onDatabasePopulated() {
+        navController.navigate(R.id.mainFragment, null,
+            NavOptions.Builder()
+                .setPopUpTo(R.id.splashFragment, true)
+                .build())
         bottom_navigation.visibility = VISIBLE
         LoginDialogView.newInstance()
             .show(supportFragmentManager, "")

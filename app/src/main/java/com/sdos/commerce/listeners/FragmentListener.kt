@@ -8,5 +8,5 @@ interface FragmentListener {
 
     fun onNavigationUp()
 
-    fun onDatabaseCreated()
+    fun onDatabasePopulated()
 }

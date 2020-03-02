@@ -28,7 +28,7 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
         }
     }
 
-    protected fun waitlAndRunInForeground(foreground: suspend () -> Unit) {
+    protected fun waitAndRunInForeground(foreground: suspend () -> Unit) {
         launch(coroutineContext) {
             withContext(Dispatchers.IO) {
                 Thread.sleep(DELAY)

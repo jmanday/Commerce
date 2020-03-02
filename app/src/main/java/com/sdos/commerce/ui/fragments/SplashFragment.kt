@@ -28,7 +28,7 @@ class SplashFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(SplashViewModel::class.java)
         viewModel.initialize(requireContext()) {
-            onDatabaseCreated()
+            onDatabasePopulated()
         }
     }
 }

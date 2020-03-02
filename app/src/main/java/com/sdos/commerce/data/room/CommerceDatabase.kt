@@ -43,10 +43,7 @@ abstract class CommerceDatabase: RoomDatabase() {
                                         it.employeeDao().insert(Generator.getEmployees())
                                         it.taskDao().insert(Generator.getTasks())
                                         it.skillDao().insert(Generator.getSkills())
-                                        callback.invoke()
                                     }
-
-                                    Log.d("HOLA", "Database created")
                                 }
                             }
                         })
@@ -56,6 +53,10 @@ abstract class CommerceDatabase: RoomDatabase() {
 
             instance?.beginTransaction()
             instance?.endTransaction()
+            instance?.let {
+                if (it.mDatabase.isWriteAheadLoggingEnabled)
+                    callback.invoke()
+            }
 
             return instance
         }
