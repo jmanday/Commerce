@@ -22,6 +22,8 @@
     <string name="label_text_duration">Duración</string>
     <string name="label_text_state">Estado</string>
     <string name="label_text_surname">Apellidos</string>
+    <string name="label_text_type">Tipo</string>
+    <string name="label_text_selected_employee">Empleado seleccionado</string>
     <string name="label_text_date">Fecha de nacimiento</string>
     <string name="label_text_email">Email</string>
     <string name="label_text_phone">Teléfono</string>

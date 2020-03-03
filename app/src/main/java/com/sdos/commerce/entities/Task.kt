@@ -12,22 +12,22 @@ data class Task(
     var id: Int? = 0,
 
     @ColumnInfo(name = "name")
-    var name: String,
+    var name: String = String(),
 
     @ColumnInfo(name = "description")
-    var description: String,
+    var description: String = String(),
 
     @ColumnInfo(name = "duration")
-    var duration: Double,
+    var duration: Double = 0.0,
 
     @ColumnInfo(name = "type")
-    var type: Int,
+    var type: Int = 0,
 
     @ColumnInfo(name = "idEmployee")
-    var idEmployee: Int?,
+    var idEmployee: Int? = 0,
 
     @ColumnInfo(name = "image")
-    var image: String,
+    var image: String = String(),
 
     @ColumnInfo(name = "state")
     var state: Int = 0

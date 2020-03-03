@@ -17,6 +17,7 @@ import com.sdos.commerce.entities.Task
 import com.sdos.commerce.ui.adapters.TaskAdapter
 import com.sdos.commerce.ui.viewmodels.TaskFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_main.text_head
 
 class TaskFragment : BaseFragment() {
 
@@ -47,6 +48,9 @@ class TaskFragment : BaseFragment() {
                 main_recycler_view.hideShimmer()
             }
         })
+        btnAdd.setOnClickListener {
+            onButtonAddClicked(R.id.action_taskFragment_to_detailTaskFragment)
+        }
     }
 
     private fun configureSpinner() {
@@ -78,7 +82,9 @@ class TaskFragment : BaseFragment() {
     private fun updateRecyclerView(taskList: List<Task>?) {
         taskList?.let {
             main_recycler_view.adapter = TaskAdapter(it) {
-
+                onItemClicked(R.id.action_taskFragment_to_detailTaskFragment, Bundle().apply {
+                    putSerializable(ARGUMENT_EXTRA_TASK, it)
+                })
             }
         }
     }

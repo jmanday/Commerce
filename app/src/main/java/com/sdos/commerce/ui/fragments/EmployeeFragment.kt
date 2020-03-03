@@ -33,14 +33,14 @@ class EmployeeFragment : BaseFragment() {
     private fun initialize() {
         text_head.text = "Empleados"
         btnAdd.setOnClickListener {
-            onBtnAddEmployeeClicked(R.id.action_mainFragment_to_detailEmployeeFragment)
+            onButtonAddClicked(R.id.action_mainFragment_to_detailEmployeeFragment)
         }
         main_recycler_view.showShimmer()
 
         viewModel.getEmployees().observe(this, Observer {
             if (it != null) {
                 main_recycler_view.adapter = EmployeeAdapter(it) {
-                    onEmployeeClicked(R.id.action_mainFragment_to_detailEmployeeFragment, Bundle().apply {
+                    onItemClicked(R.id.action_mainFragment_to_detailEmployeeFragment, Bundle().apply {
                         putSerializable(ARGUMENT_EXTRA_EMPLOYEE, it)
                     })
                 }

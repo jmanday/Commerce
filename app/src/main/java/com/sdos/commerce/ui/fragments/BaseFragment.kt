@@ -24,11 +24,11 @@ abstract class BaseFragment: Fragment() {
         retrieveArguments()
     }
 
-    protected fun onEmployeeClicked(actionId: Int, bundle: Bundle) {
+    protected fun onItemClicked(actionId: Int, bundle: Bundle) {
         listener.onNavigationPush(actionId, bundle)
     }
 
-    protected fun onBtnAddEmployeeClicked(actionId: Int) {
+    protected fun onButtonAddClicked(actionId: Int) {
         listener.onNavigationPush(actionId, null)
     }
 
@@ -44,5 +44,6 @@ abstract class BaseFragment: Fragment() {
 
     companion object {
         const val ARGUMENT_EXTRA_EMPLOYEE = "ARGUMENT_EXTRA_EMPLOYEE"
+        const val ARGUMENT_EXTRA_TASK = "ARGUMENT_EXTRA_TASK"
     }
 }
