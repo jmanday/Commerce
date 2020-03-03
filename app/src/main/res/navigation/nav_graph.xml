@@ -22,7 +22,11 @@
         android:id="@+id/taskFragment"
         android:name="com.sdos.commerce.ui.fragments.TaskFragment"
         android:label="fragment_task"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_taskFragment_to_detailTaskFragment"
+            app:destination="@id/detailTaskFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.sdos.commerce.ui.fragments.SettingFragment"
@@ -48,4 +52,9 @@
             android:id="@+id/action_splashFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailTaskFragment"
+        android:name="com.sdos.commerce.ui.fragments.DetailTaskFragment"
+        android:label="DetailTaskFragment"
+        tools:layout="@layout/fragment_detail_task"/>
 </navigation>

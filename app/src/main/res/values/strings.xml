@@ -17,6 +17,10 @@
     <string name="label_text_username">Usuario</string>
     <string name="label_text_pass">Contraseña</string>
     <string name="label_text_name">Nombre</string>
+    <string name="label_text_title">Título</string>
+    <string name="label_text_description">Descripción</string>
+    <string name="label_text_duration">Duración</string>
+    <string name="label_text_state">Estado</string>
     <string name="label_text_surname">Apellidos</string>
     <string name="label_text_date">Fecha de nacimiento</string>
     <string name="label_text_email">Email</string>
@@ -25,6 +29,7 @@
     <string name="label_text_skill">Perfil</string>
     <string name="text_header_login_dialog">Bienvenido</string>
     <string name="text_header_detail_employee">Datos del empleado</string>
+    <string name="text_header_detail_task">Datos de la tarea</string>
     <string name="text_wrong_login_dialog">Usuario o password incorrectos</string>
     <string name="text_button_cancel">Cancelar</string>
     <string name="text_button_done">Aceptar</string>
