@@ -8,7 +8,6 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.sdos.commerce.R
@@ -52,8 +51,8 @@ class TaskFragment : BaseFragment() {
     }
 
     private fun configureSpinner() {
-        val adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, resources.getStringArray(R.array.filter_by))
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val adapter = ArrayAdapter<String>(requireContext(), R.layout.support_simple_spinner_dropdown_item, resources.getStringArray(R.array.filter_by))
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
         spn_filter.adapter = adapter
         spn_filter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(

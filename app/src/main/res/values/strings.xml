@@ -44,4 +44,21 @@
         <item>Pendientes</item>
         <item>Terminadas</item>
     </string-array>
+
+    <string-array name="task_state">
+        <item>Pendiente</item>
+        <item>Terminada</item>
+    </string-array>
+
+    <string-array name="duration">
+        <item>0.15 h</item>
+        <item>0.30 h</item>
+        <item>0.4 h</item>
+        <item>1.0 h</item>
+        <item>1.5 h</item>
+        <item>2.0 h</item>
+        <item>2.5 h</item>
+        <item>3.0 h</item>
+        <item>3.5 h</item>
+    </string-array>
 </resources>
