@@ -3,6 +3,7 @@ package com.sdos.commerce.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "tasks")
 data class Task(
@@ -30,4 +31,4 @@ data class Task(
 
     @ColumnInfo(name = "state")
     var state: Int = 0
-)
+): Serializable

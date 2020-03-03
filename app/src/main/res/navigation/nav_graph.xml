@@ -56,5 +56,11 @@
         android:id="@+id/detailTaskFragment"
         android:name="com.sdos.commerce.ui.fragments.DetailTaskFragment"
         android:label="DetailTaskFragment"
-        tools:layout="@layout/fragment_detail_task"/>
+        tools:layout="@layout/fragment_detail_task">
+        <argument
+            android:name="task"
+            app:argType="com.sdos.commerce.entities.Task"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>
