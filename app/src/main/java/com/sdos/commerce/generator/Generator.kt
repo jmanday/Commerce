@@ -11,10 +11,10 @@ object Generator {
         Employee(null, "Alberto", "Espejo Gonzalez", "aespejo@gmail.com",1, "677889933", "1234", 0.0, 3, listOf(), -1, "https://www.bde.es/f/webpi/SES/staff/jimenoserranojuanfrancisco/files/jimenojuanfrancisco.jpg", "15/12/77"))
 
     fun getSkills() = listOf(
-        Skill(null, "Cobrador"),
-        Skill(null, "Reponedor"),
-        Skill(null, "Mensajero"),
-        Skill(null, "Mecánico")
+        Skill(0, "Cobrador"),
+        Skill(1, "Reponedor"),
+        Skill(2, "Mensajero"),
+        Skill(3, "Mecánico")
     )
 
     fun getTasks() = listOf(

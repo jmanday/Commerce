@@ -12,10 +12,7 @@ import com.sdos.commerce.data.injector.DataInjector
 import com.sdos.commerce.data.room.CommerceDatabase
 import com.sdos.commerce.domain.SkillRepository
 import com.sdos.commerce.domain.injector.DomainInjector
-import com.sdos.commerce.domain.interactors.AddEmployeeInteractor
-import com.sdos.commerce.domain.interactors.GetEmployeesInteractor
-import com.sdos.commerce.domain.interactors.GetListSkillInteractor
-import com.sdos.commerce.domain.interactors.GetTasksInteractor
+import com.sdos.commerce.domain.interactors.*
 import com.sdos.login.domain.EmployeeRepository
 import com.sdos.login.domain.LoginEmployeeInteractor
 import com.sdos.login.domain.TaskRepository
@@ -41,6 +38,10 @@ class CommerceApp: Application(), DomainInjector, DataInjector {
 
     override fun provideAddEmployeeInteractor(): AddEmployeeInteractor {
         return AddEmployeeInteractor(provideEmployeeRepository())
+    }
+
+    override fun provideGetTypeTaskInteractor(): GetTypeTaskInteractor {
+        return GetTypeTaskInteractor(provideTaskRepository())
     }
     // END - injections layer domain
 
