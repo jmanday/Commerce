@@ -43,12 +43,14 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmp
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.employee = employee
-        viewModel = ViewModelProviders.of(this).get(DetailEmployeeViewModel::class.java)
-        viewModel.init(this)
-        initialize()
     }
 
-    private fun initialize() {
+    override fun getViewModel() {
+        viewModel = ViewModelProviders.of(this).get(DetailEmployeeViewModel::class.java)
+    }
+
+    override fun initialize() {
+        viewModel.init(this)
         prepareListeners()
         populateMap()
         viewModel.getListSkills().observe(this, Observer {

@@ -24,9 +24,11 @@ class SplashFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun getViewModel() {
         viewModel = ViewModelProviders.of(this).get(SplashViewModel::class.java)
+    }
+
+    override fun initialize() {
         viewModel.initialize(requireContext()) {
             onDatabasePopulated()
         }

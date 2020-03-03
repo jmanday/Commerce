@@ -24,6 +24,12 @@ abstract class BaseFragment: Fragment() {
         retrieveArguments()
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        getViewModel()
+        initialize()
+    }
+
     protected fun onItemClicked(actionId: Int, bundle: Bundle) {
         listener.onNavigationPush(actionId, bundle)
     }
@@ -41,6 +47,10 @@ abstract class BaseFragment: Fragment() {
     }
 
     open protected fun retrieveArguments() {}
+
+    abstract fun initialize()
+
+    abstract fun getViewModel()
 
     companion object {
         const val ARGUMENT_EXTRA_EMPLOYEE = "ARGUMENT_EXTRA_EMPLOYEE"

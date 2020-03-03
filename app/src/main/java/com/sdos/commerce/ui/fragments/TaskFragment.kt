@@ -31,14 +31,12 @@ class TaskFragment : BaseFragment() {
         return FragmentMainBinding.inflate(inflater).root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun getViewModel() {
         viewModel = ViewModelProviders.of(this).get(TaskFragmentViewModel::class.java)
-        initialize()
-        configureSpinner()
     }
 
-    private fun initialize() {
+    override fun initialize() {
+        configureSpinner()
         text_head.text = "Tareas"
         ll_filter.visibility = VISIBLE
         main_recycler_view.showShimmer()

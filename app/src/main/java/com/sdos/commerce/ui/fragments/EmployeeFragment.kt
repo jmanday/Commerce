@@ -24,13 +24,11 @@ class EmployeeFragment : BaseFragment() {
         return FragmentMainBinding.inflate(inflater).root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun getViewModel() {
         viewModel = ViewModelProviders.of(this).get(EmployeeFragmentViewModel::class.java)
-        initialize()
     }
 
-    private fun initialize() {
+    override fun initialize() {
         text_head.text = "Empleados"
         btnAdd.setOnClickListener {
             onButtonAddClicked(R.id.action_mainFragment_to_detailEmployeeFragment)

@@ -36,4 +36,12 @@ class DetailTaskFragment : BaseFragment() {
         }
     }
 
+    override fun getViewModel() {
+
+    }
+
+    override fun initialize() {
+
+    }
+
 }
