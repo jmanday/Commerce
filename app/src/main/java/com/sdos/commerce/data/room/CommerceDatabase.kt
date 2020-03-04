@@ -13,7 +13,7 @@ import com.sdos.commerce.generator.Generator
 import com.sdos.commerce.util.ListConverter
 import java.util.concurrent.Executors
 
-@Database(entities = arrayOf(Employee::class, Task::class, Skill::class, TypeEmployee::class, TypeTask::class), version = 1)
+@Database(entities = arrayOf(Employee::class, Task::class, Skill::class, TypeEmployee::class, TypeTask::class, Fruit::class), version = 1)
 @TypeConverters(ListConverter::class)
 abstract class CommerceDatabase: RoomDatabase() {
 
@@ -36,7 +36,7 @@ abstract class CommerceDatabase: RoomDatabase() {
             if (instance == null) {
                 synchronized(CommerceDatabase::class) {
                     instance = Room.databaseBuilder(context.getApplicationContext(),
-                        CommerceDatabase::class.java, "weather1_7_6_58.db")
+                        CommerceDatabase::class.java, "weather1_7_6_65.db")
                         .addCallback(object : Callback() {
                             override fun onCreate(db: SupportSQLiteDatabase) {
                                 super.onCreate(db)

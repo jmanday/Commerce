@@ -2,7 +2,7 @@ package com.sdos.commerce.data.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Fruit(
+data class FruitModel(
 
     @SerializedName("farm_name")
     private var farmName: String,
@@ -17,7 +17,7 @@ data class Fruit(
     private var farmerId: Int,
 
     @SerializedName("website")
-    private var website: Website,
+    private var website: WebsiteModel,
 
     @SerializedName("zipcode")
     private var zipcode: String,
@@ -32,5 +32,5 @@ data class Fruit(
     private var lNumber: Int,
 
     @SerializedName("location_1")
-    private var locationL: Location
+    private var locationL: LocationModel
 )
