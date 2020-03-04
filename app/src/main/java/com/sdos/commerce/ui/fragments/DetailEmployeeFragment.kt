@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.textfield.TextInputLayout
@@ -117,11 +116,6 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmp
         errorFieldList.forEach {
             mapInputText[it]?.showMessageError("Campo incorrecto")
         }
-    }
-
-    override fun showMessage(message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-        onBackNavigation()
     }
 
     enum class ErrorField {

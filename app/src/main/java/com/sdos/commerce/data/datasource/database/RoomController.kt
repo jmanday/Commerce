@@ -56,4 +56,8 @@ class RoomController: EmployeeDataSource, TaskDataSource, SkillDataSource {
     override fun getTypeTasks(): LiveData<List<TypeTask>>? {
         return typeTaskDao?.getAllTypeTasks()
     }
+
+    override fun addTask(task: Task) {
+        taskDao?.addTask(task)
+    }
 }

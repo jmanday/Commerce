@@ -37,6 +37,22 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
         }
     }
 
+    protected fun doInParallel(t1: () -> Unit, t2: () -> Unit, foreground: () -> Unit) {
+        launch(coroutineContext) {
+            val res1 = async(Dispatchers.IO) {
+                t1.invoke()
+            }
+            val res2 = async(Dispatchers.IO) {
+                t2.invoke()
+            }
+
+            res1.await()
+            res2.await()
+
+            foreground.invoke()
+        }
+    }
+
     protected fun cancelExecutor() {
         job.cancel()
     }

@@ -13,6 +13,8 @@ interface TaskDao {
     @Query("SELECT * FROM tasks ")
     fun getAllTasks(): LiveData<List<Task>>
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addTask(task: Task)
 /*
     @Query("SELECT * FROM employees WHERE name = :mName AND pass = :mPass")
     fun getEmployee(mName: String, mPass: String): LiveData<Employee>

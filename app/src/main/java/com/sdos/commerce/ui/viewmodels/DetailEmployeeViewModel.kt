@@ -6,6 +6,7 @@ import com.sdos.commerce.CommerceApp
 import com.sdos.commerce.domain.injector.DomainInjector
 import com.sdos.commerce.entities.Employee
 import com.sdos.commerce.entities.Skill
+import com.sdos.commerce.listeners.ViewModelListener
 import com.sdos.commerce.ui.fragments.DetailEmployeeFragment
 import com.sdos.commerce.util.ExecutorViewModel
 import com.sdos.commerce.util.isDateValidate
@@ -13,6 +14,7 @@ import com.sdos.commerce.util.isDateValidate
 class DetailEmployeeViewModel: ExecutorViewModel() {
 
     private lateinit var view: DetailEmployeView
+    private lateinit var baseView: ViewModelListener
     private val skills = MediatorLiveData<List<Skill>>()
     private val employees = MediatorLiveData<List<Employee>>()
     private val getListSkillInteractor =  (CommerceApp.getInstance() as DomainInjector).provideGetListSkillInteractor()
@@ -20,6 +22,7 @@ class DetailEmployeeViewModel: ExecutorViewModel() {
 
     fun init(view: DetailEmployeView) {
         this.view = view
+        this.baseView = view as ViewModelListener
         getListSkillInteractor.invoke()?.let {source ->
             skills.addSource(source, Observer{
                 skills.removeSource(source)
@@ -45,7 +48,7 @@ class DetailEmployeeViewModel: ExecutorViewModel() {
             doFirstInBackground({
                 addEmployeeInteractor.invoke(employee)
             }, {
-                view.showMessage("Empleado añadido correctamente")
+                baseView.showMessage("Empleado añadido correctamente")
             })
         }
         else
@@ -59,8 +62,6 @@ class DetailEmployeeViewModel: ExecutorViewModel() {
 
     interface DetailEmployeView {
         fun showError(errorFieldList: List<DetailEmployeeFragment.ErrorField>)
-
-        fun showMessage(message: String)
     }
 }
 

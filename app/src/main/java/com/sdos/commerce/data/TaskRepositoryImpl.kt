@@ -15,4 +15,8 @@ class TaskRepositoryImpl(private val taskDataSource: TaskDataSource): TaskReposi
     override fun getTypeTasks(): LiveData<List<TypeTask>>? {
         return taskDataSource.getTypeTasks()
     }
+
+    override fun addTask(task: Task) {
+        taskDataSource.addTask(task)
+    }
 }

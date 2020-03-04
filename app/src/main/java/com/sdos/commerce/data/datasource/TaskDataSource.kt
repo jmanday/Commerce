@@ -9,4 +9,6 @@ interface TaskDataSource {
     fun getTasks(): LiveData<List<Task>>?
 
     fun getTypeTasks(): LiveData<List<TypeTask>>?
+
+    fun addTask(task: Task)
 }

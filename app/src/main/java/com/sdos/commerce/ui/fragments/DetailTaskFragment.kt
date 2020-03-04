@@ -46,6 +46,7 @@ class DetailTaskFragment : BaseFragment() {
 
     override fun getViewModel() {
         viewModel = ViewModelProviders.of(this).get(DetailTaskViewModel::class.java)
+        viewModel.setListener(this)
     }
 
     override fun initialize() {
@@ -58,6 +59,15 @@ class DetailTaskFragment : BaseFragment() {
 
         spn_state.adapter = stateAdapter
         spn_duration.adapter = durationAdapter
+
+        btnDone.setOnClickListener {
+            task.duration = resources.getStringArray(R.array.duration).get(spn_duration.selectedItemPosition).split(" ").first().toDouble()
+            task.state = spn_state.selectedItemPosition
+            task.type = viewModel.getTypeTask(spn_type.selectedItemPosition).id ?: 0
+            task.idEmployee = viewModel.getEmployeeBySkil(viewModel.getSkillFromTask(task.type))
+                .get(spn_selected_employee.selectedItemPosition).id
+            viewModel.addTask(task)
+        }
     }
 
     private fun getValues() {
@@ -82,7 +92,7 @@ class DetailTaskFragment : BaseFragment() {
                         id: Long
                     ) {
                         employeesAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item,
-                            viewModel.getEmployeeBySkil(viewModel.getSkillFromTask(position)))
+                            viewModel.getEmployeeBySkil(viewModel.getSkillFromTask(position)).map { it.name })
                         employeesAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
                         spn_selected_employee.adapter = employeesAdapter
                     }
@@ -93,22 +103,5 @@ class DetailTaskFragment : BaseFragment() {
                 }
             }
         })
-    }
-
-    private fun setListeners() {
-        spn_type.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-        }
     }
 }

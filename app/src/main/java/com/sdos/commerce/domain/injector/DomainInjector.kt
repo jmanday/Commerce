@@ -16,4 +16,6 @@ interface DomainInjector {
     fun provideAddEmployeeInteractor(): AddEmployeeInteractor
 
     fun provideGetTypeTaskInteractor(): GetTypeTaskInteractor
+
+    fun provideAddTaskInteractor(): AddTaskInteractor
 }

@@ -4,11 +4,13 @@ package com.sdos.commerce.ui.fragments
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.sdos.commerce.listeners.FragmentListener
+import com.sdos.commerce.listeners.ViewModelListener
 
 
-abstract class BaseFragment: Fragment() {
+abstract class BaseFragment: Fragment(), ViewModelListener {
 
     protected lateinit var listener: FragmentListener
 
@@ -30,16 +32,17 @@ abstract class BaseFragment: Fragment() {
         initialize()
     }
 
+    override fun showMessage(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        listener.onNavigationUp()
+    }
+
     protected fun onItemClicked(actionId: Int, bundle: Bundle) {
         listener.onNavigationPush(actionId, bundle)
     }
 
     protected fun onButtonAddClicked(actionId: Int) {
         listener.onNavigationPush(actionId, null)
-    }
-
-    protected fun onBackNavigation() {
-        listener.onNavigationUp()
     }
 
     protected fun onDatabasePopulated() {

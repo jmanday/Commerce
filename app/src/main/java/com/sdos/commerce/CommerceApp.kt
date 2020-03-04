@@ -43,6 +43,10 @@ class CommerceApp: Application(), DomainInjector, DataInjector {
     override fun provideGetTypeTaskInteractor(): GetTypeTaskInteractor {
         return GetTypeTaskInteractor(provideTaskRepository())
     }
+
+    override fun provideAddTaskInteractor(): AddTaskInteractor {
+        return AddTaskInteractor(provideTaskRepository())
+    }
     // END - injections layer domain
 
     // BEGIN - injections layer data
