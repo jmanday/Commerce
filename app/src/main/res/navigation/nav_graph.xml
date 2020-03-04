@@ -31,7 +31,11 @@
         android:id="@+id/settingFragment"
         android:name="com.sdos.commerce.ui.fragments.SettingFragment"
         android:label="fragment_setting"
-        tools:layout="@layout/fragment_setting" />
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_settingFragment_to_fruitFragment"
+            app:destination="@id/fruitFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailEmployeeFragment"
         android:name="com.sdos.commerce.ui.fragments.DetailEmployeeFragment"
@@ -63,4 +67,8 @@
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>
+    <fragment
+        android:id="@+id/fruitFragment"
+        android:name="com.sdos.commerce.ui.fragments.FruitFragment"
+        android:label="FruitFragment" />
 </navigation>

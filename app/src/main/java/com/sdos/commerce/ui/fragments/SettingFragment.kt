@@ -34,7 +34,7 @@ class SettingFragment : BaseFragment() {
             viewModel.getFruits("Fruit", "Peaches")
         }
         viewModel.fruits().observe(this, Observer {
-
+            onItemClicked(R.id.action_settingFragment_to_fruitFragment, Bundle())
         })
     }
 }
