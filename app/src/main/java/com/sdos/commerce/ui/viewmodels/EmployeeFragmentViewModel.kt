@@ -12,7 +12,7 @@ class EmployeeFragmentViewModel : ViewModel() {
     private var employeeList = MediatorLiveData<List<Employee>>()
     private val getEmployeesInteractor = (CommerceApp.getInstance() as DomainInjector).provideGetEmployeesInteractor()
 
-    init {
+    fun initialize() {
         getEmployeesInteractor.invoke()?.let {source ->
             employeeList.addSource(source, Observer {
                 employeeList.removeSource(source)

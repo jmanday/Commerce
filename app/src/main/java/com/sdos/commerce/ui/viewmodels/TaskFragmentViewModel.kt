@@ -13,7 +13,7 @@ class TaskFragmentViewModel : ViewModel() {
     private var taskList = MediatorLiveData<List<Task>>()
     private val getTasksInteractor = (CommerceApp.getInstance() as DomainInjector).provideGetTasksInteractor()
 
-    init {
+    fun initialize() {
         getTasksInteractor.invoke()?.let {source ->
             taskList.addSource(source, Observer {
                 taskList.removeSource(source)

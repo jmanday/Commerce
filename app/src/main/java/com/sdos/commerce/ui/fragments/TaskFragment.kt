@@ -32,6 +32,7 @@ class TaskFragment : BaseFragment() {
 
     override fun getViewModel() {
         viewModel = ViewModelProviders.of(this).get(TaskFragmentViewModel::class.java)
+        viewModel.initialize()
     }
 
     override fun initialize() {

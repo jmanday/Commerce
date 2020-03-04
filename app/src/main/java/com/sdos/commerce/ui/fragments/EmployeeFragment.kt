@@ -26,6 +26,7 @@ class EmployeeFragment : BaseFragment() {
 
     override fun getViewModel() {
         viewModel = ViewModelProviders.of(this).get(EmployeeFragmentViewModel::class.java)
+        viewModel.initialize()
     }
 
     override fun initialize() {

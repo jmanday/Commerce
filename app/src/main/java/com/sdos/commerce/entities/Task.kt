@@ -9,7 +9,7 @@ import java.io.Serializable
 data class Task(
 
     @PrimaryKey(autoGenerate = true)
-    var id: Int?,
+    var id: Int? = null,
 
     @ColumnInfo(name = "name")
     var name: String = String(),
