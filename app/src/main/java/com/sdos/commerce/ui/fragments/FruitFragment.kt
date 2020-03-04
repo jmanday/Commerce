@@ -8,10 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.sdos.commerce.R
+import com.sdos.commerce.entities.Fruit
+import com.sdos.commerce.ui.adapters.FruitAdapter
 import kotlinx.android.synthetic.main.fragment_fruit.*
+import java.util.*
 
 class FruitFragment : BaseFragment() {
 
+    private var list: List<Fruit>? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,7 +25,9 @@ class FruitFragment : BaseFragment() {
 
     override fun retrieveArguments() {
         super.retrieveArguments()
-        val b = arguments
+        arguments?.let {
+            list = it.getSerializable(ARGUMENT_EXTRA_LIST_FRUITS) as List<Fruit>
+        }
     }
 
 
@@ -29,6 +35,13 @@ class FruitFragment : BaseFragment() {
     }
 
     override fun initialize() {
+        list?.let {
+            val adapter = FruitAdapter(it) {
+
+            }
+            main_recycler_view.adapter = adapter
+        }
+
         text_head.setText("Fruits")
     }
 

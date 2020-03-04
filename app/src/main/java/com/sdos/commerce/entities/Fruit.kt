@@ -3,6 +3,7 @@ package com.sdos.commerce.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "fruits")
 data class Fruit(
@@ -11,14 +12,14 @@ data class Fruit(
     var id: Int? = null,
 
     @ColumnInfo(name = "farmName")
-    var farmName: String = String(),
+    var farmName: String? = String(),
 
     @ColumnInfo(name = "category")
-    var category: String = String(),
+    var category: String? = String(),
 
     @ColumnInfo(name = "item")
-    var item: String = String(),
+    var item: String? = String(),
 
     @ColumnInfo(name = "business")
-    var business: String = String()
-)
+    var business: String? = String()
+): Serializable

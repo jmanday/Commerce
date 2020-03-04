@@ -58,5 +58,6 @@ abstract class BaseFragment: Fragment(), ViewModelListener {
     companion object {
         const val ARGUMENT_EXTRA_EMPLOYEE = "ARGUMENT_EXTRA_EMPLOYEE"
         const val ARGUMENT_EXTRA_TASK = "ARGUMENT_EXTRA_TASK"
+        const val ARGUMENT_EXTRA_LIST_FRUITS = "ARGUMENT_EXTRA_LIST_FRUITS"
     }
 }
