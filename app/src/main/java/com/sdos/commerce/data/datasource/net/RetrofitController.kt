@@ -15,6 +15,7 @@ object RetrofitController {
             .build()
     }
 
-    fun getInstance() = retrofit
-
+    fun<T> createRequest(service: Class<T>) {
+        retrofit.create(service::class.java)
+    }
 }
