@@ -50,27 +50,8 @@ class DetailTaskFragment : BaseFragment() {
     }
 
     override fun initialize() {
-        getValues()
         val stateAdapter = ArrayAdapter<String>(requireContext(), R.layout.support_simple_spinner_dropdown_item, resources.getStringArray(R.array.task_state))
         val durationAdapter = ArrayAdapter<String>(requireContext(), R.layout.support_simple_spinner_dropdown_item, resources.getStringArray(R.array.duration))
-
-        stateAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
-        durationAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
-
-        spn_state.adapter = stateAdapter
-        spn_duration.adapter = durationAdapter
-
-        btnDone.setOnClickListener {
-            task.duration = resources.getStringArray(R.array.duration).get(spn_duration.selectedItemPosition).split(" ").first().toDouble()
-            task.state = spn_state.selectedItemPosition
-            task.type = viewModel.getTypeTask(spn_type.selectedItemPosition).id ?: 0
-            task.idEmployee = viewModel.getEmployeeBySkil(viewModel.getSkillFromTask(task.type))
-                .get(spn_selected_employee.selectedItemPosition).id
-            viewModel.addTask(task)
-        }
-    }
-
-    private fun getValues() {
         var employeesAdapter: ArrayAdapter<String>
         var typeTaskAdapter: ArrayAdapter<String>
 
@@ -103,5 +84,23 @@ class DetailTaskFragment : BaseFragment() {
                 }
             }
         })
+
+        stateAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
+        durationAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
+
+        spn_state.adapter = stateAdapter
+        spn_duration.adapter = durationAdapter
+        setListeners()
+    }
+
+    private fun setListeners() {
+        btnDone.setOnClickListener {
+            task.duration = resources.getStringArray(R.array.duration).get(spn_duration.selectedItemPosition).split(" ").first().toDouble()
+            task.state = spn_state.selectedItemPosition
+            task.type = viewModel.getTypeTask(spn_type.selectedItemPosition).id ?: 0
+            task.idEmployee = viewModel.getEmployeeBySkil(viewModel.getSkillFromTask(task.type))
+                .get(spn_selected_employee.selectedItemPosition).id
+            viewModel.addTask(task)
+        }
     }
 }
