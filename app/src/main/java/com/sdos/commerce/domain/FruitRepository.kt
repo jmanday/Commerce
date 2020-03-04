@@ -1,9 +1,9 @@
 package com.sdos.commerce.domain
 
 import androidx.lifecycle.LiveData
-import com.sdos.commerce.data.models.FruitModel
+import com.sdos.commerce.entities.Fruit
 
 interface FruitRepository {
 
-    fun getAllFruits(category: String, item: String): LiveData<List<FruitModel>>
+    fun getAllFruits(category: String, item: String): LiveData<List<Fruit>>
 }

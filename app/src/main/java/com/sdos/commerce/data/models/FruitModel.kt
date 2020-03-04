@@ -1,6 +1,7 @@
 package com.sdos.commerce.data.models
 
 import com.google.gson.annotations.SerializedName
+import com.sdos.commerce.entities.Fruit
 
 data class FruitModel(
 
@@ -34,3 +35,10 @@ data class FruitModel(
     @SerializedName("location_1")
     private var locationL: LocationModel
 )
+
+fun FruitModel.toFruit() = Fruit().apply {
+    this.farmName = farmName
+    this.category = category
+    this.item = item
+    this.business = business
+}

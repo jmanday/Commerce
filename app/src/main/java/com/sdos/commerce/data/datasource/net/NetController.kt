@@ -6,14 +6,16 @@ import androidx.lifecycle.MutableLiveData
 import com.sdos.commerce.data.datasource.FruitDataSource
 import com.sdos.commerce.data.endpoints.FruitAPI
 import com.sdos.commerce.data.models.FruitModel
+import com.sdos.commerce.data.models.toFruit
+import com.sdos.commerce.entities.Fruit
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class NetController: FruitDataSource {
 
-    override fun getFruits(category: String, item: String): LiveData<List<FruitModel>> {
-        val data = MutableLiveData<List<FruitModel>>()
+    override fun getFruits(category: String, item: String): LiveData<List<Fruit>> {
+        val data = MutableLiveData<List<Fruit>>()
         val service = RetrofitController.createRequest(FruitAPI::class.java)
 
         val call = service.getAllFruits(hashMapOf(
@@ -27,10 +29,17 @@ class NetController: FruitDataSource {
             }
 
             override fun onResponse(call: Call<List<FruitModel>>, response: Response<List<FruitModel>>) {
-                data.value = response.body()
+                data.value = response.unwrapResponse {
+                        this.map { it.toFruit() }
+                }
             }
         })
 
         return data
     }
+
+
+    inline fun <T, U> Response<T>.unwrapResponse(f: T.() -> List<U>) =
+        body()?.f()
+
 }
