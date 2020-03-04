@@ -18,4 +18,6 @@ interface DomainInjector {
     fun provideGetTypeTaskInteractor(): GetTypeTaskInteractor
 
     fun provideAddTaskInteractor(): AddTaskInteractor
+
+    fun provideGetAllFruitsInteractor(): GetAllFruitsInteractor
 }

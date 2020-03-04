@@ -20,7 +20,7 @@ data class Fruit(
     private var website: Website,
 
     @SerializedName("zipcode")
-    private var zipcode: Int,
+    private var zipcode: String,
 
     @SerializedName("phone1")
     private var phone1: String,

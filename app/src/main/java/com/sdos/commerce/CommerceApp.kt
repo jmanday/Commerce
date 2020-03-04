@@ -2,14 +2,18 @@ package com.sdos.commerce
 
 import android.app.Application
 import com.sdos.commerce.data.EmployeeRepositoryImpl
+import com.sdos.commerce.data.FruitRepositoryImpl
 import com.sdos.commerce.data.SkillRepositoryImpl
 import com.sdos.commerce.data.TaskRepositoryImpl
 import com.sdos.commerce.data.datasource.EmployeeDataSource
+import com.sdos.commerce.data.datasource.FruitDataSource
 import com.sdos.commerce.data.datasource.SkillDataSource
 import com.sdos.commerce.data.datasource.TaskDataSource
 import com.sdos.commerce.data.datasource.database.RoomController
+import com.sdos.commerce.data.datasource.net.NetController
 import com.sdos.commerce.data.injector.DataInjector
 import com.sdos.commerce.data.room.CommerceDatabase
+import com.sdos.commerce.domain.FruitRepository
 import com.sdos.commerce.domain.SkillRepository
 import com.sdos.commerce.domain.injector.DomainInjector
 import com.sdos.commerce.domain.interactors.*
@@ -47,6 +51,10 @@ class CommerceApp: Application(), DomainInjector, DataInjector {
     override fun provideAddTaskInteractor(): AddTaskInteractor {
         return AddTaskInteractor(provideTaskRepository())
     }
+
+    override fun provideGetAllFruitsInteractor(): GetAllFruitsInteractor {
+        return GetAllFruitsInteractor(provideFruitRepository())
+    }
     // END - injections layer domain
 
     // BEGIN - injections layer data
@@ -72,6 +80,14 @@ class CommerceApp: Application(), DomainInjector, DataInjector {
 
     override fun provideSkillDataSource(): SkillDataSource {
         return RoomController()
+    }
+
+    override fun provideFruitDataSource(): FruitDataSource {
+        return NetController()
+    }
+
+    override fun provideFruitRepository(): FruitRepository {
+        return FruitRepositoryImpl(provideFruitDataSource())
     }
     // END - injections layer data
 

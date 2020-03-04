@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitController {
 
-    private const val BASE_URL = "https://data.ct.gov/resource/hma6-9xbg.json/"
+    private const val BASE_URL = "https://data.ct.gov/resource/"
     private var retrofit: Retrofit
 
     init {
@@ -15,7 +15,7 @@ object RetrofitController {
             .build()
     }
 
-    fun<T> createRequest(service: Class<T>) {
-        retrofit.create(service::class.java)
-    }
+    fun<T> createRequest(service: Class<T>) = retrofit.create(service)
+
+    fun getInstance() = retrofit
 }
