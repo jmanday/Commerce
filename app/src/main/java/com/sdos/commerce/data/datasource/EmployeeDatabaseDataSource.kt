@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.sdos.commerce.entities.Employee
 
 
-interface EmployeeDataSource {
+interface EmployeeDatabaseDataSource {
 
     fun login(param1: String, param2: String): LiveData<Employee>?
 

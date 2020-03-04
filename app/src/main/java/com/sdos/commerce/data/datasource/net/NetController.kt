@@ -3,7 +3,7 @@ package com.sdos.commerce.data.datasource.net
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.sdos.commerce.data.datasource.FruitDataSource
+import com.sdos.commerce.data.datasource.FruitNetDataSource
 import com.sdos.commerce.data.endpoints.FruitAPI
 import com.sdos.commerce.data.models.FruitModel
 import com.sdos.commerce.data.models.toFruit
@@ -12,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class NetController: FruitDataSource {
+class NetController: FruitNetDataSource {
 
     override fun getFruits(category: String, item: String): LiveData<List<Fruit>> {
         val data = MutableLiveData<List<Fruit>>()

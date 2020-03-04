@@ -1,28 +1,23 @@
 package com.sdos.commerce.data.datasource.database
 
-import android.content.Context
 import androidx.lifecycle.LiveData
-import com.sdos.commerce.dao.EmployeeDao
-import com.sdos.commerce.dao.SkillDao
-import com.sdos.commerce.dao.TaskDao
-import com.sdos.commerce.dao.TypeTaskDao
-import com.sdos.commerce.data.datasource.EmployeeDataSource
-import com.sdos.commerce.data.datasource.SkillDataSource
-import com.sdos.commerce.data.datasource.TaskDataSource
+import com.sdos.commerce.dao.*
+import com.sdos.commerce.data.datasource.EmployeeDatabaseDataSource
+import com.sdos.commerce.data.datasource.FruitDatabaseDataSource
+import com.sdos.commerce.data.datasource.SkillDatabaseDataSource
+import com.sdos.commerce.data.datasource.TaskDatabaseDataSource
 import com.sdos.commerce.data.room.CommerceDatabase
-import com.sdos.commerce.entities.Employee
-import com.sdos.commerce.entities.Skill
-import com.sdos.commerce.entities.Task
-import com.sdos.commerce.entities.TypeTask
+import com.sdos.commerce.entities.*
 
 
-class RoomController: EmployeeDataSource, TaskDataSource, SkillDataSource {
+class RoomController: EmployeeDatabaseDataSource, TaskDatabaseDataSource, SkillDatabaseDataSource, FruitDatabaseDataSource {
 
     private var db: CommerceDatabase? = null
     private var employeeDao: EmployeeDao? = null
     private var taskDao: TaskDao? = null
     private var skillDao: SkillDao? = null
     private var typeTaskDao: TypeTaskDao? = null
+    private var fruitDao: FruitDao? = null
 
     init {
         db = CommerceDatabase.getInstance()
@@ -30,11 +25,12 @@ class RoomController: EmployeeDataSource, TaskDataSource, SkillDataSource {
         taskDao = db?.taskDao()
         skillDao = db?.skillDao()
         typeTaskDao = db?.typeTaskDao()
+        fruitDao = db?.fruitDao()
     }
 
 
     override fun login(param1: String, param2: String): LiveData<Employee>?  {
-        return employeeDao?.getEmployee(param1, param2)
+        return employeeDao?.getEmployee(param1, param2, 0)
     }
 
     override fun getEmployees(): LiveData<List<Employee>>? {
@@ -59,5 +55,9 @@ class RoomController: EmployeeDataSource, TaskDataSource, SkillDataSource {
 
     override fun addTask(task: Task) {
         taskDao?.addTask(task)
+    }
+
+    override fun addFruits(list: List<Fruit>) {
+        fruitDao?.insert(list)
     }
 }

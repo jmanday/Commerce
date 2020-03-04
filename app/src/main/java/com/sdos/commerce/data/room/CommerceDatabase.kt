@@ -27,6 +27,8 @@ abstract class CommerceDatabase: RoomDatabase() {
 
     abstract fun typeTaskDao(): TypeTaskDao
 
+    abstract fun fruitDao(): FruitDao
+
     companion object {
         private const val DATABASE_NAME = "commerce_database"
         @Volatile
@@ -36,7 +38,7 @@ abstract class CommerceDatabase: RoomDatabase() {
             if (instance == null) {
                 synchronized(CommerceDatabase::class) {
                     instance = Room.databaseBuilder(context.getApplicationContext(),
-                        CommerceDatabase::class.java, "weather1_7_6_659.db")
+                        CommerceDatabase::class.java, DATABASE_NAME)
                         .addCallback(object : Callback() {
                             override fun onCreate(db: SupportSQLiteDatabase) {
                                 super.onCreate(db)

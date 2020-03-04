@@ -5,10 +5,10 @@ import com.sdos.commerce.entities.*
 object Generator {
 
     fun getEmployees() = listOf(
-        Employee(null, "Antonio", "Molino Fernandez", "amolino@gmail.com",0, "677889933", "1234", 0.0, 0, listOf(), -1, "https://idatosabiertos.org/wp-content/uploads/2017/04/juanpane.png", "12/3/77"),
-        Employee(null, "Julio", "Aparicio Matías", "japaricio@gmail.com",1, "677889933", "1234", 0.0, 1, listOf(), -1, "https://upload.wikimedia.org/wikipedia/commons/b/b7/Juan_Darth%C3%A9s_.png", "24/11/80"),
-        Employee(null, "Miguel", "Lopez Estevez", "mploez@gmail.com",1, "677889933", "1234", 0.0, 2, listOf(), -1, "https://etfsantpau.com/wp-content/uploads/2019/03/Docentes_v2_0017_Juan-Luis-Linares-1.jpg", "2/8/90"),
-        Employee(null, "Alberto", "Espejo Gonzalez", "aespejo@gmail.com",1, "677889933", "1234", 0.0, 3, listOf(), -1, "https://www.bde.es/f/webpi/SES/staff/jimenoserranojuanfrancisco/files/jimenojuanfrancisco.jpg", "15/12/77"))
+        Employee(null, "Ruben", "García", "amolino@gmail.com",0, "677889933", "1234", 0.0, 0, listOf(), -1, "https://idatosabiertos.org/wp-content/uploads/2017/04/juanpane.png", "12/3/77"),
+        Employee(null, "Rafael", "Martín", "rmartino@gmail.com",1, "677889933", "1234", 0.0, 2, listOf(), -1, "https://upload.wikimedia.org/wikipedia/commons/b/b7/Juan_Darth%C3%A9s_.png", "24/11/80"),
+        Employee(null, "Sara", "López", "sploez@gmail.com",1, "677889933", "1234", 0.0, 1, listOf(), -1, "https://etfsantpau.com/wp-content/uploads/2019/03/Docentes_v2_0017_Juan-Luis-Linares-1.jpg", "2/8/90")
+    )
 
     fun getSkills() = listOf(
         Skill(null, "Cobrador"),

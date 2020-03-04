@@ -20,4 +20,6 @@ interface DomainInjector {
     fun provideAddTaskInteractor(): AddTaskInteractor
 
     fun provideGetAllFruitsInteractor(): GetAllFruitsInteractor
+
+    fun provideAddFruitsInteractor(): AddFruitsInteractor
 }

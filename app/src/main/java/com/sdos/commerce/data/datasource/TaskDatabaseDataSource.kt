@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.sdos.commerce.entities.Task
 import com.sdos.commerce.entities.TypeTask
 
-interface TaskDataSource {
+interface TaskDatabaseDataSource {
 
     fun getTasks(): LiveData<List<Task>>?
 

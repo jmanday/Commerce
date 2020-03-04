@@ -11,12 +11,16 @@ class SettingsViewModel: ExecutorViewModel() {
 
     private val fruits = MediatorLiveData<List<Fruit>>()
     private val getFruitsInteractor = (CommerceApp.getInstance() as DomainInjector).provideGetAllFruitsInteractor()
+    private val addFruitsInteractor = (CommerceApp.getInstance() as DomainInjector).provideAddFruitsInteractor()
 
     fun getFruits(category: String, item: String) =
         getFruitsInteractor.invoke(category, item).let { source ->
             fruits.addSource(source, Observer {
                 fruits.removeSource(source)
                 fruits.value = it
+                doInBackgroundAndWait {
+                    addFruitsInteractor.invoke(it)
+                }
             })
         }
 

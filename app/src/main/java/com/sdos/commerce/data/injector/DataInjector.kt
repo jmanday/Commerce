@@ -1,9 +1,6 @@
 package com.sdos.commerce.data.injector
 
-import com.sdos.commerce.data.datasource.EmployeeDataSource
-import com.sdos.commerce.data.datasource.FruitDataSource
-import com.sdos.commerce.data.datasource.SkillDataSource
-import com.sdos.commerce.data.datasource.TaskDataSource
+import com.sdos.commerce.data.datasource.*
 import com.sdos.commerce.domain.FruitRepository
 import com.sdos.commerce.domain.SkillRepository
 import com.sdos.login.domain.EmployeeRepository
@@ -13,17 +10,19 @@ interface DataInjector {
 
     fun provideEmployeeRepository(): EmployeeRepository
 
-    fun provideEmployeeDataSource(): EmployeeDataSource
+    fun provideDatabaseEmployeeDataSource(): EmployeeDatabaseDataSource
 
     fun provideTaskRepository(): TaskRepository
 
-    fun provideTaskDataSource(): TaskDataSource
+    fun provideDatabaseTaskDataSource(): TaskDatabaseDataSource
 
     fun provideSkillRepository(): SkillRepository
 
-    fun provideSkillDataSource(): SkillDataSource
+    fun provideDatabaseSkillDataSource(): SkillDatabaseDataSource
 
     fun provideFruitRepository(): FruitRepository
 
-    fun provideFruitDataSource(): FruitDataSource
+    fun provideDatabaseFruitDataSource(): FruitDatabaseDataSource
+
+    fun provideNetFruitDataSource(): FruitNetDataSource
 }

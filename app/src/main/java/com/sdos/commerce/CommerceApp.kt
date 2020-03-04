@@ -5,14 +5,10 @@ import com.sdos.commerce.data.EmployeeRepositoryImpl
 import com.sdos.commerce.data.FruitRepositoryImpl
 import com.sdos.commerce.data.SkillRepositoryImpl
 import com.sdos.commerce.data.TaskRepositoryImpl
-import com.sdos.commerce.data.datasource.EmployeeDataSource
-import com.sdos.commerce.data.datasource.FruitDataSource
-import com.sdos.commerce.data.datasource.SkillDataSource
-import com.sdos.commerce.data.datasource.TaskDataSource
+import com.sdos.commerce.data.datasource.*
 import com.sdos.commerce.data.datasource.database.RoomController
 import com.sdos.commerce.data.datasource.net.NetController
 import com.sdos.commerce.data.injector.DataInjector
-import com.sdos.commerce.data.room.CommerceDatabase
 import com.sdos.commerce.domain.FruitRepository
 import com.sdos.commerce.domain.SkillRepository
 import com.sdos.commerce.domain.injector.DomainInjector
@@ -55,39 +51,47 @@ class CommerceApp: Application(), DomainInjector, DataInjector {
     override fun provideGetAllFruitsInteractor(): GetAllFruitsInteractor {
         return GetAllFruitsInteractor(provideFruitRepository())
     }
+
+    override fun provideAddFruitsInteractor(): AddFruitsInteractor {
+        return AddFruitsInteractor(provideFruitRepository())
+    }
     // END - injections layer domain
 
     // BEGIN - injections layer data
     override fun provideEmployeeRepository(): EmployeeRepository {
-        return EmployeeRepositoryImpl(provideEmployeeDataSource())
+        return EmployeeRepositoryImpl(provideDatabaseEmployeeDataSource())
     }
 
-    override fun provideEmployeeDataSource(): EmployeeDataSource {
+    override fun provideDatabaseEmployeeDataSource(): EmployeeDatabaseDataSource {
         return RoomController()
     }
 
-    override fun provideTaskDataSource(): TaskDataSource {
+    override fun provideDatabaseTaskDataSource(): TaskDatabaseDataSource {
         return RoomController()
     }
 
     override fun provideTaskRepository(): TaskRepository {
-        return TaskRepositoryImpl(provideTaskDataSource())
+        return TaskRepositoryImpl(provideDatabaseTaskDataSource())
     }
 
     override fun provideSkillRepository(): SkillRepository {
-        return SkillRepositoryImpl(provideSkillDataSource())
+        return SkillRepositoryImpl(provideDatabaseSkillDataSource())
     }
 
-    override fun provideSkillDataSource(): SkillDataSource {
+    override fun provideDatabaseSkillDataSource(): SkillDatabaseDataSource {
         return RoomController()
     }
 
-    override fun provideFruitDataSource(): FruitDataSource {
+    override fun provideNetFruitDataSource(): FruitNetDataSource {
         return NetController()
     }
 
     override fun provideFruitRepository(): FruitRepository {
-        return FruitRepositoryImpl(provideFruitDataSource())
+        return FruitRepositoryImpl(provideNetFruitDataSource(), provideDatabaseFruitDataSource())
+    }
+
+    override fun provideDatabaseFruitDataSource(): FruitDatabaseDataSource {
+        return RoomController()
     }
     // END - injections layer data
 
