@@ -16,7 +16,7 @@ class NetController: FruitNetDataSource {
 
     override fun getFruits(category: String, item: String): LiveData<List<Fruit>> {
         val data = MutableLiveData<List<Fruit>>()
-        val service = RetrofitController.createRequest(FruitAPI::class.java)
+        val service = RetrofitController.createRequest<FruitAPI>()
 
         val call = service.getAllFruits(hashMapOf(
             "category" to category,
