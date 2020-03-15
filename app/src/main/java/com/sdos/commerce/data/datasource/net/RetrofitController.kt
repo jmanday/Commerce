@@ -15,5 +15,5 @@ object RetrofitController {
             .build()
     }
 
-    inline fun<reified T: Any> createRequest() = retrofit.create(T::class.java)
+    inline fun<reified T: Any> createRequest(): T = retrofit.create(T::class.java)
 }
