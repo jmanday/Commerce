@@ -27,8 +27,8 @@ class SettingFragment : BaseFragment() {
         return FragmentSettingBinding.inflate(inflater).root
     }
 
-    override fun getViewModel() {
-        viewModel = ViewModelProviders.of(this).get(SettingsViewModel::class.java)
+    override fun initializeViewModel() {
+        viewModel = getViewModel()
     }
 
     override fun initialize() {

@@ -28,10 +28,6 @@ class FruitFragment : BaseFragment() {
         }
     }
 
-
-    override fun getViewModel() {
-    }
-
     override fun initialize() {
         list?.let {
             val adapter = FruitAdapter(it) {
