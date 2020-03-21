@@ -34,11 +34,11 @@ class SettingFragment : BaseFragment() {
     override fun initialize() {
         tv_download.setOnClickListener {
             viewModel.getFruits("Fruit", "Peaches")
-        }
-        viewModel.fruits().observe(this, Observer {
-            onItemClicked(R.id.action_settingFragment_to_fruitFragment, Bundle().apply {
-                putSerializable(ARGUMENT_EXTRA_LIST_FRUITS, it as Serializable)
+            viewModel.fruits().observe(this, Observer {
+                onItemClicked(R.id.action_settingFragment_to_fruitFragment, Bundle().apply {
+                    putSerializable(ARGUMENT_EXTRA_LIST_FRUITS, it as Serializable)
+                })
             })
-        })
+        }
     }
 }
