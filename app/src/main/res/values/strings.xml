@@ -29,10 +29,8 @@
     <string name="label_text_phone">Teléfono</string>
     <string name="label_text_repeat_pass">Repetir contraseña</string>
     <string name="label_text_skill">Perfil</string>
-    <string name="text_header_login_dialog">Bienvenido</string>
     <string name="text_header_detail_employee">Datos del empleado</string>
     <string name="text_header_detail_task">Datos de la tarea</string>
-    <string name="text_wrong_login_dialog">Usuario o password incorrectos</string>
     <string name="text_button_cancel">Cancelar</string>
     <string name="text_button_done">Aceptar</string>
     <string name="text_state_free">Libre</string>
