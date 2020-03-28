@@ -13,7 +13,7 @@ class SettingsViewModel: ExecutorViewModel() {
     private val getFruitsInteractor = (CommerceApp.getInstance() as DomainInjector).provideGetAllFruitsInteractor()
     private val addFruitsInteractor = (CommerceApp.getInstance() as DomainInjector).provideAddFruitsInteractor()
 
-    fun getFruits(category: String, item: String) =
+    fun getFruits(category: String, item: String): MediatorLiveData<List<Fruit>> {
         getFruitsInteractor.invoke(category, item).let { source ->
             fruits.addSource(source, Observer {
                 fruits.removeSource(source)
@@ -23,6 +23,6 @@ class SettingsViewModel: ExecutorViewModel() {
                 }
             })
         }
-
-    fun fruits() = fruits
+        return fruits
+    }
 }
