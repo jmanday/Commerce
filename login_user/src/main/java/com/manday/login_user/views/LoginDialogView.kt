@@ -1,7 +1,6 @@
-package com.sdos.commerce.ui.views
+package com.manday.login_user.views
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
@@ -10,8 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.sdos.commerce.R
-import com.sdos.commerce.ui.viewmodels.LoginDialogViewModel
+import com.manday.login_user.R
 import kotlinx.android.synthetic.main.login_custom_view.*
 
 
