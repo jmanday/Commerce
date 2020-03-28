@@ -24,8 +24,8 @@ class EmployeeFragment : BaseFragment() {
         return FragmentMainBinding.inflate(inflater).root
     }
 
-    override fun getViewModel() {
-        viewModel = ViewModelProviders.of(this).get(EmployeeFragmentViewModel::class.java)
+    override fun initializeViewModel() {
+        viewModel = getViewModel()
         viewModel.initialize()
     }
 

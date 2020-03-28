@@ -70,7 +70,8 @@
     <fragment
         android:id="@+id/fruitFragment"
         android:name="com.sdos.commerce.ui.fragments.FruitFragment"
-        android:label="FruitFragment" >
+        android:label="FruitFragment"
+        tools:layout="@layout/fragment_fruit">
         <argument
             android:name="fruits"
             app:argType="com.sdos.commerce.entities.Fruit[]" />

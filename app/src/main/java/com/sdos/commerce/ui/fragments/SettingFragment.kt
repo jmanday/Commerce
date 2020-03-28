@@ -27,18 +27,17 @@ class SettingFragment : BaseFragment() {
         return FragmentSettingBinding.inflate(inflater).root
     }
 
-    override fun getViewModel() {
-        viewModel = ViewModelProviders.of(this).get(SettingsViewModel::class.java)
+    override fun initializeViewModel() {
+        viewModel = getViewModel()
     }
 
     override fun initialize() {
         tv_download.setOnClickListener {
-            viewModel.getFruits("Fruit", "Peaches")
-        }
-        viewModel.fruits().observe(this, Observer {
-            onItemClicked(R.id.action_settingFragment_to_fruitFragment, Bundle().apply {
-                putSerializable(ARGUMENT_EXTRA_LIST_FRUITS, it as Serializable)
+            viewModel.getFruits("Fruit", "Peaches").observe(this, Observer {
+                onItemClicked(R.id.action_settingFragment_to_fruitFragment, Bundle().apply {
+                    putSerializable(ARGUMENT_EXTRA_LIST_FRUITS, it as Serializable)
+                })
             })
-        })
+        }
     }
 }

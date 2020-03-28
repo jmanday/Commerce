@@ -24,8 +24,8 @@ class SplashFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
-    override fun getViewModel() {
-        viewModel = ViewModelProviders.of(this).get(SplashViewModel::class.java)
+    override fun initializeViewModel() {
+        viewModel = getViewModel()
     }
 
     override fun initialize() {

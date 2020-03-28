@@ -30,8 +30,8 @@ class TaskFragment : BaseFragment() {
         return FragmentMainBinding.inflate(inflater).root
     }
 
-    override fun getViewModel() {
-        viewModel = ViewModelProviders.of(this).get(TaskFragmentViewModel::class.java)
+    override fun initializeViewModel() {
+        viewModel = getViewModel()
         viewModel.initialize()
     }
 

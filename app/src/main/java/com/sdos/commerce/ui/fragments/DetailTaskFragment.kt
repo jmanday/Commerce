@@ -44,8 +44,8 @@ class DetailTaskFragment : BaseFragment() {
         }
     }
 
-    override fun getViewModel() {
-        viewModel = ViewModelProviders.of(this).get(DetailTaskViewModel::class.java)
+    override fun initializeViewModel() {
+        viewModel = getViewModel()
         viewModel.setListener(this)
     }
 
