@@ -1,3 +1,3 @@
 include ':app'
-include ':login_user'
+include ':login-user'
 rootProject.name='Commerce'

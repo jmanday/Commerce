@@ -1,8 +1,8 @@
 package com.sdos.commerce
 
 import android.app.Application
-import com.manday.login_user.injector.LoginUserInjector
-import com.manday.login_user.injector.LoginUserInjectorImp
+import com.manday.loginuser.injector.LoginUserInjector
+import com.manday.loginuser.injector.LoginUserInjectorImp
 import com.sdos.commerce.data.EmployeeRepositoryImpl
 import com.sdos.commerce.data.FruitRepositoryImpl
 import com.sdos.commerce.data.SkillRepositoryImpl
@@ -17,15 +17,18 @@ import com.sdos.commerce.domain.SkillRepository
 import com.sdos.commerce.domain.injector.DomainInjector
 import com.sdos.commerce.domain.interactors.*
 import com.sdos.login.domain.EmployeeRepository
-import com.sdos.login.domain.LoginEmployeeInteractor
+//import com.sdos.login.domain.LoginEmployeeInteractor
 import com.sdos.login.domain.TaskRepository
 
 class CommerceApp: Application(), DomainInjector, DataInjector, ModuleInjector {
 
     // BEGIN - injections layer domain
+    /*
     override fun provideLoginInteractor(): LoginEmployeeInteractor {
         return LoginEmployeeInteractor(provideEmployeeRepository())
     }
+
+     */
 
     override fun provideGetEmployeesInteractor(): GetEmployeesInteractor {
         return GetEmployeesInteractor(provideEmployeeRepository())

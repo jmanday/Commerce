@@ -1,6 +1,6 @@
 package com.sdos.commerce.di
 
-import com.manday.login_user.injector.LoginUserInjector
+import com.manday.loginuser.injector.LoginUserInjector
 
 interface ModuleInjector {
 

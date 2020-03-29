@@ -6,7 +6,7 @@ import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
-import com.manday.login_user.injector.LoginUserInjector
+import com.manday.loginuser.injector.LoginUserInjector
 import com.sdos.commerce.CommerceApp
 import com.sdos.commerce.R
 import com.sdos.commerce.di.ModuleInjector

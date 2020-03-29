@@ -1,11 +1,11 @@
 package com.sdos.commerce.domain.injector
 
 import com.sdos.commerce.domain.interactors.*
-import com.sdos.login.domain.LoginEmployeeInteractor
+//import com.sdos.login.domain.LoginEmployeeInteractor
 
 interface DomainInjector {
 
-    fun provideLoginInteractor(): LoginEmployeeInteractor
+    //fun provideLoginInteractor(): LoginEmployeeInteractor
 
     fun provideGetEmployeesInteractor(): GetEmployeesInteractor
 
