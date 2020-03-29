@@ -5,7 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 
 
-class LoginDialogViewModel : ViewModel() {
+internal class LoginDialogViewModel : ViewModel() {
 
     //private var employee = MediatorLiveData<Employee>()
 

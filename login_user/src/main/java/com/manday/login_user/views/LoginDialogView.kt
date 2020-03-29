@@ -13,7 +13,7 @@ import com.manday.login_user.viewmodels.LoginDialogViewModel
 import kotlinx.android.synthetic.main.login_custom_view.*
 
 
-class LoginDialogView: DialogFragment() {
+internal class LoginDialogView: DialogFragment() {
 
     private val loginDialogViewModel: LoginDialogViewModel by lazy {
         ViewModelProviders.of(requireActivity()).get(LoginDialogViewModel::class.java)
