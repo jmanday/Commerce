@@ -1,6 +1,5 @@
 package com.sdos.commerce.ui.fragments
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

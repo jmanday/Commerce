@@ -6,15 +6,18 @@ import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
+import com.manday.login_user.injector.LoginUserInjector
+import com.sdos.commerce.CommerceApp
 import com.sdos.commerce.R
+import com.sdos.commerce.di.ModuleInjector
 import com.sdos.commerce.listeners.FragmentListener
-import com.manday.login_user.LoginDialogView
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), FragmentListener {
 
     private val navController by lazy { findNavController(R.id.nav_host_fragment) }
+    private var loginUserInjector: LoginUserInjector = (CommerceApp.getInstance() as ModuleInjector).provideUserLoginInjector()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,8 +63,8 @@ class MainActivity : AppCompatActivity(), FragmentListener {
             NavOptions.Builder()
                 .setPopUpTo(R.id.splashFragment, true)
                 .build())
+
+        loginUserInjector.provideLoginDialogView().show(supportFragmentManager, "")
         bottom_navigation.visibility = VISIBLE
-        com.manday.login_user.LoginDialogView.newInstance()
-            .show(supportFragmentManager, "")
     }
 }
