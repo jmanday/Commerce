@@ -1,2 +1,3 @@
 include ':app'
+include ':login_user'
 rootProject.name='Commerce'

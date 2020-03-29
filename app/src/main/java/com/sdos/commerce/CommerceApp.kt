@@ -1,6 +1,8 @@
 package com.sdos.commerce
 
 import android.app.Application
+import com.manday.login_user.injector.LoginUserInjector
+import com.manday.login_user.injector.LoginUserInjectorImp
 import com.sdos.commerce.data.EmployeeRepositoryImpl
 import com.sdos.commerce.data.FruitRepositoryImpl
 import com.sdos.commerce.data.SkillRepositoryImpl
@@ -9,6 +11,7 @@ import com.sdos.commerce.data.datasource.*
 import com.sdos.commerce.data.datasource.database.RoomController
 import com.sdos.commerce.data.datasource.net.NetController
 import com.sdos.commerce.data.injector.DataInjector
+import com.sdos.commerce.di.ModuleInjector
 import com.sdos.commerce.domain.FruitRepository
 import com.sdos.commerce.domain.SkillRepository
 import com.sdos.commerce.domain.injector.DomainInjector
@@ -17,7 +20,7 @@ import com.sdos.login.domain.EmployeeRepository
 import com.sdos.login.domain.LoginEmployeeInteractor
 import com.sdos.login.domain.TaskRepository
 
-class CommerceApp: Application(), DomainInjector, DataInjector {
+class CommerceApp: Application(), DomainInjector, DataInjector, ModuleInjector {
 
     // BEGIN - injections layer domain
     override fun provideLoginInteractor(): LoginEmployeeInteractor {
@@ -94,6 +97,10 @@ class CommerceApp: Application(), DomainInjector, DataInjector {
         return RoomController()
     }
     // END - injections layer data
+
+    override fun provideUserLoginInjector(): LoginUserInjector {
+        return LoginUserInjectorImp()
+    }
 
     companion object {
         private var instance: CommerceApp? = null

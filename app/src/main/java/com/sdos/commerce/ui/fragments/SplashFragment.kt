@@ -5,13 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.sdos.commerce.R
-import com.sdos.commerce.data.room.CommerceDatabase
 import com.sdos.commerce.ui.viewmodels.SplashViewModel
-import com.sdos.commerce.ui.views.LoginDialogView
-import kotlinx.android.synthetic.main.activity_main.*
 
 class SplashFragment : BaseFragment() {
 
