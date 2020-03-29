@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.sdos.commerce.R
 import com.sdos.commerce.databinding.FragmentMainBinding
 import com.sdos.commerce.entities.Task
