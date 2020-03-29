@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.sdos.commerce.R
 import com.sdos.commerce.ui.viewmodels.SplashViewModel
-import com.manday.login_user.LoginDialogView
 
 class SplashFragment : BaseFragment() {
 
