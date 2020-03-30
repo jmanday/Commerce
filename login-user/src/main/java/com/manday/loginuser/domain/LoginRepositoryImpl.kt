@@ -1,8 +1,10 @@
 package com.manday.loginuser.domain
 
-class LoginRepositoryImpl: LoginRepository {
+import com.manday.loginuser.data.LoginDataSource
+
+class LoginRepositoryImpl(var dataSource: LoginDataSource): LoginRepository {
 
     override fun login(user: String, pass: String) {
-        TODO("Not yet implemented")
+        dataSource.login(user, pass)
     }
 }
