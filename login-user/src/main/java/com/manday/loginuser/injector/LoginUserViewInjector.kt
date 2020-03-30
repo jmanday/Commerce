@@ -2,7 +2,7 @@ package com.manday.loginuser.injector
 
 import com.manday.loginuser.BaseLoginDialogView
 
-interface LoginUserInjector {
+interface LoginUserViewInjector {
 
     fun provideLoginDialogView(): BaseLoginDialogView
 }
