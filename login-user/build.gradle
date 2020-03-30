@@ -46,6 +46,8 @@ dependencies {
     // Koin AndroidX Experimental features
     //implementation "org.koin:koin-androidx-ext:$koin_version"
 
+    implementation project(":core-data")
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
