@@ -6,7 +6,7 @@ import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
-import com.manday.loginuser.injector.LoginUserInjector
+import com.manday.loginuser.injector.LoginUserViewInjector
 import com.sdos.commerce.CommerceApp
 import com.sdos.commerce.R
 import com.sdos.commerce.di.ModuleInjector
@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), FragmentListener {
 
     private val navController by lazy { findNavController(R.id.nav_host_fragment) }
-    private var loginUserInjector: LoginUserInjector = (CommerceApp.getInstance() as ModuleInjector).provideUserLoginInjector()
+    private var loginUserInjector: LoginUserViewInjector = (CommerceApp.getInstance() as ModuleInjector).provideUserLoginInjector()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

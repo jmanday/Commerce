@@ -1,8 +1,8 @@
 package com.sdos.commerce
 
 import android.app.Application
-import com.manday.loginuser.injector.LoginUserInjector
-import com.manday.loginuser.injector.LoginUserInjectorImp
+import com.manday.loginuser.injector.LoginUserViewInjector
+import com.manday.loginuser.injector.LoginUserViewInjectorImp
 import com.sdos.commerce.data.EmployeeRepositoryImpl
 import com.sdos.commerce.data.FruitRepositoryImpl
 import com.sdos.commerce.data.SkillRepositoryImpl
@@ -101,8 +101,8 @@ class CommerceApp: Application(), DomainInjector, DataInjector, ModuleInjector {
     }
     // END - injections layer data
 
-    override fun provideUserLoginInjector(): LoginUserInjector {
-        return LoginUserInjectorImp()
+    override fun provideUserLoginInjector(): LoginUserViewInjector {
+        return LoginUserViewInjectorImp()
     }
 
     companion object {
