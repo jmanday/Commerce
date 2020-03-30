@@ -1,12 +1,10 @@
 package com.sdos.login.domain
 
-import androidx.lifecycle.LiveData
-/*
-class LoginEmployeeInteractor(private val repository: EmployeeRepository): (String, String) -> LiveData<Employee>? {
+import com.manday.loginuser.domain.LoginRepository
 
-    override fun invoke(user: String, pass: String): LiveData<Employee>? {
+class LoginEmployeeInteractor(var repository: LoginRepository): (String, String) -> Unit {
+
+    override fun invoke(user: String, pass: String) {
         return repository.login(user, pass)
     }
 }
-
- */

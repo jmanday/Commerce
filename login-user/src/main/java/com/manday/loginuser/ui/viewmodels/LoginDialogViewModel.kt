@@ -1,20 +1,18 @@
 package com.manday.loginuser.viewmodels
 
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.sdos.login.domain.LoginEmployeeInteractor
 
-
-internal class LoginDialogViewModel : ViewModel() {
+internal class LoginDialogViewModel(var loginEmployeeInteractor: LoginEmployeeInteractor) : ViewModel() {
 
     //private var employee = MediatorLiveData<Employee>()
 
-    //private val loginEmployeeInteractor = (CommerceApp.getInstance() as DomainInjector).provideLoginInteractor()
-
-    /*
-    fun loginUser(param1: String, param2: String): MediatorLiveData<Employee> {
-        login(param1, param2)
-        return employee
+    fun loginUser(param1: String, param2: String) {
+        loginEmployeeInteractor.invoke(param1, param2)
     }
-
+    /*
     private fun login(param1: String, param2: String) {
         loginEmployeeInteractor.invoke(param1, param2)?.let { source ->
             employee.addSource(source, Observer {
@@ -23,6 +21,5 @@ internal class LoginDialogViewModel : ViewModel() {
             })
         }
     }
-
      */
 }
