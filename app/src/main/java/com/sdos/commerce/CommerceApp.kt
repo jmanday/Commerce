@@ -1,6 +1,7 @@
 package com.sdos.commerce
 
 import android.app.Application
+import com.manday.loginuser.di.loginUserModule
 import com.manday.loginuser.injector.LoginUserViewInjector
 import com.manday.loginuser.injector.LoginUserViewInjectorImp
 import com.sdos.commerce.data.EmployeeRepositoryImpl
@@ -19,16 +20,21 @@ import com.sdos.commerce.domain.interactors.*
 import com.sdos.login.domain.EmployeeRepository
 //import com.sdos.login.domain.LoginEmployeeInteractor
 import com.sdos.login.domain.TaskRepository
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
 
 class CommerceApp: Application(), DomainInjector, DataInjector, ModuleInjector {
 
-    // BEGIN - injections layer domain
-    /*
-    override fun provideLoginInteractor(): LoginEmployeeInteractor {
-        return LoginEmployeeInteractor(provideEmployeeRepository())
+    override fun onCreate() {
+        super.onCreate()
+        // Start Koin
+        startKoin{
+            androidLogger()
+            androidContext(this@CommerceApp)
+            modules(loginUserModule)
+        }
     }
-
-     */
 
     override fun provideGetEmployeesInteractor(): GetEmployeesInteractor {
         return GetEmployeesInteractor(provideEmployeeRepository())

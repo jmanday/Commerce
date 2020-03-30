@@ -1,6 +1,6 @@
 package com.manday.loginuser.data
 
-class LoginDataSourceImpl: LoginDataSource {
+internal class LoginDataSourceImpl: LoginDataSource {
 
     override fun login(user: String, pass: String) {
 
