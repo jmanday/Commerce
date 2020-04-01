@@ -9,7 +9,7 @@ import com.manday.loginuser.viewmodels.LoginDialogViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-val loginUserModule = module {
+val loginUserModuleDependencies = module {
 
     // Single instances
     single<EmployeeDataSource> {
@@ -24,6 +24,7 @@ val loginUserModule = module {
         LoginEmployeeInteractor(get())
     }
 
+    // ViewModel instance
     viewModel {
         LoginDialogViewModel(get())
     }
