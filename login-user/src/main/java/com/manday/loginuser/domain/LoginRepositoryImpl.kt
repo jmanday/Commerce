@@ -1,10 +1,12 @@
 package com.manday.loginuser.domain
 
-import com.manday.loginuser.data.LoginDataSource
+import com.manday.coredata.controllers.RoomController
+import com.manday.coredata.datasource.EmployeeDataSource
+import com.manday.coredata.entities.EmployeeEntity
 
-class LoginRepositoryImpl(var dataSource: LoginDataSource): LoginRepository {
+internal class LoginRepositoryImpl(var dataSource: EmployeeDataSource): LoginRepository {
 
-    override fun login(user: String, pass: String) {
-        dataSource.login(user, pass)
+    override fun login(user: String, pass: String): EmployeeEntity? {
+        return dataSource.login(user, pass)
     }
 }

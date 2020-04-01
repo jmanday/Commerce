@@ -37,12 +37,14 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-    implementation "android.arch.persistence.room:runtime:1.0.0"
     implementation "com.google.code.gson:gson:2.8.6"
-
     implementation 'com.google.android.material:material:1.1.0'
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+
+    kapt "android.arch.persistence.room:compiler:1.1.1"
 
     implementation project(':login-user')
+    implementation project(':core-data')
 
     implementation 'com.facebook.shimmer:shimmer:0.4.0'
     implementation 'com.todkars:shimmer-recyclerview:0.4.0'
@@ -50,7 +52,15 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
-    kapt "android.arch.persistence.room:compiler:1.0.0"
+    // Koin AndroidX Scope features
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    // Koin AndroidX ViewModel features
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    // Koin AndroidX Fragment features
+    implementation "org.koin:koin-androidx-fragment:$koin_version"
+    implementation "org.koin:koin-android-architecture:0.8.2"
+    // Koin AndroidX Experimental features
+    //implementation "org.koin:koin-androidx-ext:$koin_version"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'

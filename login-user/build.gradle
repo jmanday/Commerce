@@ -35,6 +35,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation 'com.google.android.material:material:1.1.0'
 
     // Koin AndroidX Scope features
     implementation "org.koin:koin-androidx-scope:$koin_version"
@@ -45,6 +46,8 @@ dependencies {
     implementation "org.koin:koin-android-architecture:0.8.2"
     // Koin AndroidX Experimental features
     //implementation "org.koin:koin-androidx-ext:$koin_version"
+
+    implementation project(":core-data")
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'

@@ -1,7 +1,7 @@
 package com.sdos.commerce.data.models
 
 import com.google.gson.annotations.SerializedName
-import com.sdos.commerce.entities.Fruit
+import com.manday.coredata.entities.FruitEntity
 
 data class FruitModel(
 
@@ -36,6 +36,6 @@ data class FruitModel(
     var locationL: LocationModel
 )
 
-fun FruitModel.toFruit(): Fruit {
-    return Fruit(null, this.farmName, this.category, this.item, this.business)
+fun FruitModel.toFruit(): FruitEntity {
+    return FruitEntity(null, this.farmName, this.category, this.item, this.business)
 }

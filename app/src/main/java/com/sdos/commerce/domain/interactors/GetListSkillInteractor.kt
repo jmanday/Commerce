@@ -1,9 +1,7 @@
 package com.sdos.commerce.domain.interactors
 
 import androidx.lifecycle.LiveData
-import com.sdos.commerce.domain.SkillRepository
-import com.sdos.commerce.entities.Skill
-
+/*
 class GetListSkillInteractor(private val skillRepository: SkillRepository): () -> LiveData<List<Skill>>? {
 
 
@@ -11,3 +9,5 @@ class GetListSkillInteractor(private val skillRepository: SkillRepository): () -
         return skillRepository.getListSkill()
     }
 }
+
+ */

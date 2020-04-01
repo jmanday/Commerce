@@ -5,12 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.sdos.commerce.R
 import com.sdos.commerce.databinding.FragmentSettingBinding
-import com.sdos.commerce.entities.Fruit
 import com.sdos.commerce.ui.viewmodels.SettingsViewModel
 import kotlinx.android.synthetic.main.fragment_setting.*
 import java.io.Serializable

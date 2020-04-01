@@ -2,28 +2,31 @@ package com.sdos.commerce.ui.viewmodels
 
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
+import com.manday.coredata.entities.EmployeeEntity
+import com.manday.coredata.entities.TaskEntity
+import com.manday.coredata.entities.TypeTaskEntity
 import com.sdos.commerce.CommerceApp
-import com.sdos.commerce.domain.injector.DomainInjector
-import com.sdos.commerce.entities.Employee
-import com.sdos.commerce.entities.Task
-import com.sdos.commerce.entities.TypeTask
 import com.sdos.commerce.listeners.ViewModelListener
 import com.sdos.commerce.util.ExecutorViewModel
 
 class DetailTaskViewModel: ExecutorViewModel() {
 
     private lateinit var baseView: ViewModelListener
-    private var listEmployeesSaved = listOf<Employee>()
-    private var listTypeTask = listOf<TypeTask>()
+    private var listEmployeesSaved = listOf<EmployeeEntity>()
+    private var listTypeTask = listOf<TypeTaskEntity>()
     private val getListEmployees = MediatorLiveData<Boolean>()
-    private val typeTask = MediatorLiveData<List<TypeTask>>()
+    private val typeTask = MediatorLiveData<List<TypeTaskEntity>>()
 
+    /*
     private val getEmployeesInteractor = (CommerceApp.getInstance() as DomainInjector).provideGetEmployeesInteractor()
     private val getTypeTaskInteractor = (CommerceApp.getInstance() as DomainInjector).provideGetTypeTaskInteractor()
     private val addTaskInteractor = (CommerceApp.getInstance() as DomainInjector).provideAddTaskInteractor()
     private val updateEmployeeInteractor = (CommerceApp.getInstance() as DomainInjector).provideAddEmployeeInteractor()
 
+     */
+
     init {
+        /*
         getEmployeesInteractor.invoke()?.let {source ->
             getListEmployees.addSource(source, Observer {
                 getListEmployees.removeSource(source)
@@ -39,6 +42,7 @@ class DetailTaskViewModel: ExecutorViewModel() {
                 listTypeTask = it
             })
         }
+         */
     }
 
     fun setListener(baseView: ViewModelListener) {
@@ -53,13 +57,13 @@ class DetailTaskViewModel: ExecutorViewModel() {
 
     fun getSkillFromTask(idTypeTask: Int) = listTypeTask.get(idTypeTask).skillNeeded
 
-    fun addTask(task: Task) {
+    fun addTask(task: TaskEntity) {
         doInParallel (
             {
-                addTaskInteractor.invoke(task)
+                //addTaskInteractor.invoke(task)
             },
             {
-                updateEmployeeInteractor(listEmployeesSaved.find { it.id == task.idEmployee }!!)
+                //updateEmployeeInteractor(listEmployeesSaved.find { it.id == task.idEmployee }!!)
             },
             {
                 baseView.showMessage("La tarea ha sido añadida correctamente")
