@@ -32,18 +32,15 @@ internal class LoginDialogView: BaseLoginDialogView() {
     }
 
     private fun initializeListeners() {
-        /*
         btnDone.setOnClickListener {
-            loginDialogViewModel.loginUser(et_username.text.toString(), ed_pass.text.toString()).observe(this, Observer {
+            loginDialogViewModel.loginUser("Ruben", "1234").observe(viewLifecycleOwner, Observer {
                 if (it == null) {
                     message.visibility = VISIBLE
                 } else {
                     this.dismiss()
-                }}
+                }
             })
         }
-
-         */
     }
 
     companion object {
