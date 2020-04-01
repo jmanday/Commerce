@@ -17,11 +17,7 @@ internal class LoginDialogViewModel(var loginEmployeeInteractor: LoginEmployeeIn
     private var employeeLivedata = MutableLiveData<EmployeeEntity>()
 
     fun loginUser(param1: String, param2: String): MediatorLiveData<EmployeeEntity> {
-
-        Executors.newSingleThreadExecutor().execute {
-            login(param1, param2)
-        }
-
+        login(param1, param2)
         return employee
     }
 
