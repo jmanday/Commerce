@@ -11,8 +11,8 @@ import android.widget.EditText
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.textfield.TextInputLayout
+import com.manday.coredata.entities.EmployeeEntity
 import com.sdos.commerce.databinding.FragmentDetailEmployeeBinding
-import com.sdos.commerce.entities.Employee
 import com.sdos.commerce.ui.viewmodels.DetailEmployeeViewModel
 import com.sdos.commerce.ui.views.DateDialogView
 import com.sdos.commerce.ui.views.DateDialogView.Companion.TAG_DATE_DIALOG
@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_detail_employee.*
 class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmployeView {
 
     private lateinit var viewModel: DetailEmployeeViewModel
-    private var employee = Employee()
+    private var employee = EmployeeEntity()
     private lateinit var binding: FragmentDetailEmployeeBinding
     private lateinit var mapInputText: Map<ErrorField, TextInputLayout>
 
@@ -65,7 +65,7 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmp
     override fun retrieveArguments() {
         arguments?.let {
             it.get(ARGUMENT_EXTRA_EMPLOYEE)?.let {emp ->
-                employee = emp as Employee
+                employee = emp as EmployeeEntity
             }
         }
     }

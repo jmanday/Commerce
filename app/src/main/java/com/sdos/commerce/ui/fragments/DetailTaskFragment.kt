@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import com.manday.coredata.entities.TaskEntity
 import com.sdos.commerce.databinding.FragmentDetailTaskBinding
-import com.sdos.commerce.entities.Task
 import com.sdos.commerce.R
 import com.sdos.commerce.ui.viewmodels.DetailTaskViewModel
 import kotlinx.android.synthetic.main.fragment_detail_task.*
@@ -18,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_detail_task.*
 
 class DetailTaskFragment : BaseFragment() {
 
-    private var task = Task()
+    private var task = TaskEntity()
     private lateinit var binding: FragmentDetailTaskBinding
     private lateinit var viewModel: DetailTaskViewModel
 
@@ -39,7 +38,7 @@ class DetailTaskFragment : BaseFragment() {
     override fun retrieveArguments() {
         arguments?.let {
             it.get(ARGUMENT_EXTRA_TASK)?.let {emp ->
-                task = emp as Task
+                task = emp as TaskEntity
             }
         }
     }
