@@ -4,14 +4,14 @@ import com.manday.coredata.controllers.RoomController
 import com.manday.coredata.datasource.EmployeeDataSource
 import com.manday.loginuser.domain.LoginRepository
 import com.manday.loginuser.domain.LoginRepositoryImpl
+import com.manday.loginuser.domain.interactors.LoginEmployeeInteractor
 import com.manday.loginuser.viewmodels.LoginDialogViewModel
-import com.sdos.login.domain.LoginEmployeeInteractor
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val loginUserModule = module {
 
-    // single instance of EmployeeRepository
+    // Single instances
     single<EmployeeDataSource> {
         RoomController()
     }
@@ -19,8 +19,12 @@ val loginUserModule = module {
         LoginRepositoryImpl(get())
     }
 
-    // Simple Interactor Factory
-    factory { LoginEmployeeInteractor(get()) }
+    // Factory instances
+    factory {
+        LoginEmployeeInteractor(get())
+    }
 
-    viewModel { LoginDialogViewModel(get()) }
+    viewModel {
+        LoginDialogViewModel(get())
+    }
 }
