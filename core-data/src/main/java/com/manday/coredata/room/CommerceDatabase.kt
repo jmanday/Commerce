@@ -30,7 +30,7 @@ abstract class CommerceDatabase: RoomDatabase() {
     abstract fun fruitDao(): FruitDao
 
     companion object {
-        private const val DATABASE_NAME = "commerce_database"
+        private const val DATABASE_NAME = "commerce_database_11"
         @Volatile
         private var instance: CommerceDatabase? = null
 
