@@ -3,19 +3,19 @@ package com.sdos.commerce.data.datasource.net
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.sdos.commerce.data.datasource.FruitNetDataSource
+import com.manday.coredata.datasource.FruitNetDataSource
+import com.manday.coredata.entities.FruitEntity
 import com.sdos.commerce.data.endpoints.FruitAPI
 import com.sdos.commerce.data.models.FruitModel
 import com.sdos.commerce.data.models.toFruit
-import com.sdos.commerce.entities.Fruit
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class NetController: FruitNetDataSource {
 
-    override fun getFruits(category: String, item: String): LiveData<List<Fruit>> {
-        val data = MutableLiveData<List<Fruit>>()
+    override fun getFruits(category: String, item: String): LiveData<List<FruitEntity>> {
+        val data = MutableLiveData<List<FruitEntity>>()
         val service = RetrofitController.createRequest<FruitAPI>()
 
         val call = service.getAllFruits(hashMapOf(
