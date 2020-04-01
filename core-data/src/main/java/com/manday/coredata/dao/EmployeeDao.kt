@@ -16,19 +16,7 @@ interface EmployeeDao {
     @Query("SELECT * FROM employees ")
     fun getAllEmployees(): LiveData<List<EmployeeEntity>>
 
-    @Query("SELECT * FROM employees WHERE name = :mName AND pass = :mPass AND typeEmployee = :type")
-    fun getEmployee(mName: String, mPass: String, type: Int): LiveData<EmployeeEntity>
-/*
-    @Query("UPDATE employees SET listTask=:listNewTask WHERE id = :idEmployee")
-    fun assignTaskToEmploye(idEmployee: Int, listNewTask: List<Int>)
+    @Query("SELECT * FROM employees WHERE name = :mName AND pass = :mPass")
+    fun getEmployee(mName: String, mPass: String): EmployeeEntity
 
-
-
-    @Update
-    suspend fun updateUsers(employee: Employee)
-
-    @Delete
-    suspend fun deleteUsers(employee: Employee)
-
-     */
 }
