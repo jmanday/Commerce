@@ -2,13 +2,13 @@ package com.sdos.commerce.ui.viewholders
 
 import android.view.View
 import com.bumptech.glide.Glide
+import com.manday.coredata.entities.TaskEntity
 import com.sdos.commerce.R
-import com.sdos.commerce.entities.Task
 import kotlinx.android.synthetic.main.list_item_view.view.*
 
-class TaskViewHolder(itemView: View): BaseViewHolder<Task>(itemView) {
+class TaskViewHolder(itemView: View): BaseViewHolder<TaskEntity>(itemView) {
 
-    override fun onBind(task: Task, f: (task: Task) -> Unit) {
+    override fun onBind(task: TaskEntity, f: (task: TaskEntity) -> Unit) {
         itemView.name.text = task.name
         itemView.state.text = String.format(task.duration.toString(), " horas")
         itemView.text_type.visibility = View.VISIBLE

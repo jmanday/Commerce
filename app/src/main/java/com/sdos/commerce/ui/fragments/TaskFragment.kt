@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
+import com.manday.coredata.entities.TaskEntity
 import com.sdos.commerce.R
 import com.sdos.commerce.databinding.FragmentMainBinding
-import com.sdos.commerce.entities.Task
 import com.sdos.commerce.ui.adapters.TaskAdapter
 import com.sdos.commerce.ui.viewmodels.TaskFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -76,7 +76,7 @@ class TaskFragment : BaseFragment() {
         }
     }
 
-    private fun updateRecyclerView(taskList: List<Task>?) {
+    private fun updateRecyclerView(taskList: List<TaskEntity>?) {
         taskList?.let {
             main_recycler_view.adapter = TaskAdapter(it) {
                 onItemClicked(R.id.action_taskFragment_to_detailTaskFragment, Bundle().apply {
