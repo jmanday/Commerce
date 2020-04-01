@@ -5,7 +5,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.manday.coredata.entities.TaskEntity
 import com.sdos.commerce.CommerceApp
-import com.sdos.commerce.domain.injector.DomainInjector
 
 class TaskFragmentViewModel : ViewModel() {
 

@@ -6,7 +6,6 @@ import com.manday.coredata.entities.EmployeeEntity
 import com.manday.coredata.entities.TaskEntity
 import com.manday.coredata.entities.TypeTaskEntity
 import com.sdos.commerce.CommerceApp
-import com.sdos.commerce.domain.injector.DomainInjector
 import com.sdos.commerce.listeners.ViewModelListener
 import com.sdos.commerce.util.ExecutorViewModel
 

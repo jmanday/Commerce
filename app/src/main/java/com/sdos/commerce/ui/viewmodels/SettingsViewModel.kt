@@ -4,7 +4,6 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
 import com.manday.coredata.entities.FruitEntity
 import com.sdos.commerce.CommerceApp
-import com.sdos.commerce.domain.injector.DomainInjector
 import com.sdos.commerce.util.ExecutorViewModel
 
 class SettingsViewModel: ExecutorViewModel() {
