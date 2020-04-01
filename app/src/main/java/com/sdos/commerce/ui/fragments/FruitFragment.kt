@@ -5,14 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.manday.coredata.entities.FruitEntity
 import com.sdos.commerce.databinding.FragmentFruitBinding
-import com.sdos.commerce.entities.Fruit
 import com.sdos.commerce.ui.adapters.FruitAdapter
 import kotlinx.android.synthetic.main.fragment_fruit.*
 
 class FruitFragment : BaseFragment() {
 
-    private var list: List<Fruit>? = null
+    private var list: List<FruitEntity>? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,7 +24,7 @@ class FruitFragment : BaseFragment() {
     override fun retrieveArguments() {
         super.retrieveArguments()
         arguments?.let {
-            list = it.getSerializable(ARGUMENT_EXTRA_LIST_FRUITS) as List<Fruit>
+            list = it.getSerializable(ARGUMENT_EXTRA_LIST_FRUITS) as List<FruitEntity>
         }
     }
 
