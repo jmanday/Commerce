@@ -3,8 +3,11 @@ package com.manday.coredata.controllers
 import androidx.lifecycle.LiveData
 import com.manday.coredata.datasource.EmployeeDataSource
 import com.manday.coredata.entities.EmployeeEntity
+import com.manday.coredata.generator.Generator
 import com.sdos.commerce.dao.*
 import com.sdos.commerce.data.room.CommerceDatabase
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 
 class RoomController: EmployeeDataSource {
@@ -25,8 +28,8 @@ class RoomController: EmployeeDataSource {
         fruitDao = db?.fruitDao()
     }
 
-    override fun login(param1: String, param2: String): LiveData<EmployeeEntity>?  {
-        return employeeDao?.getEmployee(param1, param2, 0)
+    override fun login(param1: String, param2: String): EmployeeEntity?  {
+        return employeeDao?.getEmployee(param1, param2)
     }
 
     override fun getEmployees(): LiveData<List<EmployeeEntity>>? {
