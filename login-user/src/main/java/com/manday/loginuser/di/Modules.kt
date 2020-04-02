@@ -12,20 +12,12 @@ import org.koin.dsl.module
 val loginUserModuleDependencies = module {
 
     // Single instances
-    single<EmployeeDataSource> {
-        RoomController()
-    }
-    single<LoginRepository> {
-        LoginRepositoryImpl(get())
-    }
+    single<EmployeeDataSource> { RoomController() }
+    single<LoginRepository> { LoginRepositoryImpl(get()) }
 
     // Factory instances
-    factory {
-        LoginEmployeeInteractor(get())
-    }
+    factory { LoginEmployeeInteractor(get()) }
 
-    // ViewModel instance
-    viewModel {
-        LoginDialogViewModel(get())
-    }
+    // ViewModel instances
+    viewModel { LoginDialogViewModel(get()) }
 }
