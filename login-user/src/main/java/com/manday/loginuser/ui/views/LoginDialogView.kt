@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.EditText
 import androidx.lifecycle.Observer
 import com.manday.loginuser.BaseLoginDialogView
 import com.manday.loginuser.R

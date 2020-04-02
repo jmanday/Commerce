@@ -1,27 +1,30 @@
 package com.sdos.commerce.ui.viewmodels
 
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
+import com.manday.coredata.ExecutorViewModel
 import com.manday.coredata.entities.EmployeeEntity
-import com.sdos.commerce.CommerceApp
+import com.sdos.commerce.domain.interactors.GetEmployeesInteractor
 
-class EmployeeFragmentViewModel : ViewModel() {
+class EmployeeFragmentViewModel(val getEmployeesInteractor: GetEmployeesInteractor) : ExecutorViewModel() {
 
     private var employeeList = MediatorLiveData<List<EmployeeEntity>>()
-    //private val getEmployeesInteractor = (CommerceApp.getInstance() as DomainInjector).provideGetEmployeesInteractor()
+    private val liveDataEmployeeList = MutableLiveData<List<EmployeeEntity>>()
 
-    fun initialize() {
-        /*
-        getEmployeesInteractor.invoke()?.let {source ->
-            employeeList.addSource(source, Observer {
-                employeeList.removeSource(source)
-                employeeList.value = it
-            })
-        }
+    fun getEmployees(): MediatorLiveData<List<EmployeeEntity>> {
+        doFirstInBackgroundWithResult({
+            getEmployeesInteractor.invoke()
+        }, {
+            it?.let {source ->
+                liveDataEmployeeList.value = it
+                employeeList.addSource(liveDataEmployeeList, Observer {
+                    employeeList.removeSource(liveDataEmployeeList)
+                    employeeList.value = it
+                })
+            }
+        })
 
-         */
+        return employeeList
     }
-
-    fun getEmployees() = employeeList
 }

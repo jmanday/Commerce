@@ -32,7 +32,7 @@ class RoomController: EmployeeDataSource {
         return employeeDao?.getEmployee(param1, param2)
     }
 
-    override fun getEmployees(): LiveData<List<EmployeeEntity>>? {
+    override fun getEmployees(): List<EmployeeEntity>? {
         return employeeDao?.getAllEmployees()
     }
 

@@ -1,15 +1,11 @@
 package com.manday.loginuser.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import com.manday.coredata.ExecutorViewModel
 import com.manday.coredata.entities.EmployeeEntity
-import com.manday.coredata.generator.Generator
-import com.sdos.login.domain.LoginEmployeeInteractor
-import java.util.concurrent.Executors
+import com.manday.loginuser.domain.interactors.LoginEmployeeInteractor
 
 internal class LoginDialogViewModel(var loginEmployeeInteractor: LoginEmployeeInteractor): ExecutorViewModel() {
 

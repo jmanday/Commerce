@@ -1,12 +1,10 @@
 package com.sdos.commerce.domain.interactors
 
-import androidx.lifecycle.LiveData
-/*
-class GetEmployeesInteractor(private val repository: EmployeeRepository): () -> LiveData<List<Employee>>? {
+import com.manday.coredata.entities.EmployeeEntity
 
-    override fun invoke(): LiveData<List<Employee>>? {
+class GetEmployeesInteractor(private val repository: EmployeeRepository): () -> List<EmployeeEntity>? {
+
+    override fun invoke(): List<EmployeeEntity>? {
         return repository.getEmployees()
     }
 }
-
- */

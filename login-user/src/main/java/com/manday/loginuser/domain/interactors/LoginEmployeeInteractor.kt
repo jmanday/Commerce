@@ -1,4 +1,4 @@
-package com.sdos.login.domain
+package com.manday.loginuser.domain.interactors
 
 import com.manday.coredata.entities.EmployeeEntity
 import com.manday.loginuser.domain.LoginRepository

@@ -10,10 +10,11 @@ import com.sdos.commerce.databinding.FragmentMainBinding
 import com.sdos.commerce.ui.adapters.EmployeeAdapter
 import com.sdos.commerce.ui.viewmodels.EmployeeFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
+import org.koin.java.KoinJavaComponent.inject
 
 class EmployeeFragment : BaseFragment() {
 
-    private lateinit var viewModel: EmployeeFragmentViewModel
+    private val viewModel: EmployeeFragmentViewModel by inject(EmployeeFragmentViewModel::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,8 +25,7 @@ class EmployeeFragment : BaseFragment() {
     }
 
     override fun initializeViewModel() {
-        viewModel = getViewModel()
-        viewModel.initialize()
+        //viewModel.initialize()
     }
 
     override fun initialize() {

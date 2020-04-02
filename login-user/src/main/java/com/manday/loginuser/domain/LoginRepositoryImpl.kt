@@ -1,6 +1,5 @@
 package com.manday.loginuser.domain
 
-import com.manday.coredata.controllers.RoomController
 import com.manday.coredata.datasource.EmployeeDataSource
 import com.manday.coredata.entities.EmployeeEntity
 
