@@ -18,10 +18,11 @@ import com.sdos.commerce.ui.views.DateDialogView
 import com.sdos.commerce.ui.views.DateDialogView.Companion.TAG_DATE_DIALOG
 import com.sdos.commerce.util.showMessageError
 import kotlinx.android.synthetic.main.fragment_detail_employee.*
+import org.koin.java.KoinJavaComponent.inject
 
 class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmployeView {
 
-    private lateinit var viewModel: DetailEmployeeViewModel
+    private val viewModel: DetailEmployeeViewModel by inject(DetailEmployeeViewModel::class.java)
     private var employee = EmployeeEntity()
     private lateinit var binding: FragmentDetailEmployeeBinding
     private lateinit var mapInputText: Map<ErrorField, TextInputLayout>
@@ -45,11 +46,12 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmp
     }
 
     override fun initializeViewModel() {
-        viewModel = getViewModel()
-        viewModel.init(this)
+
+
     }
 
     override fun initialize() {
+        viewModel.init(this)
         prepareListeners()
         populateMap()
         viewModel.getListSkills().observe(this, Observer {
