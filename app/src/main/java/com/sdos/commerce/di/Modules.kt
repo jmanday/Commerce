@@ -22,4 +22,5 @@ val appModuleDependencies = module {
     viewModel { DetailEmployeeViewModel() }
     viewModel { DetailTaskViewModel() }
     viewModel { SettingsViewModel() }
+    viewModel { TaskFragmentViewModel() }
 }
