@@ -16,10 +16,11 @@ import com.sdos.commerce.ui.adapters.TaskAdapter
 import com.sdos.commerce.ui.viewmodels.TaskFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.text_head
+import org.koin.java.KoinJavaComponent.inject
 
 class TaskFragment : BaseFragment() {
 
-    private lateinit var viewModel: TaskFragmentViewModel
+    private val viewModel: TaskFragmentViewModel by inject(TaskFragmentViewModel::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +31,6 @@ class TaskFragment : BaseFragment() {
     }
 
     override fun initializeViewModel() {
-        viewModel = getViewModel()
         viewModel.initialize()
     }
 
