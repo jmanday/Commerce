@@ -25,9 +25,6 @@ class SettingFragment : BaseFragment() {
         return FragmentSettingBinding.inflate(inflater).root
     }
 
-    override fun initializeViewModel() {
-    }
-
     override fun initialize() {
         tv_download.setOnClickListener {
             viewModel.getFruits("Fruit", "Peaches").observe(this, Observer {

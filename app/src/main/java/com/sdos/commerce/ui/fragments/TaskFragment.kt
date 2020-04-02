@@ -30,10 +30,6 @@ class TaskFragment : BaseFragment() {
         return FragmentMainBinding.inflate(inflater).root
     }
 
-    override fun initializeViewModel() {
-        viewModel.initialize()
-    }
-
     override fun initialize() {
         configureSpinner()
         text_head.text = "Tareas"

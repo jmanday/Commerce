@@ -20,10 +20,6 @@ class SplashFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
-    override fun initializeViewModel() {
-        //viewModel = getViewModel()
-    }
-
     override fun initialize() {
         viewModel.initialize(requireContext()) {
             onDatabasePopulated()

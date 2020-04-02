@@ -24,10 +24,6 @@ class EmployeeFragment : BaseFragment() {
         return FragmentMainBinding.inflate(inflater).root
     }
 
-    override fun initializeViewModel() {
-        //viewModel.initialize()
-    }
-
     override fun initialize() {
         text_head.text = "Empleados"
         btnAdd.setOnClickListener {

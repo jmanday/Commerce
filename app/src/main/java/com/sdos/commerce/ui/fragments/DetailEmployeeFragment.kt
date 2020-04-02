@@ -45,11 +45,6 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmp
         binding.employee = employee
     }
 
-    override fun initializeViewModel() {
-
-
-    }
-
     override fun initialize() {
         viewModel.init(this)
         prepareListeners()

@@ -23,11 +23,6 @@ abstract class BaseFragment: Fragment(), ViewModelListener {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initializeViewModel()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         retrieveArguments()
@@ -56,8 +51,6 @@ abstract class BaseFragment: Fragment(), ViewModelListener {
     }
 
     open protected fun retrieveArguments() {}
-
-    open protected fun initializeViewModel() {}
 
     abstract fun initialize()
 
