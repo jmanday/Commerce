@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sdos.commerce.R
-import com.sdos.commerce.ui.viewmodels.SplashViewModel
+import com.sdos.commerce.ui.viewmodels.SplashFragmentViewModel
+import org.koin.java.KoinJavaComponent.inject
 
 class SplashFragment : BaseFragment() {
 
-    private lateinit var viewModel: SplashViewModel
+    private val viewModel: SplashFragmentViewModel by inject(SplashFragmentViewModel::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,7 +21,7 @@ class SplashFragment : BaseFragment() {
     }
 
     override fun initializeViewModel() {
-        viewModel = getViewModel()
+        //viewModel = getViewModel()
     }
 
     override fun initialize() {
