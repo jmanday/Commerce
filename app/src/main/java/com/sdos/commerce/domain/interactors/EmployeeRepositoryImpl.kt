@@ -8,4 +8,8 @@ class EmployeeRepositoryImpl(private val dataSource: EmployeeDataSource): Employ
     override fun getEmployees(): List<EmployeeEntity>? {
         return dataSource.getEmployees()
     }
+
+    override fun addEmployee(employeeEntity: EmployeeEntity) {
+        dataSource.addEmployee(employeeEntity)
+    }
 }
