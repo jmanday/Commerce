@@ -35,8 +35,9 @@ class TaskFragment : BaseFragment() {
         text_head.text = "Tareas"
         ll_filter.visibility = VISIBLE
         mainRecyclerView.showShimmer()
-        viewModel.getTasks().observe(this, Observer {
+        viewModel.getTasks()?.observe(this, Observer {
             if (it != null) {
+                viewModel.taskList = it
                 updateRecyclerView(it)
                 mainRecyclerView.hideShimmer()
             }

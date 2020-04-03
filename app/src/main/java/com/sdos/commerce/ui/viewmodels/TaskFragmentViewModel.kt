@@ -1,33 +1,21 @@
 package com.sdos.commerce.ui.viewmodels
 
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.Observer
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.manday.coredata.entities.TaskEntity
-import com.sdos.commerce.CommerceApp
+import com.sdos.commerce.domain.interactors.TaskRepository
 
-class TaskFragmentViewModel : ViewModel() {
+class TaskFragmentViewModel(private val taskRespository: TaskRepository) : ViewModel() {
 
-    private var taskList = MediatorLiveData<List<TaskEntity>>()
-    //private val getTasksInteractor = (CommerceApp.getInstance() as DomainInjector).provideGetTasksInteractor()
+    var taskList: List<TaskEntity>? = null
 
-    fun initialize() {
-        /*
-        getTasksInteractor.invoke()?.let {source ->
-            taskList.addSource(source, Observer {
-                taskList.removeSource(source)
-                taskList.value = it
-            })
-        }
+    fun getAllTasks() = taskList
 
-         */
+    fun getPendingTasks() = taskList?.filter { it.state == 0 }
+
+    fun getCompletedTasks() = taskList?.filter { it.state == 1 }
+
+    fun getTasks(): LiveData<List<TaskEntity>>? {
+        return taskRespository.getAllTasks()
     }
-
-    fun getAllTasks() = taskList.value
-
-    fun getPendingTasks() = taskList.value?.filter { it.state == 0 }
-
-    fun getCompletedTasks() = taskList.value?.filter { it.state == 1 }
-
-    fun getTasks() = taskList
 }

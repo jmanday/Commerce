@@ -3,13 +3,16 @@ package com.manday.coredata.controllers
 import androidx.lifecycle.LiveData
 import com.manday.coredata.datasource.EmployeeDataSource
 import com.manday.coredata.datasource.SkillDataSource
+import com.manday.coredata.datasource.TaskDatabaseDataSource
 import com.manday.coredata.entities.EmployeeEntity
 import com.manday.coredata.entities.SkillEntity
+import com.manday.coredata.entities.TaskEntity
+import com.manday.coredata.entities.TypeTaskEntity
 import com.sdos.commerce.dao.*
 import com.sdos.commerce.data.room.CommerceDatabase
 
 
-class RoomController: EmployeeDataSource, SkillDataSource {
+class RoomController: EmployeeDataSource, SkillDataSource, TaskDatabaseDataSource {
 
     private var db: CommerceDatabase? = null
     private var employeeDao: EmployeeDao? = null
@@ -42,21 +45,19 @@ class RoomController: EmployeeDataSource, SkillDataSource {
     override fun getListSkill(): LiveData<List<SkillEntity>>? {
         return skillDao?.getAllSkills()
     }
-    /*
-    override fun getTasks(): LiveData<List<Task>>? {
+
+    override fun getTasks(): LiveData<List<TaskEntity>>? {
         return taskDao?.getAllTasks()
     }
 
-
-
-    override fun getTypeTasks(): LiveData<List<TypeTask>>? {
+    override fun getTypeTasks(): LiveData<List<TypeTaskEntity>>? {
         return typeTaskDao?.getAllTypeTasks()
     }
 
-    override fun addTask(task: Task) {
+    override fun addTask(task: TaskEntity) {
         taskDao?.addTask(task)
     }
-
+    /*
     override fun addFruits(list: List<Fruit>) {
         fruitDao?.insert(list)
     }
