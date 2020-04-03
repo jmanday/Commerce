@@ -1,21 +1,13 @@
 package com.sdos.commerce.ui.viewmodels
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import com.manday.coredata.ExecutorViewModel
 import com.manday.coredata.entities.EmployeeEntity
-import com.sdos.commerce.domain.interactors.GetEmployeesInteractor
+import com.sdos.commerce.domain.interactors.EmployeeRepository
 
-class EmployeeFragmentViewModel(val getEmployeesInteractor: GetEmployeesInteractor) : ExecutorViewModel() {
+class EmployeeFragmentViewModel(val employeeRepository: EmployeeRepository) : ExecutorViewModel() {
 
-    private var employeeList = MutableLiveData<List<EmployeeEntity>>()
-
-    fun getEmployees(): MutableLiveData<List<EmployeeEntity>> {
-        doFirstInBackgroundWithResult({
-            getEmployeesInteractor.invoke()
-        }, {
-            employeeList.value = it
-        })
-
-        return employeeList
+    fun getEmployees(): LiveData<List<EmployeeEntity>>? {
+        return employeeRepository.getEmployees()
     }
 }
