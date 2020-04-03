@@ -22,7 +22,6 @@ import org.koin.java.KoinJavaComponent.inject
 class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmployeView {
 
     private val viewModel: DetailEmployeeViewModel by inject(DetailEmployeeViewModel::class.java)
-    private var employee = EmployeeEntity()
     private lateinit var binding: FragmentDetailEmployeeBinding
     private lateinit var mapInputText: Map<DetailEmployeeViewModel.ErrorField, TextInputLayout>
 
@@ -39,11 +38,6 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmp
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.employee = employee
-    }
-
     override fun initialize() {
         viewModel.init(this)
         prepareListeners()
@@ -53,16 +47,16 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmp
                 val adapter = ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, it.map { it.name })
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 spn_rol.adapter = adapter
-                spn_rol.setSelection(employee.skill)
+                spn_rol.setSelection(binding.employee?.skill ?: 0)
             }
         })
     }
 
     override fun retrieveArguments() {
         arguments?.let {
-            it.get(ARGUMENT_EXTRA_EMPLOYEE)?.let {emp ->
-                employee = emp as EmployeeEntity
-            }
+            binding.employee = it.get(ARGUMENT_EXTRA_EMPLOYEE)?.let {emp ->
+                 emp as EmployeeEntity
+            } ?: EmployeeEntity()
         }
     }
 
@@ -85,7 +79,7 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmp
                 position: Int,
                 id: Long
             ) {
-                employee.skill = position
+                binding.employee?.skill = position
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -104,7 +98,9 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmp
         }
 
         btnDone.setOnClickListener {
-            viewModel.onButtonAddClicked(employee)
+            binding.employee?.let {
+                viewModel.onButtonAddClicked(it)
+            }
         }
     }
 
