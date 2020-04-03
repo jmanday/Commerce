@@ -31,7 +31,7 @@ class EmployeeFragment : BaseFragment() {
         }
         mainRecyclerView.showShimmer()
 
-        viewModel.getEmployees().observe(this, Observer {
+        viewModel.getEmployees()?.observe(this, Observer {
             it?.let {
                 mainRecyclerView.adapter = EmployeeAdapter(it) {
                     onItemClicked(R.id.action_mainFragment_to_detailEmployeeFragment, Bundle().apply {
