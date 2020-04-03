@@ -1,16 +1,14 @@
 package com.manday.coredata.controllers
 
-import androidx.lifecycle.LiveData
 import com.manday.coredata.datasource.EmployeeDataSource
+import com.manday.coredata.datasource.SkillDataSource
 import com.manday.coredata.entities.EmployeeEntity
-import com.manday.coredata.generator.Generator
+import com.manday.coredata.entities.SkillEntity
 import com.sdos.commerce.dao.*
 import com.sdos.commerce.data.room.CommerceDatabase
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 
-class RoomController: EmployeeDataSource {
+class RoomController: EmployeeDataSource, SkillDataSource {
 
     private var db: CommerceDatabase? = null
     private var employeeDao: EmployeeDao? = null
@@ -40,14 +38,15 @@ class RoomController: EmployeeDataSource {
         employeeDao?.addEmployee(employee)
     }
 
+    override fun getListSkill(): List<SkillEntity>? {
+        return skillDao?.getAllSkills()
+    }
     /*
     override fun getTasks(): LiveData<List<Task>>? {
         return taskDao?.getAllTasks()
     }
 
-    override fun getSkillList(): LiveData<List<Skill>>? {
-        return skillDao?.getAllSkills()
-    }
+
 
     override fun getTypeTasks(): LiveData<List<TypeTask>>? {
         return typeTaskDao?.getAllTypeTasks()
