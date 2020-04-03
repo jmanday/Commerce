@@ -1,34 +1,46 @@
 package com.sdos.commerce.ui.viewmodels
 
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import com.manday.coredata.ExecutorViewModel
 import com.manday.coredata.entities.EmployeeEntity
 import com.manday.coredata.entities.SkillEntity
-import com.sdos.commerce.CommerceApp
+import com.sdos.commerce.domain.interactors.AddEmployeeInteractor
+import com.sdos.commerce.domain.interactors.GetListSkillInteractor
 import com.sdos.commerce.listeners.ViewModelListener
 import com.sdos.commerce.ui.fragments.DetailEmployeeFragment
-import com.sdos.commerce.util.ExecutorViewModel
 import com.sdos.commerce.util.isDateValidate
 
-class DetailEmployeeViewModel: ExecutorViewModel() {
+class DetailEmployeeViewModel(
+    private val getListSkillInteractor: GetListSkillInteractor,
+    private val addEmployeeInteractor: AddEmployeeInteractor
+): ExecutorViewModel() {
 
     private lateinit var view: DetailEmployeView
     private lateinit var baseView: ViewModelListener
     private val skills = MediatorLiveData<List<SkillEntity>>()
+    private val skillsLiveData = MutableLiveData<List<SkillEntity>>()
     private val employees = MediatorLiveData<List<EmployeeEntity>>()
+
+    init {
+
+    }
 
     fun init(view: DetailEmployeView) {
         this.view = view
         this.baseView = view as ViewModelListener
-        /*
-        getListSkillInteractor.invoke()?.let {source ->
-            skills.addSource(source, Observer{
-                skills.removeSource(source)
-                skills.value = it
-            })
-        }
-
-         */
+        doFirstInBackgroundWithResult({
+            getListSkillInteractor.invoke()
+        }, {
+            it?.let {source ->
+                skillsLiveData.value = source
+                skills.addSource(skillsLiveData, Observer{
+                    skills.removeSource(skillsLiveData)
+                    skills.value = it
+                })
+            }
+        })
     }
 
     fun onButtonAddClicked(employee: EmployeeEntity) {
@@ -46,7 +58,7 @@ class DetailEmployeeViewModel: ExecutorViewModel() {
 
         if (errorFieldList.isEmpty()) {
             doFirstInBackground({
-                //addEmployeeInteractor.invoke(employee)
+                addEmployeeInteractor.invoke(employee)
             }, {
                 baseView.showMessage("Empleado añadido correctamente")
             })
