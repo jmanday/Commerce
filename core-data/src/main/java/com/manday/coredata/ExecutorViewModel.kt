@@ -11,6 +11,14 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
 
+    protected fun<Result> doInBackground(background: suspend () -> Result) {
+        launch(coroutineContext) {
+            withContext(Dispatchers.IO) {
+                background.invoke()
+            }
+        }
+    }
+
     protected fun doFirstInBackground(background: suspend () -> Unit, foreground: suspend () -> Unit) {
         launch(coroutineContext) {
             withContext(Dispatchers.IO) {
