@@ -14,6 +14,7 @@ class DetailEmployeeViewModel(
 
     private lateinit var view: DetailEmployeView
     private lateinit var baseView: ViewModelListener
+    private val errorFieldList = mutableListOf<ErrorField>()
 
     fun init(view: DetailEmployeView) {
         this.view = view
@@ -21,8 +22,6 @@ class DetailEmployeeViewModel(
     }
 
     fun onButtonAddClicked(employee: EmployeeEntity) {
-        val errorFieldList = mutableListOf<ErrorField>()
-
         employee.let {
             if (it.name.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_NAME)
             if (it.surname.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_SURNAME)
@@ -37,7 +36,7 @@ class DetailEmployeeViewModel(
             doFirstInBackground({
                 employeeRepository.addEmployee(employee)
             }, {
-                view.showError(emptyList(), "Empleado añadido correctamente")
+                view.showError(errorFieldList, "Empleado añadido correctamente")
             })
         }
         else
