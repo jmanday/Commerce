@@ -1,11 +1,11 @@
 package com.sdos.commerce.domain.interactors
 
-/*
-class AddEmployeeInteractor(private val repository: EmployeeRepository): (Employee) -> Unit {
+import com.manday.coredata.entities.EmployeeEntity
 
-    override fun invoke(employee: EmployeeE) {
+
+class AddEmployeeInteractor(private val repository: EmployeeRepository): (EmployeeEntity) -> Unit {
+
+    override fun invoke(employee: EmployeeEntity) {
         repository.addEmployee(employee)
     }
 }
-
- */
