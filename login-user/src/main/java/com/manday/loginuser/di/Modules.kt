@@ -13,6 +13,7 @@ val loginUserModuleDependencies = module {
 
     // Single instances
     single<EmployeeDataSource> { RoomController() }
+
     single<LoginRepository> { LoginRepositoryImpl(get()) }
 
     // Factory instances
