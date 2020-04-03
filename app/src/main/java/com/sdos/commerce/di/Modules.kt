@@ -17,7 +17,6 @@ val appModuleDependencies = module {
     single<EmployeeRepository> { EmployeeRepositoryImpl(get()) }
 
     // Factory instances
-    factory { GetEmployeesInteractor(get()) }
     factory { GetListSkillInteractor(get()) }
     factory { AddEmployeeInteractor(get()) }
 
