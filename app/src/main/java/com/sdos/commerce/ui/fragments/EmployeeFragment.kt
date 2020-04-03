@@ -29,16 +29,16 @@ class EmployeeFragment : BaseFragment() {
         btnAdd.setOnClickListener {
             onButtonAddClicked(R.id.action_mainFragment_to_detailEmployeeFragment)
         }
-        main_recycler_view.showShimmer()
+        mainRecyclerView.showShimmer()
 
         viewModel.getEmployees().observe(this, Observer {
-            if (it != null) {
-                main_recycler_view.adapter = EmployeeAdapter(it) {
+            it?.let {
+                mainRecyclerView.adapter = EmployeeAdapter(it) {
                     onItemClicked(R.id.action_mainFragment_to_detailEmployeeFragment, Bundle().apply {
                         putSerializable(ARGUMENT_EXTRA_EMPLOYEE, it)
                     })
                 }
-                main_recycler_view.hideShimmer()
+                mainRecyclerView.hideShimmer()
             }
         })
     }
