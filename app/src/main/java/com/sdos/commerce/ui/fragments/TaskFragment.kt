@@ -34,11 +34,11 @@ class TaskFragment : BaseFragment() {
         configureSpinner()
         text_head.text = "Tareas"
         ll_filter.visibility = VISIBLE
-        main_recycler_view.showShimmer()
+        mainRecyclerView.showShimmer()
         viewModel.getTasks().observe(this, Observer {
             if (it != null) {
                 updateRecyclerView(it)
-                main_recycler_view.hideShimmer()
+                mainRecyclerView.hideShimmer()
             }
         })
         btnAdd.setOnClickListener {
@@ -74,7 +74,7 @@ class TaskFragment : BaseFragment() {
 
     private fun updateRecyclerView(taskList: List<TaskEntity>?) {
         taskList?.let {
-            main_recycler_view.adapter = TaskAdapter(it) {
+            mainRecyclerView.adapter = TaskAdapter(it) {
                 onItemClicked(R.id.action_taskFragment_to_detailTaskFragment, Bundle().apply {
                     putSerializable(ARGUMENT_EXTRA_TASK, it)
                 })
