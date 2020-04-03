@@ -24,7 +24,7 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmp
     private val viewModel: DetailEmployeeViewModel by inject(DetailEmployeeViewModel::class.java)
     private var employee = EmployeeEntity()
     private lateinit var binding: FragmentDetailEmployeeBinding
-    private lateinit var mapInputText: Map<ErrorField, TextInputLayout>
+    private lateinit var mapInputText: Map<DetailEmployeeViewModel.ErrorField, TextInputLayout>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,7 +48,7 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmp
         viewModel.init(this)
         prepareListeners()
         populateMap()
-        viewModel.getListSkills().observe(this, Observer {
+        viewModel.getListSkills()?.observe(this, Observer {
             context?.let {context ->
                 val adapter = ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, it.map { it.name })
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -68,12 +68,12 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmp
 
     private fun populateMap() {
         mapInputText = mapOf(
-            ErrorField.ERROR_FIELD_NAME to input_name,
-            ErrorField.ERROR_FIELD_SURNAME to input_surname,
-            ErrorField.ERROR_FIELD_EMAIL to input_email,
-            ErrorField.ERROR_FIELD_PHONE to input_phone,
-            ErrorField.ERROR_FIELD_DATE to input_date,
-            ErrorField.ERROR_FIELD_PASS to input_pass
+            DetailEmployeeViewModel.ErrorField.ERROR_FIELD_NAME to input_name,
+            DetailEmployeeViewModel.ErrorField.ERROR_FIELD_SURNAME to input_surname,
+            DetailEmployeeViewModel.ErrorField.ERROR_FIELD_EMAIL to input_email,
+            DetailEmployeeViewModel.ErrorField.ERROR_FIELD_PHONE to input_phone,
+            DetailEmployeeViewModel.ErrorField.ERROR_FIELD_DATE to input_date,
+            DetailEmployeeViewModel.ErrorField.ERROR_FIELD_PASS to input_pass
         )
     }
 
@@ -108,13 +108,14 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmp
         }
     }
 
-    override fun showError(errorFieldList: List<ErrorField>) {
-        errorFieldList.forEach {
-            mapInputText[it]?.showMessageError("Campo incorrecto")
+    override fun showError(errorFieldList: List<DetailEmployeeViewModel.ErrorField>, msg: String) {
+        if (errorFieldList.isNotEmpty()) {
+            errorFieldList.forEach {
+                mapInputText[it]?.showMessageError(msg)
+            }
         }
-    }
-
-    enum class ErrorField {
-        ERROR_FIELD_NAME, ERROR_FIELD_SURNAME, ERROR_FIELD_EMAIL, ERROR_FIELD_PHONE, ERROR_FIELD_DATE, ERROR_FIELD_PASS
+        else {
+            showMessage(msg)
+        }
     }
 }
