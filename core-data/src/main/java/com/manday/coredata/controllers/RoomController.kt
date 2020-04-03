@@ -1,5 +1,6 @@
 package com.manday.coredata.controllers
 
+import androidx.lifecycle.LiveData
 import com.manday.coredata.datasource.EmployeeDataSource
 import com.manday.coredata.datasource.SkillDataSource
 import com.manday.coredata.entities.EmployeeEntity
@@ -30,7 +31,7 @@ class RoomController: EmployeeDataSource, SkillDataSource {
         return employeeDao?.getEmployee(param1, param2)
     }
 
-    override fun getEmployees(): List<EmployeeEntity>? {
+    override fun getEmployees(): LiveData<List<EmployeeEntity>>? {
         return employeeDao?.getAllEmployees()
     }
 
