@@ -9,7 +9,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.textfield.TextInputLayout
 import com.manday.coredata.entities.EmployeeEntity
 import com.sdos.commerce.databinding.FragmentDetailEmployeeBinding
