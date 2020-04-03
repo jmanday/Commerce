@@ -14,5 +14,5 @@ interface SkillDao {
     fun insert(skills: List<SkillEntity>)
 
     @Query("SELECT * FROM skills")
-    fun getAllSkills(): LiveData<List<SkillEntity>>
+    fun getAllSkills(): List<SkillEntity>
 }
