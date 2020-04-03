@@ -16,9 +16,6 @@ val appModuleDependencies = module {
     single<SkillRepository> { SkillRepositoryImpl(get()) }
     single<EmployeeRepository> { EmployeeRepositoryImpl(get()) }
 
-    // Factory instances
-    factory { GetListSkillInteractor(get()) }
-    factory { AddEmployeeInteractor(get()) }
 
     // ViewModel instances
     viewModel { SplashFragmentViewModel() }
