@@ -1,8 +1,8 @@
 package com.manday.coredata.controllers
 
 import androidx.lifecycle.LiveData
-import com.manday.coredata.datasource.EmployeeDataSource
-import com.manday.coredata.datasource.SkillDataSource
+import com.manday.coredata.datasource.EmployeeDatabaseDataSource
+import com.manday.coredata.datasource.SkillDatabaseDataSource
 import com.manday.coredata.datasource.TaskDatabaseDataSource
 import com.manday.coredata.entities.EmployeeEntity
 import com.manday.coredata.entities.SkillEntity
@@ -12,7 +12,7 @@ import com.sdos.commerce.dao.*
 import com.sdos.commerce.data.room.CommerceDatabase
 
 
-class RoomController: EmployeeDataSource, SkillDataSource, TaskDatabaseDataSource {
+class RoomController: EmployeeDatabaseDataSource, SkillDatabaseDataSource, TaskDatabaseDataSource {
 
     private var db: CommerceDatabase? = null
     private var employeeDao: EmployeeDao? = null

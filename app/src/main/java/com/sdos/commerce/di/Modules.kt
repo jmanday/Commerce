@@ -3,7 +3,7 @@ package com.sdos.commerce.di
 
 import com.manday.coredata.controllers.RoomController
 import com.manday.coredata.datasource.FruitNetDataSource
-import com.manday.coredata.datasource.SkillDataSource
+import com.manday.coredata.datasource.SkillDatabaseDataSource
 import com.manday.coredata.datasource.TaskDatabaseDataSource
 import com.sdos.commerce.data.datasource.net.NetController
 import com.sdos.commerce.domain.*
@@ -14,7 +14,7 @@ import org.koin.dsl.module
 val appModuleDependencies = module {
 
     // Single instances
-    single<SkillDataSource> { RoomController() }
+    single<SkillDatabaseDataSource> { RoomController() }
     single<TaskDatabaseDataSource> { RoomController() }
     single<FruitNetDataSource> { NetController() }
 
