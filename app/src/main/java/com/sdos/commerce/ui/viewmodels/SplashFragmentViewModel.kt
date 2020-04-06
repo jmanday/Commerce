@@ -5,7 +5,7 @@ import android.content.Context
 import com.sdos.commerce.data.room.CommerceDatabase
 import com.sdos.commerce.util.ExecutorViewModel
 
-class SplashViewModel: ExecutorViewModel() {
+class SplashFragmentViewModel: ExecutorViewModel() {
 
     fun initialize(context: Context, dbInitialized: () -> Unit) {
         if (CommerceDatabase.getInstance() == null) {
@@ -23,5 +23,4 @@ class SplashViewModel: ExecutorViewModel() {
             }
         }
     }
-
 }

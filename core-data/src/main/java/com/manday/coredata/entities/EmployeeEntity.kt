@@ -21,7 +21,7 @@ data class EmployeeEntity(
     var email: String = String(),
 
     @ColumnInfo(name = "typeEmployee")
-    var typeEmployee: Int = 0,
+    var typeEmployee: Int = 1,
 
     @ColumnInfo(name = "phone")
     var phone: String = String(),

@@ -1,16 +1,18 @@
 package com.manday.coredata.controllers
 
 import androidx.lifecycle.LiveData
-import com.manday.coredata.datasource.EmployeeDataSource
+import com.manday.coredata.datasource.EmployeeDatabaseDataSource
+import com.manday.coredata.datasource.SkillDatabaseDataSource
+import com.manday.coredata.datasource.TaskDatabaseDataSource
 import com.manday.coredata.entities.EmployeeEntity
-import com.manday.coredata.generator.Generator
+import com.manday.coredata.entities.SkillEntity
+import com.manday.coredata.entities.TaskEntity
+import com.manday.coredata.entities.TypeTaskEntity
 import com.sdos.commerce.dao.*
 import com.sdos.commerce.data.room.CommerceDatabase
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 
-class RoomController: EmployeeDataSource {
+class RoomController: EmployeeDatabaseDataSource, SkillDatabaseDataSource, TaskDatabaseDataSource {
 
     private var db: CommerceDatabase? = null
     private var employeeDao: EmployeeDao? = null
@@ -32,7 +34,7 @@ class RoomController: EmployeeDataSource {
         return employeeDao?.getEmployee(param1, param2)
     }
 
-    override fun getEmployees(): List<EmployeeEntity>? {
+    override fun getEmployees(): LiveData<List<EmployeeEntity>>? {
         return employeeDao?.getAllEmployees()
     }
 
@@ -40,23 +42,28 @@ class RoomController: EmployeeDataSource {
         employeeDao?.addEmployee(employee)
     }
 
-    /*
-    override fun getTasks(): LiveData<List<Task>>? {
-        return taskDao?.getAllTasks()
+    override fun updateEmployee(employee: EmployeeEntity?) {
+        employee?.let {
+            employeeDao?.addEmployee(it)
+        }
     }
 
-    override fun getSkillList(): LiveData<List<Skill>>? {
+    override fun getListSkill(): LiveData<List<SkillEntity>>? {
         return skillDao?.getAllSkills()
     }
 
-    override fun getTypeTasks(): LiveData<List<TypeTask>>? {
+    override fun getTasks(): LiveData<List<TaskEntity>>? {
+        return taskDao?.getAllTasks()
+    }
+
+    override fun getTypeTasks(): LiveData<List<TypeTaskEntity>>? {
         return typeTaskDao?.getAllTypeTasks()
     }
 
-    override fun addTask(task: Task) {
+    override fun addTask(task: TaskEntity) {
         taskDao?.addTask(task)
     }
-
+    /*
     override fun addFruits(list: List<Fruit>) {
         fruitDao?.insert(list)
     }

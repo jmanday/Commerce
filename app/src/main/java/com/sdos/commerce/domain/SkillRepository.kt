@@ -1,9 +1,9 @@
-package com.manday.coredata.datasource
+package com.sdos.commerce.domain
 
 import androidx.lifecycle.LiveData
 import com.manday.coredata.entities.SkillEntity
 
-interface SkillDatabaseDataSource {
+interface SkillRepository {
 
     fun getListSkill(): LiveData<List<SkillEntity>>?
 }

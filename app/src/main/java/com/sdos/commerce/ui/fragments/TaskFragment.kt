@@ -16,10 +16,11 @@ import com.sdos.commerce.ui.adapters.TaskAdapter
 import com.sdos.commerce.ui.viewmodels.TaskFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.text_head
+import org.koin.java.KoinJavaComponent.inject
 
 class TaskFragment : BaseFragment() {
 
-    private lateinit var viewModel: TaskFragmentViewModel
+    private val viewModel: TaskFragmentViewModel by inject(TaskFragmentViewModel::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,20 +30,16 @@ class TaskFragment : BaseFragment() {
         return FragmentMainBinding.inflate(inflater).root
     }
 
-    override fun initializeViewModel() {
-        viewModel = getViewModel()
-        viewModel.initialize()
-    }
-
     override fun initialize() {
         configureSpinner()
         text_head.text = "Tareas"
         ll_filter.visibility = VISIBLE
-        main_recycler_view.showShimmer()
-        viewModel.getTasks().observe(this, Observer {
+        mainRecyclerView.showShimmer()
+        viewModel.getTasks()?.observe(this, Observer {
             if (it != null) {
+                viewModel.taskList = it
                 updateRecyclerView(it)
-                main_recycler_view.hideShimmer()
+                mainRecyclerView.hideShimmer()
             }
         })
         btnAdd.setOnClickListener {
@@ -78,7 +75,7 @@ class TaskFragment : BaseFragment() {
 
     private fun updateRecyclerView(taskList: List<TaskEntity>?) {
         taskList?.let {
-            main_recycler_view.adapter = TaskAdapter(it) {
+            mainRecyclerView.adapter = TaskAdapter(it) {
                 onItemClicked(R.id.action_taskFragment_to_detailTaskFragment, Bundle().apply {
                     putSerializable(ARGUMENT_EXTRA_TASK, it)
                 })

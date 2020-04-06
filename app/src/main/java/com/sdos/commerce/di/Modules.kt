@@ -1,24 +1,33 @@
 package com.sdos.commerce.di
 
 
-import com.sdos.commerce.domain.interactors.EmployeeRepository
-import com.sdos.commerce.domain.interactors.EmployeeRepositoryImpl
-import com.sdos.commerce.domain.interactors.GetEmployeesInteractor
-import com.sdos.commerce.ui.viewmodels.EmployeeFragmentViewModel
+import com.manday.coredata.controllers.RoomController
+import com.manday.coredata.datasource.FruitNetDataSource
+import com.manday.coredata.datasource.SkillDatabaseDataSource
+import com.manday.coredata.datasource.TaskDatabaseDataSource
+import com.sdos.commerce.data.datasource.net.NetController
+import com.sdos.commerce.domain.*
+import com.sdos.commerce.ui.viewmodels.*
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModuleDependencies = module {
 
-    single<EmployeeRepository> {
-        EmployeeRepositoryImpl(get())
-    }
+    // Single instances
+    single<SkillDatabaseDataSource> { RoomController() }
+    single<TaskDatabaseDataSource> { RoomController() }
+    single<FruitNetDataSource> { NetController() }
 
-    factory {
-        GetEmployeesInteractor(get())
-    }
+    single<SkillRepository> { SkillRepositoryImpl(get()) }
+    single<EmployeeRepository> { EmployeeRepositoryImpl(get()) }
+    single<TaskRepository> { TaskRepositoryImpl(get()) }
+    single<FruitRepository> { FruitRepositoryImpl(get()) }
 
-    viewModel {
-        EmployeeFragmentViewModel(get())
-    }
+    // ViewModel instances
+    viewModel { SplashFragmentViewModel() }
+    viewModel { EmployeeFragmentViewModel(get()) }
+    viewModel { DetailEmployeeViewModel(get(), get()) }
+    viewModel { DetailTaskViewModel(get(), get()) }
+    viewModel { SettingsViewModel(get()) }
+    viewModel { TaskFragmentViewModel(get()) }
 }

@@ -19,8 +19,8 @@ class CommerceApp: Application(), ModuleInjector {
             androidLogger()
             androidContext(this@CommerceApp)
             modules(
-                loginUserModuleDependencies,
-                appModuleDependencies
+                appModuleDependencies,
+                loginUserModuleDependencies
             )
         }
     }

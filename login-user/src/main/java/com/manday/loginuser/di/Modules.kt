@@ -1,7 +1,7 @@
 package com.manday.loginuser.di
 
 import com.manday.coredata.controllers.RoomController
-import com.manday.coredata.datasource.EmployeeDataSource
+import com.manday.coredata.datasource.EmployeeDatabaseDataSource
 import com.manday.loginuser.domain.LoginRepository
 import com.manday.loginuser.domain.LoginRepositoryImpl
 import com.manday.loginuser.domain.interactors.LoginEmployeeInteractor
@@ -12,20 +12,13 @@ import org.koin.dsl.module
 val loginUserModuleDependencies = module {
 
     // Single instances
-    single<EmployeeDataSource> {
-        RoomController()
-    }
-    single<LoginRepository> {
-        LoginRepositoryImpl(get())
-    }
+    single<EmployeeDatabaseDataSource> { RoomController() }
+
+    single<LoginRepository> { LoginRepositoryImpl(get()) }
 
     // Factory instances
-    factory {
-        LoginEmployeeInteractor(get())
-    }
+    factory { LoginEmployeeInteractor(get()) }
 
-    // ViewModel instance
-    viewModel {
-        LoginDialogViewModel(get())
-    }
+    // ViewModel instances
+    viewModel { LoginDialogViewModel(get()) }
 }

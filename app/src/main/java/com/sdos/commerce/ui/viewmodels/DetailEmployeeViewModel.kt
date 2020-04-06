@@ -1,67 +1,56 @@
 package com.sdos.commerce.ui.viewmodels
 
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.Observer
+import com.manday.coredata.ExecutorViewModel
 import com.manday.coredata.entities.EmployeeEntity
-import com.manday.coredata.entities.SkillEntity
-import com.sdos.commerce.CommerceApp
+import com.sdos.commerce.domain.EmployeeRepository
+import com.sdos.commerce.domain.SkillRepository
 import com.sdos.commerce.listeners.ViewModelListener
-import com.sdos.commerce.ui.fragments.DetailEmployeeFragment
-import com.sdos.commerce.util.ExecutorViewModel
 import com.sdos.commerce.util.isDateValidate
 
-class DetailEmployeeViewModel: ExecutorViewModel() {
+class DetailEmployeeViewModel(
+    private val employeeRepository: EmployeeRepository,
+    private val skillRepository: SkillRepository
+): ExecutorViewModel() {
 
     private lateinit var view: DetailEmployeView
     private lateinit var baseView: ViewModelListener
-    private val skills = MediatorLiveData<List<SkillEntity>>()
-    private val employees = MediatorLiveData<List<EmployeeEntity>>()
+    private val errorFieldList = mutableListOf<ErrorField>()
 
     fun init(view: DetailEmployeView) {
         this.view = view
         this.baseView = view as ViewModelListener
-        /*
-        getListSkillInteractor.invoke()?.let {source ->
-            skills.addSource(source, Observer{
-                skills.removeSource(source)
-                skills.value = it
-            })
-        }
-
-         */
     }
 
     fun onButtonAddClicked(employee: EmployeeEntity) {
-        val errorFieldList = mutableListOf<DetailEmployeeFragment.ErrorField>()
-
         employee.let {
-            if (it.name.isEmpty()) errorFieldList.add(DetailEmployeeFragment.ErrorField.ERROR_FIELD_NAME)
-            if (it.surname.isEmpty()) errorFieldList.add(DetailEmployeeFragment.ErrorField.ERROR_FIELD_SURNAME)
-            if (it.email.isEmpty()) errorFieldList.add(DetailEmployeeFragment.ErrorField.ERROR_FIELD_EMAIL)
-            if (it.phone.isEmpty()) errorFieldList.add(DetailEmployeeFragment.ErrorField.ERROR_FIELD_PHONE)
-            if (it.pass.isEmpty()) errorFieldList.add(DetailEmployeeFragment.ErrorField.ERROR_FIELD_PASS)
+            if (it.name.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_NAME)
+            if (it.surname.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_SURNAME)
+            if (it.email.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_EMAIL)
+            if (it.phone.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_PHONE)
+            if (it.pass.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_PASS)
             if (it.birthdate.isDateValidate() || it.birthdate.isEmpty()) errorFieldList.add(
-                DetailEmployeeFragment.ErrorField.ERROR_FIELD_DATE)
+                ErrorField.ERROR_FIELD_DATE)
         }
 
         if (errorFieldList.isEmpty()) {
             doFirstInBackground({
-                //addEmployeeInteractor.invoke(employee)
+                employeeRepository.addEmployee(employee)
             }, {
-                baseView.showMessage("Empleado añadido correctamente")
+                view.showError(errorFieldList, "Empleado añadido correctamente")
             })
         }
         else
-            view.showError(errorFieldList)
+            view.showError(errorFieldList, "Campo incorrecto")
     }
 
-    fun getListSkills() = skills
+    fun getListSkills() = skillRepository.getListSkill()
 
-    fun getEmployees() = employees
-
+    enum class ErrorField {
+        ERROR_FIELD_NAME, ERROR_FIELD_SURNAME, ERROR_FIELD_EMAIL, ERROR_FIELD_PHONE, ERROR_FIELD_DATE, ERROR_FIELD_PASS
+    }
 
     interface DetailEmployeView {
-        fun showError(errorFieldList: List<DetailEmployeeFragment.ErrorField>)
+        fun showError(errorFieldList: List<ErrorField>, msg: String)
     }
 }
 

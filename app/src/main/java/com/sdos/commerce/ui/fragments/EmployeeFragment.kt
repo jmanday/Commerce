@@ -24,25 +24,21 @@ class EmployeeFragment : BaseFragment() {
         return FragmentMainBinding.inflate(inflater).root
     }
 
-    override fun initializeViewModel() {
-        //viewModel.initialize()
-    }
-
     override fun initialize() {
         text_head.text = "Empleados"
         btnAdd.setOnClickListener {
             onButtonAddClicked(R.id.action_mainFragment_to_detailEmployeeFragment)
         }
-        main_recycler_view.showShimmer()
+        mainRecyclerView.showShimmer()
 
-        viewModel.getEmployees().observe(this, Observer {
-            if (it != null) {
-                main_recycler_view.adapter = EmployeeAdapter(it) {
+        viewModel.getEmployees()?.observe(this, Observer {
+            it?.let {
+                mainRecyclerView.adapter = EmployeeAdapter(it) {
                     onItemClicked(R.id.action_mainFragment_to_detailEmployeeFragment, Bundle().apply {
                         putSerializable(ARGUMENT_EXTRA_EMPLOYEE, it)
                     })
                 }
-                main_recycler_view.hideShimmer()
+                mainRecyclerView.hideShimmer()
             }
         })
     }

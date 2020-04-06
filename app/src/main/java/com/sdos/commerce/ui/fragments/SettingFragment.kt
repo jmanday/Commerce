@@ -10,11 +10,12 @@ import com.sdos.commerce.R
 import com.sdos.commerce.databinding.FragmentSettingBinding
 import com.sdos.commerce.ui.viewmodels.SettingsViewModel
 import kotlinx.android.synthetic.main.fragment_setting.*
+import org.koin.java.KoinJavaComponent.inject
 import java.io.Serializable
 
 class SettingFragment : BaseFragment() {
 
-    private lateinit var viewModel: SettingsViewModel
+    private val viewModel: SettingsViewModel by inject(SettingsViewModel::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,10 +23,6 @@ class SettingFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         return FragmentSettingBinding.inflate(inflater).root
-    }
-
-    override fun initializeViewModel() {
-        viewModel = getViewModel()
     }
 
     override fun initialize() {
