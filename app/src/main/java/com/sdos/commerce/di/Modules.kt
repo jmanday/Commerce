@@ -1,7 +1,6 @@
 package com.sdos.commerce.di
 
 
-import com.manday.coredata.controllers.NetController
 import com.manday.coredata.datasource.*
 import com.sdos.commerce.repositories.*
 import com.sdos.commerce.ui.viewmodels.*
@@ -13,7 +12,7 @@ val appModuleDependencies = module {
     // Single instances
     single<SkillDatabaseDataSource> { SkillDatabaseDataSourceImpl() }
     single<TaskDatabaseDataSource> { TaskDatabaseDataSourceImpl() }
-    single<FruitNetDataSource> { NetController() }
+    single<FruitNetDataSource> { FruitNetDataSourceImpl() }
     single<EmployeeDatabaseDataSource> { EmployeeDatabaseDataSourceImpl() }
 
     single<SkillRepository> { SkillRepositoryImpl(get()) }
