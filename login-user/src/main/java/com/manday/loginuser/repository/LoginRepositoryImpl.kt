@@ -1,4 +1,4 @@
-package com.manday.loginuser.domain
+package com.manday.loginuser.repository
 
 import com.manday.coredata.datasource.EmployeeDatabaseDataSource
 import com.manday.coredata.entities.EmployeeEntity
