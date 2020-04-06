@@ -1,32 +1,27 @@
 package com.manday.loginuser.viewmodels
 
-import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.manday.coredata.ExecutorViewModel
 import com.manday.coredata.entities.EmployeeEntity
-import com.manday.loginuser.domain.interactors.LoginEmployeeInteractor
+import com.manday.loginuser.repository.LoginRepository
 
-internal class LoginDialogViewModel(var loginEmployeeInteractor: LoginEmployeeInteractor): ExecutorViewModel() {
+internal class LoginDialogViewModel(
+    private val loginRepository: LoginRepository): ExecutorViewModel() {
 
-    private var employee = MediatorLiveData<EmployeeEntity>()
     private var employeeLivedata = MutableLiveData<EmployeeEntity>()
 
-    fun loginUser(param1: String, param2: String): MediatorLiveData<EmployeeEntity> {
+    fun loginUser(param1: String, param2: String): LiveData<EmployeeEntity> {
         login(param1, param2)
-        return employee
+        return employeeLivedata
     }
 
     private fun login(param1: String, param2: String) {
         doFirstInBackgroundWithResult({
-            loginEmployeeInteractor.invoke(param1, param2)
+            loginRepository.login(param1, param2)
         }, {
             it?.let {
                 employeeLivedata.value = it
-                employee.addSource(employeeLivedata, Observer {
-                    employee.removeSource(employeeLivedata)
-                    employee.value = it
-                })
             }
         })
     }
