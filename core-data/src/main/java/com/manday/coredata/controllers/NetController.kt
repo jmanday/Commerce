@@ -1,13 +1,14 @@
-package com.sdos.commerce.data.datasource.net
+package com.manday.coredata.controllers
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.manday.coredata.datasource.FruitNetDataSource
+import com.manday.coredata.endpoints.FruitAPI
 import com.manday.coredata.entities.FruitEntity
-import com.sdos.commerce.data.endpoints.FruitAPI
-import com.sdos.commerce.data.models.FruitModel
-import com.sdos.commerce.data.models.toFruit
+import com.manday.coredata.entities.FruitModel
+import com.manday.coredata.entities.toFruit
+import com.manday.coredata.retrofit.RetrofitController
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

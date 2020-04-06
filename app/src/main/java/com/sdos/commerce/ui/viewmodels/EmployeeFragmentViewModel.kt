@@ -3,7 +3,7 @@ package com.sdos.commerce.ui.viewmodels
 import androidx.lifecycle.LiveData
 import com.manday.coredata.ExecutorViewModel
 import com.manday.coredata.entities.EmployeeEntity
-import com.sdos.commerce.domain.EmployeeRepository
+import com.sdos.commerce.repositories.EmployeeRepository
 
 class EmployeeFragmentViewModel(val employeeRepository: EmployeeRepository) : ExecutorViewModel() {
 

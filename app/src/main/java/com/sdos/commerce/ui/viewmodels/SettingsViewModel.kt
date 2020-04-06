@@ -1,6 +1,6 @@
 package com.sdos.commerce.ui.viewmodels
 
-import com.sdos.commerce.domain.FruitRepository
+import com.sdos.commerce.repositories.FruitRepository
 import com.sdos.commerce.util.ExecutorViewModel
 
 class SettingsViewModel(

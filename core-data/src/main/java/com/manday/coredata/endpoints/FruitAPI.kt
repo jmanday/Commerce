@@ -1,6 +1,6 @@
-package com.sdos.commerce.data.endpoints
+package com.manday.coredata.endpoints
 
-import com.sdos.commerce.data.models.FruitModel
+import com.manday.coredata.entities.FruitModel
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.QueryMap

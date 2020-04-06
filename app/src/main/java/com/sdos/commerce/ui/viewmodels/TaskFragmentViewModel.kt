@@ -2,7 +2,7 @@ package com.sdos.commerce.ui.viewmodels
 
 import androidx.lifecycle.LiveData
 import com.manday.coredata.entities.TaskEntity
-import com.sdos.commerce.domain.TaskRepository
+import com.sdos.commerce.repositories.TaskRepository
 import com.sdos.commerce.util.ExecutorViewModel
 
 class TaskFragmentViewModel(private val taskRespository: TaskRepository) : ExecutorViewModel() {
