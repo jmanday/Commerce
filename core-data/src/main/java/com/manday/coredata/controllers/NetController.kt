@@ -8,7 +8,7 @@ import com.manday.coredata.endpoints.FruitAPI
 import com.manday.coredata.entities.FruitEntity
 import com.manday.coredata.entities.FruitModel
 import com.manday.coredata.entities.toFruit
-import com.manday.coredata.retrofit.RetrofitController
+import com.manday.coredata.controllers.retrofit.RetrofitController
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
