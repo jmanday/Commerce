@@ -42,6 +42,12 @@ class RoomController: EmployeeDataSource, SkillDataSource, TaskDatabaseDataSourc
         employeeDao?.addEmployee(employee)
     }
 
+    override fun updateEmployee(employee: EmployeeEntity?) {
+        employee?.let {
+            employeeDao?.addEmployee(it)
+        }
+    }
+
     override fun getListSkill(): LiveData<List<SkillEntity>>? {
         return skillDao?.getAllSkills()
     }
