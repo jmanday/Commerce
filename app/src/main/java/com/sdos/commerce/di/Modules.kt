@@ -13,7 +13,7 @@ val appModuleDependencies = module {
 
     // Single instances
     single<SkillDatabaseDataSource> { RoomController() }
-    single<TaskDatabaseDataSource> { RoomController() }
+    single<TaskDatabaseDataSource> { TaskDatabaseDataSourceImpl() }
     single<FruitNetDataSource> { NetController() }
     single<EmployeeDatabaseDataSource> { EmployeeDatabaseDataSourceImpl() }
 
