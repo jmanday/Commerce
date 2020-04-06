@@ -1,4 +1,4 @@
-package com.sdos.commerce.data.models
+package com.manday.coredata.entities
 
 import com.google.gson.annotations.SerializedName
 

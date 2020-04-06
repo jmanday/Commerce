@@ -1,4 +1,4 @@
-package com.sdos.commerce.domain
+package com.sdos.commerce.repositories
 
 import androidx.lifecycle.LiveData
 import com.manday.coredata.entities.FruitEntity

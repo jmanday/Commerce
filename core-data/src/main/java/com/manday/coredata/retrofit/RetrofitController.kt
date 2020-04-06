@@ -1,4 +1,4 @@
-package com.sdos.commerce.data.datasource.net
+package com.manday.coredata.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
