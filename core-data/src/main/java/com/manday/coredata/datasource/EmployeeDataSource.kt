@@ -10,4 +10,6 @@ interface EmployeeDataSource {
     fun getEmployees(): LiveData<List<EmployeeEntity>>?
 
     fun addEmployee(employee: EmployeeEntity)
+
+    fun updateEmployee(employee: EmployeeEntity?)
 }
