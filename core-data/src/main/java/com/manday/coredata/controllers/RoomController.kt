@@ -9,12 +9,12 @@ import com.manday.coredata.entities.SkillEntity
 import com.manday.coredata.entities.TaskEntity
 import com.manday.coredata.entities.TypeTaskEntity
 import com.sdos.commerce.dao.*
-import com.sdos.commerce.data.room.CommerceDatabase
+import com.sdos.commerce.data.room.RoomController
 
 
 class RoomController: EmployeeDatabaseDataSource, SkillDatabaseDataSource, TaskDatabaseDataSource {
 
-    private var db: CommerceDatabase? = null
+    private var db: RoomController? = null
     private var employeeDao: EmployeeDao? = null
     private var taskDao: TaskDao? = null
     private var skillDao: SkillDao? = null
@@ -22,16 +22,12 @@ class RoomController: EmployeeDatabaseDataSource, SkillDatabaseDataSource, TaskD
     private var fruitDao: FruitDao? = null
 
     init {
-        db = CommerceDatabase.getInstance()
+        db = RoomController.getInstance()
         employeeDao = db?.employeeDao()
         taskDao = db?.taskDao()
         skillDao = db?.skillDao()
         typeTaskDao = db?.typeTaskDao()
         fruitDao = db?.fruitDao()
-    }
-
-    override fun login(param1: String, param2: String): EmployeeEntity?  {
-        return employeeDao?.getEmployee(param1, param2)
     }
 
     override fun getEmployees(): LiveData<List<EmployeeEntity>>? {

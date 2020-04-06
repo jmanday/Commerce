@@ -3,6 +3,7 @@ package com.sdos.commerce.di
 
 import com.manday.coredata.controllers.NetController
 import com.manday.coredata.controllers.RoomController
+import com.manday.coredata.datasource.EmployeeDatabaseDataSource
 import com.manday.coredata.datasource.FruitNetDataSource
 import com.manday.coredata.datasource.SkillDatabaseDataSource
 import com.manday.coredata.datasource.TaskDatabaseDataSource
@@ -17,6 +18,7 @@ val appModuleDependencies = module {
     single<SkillDatabaseDataSource> { RoomController() }
     single<TaskDatabaseDataSource> { RoomController() }
     single<FruitNetDataSource> { NetController() }
+    single<EmployeeDatabaseDataSource> { RoomController() }
 
     single<SkillRepository> { SkillRepositoryImpl(get()) }
     single<EmployeeRepository> { EmployeeRepositoryImpl(get()) }
