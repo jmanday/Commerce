@@ -1,74 +1,67 @@
 package com.sdos.commerce.ui.viewmodels
 
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.manday.coredata.entities.EmployeeEntity
 import com.manday.coredata.entities.TaskEntity
 import com.manday.coredata.entities.TypeTaskEntity
 import com.sdos.commerce.CommerceApp
+import com.sdos.commerce.domain.interactors.EmployeeRepository
+import com.sdos.commerce.domain.interactors.TaskRepository
 import com.sdos.commerce.listeners.ViewModelListener
 import com.sdos.commerce.util.ExecutorViewModel
 
-class DetailTaskViewModel: ExecutorViewModel() {
+class DetailTaskViewModel(
+    private val employeeRepository: EmployeeRepository,
+    private val taskRepository: TaskRepository
+): ExecutorViewModel() {
 
     private lateinit var baseView: ViewModelListener
-    private var listEmployeesSaved = listOf<EmployeeEntity>()
-    private var listTypeTask = listOf<TypeTaskEntity>()
-    private val getListEmployees = MediatorLiveData<Boolean>()
-    private val typeTask = MediatorLiveData<List<TypeTaskEntity>>()
-
-    /*
-    private val getEmployeesInteractor = (CommerceApp.getInstance() as DomainInjector).provideGetEmployeesInteractor()
-    private val getTypeTaskInteractor = (CommerceApp.getInstance() as DomainInjector).provideGetTypeTaskInteractor()
-    private val addTaskInteractor = (CommerceApp.getInstance() as DomainInjector).provideAddTaskInteractor()
-    private val updateEmployeeInteractor = (CommerceApp.getInstance() as DomainInjector).provideAddEmployeeInteractor()
-
-     */
+    private lateinit var listEmployees: List<EmployeeEntity>
+    private lateinit var typeTasks: List<TypeTaskEntity>
+    private val listEmployeeObserver = Observer<List<EmployeeEntity>> {
+        listEmployees = it
+    }
+    private val typeTasksObserver = Observer<List<TypeTaskEntity>> {
+        typeTasks = it
+    }
 
     init {
-        /*
-        getEmployeesInteractor.invoke()?.let {source ->
-            getListEmployees.addSource(source, Observer {
-                getListEmployees.removeSource(source)
-                getListEmployees.value = true
-                listEmployeesSaved = it
-            })
-        }
+        employeeRepository.getEmployees()?.observeForever(listEmployeeObserver)
+        taskRepository.getAllTypeTasks()?.observeForever(typeTasksObserver)
+    }
 
-        getTypeTaskInteractor.invoke()?.let {source ->
-            typeTask.addSource(source, Observer {
-                typeTask.removeSource(source)
-                typeTask.value = it
-                listTypeTask = it
-            })
-        }
-         */
+    override fun onCleared() {
+        super.onCleared()
+        employeeRepository.getEmployees()?.removeObserver(listEmployeeObserver)
+        taskRepository.getAllTypeTasks()?.removeObserver(typeTasksObserver)
     }
 
     fun setListener(baseView: ViewModelListener) {
         this.baseView = baseView
     }
 
-    fun getListEmployees() = getListEmployees
+    fun getListEmployees() = employeeRepository.getEmployees()
 
-    fun getTypeTasks() = typeTask
+    fun getTypeTasks() = taskRepository.getAllTypeTasks()
 
-    fun getEmployeeBySkil(skills: List<Int>) = listEmployeesSaved.filter { skills.contains(it.skill) }
+    fun getEmployeeBySkill(skills: List<Int>) = listEmployees.filter { skills.contains(it.skill) } ?: listOf()
 
-    fun getSkillFromTask(idTypeTask: Int) = listTypeTask.get(idTypeTask).skillNeeded
+    fun getSkillFromTask(idTypeTask: Int) = typeTasks.get(idTypeTask).skillNeeded ?: listOf()
+
+    fun getTypeTask(position: Int) = typeTasks.get(position)
 
     fun addTask(task: TaskEntity) {
         doInParallel (
             {
-                //addTaskInteractor.invoke(task)
+                taskRepository.addTask(task)
             },
             {
-                //updateEmployeeInteractor(listEmployeesSaved.find { it.id == task.idEmployee }!!)
+                employeeRepository.updateEmployee(listEmployees.find { it.id == task.idEmployee })
             },
             {
                 baseView.showMessage("La tarea ha sido añadida correctamente")
             })
     }
-
-    fun getTypeTask(position: Int) = listTypeTask.get(position)
 }
