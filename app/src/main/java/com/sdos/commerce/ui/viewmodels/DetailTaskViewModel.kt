@@ -1,14 +1,11 @@
 package com.sdos.commerce.ui.viewmodels
 
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.manday.coredata.entities.EmployeeEntity
 import com.manday.coredata.entities.TaskEntity
 import com.manday.coredata.entities.TypeTaskEntity
-import com.sdos.commerce.CommerceApp
-import com.sdos.commerce.domain.interactors.EmployeeRepository
-import com.sdos.commerce.domain.interactors.TaskRepository
+import com.sdos.commerce.domain.EmployeeRepository
+import com.sdos.commerce.domain.TaskRepository
 import com.sdos.commerce.listeners.ViewModelListener
 import com.sdos.commerce.util.ExecutorViewModel
 

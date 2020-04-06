@@ -6,7 +6,7 @@ import com.manday.coredata.datasource.FruitNetDataSource
 import com.manday.coredata.datasource.SkillDataSource
 import com.manday.coredata.datasource.TaskDatabaseDataSource
 import com.sdos.commerce.data.datasource.net.NetController
-import com.sdos.commerce.domain.interactors.*
+import com.sdos.commerce.domain.*
 import com.sdos.commerce.ui.viewmodels.*
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

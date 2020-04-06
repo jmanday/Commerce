@@ -1,11 +1,11 @@
 package com.sdos.commerce.ui.viewmodels
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import com.manday.coredata.entities.TaskEntity
-import com.sdos.commerce.domain.interactors.TaskRepository
+import com.sdos.commerce.domain.TaskRepository
+import com.sdos.commerce.util.ExecutorViewModel
 
-class TaskFragmentViewModel(private val taskRespository: TaskRepository) : ViewModel() {
+class TaskFragmentViewModel(private val taskRespository: TaskRepository) : ExecutorViewModel() {
 
     var taskList: List<TaskEntity>? = null
 

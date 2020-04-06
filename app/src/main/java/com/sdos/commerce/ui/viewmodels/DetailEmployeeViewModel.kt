@@ -2,8 +2,8 @@ package com.sdos.commerce.ui.viewmodels
 
 import com.manday.coredata.ExecutorViewModel
 import com.manday.coredata.entities.EmployeeEntity
-import com.sdos.commerce.domain.interactors.EmployeeRepository
-import com.sdos.commerce.domain.interactors.SkillRepository
+import com.sdos.commerce.domain.EmployeeRepository
+import com.sdos.commerce.domain.SkillRepository
 import com.sdos.commerce.listeners.ViewModelListener
 import com.sdos.commerce.util.isDateValidate
 
