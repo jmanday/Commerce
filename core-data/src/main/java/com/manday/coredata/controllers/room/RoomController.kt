@@ -72,6 +72,8 @@ abstract class RoomController: RoomDatabase() {
 
         fun getTaskDao() = instance?.taskDao()
 
+        fun getSkillDao() = instance?.skillDao()
+
         fun destroyDataBase(){
             instance = null
         }
