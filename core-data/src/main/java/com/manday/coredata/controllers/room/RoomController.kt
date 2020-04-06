@@ -1,11 +1,7 @@
 package com.sdos.commerce.data.room
 
 import android.content.Context
-import android.util.Log
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
+import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.manday.coredata.converters.ListConverter
 import com.manday.coredata.entities.*
@@ -15,7 +11,7 @@ import java.util.concurrent.Executors
 
 @Database(entities = arrayOf(EmployeeEntity::class, TaskEntity::class, SkillEntity::class, TypeEmployeeEntity::class, TypeTaskEntity::class, FruitEntity::class), version = 1)
 @TypeConverters(ListConverter::class)
-abstract class CommerceDatabase: RoomDatabase() {
+abstract class RoomController: RoomDatabase() {
 
     abstract fun employeeDao(): EmployeeDao
 
@@ -32,13 +28,13 @@ abstract class CommerceDatabase: RoomDatabase() {
     companion object {
         private const val DATABASE_NAME = "commerce_database_11"
         @Volatile
-        private var instance: CommerceDatabase? = null
+        private var instance: RoomController? = null
 
-        fun initialize(context: Context, callback: () -> Unit): CommerceDatabase? {
+        fun initialize(context: Context, callback: () -> Unit): RoomController? {
             if (instance == null) {
-                synchronized(CommerceDatabase::class) {
+                synchronized(RoomController::class) {
                     instance = Room.databaseBuilder(context.getApplicationContext(),
-                        CommerceDatabase::class.java, DATABASE_NAME)
+                        RoomController::class.java, DATABASE_NAME)
                         .addCallback(object : Callback() {
                             override fun onCreate(db: SupportSQLiteDatabase) {
                                 super.onCreate(db)
@@ -68,6 +64,12 @@ abstract class CommerceDatabase: RoomDatabase() {
         }
 
         fun getInstance() = instance
+
+        fun getEmployeeDao()= instance?.employeeDao()
+
+        fun getTaskDao() = instance?.taskDao()
+
+        fun getSkillDao() = instance?.skillDao()
 
         fun destroyDataBase(){
             instance = null

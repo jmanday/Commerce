@@ -1,19 +1,18 @@
-package com.manday.coredata.controllers
+package com.manday.coredata.datasource
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.manday.coredata.datasource.FruitNetDataSource
+import com.manday.coredata.controllers.retrofit.RetrofitController
 import com.manday.coredata.endpoints.FruitAPI
 import com.manday.coredata.entities.FruitEntity
 import com.manday.coredata.entities.FruitModel
 import com.manday.coredata.entities.toFruit
-import com.manday.coredata.retrofit.RetrofitController
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class NetController: FruitNetDataSource {
+class FruitNetDataSourceImpl: FruitNetDataSource {
 
     override fun getFruits(category: String, item: String): LiveData<List<FruitEntity>> {
         val data = MutableLiveData<List<FruitEntity>>()
@@ -31,7 +30,7 @@ class NetController: FruitNetDataSource {
 
             override fun onResponse(call: Call<List<FruitModel>>, response: Response<List<FruitModel>>) {
                 data.value = response.unwrapResponse {
-                        this.map { it.toFruit() }
+                    this.map { it.toFruit() }
                 }
             }
         })
@@ -39,8 +38,6 @@ class NetController: FruitNetDataSource {
         return data
     }
 
-
-    inline fun <T, U> Response<T>.unwrapResponse(f: T.() -> List<U>) =
+    private inline fun <T, U> Response<T>.unwrapResponse(f: T.() -> List<U>) =
         body()?.f()
-
 }

@@ -1,4 +1,4 @@
-package com.manday.coredata.retrofit
+package com.manday.coredata.controllers.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
