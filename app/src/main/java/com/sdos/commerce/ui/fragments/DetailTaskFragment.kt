@@ -46,12 +46,12 @@ class DetailTaskFragment : BaseFragment() {
 
     override fun initialize() {
         viewModel.setListener(this)
-        val stateAdapter = ArrayAdapter<String>(requireContext(), R.layout.support_simple_spinner_dropdown_item, resources.getStringArray(R.array.task_state))
-        val durationAdapter = ArrayAdapter<String>(requireContext(), R.layout.support_simple_spinner_dropdown_item, resources.getStringArray(R.array.duration))
+        val stateAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, resources.getStringArray(R.array.task_state))
+        val durationAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, resources.getStringArray(R.array.duration))
         var employeesAdapter: ArrayAdapter<String>
         var typeTaskAdapter: ArrayAdapter<String>
 
-        viewModel.getTypeTasks().observe(this, Observer {
+        viewModel.getTypeTasks()?.observe(this, Observer {
             it?.let {
                 typeTaskAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, it.map { it.name })
                 typeTaskAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
@@ -59,7 +59,7 @@ class DetailTaskFragment : BaseFragment() {
             }
         })
 
-        viewModel.getListEmployees().observe(this, Observer {
+        viewModel.getListEmployees()?.observe(this, Observer {
             it?.let {
                 spn_type.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(
@@ -69,7 +69,7 @@ class DetailTaskFragment : BaseFragment() {
                         id: Long
                     ) {
                         employeesAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item,
-                            viewModel.getEmployeeBySkil(viewModel.getSkillFromTask(position)).map { it.name })
+                            viewModel.getEmployeeBySkill(viewModel.getSkillFromTask(position)).map { it.name })
                         employeesAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
                         spn_selected_employee.adapter = employeesAdapter
                     }
@@ -94,7 +94,7 @@ class DetailTaskFragment : BaseFragment() {
             task.duration = resources.getStringArray(R.array.duration).get(spn_duration.selectedItemPosition).split(" ").first().toDouble()
             task.state = spn_state.selectedItemPosition
             task.type = viewModel.getTypeTask(spn_type.selectedItemPosition).id ?: 0
-            task.idEmployee = viewModel.getEmployeeBySkil(viewModel.getSkillFromTask(task.type))
+            task.idEmployee = viewModel.getEmployeeBySkill(viewModel.getSkillFromTask(task.type))
                 .get(spn_selected_employee.selectedItemPosition).id
             viewModel.addTask(task)
         }
