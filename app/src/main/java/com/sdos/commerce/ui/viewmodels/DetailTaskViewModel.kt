@@ -43,9 +43,9 @@ class DetailTaskViewModel(
 
     fun getTypeTasks() = taskRepository.getAllTypeTasks()
 
-    fun getEmployeeBySkill(skills: List<Int>) = listEmployees.filter { skills.contains(it.skill) } ?: listOf()
+    fun getEmployeeBySkill(skills: List<Int>) = listEmployees.filter { skills.contains(it.skill) }
 
-    fun getSkillFromTask(idTypeTask: Int) = typeTasks.get(idTypeTask).skillNeeded ?: listOf()
+    fun getSkillFromTask(idTypeTask: Int) = typeTasks.get(idTypeTask).skillNeeded
 
     fun getTypeTask(position: Int) = typeTasks.get(position)
 

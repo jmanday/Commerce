@@ -1,8 +1,8 @@
-package com.sdos.commerce.repositories
+package com.manday.fruit.repository
 
 import androidx.lifecycle.LiveData
-import com.manday.coredata.datasource.FruitNetDataSource
 import com.manday.coredata.entities.FruitEntity
+import com.manday.fruit.datasource.net.FruitNetDataSource
 
 class FruitRepositoryImpl(
     private val dataSource: FruitNetDataSource

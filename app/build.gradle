@@ -43,9 +43,11 @@ dependencies {
 
     kapt "android.arch.persistence.room:compiler:1.1.1"
 
-    implementation project(':login-user')
     implementation project(':core-data')
     implementation project(':core-ui')
+    implementation project(':login-user')
+    implementation project(':fruit')
+
 
     implementation 'com.facebook.shimmer:shimmer:0.4.0'
     implementation 'com.todkars:shimmer-recyclerview:0.4.0'

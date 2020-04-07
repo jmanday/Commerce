@@ -1,4 +1,4 @@
-package com.manday.coredata.endpoints
+package com.manday.fruit.datasource.net.endpoint
 
 import com.manday.coredata.entities.FruitModel
 import retrofit2.Call
