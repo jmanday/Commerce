@@ -2,9 +2,11 @@ package com.manday.fruit.ui.fragment
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.manday.coredata.entities.FruitEntity
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.fruit.databinding.FragmentFruitBinding
@@ -27,16 +29,17 @@ class FruitFragment : BaseFragment() {
     }
 
     override fun initialize() {
-        /*
-        list?.let {
-            val adapter = FruitAdapter(it) {
+        viewModel.getAllFruits().observe(this, Observer {
+            it?.let {
+                val adapter = FruitAdapter(it) {
 
+                }
+                mainRecyclerView.adapter = adapter
             }
-            mainRecyclerView.adapter = adapter
-        }
 
-        text_head.setText("Fruits")
-         */
+            text_head.setText("Fruits")
+
+        })
     }
 
 }
