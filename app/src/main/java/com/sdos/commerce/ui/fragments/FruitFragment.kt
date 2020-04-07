@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.manday.coredata.entities.FruitEntity
+import com.manday.coreui.fragment.BaseFragment
 import com.sdos.commerce.databinding.FragmentFruitBinding
 import com.sdos.commerce.ui.adapters.FruitAdapter
 import kotlinx.android.synthetic.main.fragment_fruit.*

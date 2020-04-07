@@ -45,6 +45,7 @@ dependencies {
 
     implementation project(':login-user')
     implementation project(':core-data')
+    implementation project(':core-ui')
 
     implementation 'com.facebook.shimmer:shimmer:0.4.0'
     implementation 'com.todkars:shimmer-recyclerview:0.4.0'
