@@ -3,6 +3,7 @@ package com.sdos.commerce.ui.viewholders
 import android.view.View
 import com.bumptech.glide.Glide
 import com.manday.coredata.entities.TaskEntity
+import com.manday.coreui.viewholder.BaseViewHolder
 import com.sdos.commerce.R
 import kotlinx.android.synthetic.main.list_item_view.view.*
 

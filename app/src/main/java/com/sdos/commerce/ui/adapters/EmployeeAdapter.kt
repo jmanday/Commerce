@@ -1,9 +1,9 @@
 package com.sdos.commerce.ui.adapters
 
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.manday.coredata.entities.EmployeeEntity
+import com.manday.coreui.adapter.BaseAdapter
 import com.sdos.commerce.R
 import com.sdos.commerce.ui.viewholders.EmployeeViewHolder
 
