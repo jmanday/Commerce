@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.manday.coreui.fragment.BaseFragment
 import com.sdos.commerce.R
 import com.sdos.commerce.ui.viewmodels.SplashFragmentViewModel
 import org.koin.java.KoinJavaComponent.inject

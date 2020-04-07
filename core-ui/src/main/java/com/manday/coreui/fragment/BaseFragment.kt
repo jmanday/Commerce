@@ -1,13 +1,10 @@
-package com.sdos.commerce.ui.fragments
-
+package com.manday.coreui.fragment
 
 import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
 import com.sdos.commerce.listeners.FragmentListener
 import com.sdos.commerce.listeners.ViewModelListener
 
@@ -53,10 +50,6 @@ abstract class BaseFragment: Fragment(), ViewModelListener {
     open protected fun retrieveArguments() {}
 
     abstract fun initialize()
-
-    inline protected fun<reified T: ViewModel> getViewModel(): T {
-        return ViewModelProviders.of(this).get(T::class.java)
-    }
 
     companion object {
         const val ARGUMENT_EXTRA_EMPLOYEE = "ARGUMENT_EXTRA_EMPLOYEE"
