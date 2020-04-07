@@ -69,7 +69,7 @@
     </fragment>
     <fragment
         android:id="@+id/fruitFragment"
-        android:name="com.sdos.commerce.ui.fragments.FruitFragment"
+        android:name="com.manday.fruit.ui.FruitFragment"
         android:label="FruitFragment"
         tools:layout="@layout/fragment_fruit">
         <argument
