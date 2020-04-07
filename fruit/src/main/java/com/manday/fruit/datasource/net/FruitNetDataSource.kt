@@ -1,4 +1,4 @@
-package com.manday.coredata.datasource
+package com.manday.fruit.datasource.net
 
 import androidx.lifecycle.LiveData
 import com.manday.coredata.entities.FruitEntity

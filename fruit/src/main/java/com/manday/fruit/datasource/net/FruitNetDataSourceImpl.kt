@@ -1,18 +1,19 @@
-package com.manday.coredata.datasource
+package com.manday.fruit.datasource.net
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.manday.coredata.controllers.retrofit.RetrofitController
-import com.manday.coredata.endpoints.FruitAPI
 import com.manday.coredata.entities.FruitEntity
 import com.manday.coredata.entities.FruitModel
 import com.manday.coredata.entities.toFruit
+import com.manday.fruit.datasource.net.endpoint.FruitAPI
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FruitNetDataSourceImpl: FruitNetDataSource {
+class FruitNetDataSourceImpl:
+    FruitNetDataSource {
 
     override fun getFruits(category: String, item: String): LiveData<List<FruitEntity>> {
         val data = MutableLiveData<List<FruitEntity>>()
