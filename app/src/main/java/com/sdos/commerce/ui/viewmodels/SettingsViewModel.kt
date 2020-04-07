@@ -1,7 +1,7 @@
 package com.sdos.commerce.ui.viewmodels
 
+import com.manday.coredata.ExecutorViewModel
 import com.sdos.commerce.repositories.FruitRepository
-import com.sdos.commerce.util.ExecutorViewModel
 
 class SettingsViewModel(
     private val fruitRepository: FruitRepository

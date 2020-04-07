@@ -2,8 +2,8 @@ package com.sdos.commerce.ui.viewmodels
 
 
 import android.content.Context
+import com.manday.coredata.ExecutorViewModel
 import com.sdos.commerce.data.room.RoomController
-import com.sdos.commerce.util.ExecutorViewModel
 
 class SplashFragmentViewModel: ExecutorViewModel() {
 
