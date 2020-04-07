@@ -1,4 +1,4 @@
-package com.sdos.commerce.ui.fragments
+package com.manday.fruit.ui
 
 
 import android.os.Bundle
@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.manday.coredata.entities.FruitEntity
 import com.manday.coreui.fragment.BaseFragment
-import com.sdos.commerce.databinding.FragmentFruitBinding
-import com.sdos.commerce.ui.adapters.FruitAdapter
+import com.manday.fruit.databinding.FragmentFruitBinding
 import kotlinx.android.synthetic.main.fragment_fruit.*
 
 class FruitFragment : BaseFragment() {
@@ -34,7 +33,7 @@ class FruitFragment : BaseFragment() {
             val adapter = FruitAdapter(it) {
 
             }
-            main_recycler_view.adapter = adapter
+            mainRecyclerView.adapter = adapter
         }
 
         text_head.setText("Fruits")
