@@ -20,7 +20,7 @@ import com.sdos.commerce.util.showMessageError
 import kotlinx.android.synthetic.main.fragment_detail_employee.*
 import org.koin.java.KoinJavaComponent.inject
 
-class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmployeView {
+class DetailEmployeeFragment : BaseFragment() {
 
     private val viewModel: DetailEmployeeViewModel by inject(DetailEmployeeViewModel::class.java)
     private lateinit var binding: FragmentDetailEmployeeBinding
@@ -40,7 +40,6 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmp
     }
 
     override fun initialize() {
-        viewModel.init(this)
         prepareListeners()
         populateMap()
         viewModel.getListSkills()?.observe(this, Observer {
@@ -100,19 +99,19 @@ class DetailEmployeeFragment : BaseFragment(), DetailEmployeeViewModel.DetailEmp
 
         btnDone.setOnClickListener {
             binding.employee?.let {
-                viewModel.onButtonAddClicked(it)
+                viewModel.onButtonAddClicked(it).observe(this, Observer {
+                    it?.let { response ->
+                        if (it.extra.isNotEmpty()) {
+                            it.extra.forEach {errorField ->
+                                mapInputText[errorField]?.showMessageError(it.text)
+                            }
+                        }
+                        else {
+                            showMessage(it.text)
+                        }
+                    }
+                })
             }
-        }
-    }
-
-    override fun showError(errorFieldList: List<DetailEmployeeViewModel.ErrorField>, msg: String) {
-        if (errorFieldList.isNotEmpty()) {
-            errorFieldList.forEach {
-                mapInputText[it]?.showMessageError(msg)
-            }
-        }
-        else {
-            showMessage(msg)
         }
     }
 }

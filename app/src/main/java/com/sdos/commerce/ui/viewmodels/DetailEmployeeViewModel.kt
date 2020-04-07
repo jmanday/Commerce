@@ -1,7 +1,10 @@
 package com.sdos.commerce.ui.viewmodels
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.manday.coredata.ExecutorViewModel
 import com.manday.coredata.entities.EmployeeEntity
+import com.sdos.commerce.ResponseViewModelEntity
 import com.sdos.commerce.repositories.EmployeeRepository
 import com.sdos.commerce.repositories.SkillRepository
 import com.sdos.commerce.listeners.ViewModelListener
@@ -12,16 +15,10 @@ class DetailEmployeeViewModel(
     private val skillRepository: SkillRepository
 ): ExecutorViewModel() {
 
-    private lateinit var view: DetailEmployeView
-    private lateinit var baseView: ViewModelListener
     private val errorFieldList = mutableListOf<ErrorField>()
+    private val responseViewModelEntity = MutableLiveData<ResponseViewModelEntity<ErrorField>>()
 
-    fun init(view: DetailEmployeView) {
-        this.view = view
-        this.baseView = view as ViewModelListener
-    }
-
-    fun onButtonAddClicked(employee: EmployeeEntity) {
+    fun onButtonAddClicked(employee: EmployeeEntity): LiveData<ResponseViewModelEntity<ErrorField>> {
         employee.let {
             if (it.name.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_NAME)
             if (it.surname.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_SURNAME)
@@ -36,21 +33,21 @@ class DetailEmployeeViewModel(
             doFirstInBackground({
                 employeeRepository.addEmployee(employee)
             }, {
-                view.showError(errorFieldList, "Empleado añadido correctamente")
+                responseViewModelEntity.value = ResponseViewModelEntity.createResponseWithoutData("Empleado añadido correctamente")
             })
         }
-        else
-            view.showError(errorFieldList, "Campo incorrecto")
+        else {
+            responseViewModelEntity.value =
+                ResponseViewModelEntity.createResponseWithData("Campo incorrecto", errorFieldList)
+        }
+
+        return responseViewModelEntity
     }
 
     fun getListSkills() = skillRepository.getListSkill()
 
     enum class ErrorField {
         ERROR_FIELD_NAME, ERROR_FIELD_SURNAME, ERROR_FIELD_EMAIL, ERROR_FIELD_PHONE, ERROR_FIELD_DATE, ERROR_FIELD_PASS
-    }
-
-    interface DetailEmployeView {
-        fun showError(errorFieldList: List<ErrorField>, msg: String)
     }
 }
 
