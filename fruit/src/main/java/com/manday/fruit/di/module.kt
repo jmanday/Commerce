@@ -1,7 +1,7 @@
 package com.manday.fruit.di
 
-import com.manday.coredata.datasource.FruitNetDataSource
-import com.manday.coredata.datasource.FruitNetDataSourceImpl
+import com.manday.fruit.datasource.net.FruitNetDataSource
+import com.manday.fruit.datasource.net.FruitNetDataSourceImpl
 import com.manday.fruit.repository.FruitRepository
 import com.manday.fruit.repository.FruitRepositoryImpl
 import com.manday.fruit.ui.viewmodel.FruitViewModel
