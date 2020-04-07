@@ -1,4 +1,4 @@
-package com.manday.fruit.ui
+package com.manday.fruit.ui.fragment
 
 
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.manday.coredata.entities.FruitEntity
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.fruit.databinding.FragmentFruitBinding
+import com.manday.fruit.ui.adapter.FruitAdapter
 import kotlinx.android.synthetic.main.fragment_fruit.*
 
 class FruitFragment : BaseFragment() {

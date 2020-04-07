@@ -1,10 +1,11 @@
-package com.manday.fruit.ui
+package com.manday.fruit.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.manday.coredata.entities.FruitEntity
 import com.manday.coreui.adapter.BaseAdapter
 import com.manday.fruit.R
+import com.manday.fruit.ui.viewholder.FruitViewHolder
 
 internal class FruitAdapter(list: List<FruitEntity>, listener: (FruitEntity) -> Unit): BaseAdapter<FruitEntity, FruitViewHolder>(list, listener) {
 

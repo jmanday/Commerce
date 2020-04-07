@@ -1,4 +1,4 @@
-package com.manday.fruit.ui
+package com.manday.fruit.ui.viewholder
 
 import android.view.View
 import com.manday.coredata.entities.FruitEntity
