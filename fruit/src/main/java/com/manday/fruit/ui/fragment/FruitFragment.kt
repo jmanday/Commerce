@@ -9,9 +9,13 @@ import com.manday.coredata.entities.FruitEntity
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.fruit.databinding.FragmentFruitBinding
 import com.manday.fruit.ui.adapter.FruitAdapter
+import com.manday.fruit.ui.viewmodel.FruitViewModel
 import kotlinx.android.synthetic.main.fragment_fruit.*
+import org.koin.java.KoinJavaComponent.inject
 
 class FruitFragment : BaseFragment() {
+
+    private val viewModel: FruitViewModel by inject(FruitViewModel::class.java)
 
     private var list: List<FruitEntity>? = null
     override fun onCreateView(
@@ -22,14 +26,8 @@ class FruitFragment : BaseFragment() {
         return FragmentFruitBinding.inflate(inflater).root
     }
 
-    override fun retrieveArguments() {
-        super.retrieveArguments()
-        arguments?.let {
-            list = it.getSerializable(ARGUMENT_EXTRA_LIST_FRUITS) as List<FruitEntity>
-        }
-    }
-
     override fun initialize() {
+        /*
         list?.let {
             val adapter = FruitAdapter(it) {
 
@@ -38,6 +36,7 @@ class FruitFragment : BaseFragment() {
         }
 
         text_head.setText("Fruits")
+         */
     }
 
 }

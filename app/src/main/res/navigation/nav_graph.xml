@@ -71,9 +71,5 @@
         android:id="@+id/fruitFragment"
         android:name="com.manday.fruit.ui.fragment.FruitFragment"
         android:label="FruitFragment"
-        tools:layout="@layout/fragment_fruit">
-        <argument
-            android:name="fruits"
-            app:argType="com.manday.coredata.entities.FruitEntity[]" />
-    </fragment>
+        tools:layout="@layout/fragment_fruit"/>
 </navigation>
