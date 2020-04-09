@@ -9,13 +9,13 @@ import com.manday.coreui.fragment.BaseFragment
 import com.sdos.commerce.R
 import com.sdos.commerce.databinding.FragmentMainBinding
 import com.sdos.commerce.ui.adapters.EmployeeAdapter
-import com.sdos.commerce.ui.viewmodels.EmployeeFragmentViewModel
+import com.sdos.commerce.ui.viewmodels.EmployeeViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.java.KoinJavaComponent.inject
 
 class EmployeeFragment : BaseFragment() {
 
-    private val viewModel: EmployeeFragmentViewModel by inject(EmployeeFragmentViewModel::class.java)
+    private val viewModel: EmployeeViewModel by inject(EmployeeViewModel::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater,
