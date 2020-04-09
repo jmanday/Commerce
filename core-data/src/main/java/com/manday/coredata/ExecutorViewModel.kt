@@ -1,5 +1,6 @@
 package com.manday.coredata
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
@@ -7,7 +8,6 @@ import kotlin.coroutines.CoroutineContext
 open class ExecutorViewModel: ViewModel(), CoroutineScope {
 
     private val job = Job()
-
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
 
@@ -42,6 +42,26 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
             withContext(Dispatchers.IO) {
                 background.invoke()
             }
+        }
+    }
+
+    protected fun<Result> doInBackgroundAndReturn(background: suspend () -> Result): Result {
+        val task = async(Dispatchers.IO) {
+            background.invoke()
+        }
+        return runBlocking {
+            task.await()
+        }
+    }
+
+    protected fun<Result> doInBackgroundAndReturn2(background: suspend () -> Result, foreground: suspend (Result) -> Unit) {
+        launch(coroutineContext) {
+            val task = async(Dispatchers.IO) {
+                background.invoke()
+            }
+
+            val res = task.await()
+            foreground.invoke(res)
         }
     }
 
