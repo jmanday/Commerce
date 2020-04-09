@@ -14,14 +14,14 @@ import com.manday.coreui.fragment.BaseFragment
 import com.sdos.commerce.R
 import com.sdos.commerce.databinding.FragmentMainBinding
 import com.sdos.commerce.ui.adapters.TaskAdapter
-import com.sdos.commerce.ui.viewmodels.TaskFragmentViewModel
+import com.sdos.commerce.ui.viewmodels.TaskViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.text_head
 import org.koin.java.KoinJavaComponent.inject
 
 class TaskFragment : BaseFragment() {
 
-    private val viewModel: TaskFragmentViewModel by inject(TaskFragmentViewModel::class.java)
+    private val viewModel: TaskViewModel by inject(TaskViewModel::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater,
