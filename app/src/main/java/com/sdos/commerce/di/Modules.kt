@@ -19,7 +19,7 @@ val appModuleDependencies = module {
     single<TaskRepository> { TaskRepositoryImpl(get()) }
 
     // ViewModel instances
-    viewModel { SplashFragmentViewModel() }
+    viewModel { SplashViewModel() }
     viewModel { EmployeeViewModel(get()) }
     viewModel { DetailEmployeeViewModel(get(), get()) }
     viewModel { DetailTaskViewModel(get(), get()) }
