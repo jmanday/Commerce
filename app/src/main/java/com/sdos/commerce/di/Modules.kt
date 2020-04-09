@@ -20,7 +20,7 @@ val appModuleDependencies = module {
 
     // ViewModel instances
     viewModel { SplashFragmentViewModel() }
-    viewModel { EmployeeFragmentViewModel(get()) }
+    viewModel { EmployeeViewModel(get()) }
     viewModel { DetailEmployeeViewModel(get(), get()) }
     viewModel { DetailTaskViewModel(get(), get()) }
     viewModel { TaskFragmentViewModel(get()) }
