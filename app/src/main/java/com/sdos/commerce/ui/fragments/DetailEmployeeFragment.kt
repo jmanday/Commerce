@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import com.google.android.material.textfield.TextInputLayout
 import com.manday.coredata.entities.EmployeeEntity
 import com.manday.coreui.fragment.BaseFragment
+import com.sdos.commerce.TypeResponse
 import com.sdos.commerce.databinding.FragmentDetailEmployeeBinding
 import com.sdos.commerce.ui.viewmodels.DetailEmployeeViewModel
 import com.sdos.commerce.ui.views.DateDialogView
@@ -99,15 +100,13 @@ class DetailEmployeeFragment : BaseFragment() {
 
         btnDone.setOnClickListener {
             binding.employee?.let {
-                viewModel.onButtonAddClicked(it).observe(this, Observer {
-                    it?.let { response ->
-                        if (it.extra.isNotEmpty()) {
-                            it.extra.forEach {errorField ->
-                                mapInputText[errorField]?.showMessageError(it.text)
+                viewModel.onButtonAddClicked(it).observe(this, Observer {response ->
+                    when(response.typeResponse) {
+                        TypeResponse.TEXT -> { showMessage(response.text) }
+                        TypeResponse.EXTRA_LIST -> {
+                            response.extraList?.forEach {
+                                mapInputText[it]?.showMessageError(response.text)
                             }
-                        }
-                        else {
-                            showMessage(it.text)
                         }
                     }
                 })

@@ -33,12 +33,12 @@ class DetailEmployeeViewModel(
             doFirstInBackground({
                 employeeRepository.addEmployee(employee)
             }, {
-                responseViewModelEntity.value = ResponseViewModelEntity.createResponseWithoutData("Empleado añadido correctamente")
+                responseViewModelEntity.value = ResponseViewModelEntity.createResponse("Empleado añadido correctamente")
             })
         }
         else {
             responseViewModelEntity.value =
-                ResponseViewModelEntity.createResponseWithData("Campo incorrecto", errorFieldList)
+                ResponseViewModelEntity.createResponse("Campo incorrecto", null, errorFieldList)
         }
 
         return responseViewModelEntity
