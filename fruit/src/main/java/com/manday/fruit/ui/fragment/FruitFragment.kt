@@ -19,7 +19,6 @@ class FruitFragment : BaseFragment() {
 
     private val viewModel: FruitViewModel by inject(FruitViewModel::class.java)
 
-    private var list: List<FruitEntity>? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,9 +30,7 @@ class FruitFragment : BaseFragment() {
     override fun initialize() {
         viewModel.getAllFruits().observe(this, Observer {
             it?.let {
-                val adapter = FruitAdapter(it) {
-
-                }
+                val adapter = FruitAdapter(it) {}
                 mainRecyclerView.adapter = adapter
             }
 
