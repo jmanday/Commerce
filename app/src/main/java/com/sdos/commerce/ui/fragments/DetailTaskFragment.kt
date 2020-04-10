@@ -60,6 +60,7 @@ class DetailTaskFragment : BaseFragment() {
             }
         })
 
+        /*
         viewModel.getListEmployees()?.observe(this, Observer {
             it?.let {
                 spn_type.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -81,6 +82,8 @@ class DetailTaskFragment : BaseFragment() {
                 }
             }
         })
+
+         */
 
         stateAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
         durationAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
