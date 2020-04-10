@@ -16,9 +16,9 @@ class DetailEmployeeViewModel(
 ): ExecutorViewModel() {
 
     private val errorFieldList = mutableListOf<ErrorField>()
-    private val responseViewModelEntity = MutableLiveData<ResponseViewModelEntity<ErrorField>>()
+    private lateinit var responseViewModelEntity: ResponseViewModelEntity<List<ErrorField>>
 
-    fun onButtonAddClicked(employee: EmployeeEntity): LiveData<ResponseViewModelEntity<ErrorField>> {
+    fun onButtonAddClicked(employee: EmployeeEntity): ResponseViewModelEntity<List<ErrorField>> {
         employee.let {
             if (it.name.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_NAME)
             if (it.surname.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_SURNAME)
@@ -33,12 +33,12 @@ class DetailEmployeeViewModel(
             doFirstInBackground({
                 employeeRepository.addEmployee(employee)
             }, {
-                responseViewModelEntity.value = ResponseViewModelEntity.createResponse("Empleado añadido correctamente")
+                responseViewModelEntity = ResponseViewModelEntity.createResponse("Empleado añadido correctamente")
             })
         }
         else {
-            responseViewModelEntity.value =
-                ResponseViewModelEntity.createResponse("Campo incorrecto", null, errorFieldList)
+            responseViewModelEntity =
+                ResponseViewModelEntity.createResponse("Campo incorrecto", errorFieldList)
         }
 
         return responseViewModelEntity
