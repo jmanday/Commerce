@@ -1,6 +1,7 @@
 package com.sdos.commerce.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,15 +33,17 @@ class EmployeeFragment : BaseFragment() {
         }
         mainRecyclerView.showShimmer()
 
-        viewModel.getEmployees()?.observe(this, Observer {
-            it?.let {
+        viewModel.getEmployees().observe(this, Observer {response ->
+            response.extra?.let {
                 mainRecyclerView.adapter = EmployeeAdapter(it) {
                     onItemClicked(R.id.action_mainFragment_to_detailEmployeeFragment, Bundle().apply {
                         putSerializable(ARGUMENT_EXTRA_EMPLOYEE, it)
                     })
                 }
-                mainRecyclerView.hideShimmer()
             }
+
+            if (response.text.isNotEmpty())
+                showMessage(response.text, false)
         })
     }
 }
