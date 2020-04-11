@@ -32,6 +32,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.2.0'
     api 'androidx.recyclerview:recyclerview:1.0.0'
     api 'androidx.cardview:cardview:1.0.0'
+    api 'com.google.android.material:material:1.2.0-alpha05'
 
     testImplementation 'junit:junit:4.12'
 
