@@ -3,9 +3,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".ui.fragments.EmployeeFragment">
 
         <com.todkars.shimmer.ShimmerRecyclerView
@@ -14,7 +14,6 @@
             android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="8dp"
             android:background="?attr/selectableItemBackground"
             android:orientation="vertical"
             android:visibility="gone"
