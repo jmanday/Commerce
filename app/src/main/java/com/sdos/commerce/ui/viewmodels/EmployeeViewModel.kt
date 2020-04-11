@@ -16,7 +16,10 @@ class EmployeeViewModel(
     fun getEmployees() =
         transformWhenItChanges(employeeRepository.getEmployees()) {
             listEmployees.value = it
-            ResponseViewModelEntity.createResponse(extra = it)
+            if (it == null)
+                ResponseViewModelEntity.createResponse("Se ha producido un error")
+            else
+                ResponseViewModelEntity.createResponse(extra = it)
         }
 
 }
