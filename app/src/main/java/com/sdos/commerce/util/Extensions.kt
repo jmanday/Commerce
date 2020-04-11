@@ -1,5 +1,8 @@
 package com.sdos.commerce.util
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.Observer
 import com.google.android.material.textfield.TextInputLayout
 import java.util.regex.Pattern
 
@@ -13,4 +16,16 @@ fun String.isDateValidate(): Boolean {
 
 fun TextInputLayout.showMessageError(msg: String) {
     this.error = msg
+}
+
+fun<T> MediatorLiveData<T>.addSourceNotNull(source: LiveData<T>?, observer: Observer<T>) {
+    source?.let {
+        this.addSource(it, observer)
+    }
+}
+
+fun<T> MediatorLiveData<T>.removeSourceNotNull(source: LiveData<T>?) {
+    source?.let {
+        this.removeSource(it)
+    }
 }

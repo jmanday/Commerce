@@ -99,18 +99,20 @@ class DetailEmployeeFragment : BaseFragment() {
 
         btnDone.setOnClickListener {
             binding.employee?.let {
-                viewModel.onButtonAddClicked(it).observe(this, Observer {
-                    it?.let { response ->
-                        if (it.extra.isNotEmpty()) {
-                            it.extra.forEach {errorField ->
-                                mapInputText[errorField]?.showMessageError(it.text)
+                val response = viewModel.onButtonAddClicked(it)
+                /*
+                when (response.typeResponse) {
+                    TypeResponse.TEXT -> { showMessage(response.text) }
+                    TypeResponse.EXTRA, TypeResponse.EXTRA_LIST -> {
+                        response.extraList?.observe(this, Observer {
+                            it.forEach {
+                                mapInputText[it]?.showMessageError(response.text)
                             }
-                        }
-                        else {
-                            showMessage(it.text)
-                        }
+                        })
                     }
-                })
+                }
+
+                 */
             }
         }
     }

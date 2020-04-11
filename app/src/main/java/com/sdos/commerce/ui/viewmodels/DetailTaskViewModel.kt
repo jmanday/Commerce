@@ -25,13 +25,13 @@ class DetailTaskViewModel(
     }
 
     init {
-        employeeRepository.getEmployees()?.observeForever(listEmployeeObserver)
+        //employeeRepository.getEmployees()?.observeForever(listEmployeeObserver)
         taskRepository.getAllTypeTasks()?.observeForever(typeTasksObserver)
     }
 
     override fun onCleared() {
         super.onCleared()
-        employeeRepository.getEmployees()?.removeObserver(listEmployeeObserver)
+        //employeeRepository.getEmployees()?.removeObserver(listEmployeeObserver)
         taskRepository.getAllTypeTasks()?.removeObserver(typeTasksObserver)
     }
 
@@ -58,7 +58,7 @@ class DetailTaskViewModel(
                 employeeRepository.updateEmployee(listEmployees.find { it.id == task.idEmployee })
             },
             {
-                baseView.showMessage("La tarea ha sido añadida correctamente")
+                baseView.showMessage("La tarea ha sido añadida correctamente", true)
             })
     }
 }

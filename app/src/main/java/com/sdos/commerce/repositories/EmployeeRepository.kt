@@ -2,6 +2,7 @@ package com.sdos.commerce.repositories
 
 import androidx.lifecycle.LiveData
 import com.manday.coredata.entities.EmployeeEntity
+import com.sdos.commerce.ResponseViewModelEntity
 
 interface EmployeeRepository {
 

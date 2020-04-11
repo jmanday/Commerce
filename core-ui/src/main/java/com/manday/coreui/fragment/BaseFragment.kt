@@ -30,9 +30,10 @@ abstract class BaseFragment: Fragment(), ViewModelListener {
         initialize()
     }
 
-    override fun showMessage(message: String) {
+    override fun showMessage(message: String, withNavigation: Boolean) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-        listener.onNavigationUp()
+        if (withNavigation)
+            listener.onNavigationUp()
     }
 
     protected fun onItemClicked(actionId: Int, bundle: Bundle) {

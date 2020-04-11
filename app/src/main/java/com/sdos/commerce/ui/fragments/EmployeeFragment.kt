@@ -9,13 +9,13 @@ import com.manday.coreui.fragment.BaseFragment
 import com.sdos.commerce.R
 import com.sdos.commerce.databinding.FragmentMainBinding
 import com.sdos.commerce.ui.adapters.EmployeeAdapter
-import com.sdos.commerce.ui.viewmodels.EmployeeFragmentViewModel
+import com.sdos.commerce.ui.viewmodels.EmployeeViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.java.KoinJavaComponent.inject
 
 class EmployeeFragment : BaseFragment() {
 
-    private val viewModel: EmployeeFragmentViewModel by inject(EmployeeFragmentViewModel::class.java)
+    private val viewModel: EmployeeViewModel by inject(EmployeeViewModel::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,15 +32,17 @@ class EmployeeFragment : BaseFragment() {
         }
         mainRecyclerView.showShimmer()
 
-        viewModel.getEmployees()?.observe(this, Observer {
-            it?.let {
+        viewModel.getEmployees().observe(this, Observer {response ->
+            response.extra?.let {
                 mainRecyclerView.adapter = EmployeeAdapter(it) {
                     onItemClicked(R.id.action_mainFragment_to_detailEmployeeFragment, Bundle().apply {
                         putSerializable(ARGUMENT_EXTRA_EMPLOYEE, it)
                     })
                 }
-                mainRecyclerView.hideShimmer()
             }
+
+            if (response.text.isNotEmpty())
+                showMessage(response.text, false)
         })
     }
 }

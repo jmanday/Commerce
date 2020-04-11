@@ -1,23 +1,17 @@
 package com.sdos.commerce
 
+
 class ResponseViewModelEntity<T> private constructor(){
 
     var text: String = String()
-    var extra: List<T> = listOf()
+    var extra: T? = null
 
     companion object {
 
-        fun<T> createResponseWithData(text: String, extra: List<T>): ResponseViewModelEntity<T> {
-            return ResponseViewModelEntity<T>().apply {
+        fun<T> createResponse(text: String = String(), extra: T? = null) =
+            ResponseViewModelEntity<T>().apply {
                 this.text = text
                 this.extra = extra
             }
-        }
-
-        fun<T> createResponseWithoutData(text: String): ResponseViewModelEntity<T> {
-            return ResponseViewModelEntity<T>().apply {
-                this.text = text
-            }
-        }
     }
 }

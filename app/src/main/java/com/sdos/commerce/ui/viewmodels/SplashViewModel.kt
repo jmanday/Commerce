@@ -5,7 +5,7 @@ import android.content.Context
 import com.manday.coredata.ExecutorViewModel
 import com.sdos.commerce.data.room.RoomController
 
-class SplashFragmentViewModel: ExecutorViewModel() {
+class SplashViewModel: ExecutorViewModel() {
 
     fun initialize(context: Context, dbInitialized: () -> Unit) {
         if (RoomController.getInstance() == null) {
