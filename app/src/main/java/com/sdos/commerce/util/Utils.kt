@@ -3,7 +3,7 @@ package com.sdos.commerce.util
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import java.util.*
 
 fun String.toBitmap(): Bitmap {
@@ -11,14 +11,19 @@ fun String.toBitmap(): Bitmap {
     return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
 }
 
-fun<T, U> transformWhenItChanges(source: LiveData<T>?, f: (T) -> U): LiveData<U> {
-    val mediatorLiveData = MediatorLiveData<U>()
+fun<T, U> transformWhenItChanges(source: LiveData<T>?, f: (T?) -> U): LiveData<U> {
+    val liveDataTransformed = MutableLiveData<U>()
 
-    source?.let {
-        it.observeForever {
-            mediatorLiveData.value = f(it)
+    source?.let { source ->
+        source.observeForever {
+            if (it == null) {
+                liveDataTransformed.value = f(null)
+            }
+            else {
+                liveDataTransformed.value = f(it)
+            }
         }
     }
 
-    return mediatorLiveData
+    return liveDataTransformed
 }
