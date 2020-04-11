@@ -10,7 +10,6 @@ internal class FruitViewHolder(itemView: View): BaseViewHolder<FruitEntity>(item
     override fun onBind(t: FruitEntity, f: (t: FruitEntity) -> Unit) {
         itemView.name.text = t.farmName
         itemView.category.text = t.category
-        itemView.item.text = t.item
         itemView.businness.text = t.business
     }
 }
