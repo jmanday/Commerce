@@ -37,6 +37,11 @@ dependencies {
 
     api 'com.squareup.retrofit2:retrofit:2.4.0'
     api 'com.squareup.retrofit2:converter-gson:2.4.0'
+    api "org.koin:koin-androidx-scope:$koin_version"
+    api "org.koin:koin-androidx-viewmodel:$koin_version"
+    api "org.koin:koin-androidx-fragment:$koin_version"
+    api "org.koin:koin-android-architecture:0.8.2"
+    api "org.koin:koin-androidx-ext:$koin_version"
 
     kapt "android.arch.persistence.room:compiler:1.1.1"
 
