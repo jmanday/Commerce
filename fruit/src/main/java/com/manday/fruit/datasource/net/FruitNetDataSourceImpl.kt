@@ -4,9 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.manday.coredata.controllers.retrofit.RetrofitController
-import com.manday.coredata.entities.FruitEntity
-import com.manday.coredata.entities.FruitModel
-import com.manday.coredata.entities.toFruit
+import com.manday.fruit.entities.FruitEntity
 import com.manday.fruit.datasource.net.endpoint.FruitAPI
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,7 +13,7 @@ import retrofit2.Response
 class FruitNetDataSourceImpl:
     FruitNetDataSource {
 
-    override fun getFruits(category: String, item: String): LiveData<List<FruitEntity>> {
+    override fun getFruits(category: String, item: String): LiveData<List<FruitEntity>>? {
         val data = MutableLiveData<List<FruitEntity>>()
         val service = RetrofitController.createRequest<FruitAPI>()
 
@@ -24,14 +22,14 @@ class FruitNetDataSourceImpl:
             "item" to item
         ))
 
-        call.enqueue(object : Callback<List<FruitModel>> {
-            override fun onFailure(call: Call<List<FruitModel>>, t: Throwable) {
+        call.enqueue(object : Callback<List<FruitEntity>> {
+            override fun onFailure(call: Call<List<FruitEntity>>, t: Throwable) {
                 Log.d("Retrofit Error", t.message)
             }
 
-            override fun onResponse(call: Call<List<FruitModel>>, response: Response<List<FruitModel>>) {
-                data.value = response.unwrapResponse {
-                    this.map { it.toFruit() }
+            override fun onResponse(call: Call<List<FruitEntity>>, response: Response<List<FruitEntity>>) {
+                if (response.errorBody() == null) {
+                    data.value = response.body()
                 }
             }
         })
@@ -39,6 +37,4 @@ class FruitNetDataSourceImpl:
         return data
     }
 
-    private inline fun <T, U> Response<T>.unwrapResponse(f: T.() -> List<U>) =
-        body()?.f()
 }
