@@ -2,6 +2,7 @@ package com.sdos.commerce.util
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import java.util.*
@@ -26,4 +27,12 @@ fun<T, U> transformWhenItChanges(source: LiveData<T>?, f: (T?) -> U): LiveData<U
     }
 
     return liveDataTransformed
+}
+
+class TimmerTask(val f: () -> Boolean, val g: (TimmerTask) -> Unit): TimerTask() {
+
+    override fun run() {
+        if (f.invoke())
+            g.invoke(this)
+    }
 }
