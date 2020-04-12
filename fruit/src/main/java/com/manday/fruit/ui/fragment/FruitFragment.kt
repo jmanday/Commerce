@@ -26,13 +26,18 @@ class FruitFragment : BaseFragment() {
     }
 
     override fun initialize() {
-        viewModel.getAllFruits().observe(this, Observer {
+        viewModel.getAllFruits().observe(this, Observer {response ->
             mainRecyclerView.visibility = View.VISIBLE
             determinateBar.visibility = View.GONE
-            it?.let {
+
+            response.extra?.let {
                 val adapter = FruitAdapter(it) {}
                 mainRecyclerView.adapter = adapter
             }
+
+            if (response.text.isNotEmpty())
+                showMessage(response.text, false)
+
         })
     }
 
