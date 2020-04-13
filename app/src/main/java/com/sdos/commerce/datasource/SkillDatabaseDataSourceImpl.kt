@@ -3,7 +3,6 @@ package com.manday.coredata.datasource
 import androidx.lifecycle.LiveData
 import com.manday.coredata.entities.SkillEntity
 import com.sdos.commerce.dao.SkillDao
-import com.sdos.commerce.data.room.RoomController
 
 class SkillDatabaseDataSourceImpl: SkillDatabaseDataSource {
 

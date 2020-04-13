@@ -6,6 +6,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.manday.coredata.converters.ListConverter
 import com.manday.coredata.entities.*
 import com.manday.coredata.generator.Generator
+import com.manday.employee.data.entities.EmployeeEntity
 import com.sdos.commerce.dao.*
 import java.util.concurrent.Executors
 

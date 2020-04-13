@@ -5,7 +5,6 @@ import com.manday.coredata.entities.TaskEntity
 import com.manday.coredata.entities.TypeTaskEntity
 import com.sdos.commerce.dao.TaskDao
 import com.sdos.commerce.dao.TypeTaskDao
-import com.sdos.commerce.data.room.RoomController
 
 class TaskDatabaseDataSourceImpl: TaskDatabaseDataSource {
 
