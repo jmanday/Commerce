@@ -1,0 +1,4 @@
+<resources>
+    <string name="text_state_free">Libre</string>
+    <string name="text_state_busy">Ocupado en la tarea %s</string>
+</resources>
