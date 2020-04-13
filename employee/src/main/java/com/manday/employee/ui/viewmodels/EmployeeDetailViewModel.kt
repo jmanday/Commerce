@@ -1,11 +1,9 @@
 package com.manday.employee.ui.viewmodels
 
 import com.manday.coredata.ExecutorViewModel
-import com.manday.coredata.entities.EmployeeEntity
 import com.sdos.commerce.ResponseViewModelEntity
 import com.sdos.commerce.repositories.EmployeeRepository
 import com.sdos.commerce.repositories.SkillRepository
-import com.sdos.commerce.listeners.ViewModelListener
 import com.sdos.commerce.util.isDateValidate
 
 class EmployeeDetailViewModel(

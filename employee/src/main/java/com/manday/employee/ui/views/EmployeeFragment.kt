@@ -6,12 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.manday.coreui.fragment.BaseFragment
+import com.manday.employee.R
 import com.manday.employee.ui.adapters.EmployeeAdapter
 import com.manday.employee.ui.viewmodels.EmployeeViewModel
-import com.sdos.commerce.R
-import com.sdos.commerce.databinding.FragmentMainBinding
-import com.sdos.commerce.ui.adapters.EmployeeAdapter
-import com.sdos.commerce.ui.viewmodels.EmployeeViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.java.KoinJavaComponent.inject
 
@@ -31,7 +28,7 @@ class EmployeeFragment : BaseFragment() {
     override fun initialize() {
         text_head.text = "Empleados"
         btnAdd.setOnClickListener {
-            onButtonAddClicked(R.id.action_mainFragment_to_detailEmployeeFragment)
+            //onButtonAddClicked(R.id.action_mainFragment_to_detailEmployeeFragment)
         }
         mainRecyclerView.showShimmer()
 
@@ -40,10 +37,11 @@ class EmployeeFragment : BaseFragment() {
                 mainRecyclerView.adapter =
                     EmployeeAdapter(it) {
                         onItemClicked(
+                            /*
                             R.id.action_mainFragment_to_detailEmployeeFragment,
                             Bundle().apply {
                                 putSerializable(ARGUMENT_EXTRA_EMPLOYEE, it)
-                            })
+                            } */)
                     }
             }
 
