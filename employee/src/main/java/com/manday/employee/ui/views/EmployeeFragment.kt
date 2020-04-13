@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.employee.R
+import com.manday.employee.databinding.FragmentEmployeeBinding
 import com.manday.employee.ui.adapters.EmployeeAdapter
 import com.manday.employee.ui.viewmodels.EmployeeViewModel
-import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_employee.*
 import org.koin.java.KoinJavaComponent.inject
 
 class EmployeeFragment : BaseFragment() {
@@ -22,16 +23,15 @@ class EmployeeFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return FragmentMainBinding.inflate(inflater).root
+        return FragmentEmployeeBinding.inflate(inflater).root
     }
 
     override fun initialize() {
+        mainRecyclerView.showShimmer()
         text_head.text = "Empleados"
         btnAdd.setOnClickListener {
             //onButtonAddClicked(R.id.action_mainFragment_to_detailEmployeeFragment)
         }
-        mainRecyclerView.showShimmer()
-
 
         viewModel.getEmployees().observe(this, Observer {response ->
             response.extra?.let {

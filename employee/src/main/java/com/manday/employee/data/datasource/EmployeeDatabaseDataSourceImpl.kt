@@ -1,10 +1,11 @@
 package com.manday.employee.data.datasource.database
 
 import androidx.lifecycle.LiveData
-import com.manday.employee.data.entities.EmployeeEntity
+import com.manday.coredata.entities.EmployeeEntity
 import com.sdos.commerce.dao.EmployeeDao
+import com.sdos.commerce.data.room.RoomController
 
-class EmployeeDatabaseDataSourceImpl:
+internal class EmployeeDatabaseDataSourceImpl:
     EmployeeDatabaseDataSource {
 
     private var employeeDao: EmployeeDao? = null

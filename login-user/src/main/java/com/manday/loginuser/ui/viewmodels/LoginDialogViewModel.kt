@@ -3,6 +3,7 @@ package com.manday.loginuser.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.manday.coredata.ExecutorViewModel
+import com.manday.coredata.entities.EmployeeEntity
 import com.manday.loginuser.repository.LoginRepository
 
 internal class LoginDialogViewModel(

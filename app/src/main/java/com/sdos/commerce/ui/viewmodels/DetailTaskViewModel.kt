@@ -2,15 +2,13 @@ package com.sdos.commerce.ui.viewmodels
 
 import androidx.lifecycle.Observer
 import com.manday.coredata.ExecutorViewModel
+import com.manday.coredata.entities.EmployeeEntity
 import com.manday.coredata.entities.TaskEntity
 import com.manday.coredata.entities.TypeTaskEntity
-import com.manday.employee.data.entities.EmployeeEntity
-import com.manday.employee.data.repositories.EmployeeRepository
 import com.sdos.commerce.repositories.TaskRepository
 import com.sdos.commerce.listeners.ViewModelListener
 
 class DetailTaskViewModel(
-    private val employeeRepository: EmployeeRepository,
     private val taskRepository: TaskRepository
 ): ExecutorViewModel() {
 
@@ -39,7 +37,7 @@ class DetailTaskViewModel(
         this.baseView = baseView
     }
 
-    fun getListEmployees() = employeeRepository.getEmployees()
+    //fun getListEmployees() = employeeRepository.getEmployees()
 
     fun getTypeTasks() = taskRepository.getAllTypeTasks()
 
@@ -55,7 +53,7 @@ class DetailTaskViewModel(
                 taskRepository.addTask(task)
             },
             {
-                employeeRepository.updateEmployee(listEmployees.find { it.id == task.idEmployee })
+                //employeeRepository.updateEmployee(listEmployees.find { it.id == task.idEmployee })
             },
             {
                 baseView.showMessage("La tarea ha sido añadida correctamente", true)

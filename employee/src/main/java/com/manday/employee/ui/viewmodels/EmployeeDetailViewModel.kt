@@ -1,14 +1,13 @@
 package com.manday.employee.ui.viewmodels
 
 import com.manday.coredata.ExecutorViewModel
-import com.sdos.commerce.ResponseViewModelEntity
-import com.sdos.commerce.repositories.EmployeeRepository
-import com.sdos.commerce.repositories.SkillRepository
-import com.sdos.commerce.util.isDateValidate
+import com.manday.coredata.ResponseViewModelEntity
+import com.manday.coredata.entities.EmployeeEntity
+import com.manday.employee.data.repositories.EmployeeRepository
+import com.manday.employee.isDateValidate
 
-class EmployeeDetailViewModel(
-    private val employeeRepository: EmployeeRepository,
-    private val skillRepository: SkillRepository
+internal class EmployeeDetailViewModel(
+    private val employeeRepository: EmployeeRepository
 ): ExecutorViewModel() {
 
     private val errorFieldList = mutableListOf<ErrorField>()
@@ -41,7 +40,7 @@ class EmployeeDetailViewModel(
         return responseViewModelEntity
     }
 
-    fun getListSkills() = skillRepository.getListSkill()
+    //fun getListSkills() = skillRepository.getListSkill()
 
     enum class ErrorField {
         ERROR_FIELD_NAME, ERROR_FIELD_SURNAME, ERROR_FIELD_EMAIL, ERROR_FIELD_PHONE, ERROR_FIELD_DATE, ERROR_FIELD_PASS

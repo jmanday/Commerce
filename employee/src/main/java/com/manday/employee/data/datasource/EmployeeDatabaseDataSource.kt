@@ -1,9 +1,9 @@
 package com.manday.employee.data.datasource.database
 
 import androidx.lifecycle.LiveData
-import com.manday.employee.data.entities.EmployeeEntity
+import com.manday.coredata.entities.EmployeeEntity
 
-interface EmployeeDatabaseDataSource {
+internal interface EmployeeDatabaseDataSource {
 
     fun getEmployees(): LiveData<List<EmployeeEntity>>?
 
