@@ -32,21 +32,25 @@ class EmployeeFragment : BaseFragment() {
         }
         mainRecyclerView.showShimmer()
 
+
         viewModel.getEmployees().observe(this, Observer {response ->
             response.extra?.let {
                 mainRecyclerView.adapter =
                     EmployeeAdapter(it) {
+                        /*
                         onItemClicked(
-                            /*
                             R.id.action_mainFragment_to_detailEmployeeFragment,
                             Bundle().apply {
                                 putSerializable(ARGUMENT_EXTRA_EMPLOYEE, it)
-                            } */)
+                            })
+
+                         */
                     }
             }
 
             if (response.text.isNotEmpty())
                 showMessage(response.text, false)
         })
+
     }
 }
