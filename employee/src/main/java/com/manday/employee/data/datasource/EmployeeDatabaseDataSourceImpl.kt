@@ -3,7 +3,6 @@ package com.manday.employee.data.datasource.database
 import androidx.lifecycle.LiveData
 import com.manday.employee.data.entities.EmployeeEntity
 import com.sdos.commerce.dao.EmployeeDao
-import com.sdos.commerce.data.room.RoomController
 
 class EmployeeDatabaseDataSourceImpl:
     EmployeeDatabaseDataSource {
