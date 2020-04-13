@@ -1,5 +1,4 @@
-package com.sdos.commerce.ui.fragments
-
+package com.manday.employee.ui.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,26 +11,26 @@ import androidx.lifecycle.Observer
 import com.google.android.material.textfield.TextInputLayout
 import com.manday.coredata.entities.EmployeeEntity
 import com.manday.coreui.fragment.BaseFragment
-import com.sdos.commerce.databinding.FragmentDetailEmployeeBinding
-import com.sdos.commerce.ui.viewmodels.DetailEmployeeViewModel
-import com.sdos.commerce.ui.views.DateDialogView
-import com.sdos.commerce.ui.views.DateDialogView.Companion.TAG_DATE_DIALOG
-import com.sdos.commerce.util.showMessageError
-import kotlinx.android.synthetic.main.fragment_detail_employee.*
+import com.manday.coreui.ui.DateDialogView
+import com.manday.coreui.ui.DateDialogView.Companion.TAG_DATE_DIALOG
+import com.manday.employee.databinding.FragmentEmployeeDetailBinding
+import com.manday.employee.ui.viewmodels.EmployeeDetailViewModel
+
+import kotlinx.android.synthetic.main.fragment_employee_detail.*
 import org.koin.java.KoinJavaComponent.inject
 
-class DetailEmployeeFragment : BaseFragment() {
+class EmployeeDetailFragment : BaseFragment() {
 
-    private val viewModel: DetailEmployeeViewModel by inject(DetailEmployeeViewModel::class.java)
-    private lateinit var binding: FragmentDetailEmployeeBinding
-    private lateinit var mapInputText: Map<DetailEmployeeViewModel.ErrorField, TextInputLayout>
+    private val viewModel: EmployeeDetailViewModel by inject(EmployeeDetailViewModel::class.java)
+    private lateinit var binding: FragmentEmployeeDetailBinding
+    private lateinit var mapInputText: Map<EmployeeDetailViewModel.ErrorField, TextInputLayout>
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentDetailEmployeeBinding.inflate(inflater)
+        binding = FragmentEmployeeDetailBinding.inflate(inflater)
             .apply {
                 employee = null
             }
@@ -42,6 +41,7 @@ class DetailEmployeeFragment : BaseFragment() {
     override fun initialize() {
         prepareListeners()
         populateMap()
+        /*
         viewModel.getListSkills()?.observe(this, Observer {
             context?.let {context ->
                 val adapter = ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, it.map { it.name })
@@ -50,6 +50,7 @@ class DetailEmployeeFragment : BaseFragment() {
                 spn_rol.setSelection(binding.employee?.skill ?: 0)
             }
         })
+         */
     }
 
     override fun retrieveArguments() {
@@ -62,12 +63,12 @@ class DetailEmployeeFragment : BaseFragment() {
 
     private fun populateMap() {
         mapInputText = mapOf(
-            DetailEmployeeViewModel.ErrorField.ERROR_FIELD_NAME to input_name,
-            DetailEmployeeViewModel.ErrorField.ERROR_FIELD_SURNAME to input_surname,
-            DetailEmployeeViewModel.ErrorField.ERROR_FIELD_EMAIL to input_email,
-            DetailEmployeeViewModel.ErrorField.ERROR_FIELD_PHONE to input_phone,
-            DetailEmployeeViewModel.ErrorField.ERROR_FIELD_DATE to input_date,
-            DetailEmployeeViewModel.ErrorField.ERROR_FIELD_PASS to input_pass
+            EmployeeDetailViewModel.ErrorField.ERROR_FIELD_NAME to input_name,
+            EmployeeDetailViewModel.ErrorField.ERROR_FIELD_SURNAME to input_surname,
+            EmployeeDetailViewModel.ErrorField.ERROR_FIELD_EMAIL to input_email,
+            EmployeeDetailViewModel.ErrorField.ERROR_FIELD_PHONE to input_phone,
+            EmployeeDetailViewModel.ErrorField.ERROR_FIELD_DATE to input_date,
+            EmployeeDetailViewModel.ErrorField.ERROR_FIELD_PASS to input_pass
         )
     }
 

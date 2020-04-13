@@ -1,10 +1,9 @@
-package com.sdos.commerce.repositories
+package com.manday.employee.data.repositories
 
 import androidx.lifecycle.LiveData
 import com.manday.coredata.entities.EmployeeEntity
-import com.sdos.commerce.ResponseViewModelEntity
 
-interface EmployeeRepository {
+internal interface EmployeeRepository {
 
     fun getEmployees(): LiveData<List<EmployeeEntity>>?
 

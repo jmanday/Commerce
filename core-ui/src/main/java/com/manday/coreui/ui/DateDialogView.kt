@@ -1,11 +1,11 @@
-package com.sdos.commerce.ui.views
+package com.manday.coreui.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.sdos.commerce.R
+import com.manday.coreui.R
 import kotlinx.android.synthetic.main.date_dialog_custom_view.*
 
 

@@ -12,16 +12,12 @@ val appModuleDependencies = module {
     // Single instances
     single<SkillDatabaseDataSource> { SkillDatabaseDataSourceImpl() }
     single<TaskDatabaseDataSource> { TaskDatabaseDataSourceImpl() }
-    single<EmployeeDatabaseDataSource> { EmployeeDatabaseDataSourceImpl() }
 
     single<SkillRepository> { SkillRepositoryImpl(get()) }
-    single<EmployeeRepository> { EmployeeRepositoryImpl(get()) }
     single<TaskRepository> { TaskRepositoryImpl(get()) }
 
     // ViewModel instances
     viewModel { SplashViewModel() }
-    viewModel { EmployeeViewModel(get()) }
-    viewModel { DetailEmployeeViewModel(get(), get()) }
-    viewModel { DetailTaskViewModel(get(), get()) }
+    viewModel { DetailTaskViewModel(get()) }
     viewModel { TaskViewModel(get()) }
 }

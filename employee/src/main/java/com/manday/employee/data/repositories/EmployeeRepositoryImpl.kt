@@ -1,10 +1,11 @@
-package com.sdos.commerce.repositories
+package com.manday.employee.data.repositories
 
 import androidx.lifecycle.LiveData
-import com.manday.coredata.datasource.EmployeeDatabaseDataSource
 import com.manday.coredata.entities.EmployeeEntity
+import com.manday.employee.data.datasource.database.EmployeeDatabaseDataSource
 
-class EmployeeRepositoryImpl(private val dataSource: EmployeeDatabaseDataSource): EmployeeRepository {
+internal class EmployeeRepositoryImpl(private val dataSource: EmployeeDatabaseDataSource):
+    EmployeeRepository {
 
     override fun getEmployees(): LiveData<List<EmployeeEntity>>? {
         return dataSource.getEmployees()

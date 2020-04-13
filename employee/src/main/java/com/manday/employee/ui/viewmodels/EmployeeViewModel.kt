@@ -1,15 +1,15 @@
-package com.sdos.commerce.ui.viewmodels
-
+package com.manday.employee.ui.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import com.manday.coredata.ExecutorViewModel
+import com.manday.coredata.ResponseViewModelEntity
 import com.manday.coredata.entities.EmployeeEntity
-import com.sdos.commerce.ResponseViewModelEntity
-import com.sdos.commerce.repositories.EmployeeRepository
-import com.sdos.commerce.util.transformWhenItChanges
+import com.manday.coredata.utils.transformWhenItChanges
+import com.manday.employee.data.repositories.EmployeeRepository
 
-class EmployeeViewModel(
-    val employeeRepository: EmployeeRepository) : ExecutorViewModel() {
+internal class EmployeeViewModel(
+    val employeeRepository: EmployeeRepository
+) : ExecutorViewModel() {
 
     private val listEmployees = MutableLiveData<List<EmployeeEntity>>()
 
@@ -21,5 +21,4 @@ class EmployeeViewModel(
             else
                 ResponseViewModelEntity.createResponse(extra = it)
         }
-
 }

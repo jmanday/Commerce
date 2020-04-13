@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -23,6 +22,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
 
 }
 
@@ -31,21 +33,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
-    implementation "com.google.code.gson:gson:2.8.6"
-
-    api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-    api "android.arch.persistence.room:runtime:1.1.1"
-    api 'com.squareup.retrofit2:retrofit:2.4.0'
-    api 'com.squareup.retrofit2:converter-gson:2.4.0'
-    api "org.koin:koin-androidx-scope:$koin_version"
-    api "org.koin:koin-androidx-viewmodel:$koin_version"
-    api "org.koin:koin-androidx-fragment:$koin_version"
-    api "org.koin:koin-android-architecture:0.8.2"
-    api "org.koin:koin-androidx-ext:$koin_version"
-
-    kapt "android.arch.persistence.room:compiler:1.1.1"
-
     testImplementation 'junit:junit:4.12'
+
+    implementation project(":core-data")
+    implementation project(":core-ui")
+    
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity(), FragmentListener {
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.action_employee -> {
-                    if (navController.currentDestination?.id != R.id.mainFragment)
-                        navController.navigate(R.id.mainFragment)
+                    if (navController.currentDestination?.id != R.id.employeeFragment)
+                        navController.navigate(R.id.employeeFragment)
                     true
                 }
                 R.id.action_task -> {
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity(), FragmentListener {
     }
 
     override fun onDatabasePopulated() {
-        navController.navigate(R.id.mainFragment, null,
+        navController.navigate(R.id.employeeFragment, null,
             NavOptions.Builder()
                 .setPopUpTo(R.id.splashFragment, true)
                 .build())
