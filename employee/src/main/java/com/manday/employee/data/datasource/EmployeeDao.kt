@@ -2,6 +2,7 @@ package com.sdos.commerce.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.manday.employee.data.entities.EmployeeEntity
 
 @Dao
 interface EmployeeDao {

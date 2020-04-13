@@ -4,6 +4,8 @@ import androidx.lifecycle.Observer
 import com.manday.coredata.ExecutorViewModel
 import com.manday.coredata.entities.TaskEntity
 import com.manday.coredata.entities.TypeTaskEntity
+import com.manday.employee.data.entities.EmployeeEntity
+import com.manday.employee.data.repositories.EmployeeRepository
 import com.sdos.commerce.repositories.TaskRepository
 import com.sdos.commerce.listeners.ViewModelListener
 
