@@ -33,8 +33,6 @@
     <string name="text_header_detail_task">Datos de la tarea</string>
     <string name="text_button_cancel">Cancelar</string>
     <string name="text_button_done">Aceptar</string>
-    <string name="text_state_free">Libre</string>
-    <string name="text_state_busy">Ocupado en la tarea %s</string>
     <string name="text_filter">Filtar por: </string>
 
     <string-array name="filter_by">
