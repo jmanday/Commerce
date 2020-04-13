@@ -1,7 +1,6 @@
 package com.manday.coredata.generator
 
 import com.manday.coredata.entities.*
-import com.manday.employee.data.entities.EmployeeEntity
 
 object Generator {
 
