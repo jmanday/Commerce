@@ -1,4 +1,4 @@
-package com.manday.coredata.entities
+package com.manday.management.data.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
