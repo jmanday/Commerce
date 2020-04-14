@@ -18,4 +18,12 @@ val managementModuleDependencies = module {
 
     // ViewModel instances
     viewModel { LoginDialogViewModel(get()) }
+
+    // Single instances
+    single<EmployeeDatabaseDataSource> { EmployeeDatabaseDataSourceImpl() }
+
+    single<EmployeeRepository> { EmployeeRepositoryImpl(get()) }
+
+    // ViewModel instances
+    viewModel { EmployeeViewModel(get()) }
 }
