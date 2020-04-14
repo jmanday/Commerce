@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="text_wrong_login_dialog">Usuario o password incorrectos</string>
-    <string name="text_button_login_dialog">Login</string>
-    <string name="text_header_login_dialog">Bienvenido</string>
-</resources>
