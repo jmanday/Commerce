@@ -6,6 +6,7 @@ import com.manday.fruit.di.fruitModuleDependencies
 import com.manday.loginuser.di.loginUserModuleDependencies
 import com.manday.loginuser.injector.LoginUserViewInjector
 import com.manday.loginuser.injector.LoginUserViewInjectorImp
+import com.manday.management.di.managementModuleDependencies
 import com.sdos.commerce.di.ModuleInjector
 import com.sdos.commerce.di.appModuleDependencies
 import org.koin.android.ext.koin.androidContext
@@ -24,7 +25,8 @@ class CommerceApp: Application(), ModuleInjector {
                 appModuleDependencies,
                 loginUserModuleDependencies,
                 fruitModuleDependencies,
-                employeeModuleDependencies
+                employeeModuleDependencies,
+                managementModuleDependencies
             )
         }
     }
