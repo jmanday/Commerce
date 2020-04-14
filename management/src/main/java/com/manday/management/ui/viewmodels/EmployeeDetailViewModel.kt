@@ -2,7 +2,9 @@ package com.manday.management.ui.viewmodels
 
 import com.manday.coredata.ExecutorViewModel
 import com.manday.coredata.ResponseViewModelEntity
-import com.manday.employee.data.repositories.EmployeeRepository
+import com.manday.management.data.entities.EmployeeEntity
+import com.manday.management.isDateValidate
+import com.manday.management.repository.EmployeeRepository
 
 internal class EmployeeDetailViewModel(
     private val employeeRepository: EmployeeRepository

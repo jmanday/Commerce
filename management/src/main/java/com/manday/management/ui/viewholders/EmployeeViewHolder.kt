@@ -3,7 +3,8 @@ package com.manday.employee.ui.viewholders
 import android.view.View
 import com.bumptech.glide.Glide
 import com.manday.coreui.viewholder.BaseViewHolder
-import com.manday.employee.R
+import com.manday.management.R
+import com.manday.management.data.entities.EmployeeEntity
 import kotlinx.android.synthetic.main.list_item_view.view.*
 
 internal class EmployeeViewHolder(itemView: View): BaseViewHolder<EmployeeEntity>(itemView) {

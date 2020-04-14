@@ -3,7 +3,7 @@
     <data>
         <variable
             name="employee"
-            type="com.manday.coredata.entities.EmployeeEntity" />
+            type="com.manday.management.data.entities.EmployeeEntity" />
     </data>
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"

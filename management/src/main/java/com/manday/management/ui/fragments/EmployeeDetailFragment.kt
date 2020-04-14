@@ -10,8 +10,9 @@ import com.google.android.material.textfield.TextInputLayout
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.coreui.ui.DateDialogView
 import com.manday.coreui.ui.DateDialogView.Companion.TAG_DATE_DIALOG
-import com.manday.employee.databinding.FragmentEmployeeDetailBinding
-import com.manday.employee.ui.viewmodels.EmployeeDetailViewModel
+import com.manday.management.data.entities.EmployeeEntity
+import com.manday.management.databinding.FragmentEmployeeDetailBinding
+import com.manday.management.ui.viewmodels.EmployeeDetailViewModel
 
 import kotlinx.android.synthetic.main.fragment_employee_detail.*
 import org.koin.java.KoinJavaComponent.inject
