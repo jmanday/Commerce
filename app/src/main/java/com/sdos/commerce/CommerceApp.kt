@@ -1,7 +1,6 @@
 package com.sdos.commerce
 
 import android.app.Application
-import com.manday.employee.di.employeeModuleDependencies
 import com.manday.fruit.di.fruitModuleDependencies
 import com.manday.loginuser.injector.LoginUserViewInjector
 import com.manday.loginuser.injector.LoginUserViewInjectorImp
@@ -23,7 +22,6 @@ class CommerceApp: Application(), ModuleInjector {
             modules(
                 appModuleDependencies,
                 fruitModuleDependencies,
-                employeeModuleDependencies,
                 managementModuleDependencies
             )
         }
