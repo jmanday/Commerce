@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -42,8 +41,6 @@ dependencies {
     api "org.koin:koin-androidx-fragment:$koin_version"
     api "org.koin:koin-android-architecture:0.8.2"
     api "org.koin:koin-androidx-ext:$koin_version"
-
-    kapt "android.arch.persistence.room:compiler:1.1.1"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
