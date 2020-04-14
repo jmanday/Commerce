@@ -3,6 +3,7 @@ package com.manday.management.data.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.manday.management.domain.Employee
 import java.io.Serializable
 
 @Entity(tableName = "employees")
@@ -47,3 +48,6 @@ data class EmployeeEntity(
     @ColumnInfo(name = "birthdate")
     var birthdate: String = String()
 ): Serializable
+
+fun EmployeeEntity.toEmployee() =
+    Employee(this.name, this.surname, this.email, this.typeEmployee)

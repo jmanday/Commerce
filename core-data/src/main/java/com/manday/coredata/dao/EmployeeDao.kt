@@ -2,7 +2,6 @@ package com.sdos.commerce.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.manday.coredata.entities.EmployeeEntity
 
 @Dao
 interface EmployeeDao {
@@ -17,6 +16,6 @@ interface EmployeeDao {
     fun getAllEmployees(): LiveData<List<EmployeeEntity>>
 
     @Query("SELECT * FROM employees WHERE name = :mName AND pass = :mPass")
-    fun getEmployee(mName: String, mPass: String): EmployeeEntity
+    fun getEmployee(mName: String, mPass: String): LiveData<EmployeeEntity>
 
 }

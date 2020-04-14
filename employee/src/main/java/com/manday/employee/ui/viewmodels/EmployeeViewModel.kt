@@ -3,7 +3,6 @@ package com.manday.employee.ui.viewmodels
 import androidx.lifecycle.MutableLiveData
 import com.manday.coredata.ExecutorViewModel
 import com.manday.coredata.ResponseViewModelEntity
-import com.manday.coredata.entities.EmployeeEntity
 import com.manday.coredata.utils.transformWhenItChanges
 import com.manday.employee.data.repositories.EmployeeRepository
 

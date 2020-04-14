@@ -1,7 +1,6 @@
 package com.manday.employee.data.repositories
 
 import androidx.lifecycle.LiveData
-import com.manday.coredata.entities.EmployeeEntity
 import com.manday.employee.data.datasource.database.EmployeeDatabaseDataSource
 
 internal class EmployeeRepositoryImpl(private val dataSource: EmployeeDatabaseDataSource):

@@ -1,8 +1,9 @@
 package com.manday.loginuser.repository
 
-import com.manday.coredata.entities.EmployeeEntity
+import androidx.lifecycle.LiveData
+import com.manday.management.domain.Employee
 
 internal interface LoginRepository {
 
-    fun login(user: String, pass: String): EmployeeEntity?
+    fun login(user: String, pass: String): LiveData<Employee>
 }

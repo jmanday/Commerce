@@ -1,7 +1,6 @@
 package com.manday.employee.data.repositories
 
 import androidx.lifecycle.LiveData
-import com.manday.coredata.entities.EmployeeEntity
 
 internal interface EmployeeRepository {
 

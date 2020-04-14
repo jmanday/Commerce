@@ -2,7 +2,6 @@ package com.manday.employee.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.manday.coredata.entities.EmployeeEntity
 import com.manday.coreui.adapter.BaseAdapter
 import com.manday.employee.R
 import com.manday.employee.ui.viewholders.EmployeeViewHolder
