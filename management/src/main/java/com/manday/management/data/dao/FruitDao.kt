@@ -5,14 +5,14 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.manday.coredata.entities.SkillEntity
+import com.manday.management.data.entities.FruitEntity
 
 @Dao
-interface SkillDao {
+interface FruitDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(skills: List<SkillEntity>)
+    fun insert(fruits: List<FruitEntity>)
 
-    @Query("SELECT * FROM skills")
-    fun getAllSkills(): LiveData<List<SkillEntity>>
+    @Query("SELECT * FROM fruits")
+    fun getAllFruitss(): LiveData<List<FruitEntity>>
 }

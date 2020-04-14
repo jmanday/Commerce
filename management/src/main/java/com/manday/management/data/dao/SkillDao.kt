@@ -5,14 +5,14 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.manday.coredata.entities.TypeTaskEntity
+import com.manday.management.data.entities.SkillEntity
 
 @Dao
-interface TypeTaskDao{
+interface SkillDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(typeTasks: List<TypeTaskEntity>)
+    fun insert(skills: List<SkillEntity>)
 
-    @Query("SELECT * FROM type_tasks ")
-    fun getAllTypeTasks(): LiveData<List<TypeTaskEntity>>
+    @Query("SELECT * FROM skills")
+    fun getAllSkills(): LiveData<List<SkillEntity>>
 }

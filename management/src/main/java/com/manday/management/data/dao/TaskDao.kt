@@ -2,7 +2,7 @@ package com.sdos.commerce.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.manday.coredata.entities.TaskEntity
+import com.manday.management.data.entities.TaskEntity
 
 @Dao
 interface TaskDao {
