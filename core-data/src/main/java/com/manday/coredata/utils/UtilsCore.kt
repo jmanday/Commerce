@@ -2,6 +2,7 @@ package com.manday.coredata.utils
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 
 fun<T, U> transformWhenItChanges(source: LiveData<T>?, f: (T?) -> U): LiveData<U> {
     val liveDataTransformed = MutableLiveData<U>()
@@ -28,4 +29,15 @@ fun<T, U> transformMap(source: List<T>, f: (T) -> U): List<U> {
     }
 
     return transform
+}
+
+fun<T, U> transformMapNotNull(source: LiveData<T>?, f: (T) -> U): LiveData<U> {
+    val liveDataItem = MutableLiveData<U>()
+    source?.let {
+        Transformations.map(source) {
+            liveDataItem.value = f(it)
+        }
+    }
+
+    return liveDataItem
 }
