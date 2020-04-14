@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.manday.coredata.converters.ListConverter
-import com.manday.coredata.entities.*
 import com.manday.coredata.generator.Generator
+import com.manday.management.data.entities.*
 import com.sdos.commerce.dao.*
 import java.util.concurrent.Executors
 
