@@ -31,13 +31,23 @@ fun<T, U> transformMap(source: List<T>, f: (T) -> U): List<U> {
     return transform
 }
 
-fun<T, U> transformMapNotNull(source: LiveData<T>?, f: (T) -> U): LiveData<U> {
-    val liveDataItem = MutableLiveData<U>()
+/*
+ * Function that observer the source and take three options:
+ *  - if "source" is null the response will be NULL
+ *  - if "source" is not null and it observers its change, if the value observered is null then return a livedata with value null
+ *  - if "source" is not null and it observers its change, the value observered is not null then return a livedata with value
+ */
+fun<T, U> transformMapResponse(source: LiveData<T>?, f: (T) -> U): LiveData<U?>? {
     source?.let {
-        Transformations.map(source) {
-            liveDataItem.value = f(it)
+        val liveDataItem = MutableLiveData<U?>()
+        it.observeForever { newValue ->
+            newValue?.let {
+                liveDataItem.value = f(newValue)
+            }
+            liveDataItem.value = null
         }
-    }
 
-    return liveDataItem
+        return liveDataItem
+    }
+    return null
 }
