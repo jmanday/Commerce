@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import com.manday.coredata.TypeError
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.fruit.databinding.FragmentFruitBinding
 import com.manday.fruit.ui.adapter.FruitAdapter
@@ -26,22 +27,23 @@ class FruitFragment : BaseFragment() {
     }
 
     override fun initialize() {
-        /*
         viewModel.getAllFruits().observe(this, Observer {response ->
             mainRecyclerView.visibility = View.VISIBLE
             determinateBar.visibility = View.GONE
 
-            response.extra?.let {
-                val adapter = FruitAdapter(it) {}
-                mainRecyclerView.adapter = adapter
+            when (response.typeError) {
+                TypeError.SUCCESS -> {
+                    response.resp?.let {
+                        val adapter = FruitAdapter(it) {}
+                        mainRecyclerView.adapter = adapter
+                    }
+                }
+                TypeError.DATASOURCE, TypeError.NOT_FOUND -> {
+                    if (response.text.isNotEmpty())
+                        showMessage(response.text, false)
+                }
             }
-
-            if (response.text.isNotEmpty())
-                showMessage(response.text, false)
-
         })
-
-         */
     }
 
 }
