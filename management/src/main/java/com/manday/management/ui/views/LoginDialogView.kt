@@ -9,8 +9,8 @@ import androidx.lifecycle.Observer
 import com.manday.coredata.TypeError
 import com.manday.loginuser.BaseLoginDialogView
 import com.manday.loginuser.viewmodels.LoginDialogViewModel
+import com.manday.management.BuildConfig
 import com.manday.management.R
-import com.manday.management.domain.Employee
 import kotlinx.android.synthetic.main.login_custom_view.*
 import org.koin.java.KoinJavaComponent.inject
 
@@ -35,17 +35,21 @@ internal class LoginDialogView: BaseLoginDialogView() {
 
     private fun initializeListeners() {
         btnDone.setOnClickListener {
-            val response = loginDialogViewModel.loginUser(edUsername.text.toString(), edPass.text.toString())
-            response.observe(this.viewLifecycleOwner, Observer {
-                when (it.typeError) {
-                    TypeError.SUCCESS -> {
-                        this.dismiss()
+            if (BuildConfig.DEBUG)
+                this.dismiss()
+            else {
+                val response = loginDialogViewModel.loginUser(edUsername.text.toString(), edPass.text.toString())
+                response.observe(this.viewLifecycleOwner, Observer {
+                    when (it.typeError) {
+                        TypeError.SUCCESS -> {
+                            this.dismiss()
+                        }
+                        TypeError.DATASOURCE, TypeError.NOT_FOUND -> {
+                            message.visibility = VISIBLE
+                        }
                     }
-                    TypeError.DATASOURCE, TypeError.NOT_FOUND -> {
-                        message.visibility = VISIBLE
-                    }
-                }
-            })
+                })
+            }
         }
     }
 
