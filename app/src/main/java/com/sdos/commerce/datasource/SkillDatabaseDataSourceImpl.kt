@@ -1,16 +1,17 @@
 package com.manday.coredata.datasource
 
 import androidx.lifecycle.LiveData
+import com.manday.management.data.controllers.RoomController
+import com.manday.management.data.dao.SkillDao
 import com.manday.management.data.entities.SkillEntity
-import com.sdos.commerce.dao.SkillDao
-import com.sdos.commerce.data.room.RoomController
+
 
 class SkillDatabaseDataSourceImpl: SkillDatabaseDataSource {
 
     private var skillDao: SkillDao? = null
 
     init {
-        skillDao = RoomController.getSkillDao()
+        skillDao = RoomController.getInstance()?.skillDao()
     }
 
     override fun getListSkill(): LiveData<List<SkillEntity>>? {

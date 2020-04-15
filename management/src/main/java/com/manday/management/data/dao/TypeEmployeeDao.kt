@@ -1,4 +1,4 @@
-package com.sdos.commerce.dao
+package com.manday.management.data.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

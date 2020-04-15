@@ -4,7 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import com.manday.coredata.ExecutorViewModel
 import com.manday.coredata.ResponseViewModelEntity
 import com.manday.coredata.utils.transformWhenItChanges
-import com.manday.employee.data.repositories.EmployeeRepository
+import com.manday.management.data.entities.EmployeeEntity
+import com.manday.management.repository.EmployeeRepository
 
 internal class EmployeeViewModel(
     val employeeRepository: EmployeeRepository

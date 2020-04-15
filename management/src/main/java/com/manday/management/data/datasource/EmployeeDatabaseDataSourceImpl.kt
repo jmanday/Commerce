@@ -1,8 +1,9 @@
 package com.manday.management.data.datasource
 
 import androidx.lifecycle.LiveData
-import com.sdos.commerce.dao.EmployeeDao
-import com.sdos.commerce.data.room.RoomController
+import com.manday.management.data.controllers.RoomController
+import com.manday.management.data.dao.EmployeeDao
+import com.manday.management.data.entities.EmployeeEntity
 
 internal class EmployeeDatabaseDataSourceImpl:
     EmployeeDatabaseDataSource {
@@ -10,7 +11,7 @@ internal class EmployeeDatabaseDataSourceImpl:
     private var employeeDao: EmployeeDao? = null
 
     init {
-        employeeDao = RoomController.getEmployeeDao()
+        employeeDao = RoomController.getInstance()?.employeeDao()
     }
 
     override fun addEmployee(employee: EmployeeEntity) {

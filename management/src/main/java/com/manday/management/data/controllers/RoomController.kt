@@ -1,15 +1,15 @@
-package com.sdos.commerce.data.room
+package com.manday.management.data.controllers
 
 import android.content.Context
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.manday.coredata.converters.ListConverter
-import com.manday.coredata.generator.Generator
+import com.manday.management.data.converters.ListConverter
+import com.manday.management.data.dao.*
 import com.manday.management.data.entities.*
-import com.sdos.commerce.dao.*
+import com.manday.management.data.generator.Generator
 import java.util.concurrent.Executors
 
-@Database(entities = arrayOf(EmployeeEntity::class, TaskEntity::class, SkillEntity::class, TypeEmployeeEntity::class, TypeTaskEntity::class, FruitEntity::class), version = 1)
+@Database(entities = arrayOf(EmployeeEntity::class, TaskEntity::class, SkillEntity::class, TypeEmployeeEntity::class, TypeTaskEntity::class), version = 1)
 @TypeConverters(ListConverter::class)
 abstract class RoomController: RoomDatabase() {
 
@@ -22,8 +22,6 @@ abstract class RoomController: RoomDatabase() {
     abstract fun typeEmployeeDao(): TypeEmployeeDao
 
     abstract fun typeTaskDao(): TypeTaskDao
-
-    abstract fun fruitDao(): FruitDao
 
     companion object {
         private const val DATABASE_NAME = "commerce_database_11"
@@ -64,12 +62,6 @@ abstract class RoomController: RoomDatabase() {
         }
 
         fun getInstance() = instance
-
-        fun getEmployeeDao()= instance?.employeeDao()
-
-        fun getTaskDao() = instance?.taskDao()
-
-        fun getSkillDao() = instance?.skillDao()
 
         fun destroyDataBase(){
             instance = null

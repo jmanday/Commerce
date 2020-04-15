@@ -1,4 +1,4 @@
-package com.manday.coredata.generator
+package com.manday.management.data.generator
 
 import com.manday.management.data.entities.*
 

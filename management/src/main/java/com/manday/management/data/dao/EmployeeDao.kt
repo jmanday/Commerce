@@ -1,4 +1,4 @@
-package com.sdos.commerce.dao
+package com.manday.management.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

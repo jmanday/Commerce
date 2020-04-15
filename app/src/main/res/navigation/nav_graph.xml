@@ -20,8 +20,9 @@
     </fragment>
     <fragment
         android:id="@+id/employeeFragment"
-        android:name="com.manday.employee.ui.views.EmployeeFragment"
-        android:label="main_fragment">
+        android:name="com.manday.management.ui.fragments.EmployeeFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/fragment_employee">
         <action
             android:id="@+id/action_mainFragment_to_detailEmployeeFragment"
             app:destination="@id/detailEmployeeFragment"
@@ -50,12 +51,12 @@
     </fragment>
     <fragment
         android:id="@+id/detailEmployeeFragment"
-        android:name="com.manday.employee.ui.views.EmployeeDetailFragment"
+        android:name="com.manday.management.ui.fragments.EmployeeDetailFragment"
         android:label="fragment_detail_employee"
         tools:layout="@layout/fragment_employee_detail" >
         <argument
             android:name="employee"
-            app:argType="com.manday.coredata.entities.EmployeeEntity"
+            app:argType="com.manday.management.data.entities.EmployeeEntity"
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>
@@ -66,7 +67,7 @@
         tools:layout="@layout/fragment_detail_task">
         <argument
             android:name="task"
-            app:argType="com.manday.coredata.entities.TaskEntity"
+            app:argType="com.manday.management.data.entities.TaskEntity"
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>

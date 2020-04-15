@@ -1,16 +1,17 @@
 package com.manday.loginuser.datasource
 
 import androidx.lifecycle.LiveData
+import com.manday.management.data.controllers.RoomController
+import com.manday.management.data.dao.EmployeeDao
 import com.manday.management.data.entities.EmployeeEntity
-import com.sdos.commerce.dao.EmployeeDao
-import com.sdos.commerce.data.room.RoomController
+
 
 internal class LoginDatabaseDataSourceImpl: LoginDatabaseDataSource {
 
     private var employeeDao: EmployeeDao? = null
 
     init {
-        employeeDao = RoomController.getEmployeeDao()
+        employeeDao = RoomController.getInstance()?.employeeDao()
     }
 
     override fun login(param1: String, param2: String): LiveData<EmployeeEntity>? {

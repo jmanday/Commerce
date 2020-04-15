@@ -1,4 +1,4 @@
-package com.manday.coredata.converters
+package com.manday.management.data.converters
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
