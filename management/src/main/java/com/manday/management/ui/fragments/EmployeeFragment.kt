@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import com.manday.coredata.TypeError
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.employee.ui.adapters.EmployeeAdapter
+import com.manday.management.R
 import com.manday.management.databinding.FragmentEmployeeBinding
 import com.manday.management.ui.viewmodels.EmployeeViewModel
 import kotlinx.android.synthetic.main.fragment_employee.*
@@ -26,33 +28,31 @@ class EmployeeFragment : BaseFragment() {
     }
 
     override fun initialize() {
-        mainRecyclerView.showShimmer()
-        text_head.text = "Empleados"
-        btnAdd.setOnClickListener {
-            //onButtonAddClicked(R.id.action_mainFragment_to_detailEmployeeFragment)
-        }
+        //onButtonAddClicked(R.id.action_mainFragment_to_detailEmployeeFragment)
+        val response = viewModel.getEmployees()
+        response.observe(this, Observer {
+            when (it.typeError) {
+                TypeError.SUCCESS -> {
+                    it.resp?.let {
+                        mainRecyclerView.adapter = EmployeeAdapter(it) {
+                            onItemClicked(
+                                //R.id.action_mainFragment_to_detailEmployeeFragment,
+                                R.id.bottom_to_top,
+                                Bundle().apply {
+                                    putSerializable(ARGUMENT_EXTRA_EMPLOYEE, it)
+                                })
 
-        /*
-        viewModel.getEmployees().observe(this, Observer {response ->
-            response.extra.let {
-                mainRecyclerView.adapter =
-                    EmployeeAdapter(it) {
-                        /*
-                        onItemClicked(
-                            R.id.action_mainFragment_to_detailEmployeeFragment,
-                            Bundle().apply {
-                                putSerializable(ARGUMENT_EXTRA_EMPLOYEE, it)
-                            })
-
-                         */
+                        }
                     }
+
+                }
+                TypeError.NOT_FOUND, TypeError.DATASOURCE -> {
+                    if (it.text.isNotEmpty())
+                        showMessage(it.text, false)
+                }
             }
 
-            if (response.text.isNotEmpty())
-                showMessage(response.text, false)
         })
-
-         */
 
     }
 }

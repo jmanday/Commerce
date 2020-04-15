@@ -11,17 +11,7 @@ internal class EmployeeViewModel(
     val employeeRepository: EmployeeRepository
 ) : ExecutorViewModel() {
 
-    private val listEmployees = MutableLiveData<List<EmployeeEntity>>()
-
-    /*
     fun getEmployees() =
-        transformWhenItChanges(employeeRepository.getEmployees()) {
-            listEmployees.value = it
-            if (it == null)
-                HandlerResponseViewModel.createResponse("Se ha producido un error")
-            else
-                HandlerResponseViewModel.createResponse(extra = it)
-        }
+        HandlerResponseViewModel.createResponse(employeeRepository.getEmployees())
 
-     */
 }
