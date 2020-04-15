@@ -6,9 +6,11 @@ import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import com.manday.coredata.TypeError
 import com.manday.loginuser.BaseLoginDialogView
 import com.manday.loginuser.viewmodels.LoginDialogViewModel
 import com.manday.management.R
+import com.manday.management.domain.Employee
 import kotlinx.android.synthetic.main.login_custom_view.*
 import org.koin.java.KoinJavaComponent.inject
 
@@ -33,11 +35,15 @@ internal class LoginDialogView: BaseLoginDialogView() {
 
     private fun initializeListeners() {
         btnDone.setOnClickListener {
-            loginDialogViewModel.loginUser(edUsername.text.toString(), edPass.text.toString()).observe(viewLifecycleOwner, Observer {
-                if (it == null) {
-                    message.visibility = VISIBLE
-                } else {
-                    this.dismiss()
+            val response = loginDialogViewModel.loginUser(edUsername.text.toString(), edPass.text.toString())
+            response.observe(this.viewLifecycleOwner, Observer {
+                when (it.typeError) {
+                    TypeError.SUCCESS -> {
+                        this.dismiss()
+                    }
+                    TypeError.DATASOURCE, TypeError.NOT_FOUND -> {
+                        message.visibility = VISIBLE
+                    }
                 }
             })
         }
