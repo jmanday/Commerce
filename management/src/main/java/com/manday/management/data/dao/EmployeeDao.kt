@@ -17,6 +17,6 @@ interface EmployeeDao {
     fun getAllEmployees(): LiveData<List<EmployeeEntity>>
 
     @Query("SELECT * FROM employees WHERE name = :mName AND pass = :mPass")
-    fun getEmployee(mName: String, mPass: String): LiveData<EmployeeEntity>
+    fun getEmployee(mName: String, mPass: String): LiveData<EmployeeEntity?>
 
 }
