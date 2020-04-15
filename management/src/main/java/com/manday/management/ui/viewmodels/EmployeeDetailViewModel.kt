@@ -1,7 +1,7 @@
 package com.manday.management.ui.viewmodels
 
 import com.manday.coredata.ExecutorViewModel
-import com.manday.coredata.ResponseViewModelEntity
+import com.manday.coredata.HandlerResponseViewModel
 import com.manday.management.data.entities.EmployeeEntity
 import com.manday.management.isDateValidate
 import com.manday.management.repository.EmployeeRepository
@@ -11,9 +11,9 @@ internal class EmployeeDetailViewModel(
 ): ExecutorViewModel() {
 
     private val errorFieldList = mutableListOf<ErrorField>()
-    private lateinit var responseViewModelEntity: ResponseViewModelEntity<List<ErrorField>>
+    private lateinit var responseViewModelEntity: HandlerResponseViewModel<List<ErrorField>>
 
-    fun onButtonAddClicked(employee: EmployeeEntity): ResponseViewModelEntity<List<ErrorField>> {
+    fun onButtonAddClicked(employee: EmployeeEntity): HandlerResponseViewModel<List<ErrorField>> {
         employee.let {
             if (it.name.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_NAME)
             if (it.surname.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_SURNAME)
@@ -25,17 +25,20 @@ internal class EmployeeDetailViewModel(
             )
         }
 
+        /*
         if (errorFieldList.isEmpty()) {
             doFirstInBackground({
                 employeeRepository.addEmployee(employee)
             }, {
-                responseViewModelEntity = ResponseViewModelEntity.createResponse("Empleado añadido correctamente")
+                responseViewModelEntity = HandlerResponseViewModel.createResponse("Empleado añadido correctamente")
             })
         }
         else {
             responseViewModelEntity =
-                ResponseViewModelEntity.createResponse("Campo incorrecto", errorFieldList)
+                HandlerResponseViewModel.createResponse("Campo incorrecto", errorFieldList)
         }
+
+         */
 
         return responseViewModelEntity
     }
