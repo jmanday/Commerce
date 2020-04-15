@@ -45,9 +45,8 @@ dependencies {
 
     implementation project(':core-data')
     implementation project(':core-ui')
-    implementation project(':login-user')
     implementation project(':fruit')
-    implementation project(':employee')
+    implementation project(':management')
 
 
     implementation 'com.facebook.shimmer:shimmer:0.4.0'

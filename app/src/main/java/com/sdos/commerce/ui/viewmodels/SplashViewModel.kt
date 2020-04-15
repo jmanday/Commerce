@@ -1,9 +1,8 @@
 package com.sdos.commerce.ui.viewmodels
 
-
 import android.content.Context
 import com.manday.coredata.ExecutorViewModel
-import com.sdos.commerce.data.room.RoomController
+import com.manday.management.data.controllers.RoomController
 
 class SplashViewModel: ExecutorViewModel() {
 

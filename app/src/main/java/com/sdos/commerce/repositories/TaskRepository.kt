@@ -1,8 +1,8 @@
 package com.sdos.commerce.repositories
 
 import androidx.lifecycle.LiveData
-import com.manday.coredata.entities.TaskEntity
-import com.manday.coredata.entities.TypeTaskEntity
+import com.manday.management.data.entities.TaskEntity
+import com.manday.management.data.entities.TypeTaskEntity
 
 interface TaskRepository {
 

@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
-import com.manday.coredata.entities.TaskEntity
+import com.manday.management.data.entities.TaskEntity
 import com.manday.coreui.fragment.BaseFragment
 import com.sdos.commerce.databinding.FragmentDetailTaskBinding
 import com.sdos.commerce.R

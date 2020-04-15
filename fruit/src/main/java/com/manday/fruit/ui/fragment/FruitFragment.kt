@@ -26,6 +26,7 @@ class FruitFragment : BaseFragment() {
     }
 
     override fun initialize() {
+        /*
         viewModel.getAllFruits().observe(this, Observer {response ->
             mainRecyclerView.visibility = View.VISIBLE
             determinateBar.visibility = View.GONE
@@ -39,6 +40,8 @@ class FruitFragment : BaseFragment() {
                 showMessage(response.text, false)
 
         })
+
+         */
     }
 
 }

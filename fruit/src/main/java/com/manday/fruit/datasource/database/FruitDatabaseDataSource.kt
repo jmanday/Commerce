@@ -1,7 +1,7 @@
 package com.manday.fruit.datasource.database
 
 import androidx.lifecycle.LiveData
-import com.manday.coredata.entities.FruitEntity
+import com.manday.fruit.entities.FruitEntity
 
 interface FruitDatabaseDataSource {
 

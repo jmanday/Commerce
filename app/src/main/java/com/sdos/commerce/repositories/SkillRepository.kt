@@ -1,7 +1,7 @@
 package com.sdos.commerce.repositories
 
 import androidx.lifecycle.LiveData
-import com.manday.coredata.entities.SkillEntity
+import com.manday.management.data.entities.SkillEntity
 
 interface SkillRepository {
 

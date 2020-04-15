@@ -2,9 +2,9 @@ package com.sdos.commerce.ui.viewmodels
 
 import androidx.lifecycle.Observer
 import com.manday.coredata.ExecutorViewModel
-import com.manday.coredata.entities.EmployeeEntity
-import com.manday.coredata.entities.TaskEntity
-import com.manday.coredata.entities.TypeTaskEntity
+import com.manday.management.data.entities.EmployeeEntity
+import com.manday.management.data.entities.TaskEntity
+import com.manday.management.data.entities.TypeTaskEntity
 import com.sdos.commerce.repositories.TaskRepository
 import com.sdos.commerce.listeners.ViewModelListener
 
