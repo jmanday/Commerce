@@ -10,19 +10,8 @@ class FruitViewModel(
     private val repository: FruitRepository
 ): ExecutorViewModel() {
 
-    /*
     fun getAllFruits() =
-        transformWhenItChanges(repository.getAllFruits(CATEGORY, ITEM)) {
-        if (it == null)
-            HandlerResponseViewModel.createResponse("Se ha producido un error")
-        else  {
-            HandlerResponseViewModel.createResponse(extra = transformMap(it) {
-                it.mapToFruitModel()
-            })
-        }
-    }
-
-     */
+        HandlerResponseViewModel.createResponse(repository.getAllFruits(CATEGORY, ITEM))
 
 
     companion object {
