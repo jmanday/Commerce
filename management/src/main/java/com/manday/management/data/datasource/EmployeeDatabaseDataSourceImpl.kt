@@ -14,6 +14,10 @@ internal class EmployeeDatabaseDataSourceImpl:
         employeeDao = RoomController.getInstance()?.employeeDao()
     }
 
+    override fun login(param1: String, param2: String): LiveData<EmployeeEntity?>? {
+        return employeeDao?.getEmployee(param1, param2)
+    }
+
     override fun addEmployee(employee: EmployeeEntity) {
         employeeDao?.addEmployee(employee)
     }
