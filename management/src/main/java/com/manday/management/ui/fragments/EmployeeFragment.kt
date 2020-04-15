@@ -12,6 +12,7 @@ import com.manday.management.R
 import com.manday.management.databinding.FragmentEmployeeBinding
 import com.manday.management.ui.viewmodels.EmployeeViewModel
 import kotlinx.android.synthetic.main.fragment_employee.*
+import kotlinx.coroutines.runBlocking
 import org.koin.java.KoinJavaComponent.inject
 
 class EmployeeFragment : BaseFragment() {
@@ -29,8 +30,11 @@ class EmployeeFragment : BaseFragment() {
 
     override fun initialize() {
         //onButtonAddClicked(R.id.action_mainFragment_to_detailEmployeeFragment)
-        val response = viewModel.getEmployees()
-        response.observe(this, Observer {
+        mainRecyclerView.showShimmer()
+        viewModel.getEmployees().observe(this, Observer {
+            runBlocking {
+                Thread.sleep(5000)
+            }
             when (it.typeError) {
                 TypeError.SUCCESS -> {
                     it.resp?.let {
