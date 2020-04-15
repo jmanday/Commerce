@@ -66,7 +66,7 @@
             android:background="?attr/selectableItemBackground"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:shimmer_recycler_layout="@layout/list_item_view"
+            app:shimmer_recycler_layout="@layout/list_item_employee_view"
             app:shimmer_recycler_item_count="10" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
