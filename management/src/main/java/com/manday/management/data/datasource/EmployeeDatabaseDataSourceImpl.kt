@@ -22,7 +22,7 @@ internal class EmployeeDatabaseDataSourceImpl:
         employeeDao?.addEmployee(employee)
     }
 
-    override fun getEmployees(): LiveData<List<EmployeeEntity>>? {
+    override fun getEmployees(): LiveData<List<EmployeeEntity>?>? {
         return employeeDao?.getAllEmployees()
     }
 

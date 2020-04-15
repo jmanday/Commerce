@@ -7,7 +7,7 @@ internal interface EmployeeDatabaseDataSource {
 
     fun login(param1: String, param2: String): LiveData<EmployeeEntity?>?
 
-    fun getEmployees(): LiveData<List<EmployeeEntity>>?
+    fun getEmployees(): LiveData<List<EmployeeEntity>?>?
 
     fun addEmployee(employee: EmployeeEntity)
 

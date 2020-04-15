@@ -5,6 +5,7 @@ import com.manday.coredata.utils.transformMapResponse
 import com.manday.management.data.datasource.EmployeeDatabaseDataSource
 import com.manday.management.data.entities.EmployeeEntity
 import com.manday.management.data.entities.toEmployee
+import com.manday.management.domain.EmployeeModel
 
 internal class EmployeeRepositoryImpl(private val dataSource: EmployeeDatabaseDataSource):
     EmployeeRepository {
@@ -14,9 +15,10 @@ internal class EmployeeRepositoryImpl(private val dataSource: EmployeeDatabaseDa
             it?.toEmployee()
         }
 
-    override fun getEmployees(): LiveData<List<EmployeeEntity>>? {
-        return dataSource.getEmployees()
-    }
+    override fun getEmployees(): LiveData<List<EmployeeModel>?>? =
+        transformMapResponse(dataSource.getEmployees()) {
+            it?.map { it.toEmployee() }
+        }
 
     override fun addEmployee(employeeEntity: EmployeeEntity) {
         dataSource.addEmployee(employeeEntity)

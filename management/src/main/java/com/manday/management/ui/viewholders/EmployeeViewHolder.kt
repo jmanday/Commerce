@@ -4,22 +4,24 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.manday.coreui.viewholder.BaseViewHolder
 import com.manday.management.R
-import com.manday.management.data.entities.EmployeeEntity
+import com.manday.management.domain.EmployeeModel
 import kotlinx.android.synthetic.main.list_item_view.view.*
 
-internal class EmployeeViewHolder(itemView: View): BaseViewHolder<EmployeeEntity>(itemView) {
+internal class EmployeeViewHolder(itemView: View): BaseViewHolder<EmployeeModel>(itemView) {
 
-    override fun onBind(employee: EmployeeEntity, f: (employee: EmployeeEntity) -> Unit) {
-        itemView.name.text = employee.name
-        itemView.surname.text = employee.surname
-        itemView.state.text = if (employee.currenTask == -1) itemView.context.resources.getString(R.string.text_state_free)
-                            else String.format(itemView.context.resources.getString(R.string.text_state_busy),employee.currenTask.toString())
-        itemView.text_type.visibility = View.VISIBLE
+    override fun onBind(employee: EmployeeModel, f: (employee: EmployeeModel) -> Unit) {
+        itemView.tvNameEmployee.text = String.format("%s %s", employee.name, employee.surname)
+        itemView.tvSkill.text = employee.surname
         Glide.with(itemView)
             .load(employee.image)
             .centerCrop()
             .placeholder(R.mipmap.placeholder)
-            .into(itemView.img)
+            .into(itemView.imgMain)
+        Glide.with(itemView)
+            .load(employee.image)
+            .centerCrop()
+            .placeholder(R.mipmap.placeholder)
+            .into(itemView.imgProfile)
 
         itemView.setOnClickListener {
             f(employee)

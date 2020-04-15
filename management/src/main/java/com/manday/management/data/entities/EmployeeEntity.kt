@@ -3,7 +3,7 @@ package com.manday.management.data.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.manday.management.domain.Employee
+import com.manday.management.domain.EmployeeModel
 import java.io.Serializable
 
 @Entity(tableName = "employees")
@@ -50,4 +50,4 @@ data class EmployeeEntity(
 ): Serializable
 
 fun EmployeeEntity.toEmployee() =
-    Employee(this.name, this.surname, this.email, this.typeEmployee)
+    EmployeeModel(this.name, this.surname, this.email, this.typeEmployee, this.image)
