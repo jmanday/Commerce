@@ -1,4 +1,4 @@
-package com.sdos.commerce.ui.fragments
+package com.manday.management.ui.fragments
 
 
 import android.os.Bundle
@@ -11,12 +11,11 @@ import com.manday.management.data.entities.TaskEntity
 import com.manday.coreui.fragment.BaseFragment
 import com.sdos.commerce.databinding.FragmentDetailTaskBinding
 import com.sdos.commerce.R
-import com.sdos.commerce.ui.viewmodels.DetailTaskViewModel
 import kotlinx.android.synthetic.main.fragment_detail_task.*
 import org.koin.java.KoinJavaComponent.inject
 
 
-class DetailTaskFragment : BaseFragment() {
+class TaskDetailFragment : BaseFragment() {
 
     private var task = TaskEntity()
     private lateinit var binding: FragmentDetailTaskBinding

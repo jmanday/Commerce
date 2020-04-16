@@ -1,4 +1,4 @@
-package com.sdos.commerce.ui.viewholders
+package com.manday.management.ui.viewholders
 
 import android.view.View
 import com.bumptech.glide.Glide

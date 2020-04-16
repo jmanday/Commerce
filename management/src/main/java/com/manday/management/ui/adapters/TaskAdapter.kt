@@ -1,4 +1,4 @@
-package com.sdos.commerce.ui.adapters
+package com.manday.management.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
