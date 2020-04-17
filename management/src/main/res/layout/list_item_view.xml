@@ -16,6 +16,7 @@
             android:id="@+id/imgMain"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:src="@mipmap/placeholder_plain"/>
