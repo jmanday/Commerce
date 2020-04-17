@@ -8,14 +8,12 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.lifecycle.Observer
 import com.manday.management.data.entities.TaskEntity
 import com.manday.coreui.fragment.BaseFragment
-import com.sdos.commerce.R
-import com.sdos.commerce.databinding.FragmentMainBinding
-import com.sdos.commerce.ui.adapters.TaskAdapter
-import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.fragment_main.text_head
+import com.manday.management.R
+import com.manday.management.databinding.FragmentTaskBinding
+import com.manday.management.ui.viewmodels.TaskViewModel
+import kotlinx.android.synthetic.main.fragment_task.*
 import org.koin.java.KoinJavaComponent.inject
 
 class TaskFragment : BaseFragment() {
@@ -27,7 +25,7 @@ class TaskFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return FragmentMainBinding.inflate(inflater).root
+        return FragmentTaskBinding.inflate(inflater).root
     }
 
     override fun initialize() {
@@ -35,14 +33,17 @@ class TaskFragment : BaseFragment() {
         text_head.text = "Tareas"
         ll_filter.visibility = VISIBLE
         mainRecyclerView.showShimmer()
+        /*
         viewModel.getTasks().observe(this, Observer {
             if (it != null) {
                 updateRecyclerView(it)
                 mainRecyclerView.hideShimmer()
             }
         })
+
+         */
         btnAdd.setOnClickListener {
-            onButtonAddClicked(R.id.action_taskFragment_to_detailTaskFragment)
+            //onButtonAddClicked(R.id.action_taskFragment_to_detailTaskFragment)
         }
     }
 
@@ -73,6 +74,7 @@ class TaskFragment : BaseFragment() {
     }
 
     private fun updateRecyclerView(taskList: List<TaskEntity>?) {
+        /*
         taskList?.let {
             mainRecyclerView.adapter = TaskAdapter(it) {
                 onItemClicked(R.id.action_taskFragment_to_detailTaskFragment, Bundle().apply {
@@ -80,5 +82,7 @@ class TaskFragment : BaseFragment() {
                 })
             }
         }
+
+         */
     }
 }

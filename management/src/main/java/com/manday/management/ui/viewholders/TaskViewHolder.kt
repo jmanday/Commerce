@@ -4,7 +4,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.manday.management.data.entities.TaskEntity
 import com.manday.coreui.viewholder.BaseViewHolder
-import com.sdos.commerce.R
+import com.manday.management.R
 import kotlinx.android.synthetic.main.list_item_employee_view.view.*
 
 class TaskViewHolder(itemView: View): BaseViewHolder<TaskEntity>(itemView) {
