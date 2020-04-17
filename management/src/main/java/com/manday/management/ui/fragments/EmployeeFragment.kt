@@ -32,9 +32,7 @@ class EmployeeFragment : BaseFragment() {
         //onButtonAddClicked(R.id.action_mainFragment_to_detailEmployeeFragment)
         mainRecyclerView.showShimmer()
         viewModel.getEmployees().observe(this, Observer {
-            runBlocking {
-                Thread.sleep(5000)
-            }
+            mainRecyclerView.hideShimmer()
             when (it.typeError) {
                 TypeError.SUCCESS -> {
                     it.resp?.let {
@@ -55,7 +53,6 @@ class EmployeeFragment : BaseFragment() {
                         showMessage(it.text, false)
                 }
             }
-
         })
 
     }
