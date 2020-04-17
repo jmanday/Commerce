@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity(), FragmentListener {
     }
 
     private fun initialize() {
-        bottom_navigation.visibility = GONE
-        bottom_navigation.setOnNavigationItemSelectedListener {
+        bottomNavigation.visibility = GONE
+        bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.action_employee -> {
                     if (navController.currentDestination?.id != R.id.employeeFragment)
@@ -65,6 +65,6 @@ class MainActivity : AppCompatActivity(), FragmentListener {
                 .build())
 
         loginUserInjector.provideLoginDialogView().show(supportFragmentManager, "")
-        bottom_navigation.visibility = VISIBLE
+        bottomNavigation.visibility = VISIBLE
     }
 }
