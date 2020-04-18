@@ -18,9 +18,7 @@ import com.manday.management.databinding.FragmentEmployeeDetailBinding
 
 import com.manday.management.domain.EmployeeModel
 import com.manday.management.ui.viewmodels.EmployeeDetailViewModel
-
-
-import kotlinx.android.synthetic.main.list_item_view.view.*
+import kotlinx.android.synthetic.main.fragment_employee_detail.view.*
 import org.koin.java.KoinJavaComponent.inject
 
 class EmployeeDetailFragment : BaseFragment() {
@@ -28,7 +26,7 @@ class EmployeeDetailFragment : BaseFragment() {
     private val viewModel: EmployeeDetailViewModel by inject(EmployeeDetailViewModel::class.java)
     private lateinit var binding: FragmentEmployeeDetailBinding
     private lateinit var mapInputText: Map<EmployeeDetailViewModel.ErrorField, TextInputLayout>
-    //val args: EmployeeDetailFragmentArgs by navArgs()
+    private var employeeModel: EmployeeModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,25 +44,23 @@ class EmployeeDetailFragment : BaseFragment() {
     ): View? {
         binding = FragmentEmployeeDetailBinding.inflate(inflater)
             .apply {
-                employee = null
+                employeeModel = arguments?.get(ARGUMENT_EXTRA_EMPLOYEE) as EmployeeModel
+                employee = employeeModel
+                root.transitionName = employeeModel?.name
             }
+
         listener.hideNavigationBottomView()
-        //val a = args.employee
-        val a = arguments?.get(ARGUMENT_EXTRA_EMPLOYEE) as EmployeeModel
-        binding.employee = a
-        binding.root.transitionName = a?.name
-        a?.let {
-            Glide.with(binding.root)
-                .load(it.image)
-                .centerCrop()
-                .placeholder(R.mipmap.placeholder)
-                .into(binding.root.imgMain)
-        }
 
         return binding.root
     }
 
     override fun initialize() {
+        Glide.with(binding.root)
+            .load(employeeModel?.image)
+            .centerCrop()
+            .placeholder(R.mipmap.placeholder)
+            .into(binding.root.imgMain)
+
         //prepareListeners()
         //populateMap()
         /*
@@ -76,17 +72,6 @@ class EmployeeDetailFragment : BaseFragment() {
                 spn_rol.setSelection(binding.employee?.skill ?: 0)
             }
         })
-         */
-    }
-
-    override fun retrieveArguments() {
-        /*
-        arguments?.let {
-            binding.employee = it.get(ARGUMENT_EXTRA_EMPLOYEE)?.let {emp ->
-                 emp as EmployeeModel
-            } ?: EmployeeModel("", "", "", 2, "")
-        }
-
          */
     }
 

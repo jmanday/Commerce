@@ -13,6 +13,11 @@ internal class EmployeeDetailViewModel(
 
     private val errorFieldList = mutableListOf<ErrorField>()
     private lateinit var responseViewModelEntity: HandlerResponseViewModel<List<ErrorField>>
+    private var employeeModel: EmployeeModel? = null
+
+    fun initialize(employee: EmployeeModel) {
+        this.employeeModel = employeeModel
+    }
 
     fun onButtonAddClicked(employee: EmployeeModel): HandlerResponseViewModel<List<ErrorField>> {
         employee.let {
