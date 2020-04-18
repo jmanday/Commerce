@@ -22,7 +22,7 @@ class SettingFragment : BaseFragment() {
 
     override fun initialize() {
         tv_download.setOnClickListener {
-            onItemClicked(R.id.action_settingFragment_to_fruitFragment, Bundle())
+            onItemClicked(R.id.action_settingFragment_to_fruitFragment, Bundle(), this.view!!)
         }
     }
 }
