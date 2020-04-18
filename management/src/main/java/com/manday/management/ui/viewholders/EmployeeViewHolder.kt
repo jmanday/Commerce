@@ -17,7 +17,7 @@ internal class EmployeeViewHolder(itemView: View): BaseViewHolder<EmployeeModel>
             .load(employee.image)
             .centerCrop()
             .placeholder(R.mipmap.placeholder)
-            .into(itemView.imgMainStart)
+            .into(itemView.imgMain)
         Glide.with(itemView)
             .load(employee.image)
             .centerCrop()
