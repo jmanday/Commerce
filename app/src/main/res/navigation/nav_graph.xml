@@ -25,11 +25,7 @@
         tools:layout="@layout/fragment_employee">
         <action
             android:id="@+id/action_mainFragment_to_detailEmployeeFragment"
-            app:destination="@id/detailEmployeeFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/detailEmployeeFragment"/>
     </fragment>
     <fragment
         android:id="@+id/taskFragment"
@@ -51,12 +47,12 @@
     </fragment>
     <fragment
         android:id="@+id/detailEmployeeFragment"
-        android:name="com.manday.management.ui.fragments.EmployeeDetailFragment"
+        android:name="com.sdos.commerce.ui.fragments.EmployeeDetailFragment"
         android:label="fragment_detail_employee"
         tools:layout="@layout/fragment_employee_detail" >
         <argument
             android:name="employee"
-            app:argType="com.manday.management.data.entities.EmployeeEntity"
+            app:argType="com.manday.management.domain.EmployeeModel"
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>
