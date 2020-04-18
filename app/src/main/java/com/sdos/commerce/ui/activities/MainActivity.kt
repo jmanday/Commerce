@@ -1,12 +1,19 @@
 package com.sdos.commerce.ui.activities
 
 import android.os.Bundle
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import com.manday.coreui.fragment.BaseFragment
 import com.manday.loginuser.injector.LoginUserViewInjector
+import com.manday.management.domain.EmployeeModel
+import com.manday.management.ui.fragments.EmployeeDetailFragment
+import com.manday.management.ui.fragments.EmployeeFragmentDirections
 import com.sdos.commerce.CommerceApp
 import com.sdos.commerce.R
 import com.sdos.commerce.di.ModuleInjector
@@ -50,8 +57,11 @@ class MainActivity : AppCompatActivity(), FragmentListener {
         }
     }
 
-    override fun onNavigationPush(actionId: Int, bundle: Bundle?) {
-        navController.navigate(actionId, bundle)
+    override fun onNavigationPush(actionId: Int, bundle: Bundle?, itemView: View) {
+        val employeeModel = bundle?.get(BaseFragment.ARGUMENT_EXTRA_EMPLOYEE) as EmployeeModel
+        val extras = FragmentNavigatorExtras(itemView to employeeModel.name)
+
+        navController.navigate(EmployeeFragmentDirections.actionMainFragmentToDetailEmployeeFragment(employeeModel), extras)
     }
 
     override fun onNavigationUp() {
@@ -65,6 +75,15 @@ class MainActivity : AppCompatActivity(), FragmentListener {
                 .build())
 
         loginUserInjector.provideLoginDialogView().show(supportFragmentManager, "")
+        bottomNavigation.visibility = VISIBLE
+    }
+
+    override fun hideNavigationBottomView() {
+        bottomNavigation.visibility = GONE
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
         bottomNavigation.visibility = VISIBLE
     }
 }

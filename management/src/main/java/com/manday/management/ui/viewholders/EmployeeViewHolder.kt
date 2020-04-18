@@ -9,14 +9,15 @@ import kotlinx.android.synthetic.main.list_item_view.view.*
 
 internal class EmployeeViewHolder(itemView: View): BaseViewHolder<EmployeeModel>(itemView) {
 
-    override fun onBind(employee: EmployeeModel, f: (employee: EmployeeModel) -> Unit) {
+    override fun onBind(employee: EmployeeModel, f: (employee: EmployeeModel, view: View) -> Unit) {
+        itemView.transitionName = employee.name
         itemView.tvNameEmployee.text = String.format("%s %s", employee.name, employee.surname)
         itemView.tvSkill.text = employee.surname
         Glide.with(itemView)
             .load(employee.image)
             .centerCrop()
             .placeholder(R.mipmap.placeholder)
-            .into(itemView.imgMain)
+            .into(itemView.imgMainStart)
         Glide.with(itemView)
             .load(employee.image)
             .centerCrop()
@@ -24,7 +25,7 @@ internal class EmployeeViewHolder(itemView: View): BaseViewHolder<EmployeeModel>
             .into(itemView.imgProfile)
 
         itemView.setOnClickListener {
-            f(employee)
+            f(employee, itemView)
         }
     }
 }

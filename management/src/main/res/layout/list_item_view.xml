@@ -19,7 +19,7 @@
             android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:src="@mipmap/placeholder_plain"/>
+            android:src="@mipmap/placeholder_plain" />
 
 
         <com.google.android.material.card.MaterialCardView

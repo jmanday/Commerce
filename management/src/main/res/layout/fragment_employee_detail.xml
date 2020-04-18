@@ -3,7 +3,7 @@
     <data>
         <variable
             name="employee"
-            type="com.manday.management.data.entities.EmployeeEntity" />
+            type="com.manday.management.domain.EmployeeModel" />
     </data>
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,30 +16,25 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            tools:context=".ui.fragments.DetailEmployeeFragment">
+            xmlns:app="http://schemas.android.com/apk/res-auto">
 
-            <TextView
-                android:id="@+id/text_head"
+            <ImageView
+                android:id="@+id/imgMain"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
                 app:layout_constraintTop_toTopOf="parent"
-                android:gravity="center"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:layout_marginTop="4dp"
-                android:text="@string/text_header_detail_employee"
-                android:textColor="@color/colorBlack"/>
+                app:layout_constraintStart_toStartOf="parent"
+                android:src="@mipmap/placeholder_plain"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/label_text_name"
+                android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_head"
+                app:layout_constraintTop_toBottomOf="@id/imgMain"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:helperTextEnabled="true"
                 app:errorEnabled="true"
@@ -99,7 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="datetime"
-                    android:text="@={employee.birthdate}"
+                    android:text="@={employee.name}"
                     android:textIsSelectable="false"
                     android:textSize="16sp"/>
 
@@ -149,7 +144,7 @@
                     app:errorEnabled="true"
                     app:errorTextColor="@color/colorRed"
                     android:textIsSelectable="false"
-                    android:text="@={employee.phone}"
+                    android:text="@={employee.name}"
                     android:textSize="16sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -175,7 +170,7 @@
                     app:helperTextEnabled="true"
                     app:errorEnabled="true"
                     app:errorTextColor="@color/colorRed"
-                    android:text="@={employee.pass}"
+                    android:text="@={employee.name}"
                     android:textSize="16sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
