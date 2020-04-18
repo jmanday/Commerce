@@ -61,7 +61,8 @@ class MainActivity : AppCompatActivity(), FragmentListener {
         val employeeModel = bundle?.get(BaseFragment.ARGUMENT_EXTRA_EMPLOYEE) as EmployeeModel
         val extras = FragmentNavigatorExtras(itemView to employeeModel.name)
 
-        navController.navigate(EmployeeFragmentDirections.actionMainFragmentToDetailEmployeeFragment(employeeModel), extras)
+        //navController.navigate(EmployeeFragmentDirections.actionMainFragmentToDetailEmployeeFragment(employeeModel), extras)
+        navController.navigate(R.id.action_mainFragment_to_detailEmployeeFragment, bundle, null, extras)
     }
 
     override fun onNavigationUp() {

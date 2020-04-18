@@ -48,7 +48,8 @@ class EmployeeDetailFragment : BaseFragment() {
                 employee = null
             }
         listener.hideNavigationBottomView()
-        val a = args.employee
+        //val a = args.employee
+        val a = arguments?.get(ARGUMENT_EXTRA_EMPLOYEE) as EmployeeModel
         binding.root.transitionName = a?.name
         a?.let {
             Glide.with(binding.root)
