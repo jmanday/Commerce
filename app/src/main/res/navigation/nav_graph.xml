@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailEmployeeFragment"
-        android:name="com.sdos.commerce.ui.fragments.EmployeeDetailFragment"
+        android:name="com.manday.management.ui.fragments.EmployeeDetailFragment"
         android:label="fragment_detail_employee"
         tools:layout="@layout/fragment_employee_detail" >
         <argument

@@ -14,6 +14,7 @@ import com.manday.coreui.fragment.BaseFragment
 import com.manday.coreui.ui.DateDialogView
 import com.manday.coreui.ui.DateDialogView.Companion.TAG_DATE_DIALOG
 import com.manday.management.R
+import com.manday.management.databinding.FragmentEmployeeDetailBinding
 
 import com.manday.management.domain.EmployeeModel
 import com.manday.management.ui.viewmodels.EmployeeDetailViewModel
@@ -25,19 +26,19 @@ import org.koin.java.KoinJavaComponent.inject
 class EmployeeDetailFragment : BaseFragment() {
 
     private val viewModel: EmployeeDetailViewModel by inject(EmployeeDetailViewModel::class.java)
-    //private lateinit var binding: FragmentEmployeeDetailBinding
+    private lateinit var binding: FragmentEmployeeDetailBinding
     private lateinit var mapInputText: Map<EmployeeDetailViewModel.ErrorField, TextInputLayout>
     //val args: EmployeeDetailFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val transformation: MaterialContainerTransform = MaterialContainerTransform(requireContext()).apply {
+        val transformation = MaterialContainerTransform(requireContext()).apply {
             fadeMode = MaterialContainerTransform.FADE_MODE_CROSS
             duration = 500
         }
         sharedElementEnterTransition = transformation
     }
-    /*
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,9 +48,11 @@ class EmployeeDetailFragment : BaseFragment() {
             .apply {
                 employee = null
             }
-        /*
-        val a = arguments
-        //binding.root.transitionName = arguments.transitionName
+        listener.hideNavigationBottomView()
+        //val a = args.employee
+        val a = arguments?.get(ARGUMENT_EXTRA_EMPLOYEE) as EmployeeModel
+        binding.employee = a
+        binding.root.transitionName = a?.name
         a?.let {
             Glide.with(binding.root)
                 .load(it.image)
@@ -58,11 +61,9 @@ class EmployeeDetailFragment : BaseFragment() {
                 .into(binding.root.imgMain)
         }
 
-         */
-
         return binding.root
     }
-    */
+
     override fun initialize() {
         //prepareListeners()
         //populateMap()
