@@ -18,7 +18,9 @@ import com.manday.management.databinding.FragmentEmployeeDetailBinding
 
 import com.manday.management.domain.EmployeeModel
 import com.manday.management.ui.viewmodels.EmployeeDetailViewModel
+import kotlinx.android.synthetic.main.fragment_employee_detail.*
 import kotlinx.android.synthetic.main.fragment_employee_detail.view.*
+import kotlinx.android.synthetic.main.fragment_employee_detail.view.toolbar
 import org.koin.java.KoinJavaComponent.inject
 
 class EmployeeDetailFragment : BaseFragment() {
@@ -55,11 +57,22 @@ class EmployeeDetailFragment : BaseFragment() {
     }
 
     override fun initialize() {
+        toolbar.setNavigationOnClickListener {
+            listener.onNavigationUp()
+        }
+
+
         Glide.with(binding.root)
             .load(employeeModel?.image)
             .centerCrop()
             .placeholder(R.mipmap.placeholder)
             .into(binding.root.imgMain)
+
+        Glide.with(binding.root)
+            .load(employeeModel?.image)
+            .centerCrop()
+            .placeholder(R.mipmap.placeholder)
+            .into(binding.root.imgProfile)
 
         //prepareListeners()
         //populateMap()
