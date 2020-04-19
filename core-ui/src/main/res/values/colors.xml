@@ -8,6 +8,8 @@
     <color name="colorRed">#FF0000</color>
     <color name="colorBlack">#000000</color>
     <color name="colorDarkGrey">#A9A9A9</color>
+    <color name="colorDarkGrey2">#878787</color>
     <color name="colorLigthGrey">#f0f1f4</color>
+    <color name="colorLigthGrey2">#f0f0f0</color>
     <color name="colorTransparent">#00ff0000</color>
 </resources>
