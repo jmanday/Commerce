@@ -3,4 +3,5 @@
     <string name="text_wrong_login_dialog">Usuario o password incorrectos</string>
     <string name="text_button_login_dialog">Login</string>
     <string name="text_header_login_dialog">Bienvenido</string>
+    <string name="text_name_surname">%s %s</string>
 </resources>
