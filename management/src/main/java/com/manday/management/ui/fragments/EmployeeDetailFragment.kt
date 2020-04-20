@@ -8,6 +8,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
@@ -16,6 +17,7 @@ import com.manday.coreui.fragment.BaseFragment
 import com.manday.coreui.ui.DateDialogView
 import com.manday.coreui.ui.DateDialogView.Companion.TAG_DATE_DIALOG
 import com.manday.management.R
+import com.manday.management.data.entities.SkillEntity
 import com.manday.management.databinding.FragmentEmployeeDetailBinding
 
 import com.manday.management.domain.EmployeeModel
@@ -63,9 +65,14 @@ class EmployeeDetailFragment : BaseFragment() {
             listener.onNavigationUp()
         }
 
-        val items = listOf("Material", "Design", "Components", "Android")
-        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
-        (binding.inputSkill.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+        viewModel.skills().observe(this, Observer {
+            it?.let {
+                val adapter = ArrayAdapter(requireContext(), R.layout.list_item, it.map { it.name })
+                (binding.inputSkill.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+            }
+        })
+
+        binding.autocompleteType.setText(viewModel.employeeModel?.typeEmployeeDescription)
 
         Glide.with(binding.root)
             .load(viewModel.employeeModel?.image)
@@ -81,16 +88,6 @@ class EmployeeDetailFragment : BaseFragment() {
 
         //prepareListeners()
         //populateMap()
-        /*
-        viewModel.getListSkills()?.observe(this, Observer {
-            context?.let {context ->
-                val adapter = ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, it.map { it.name })
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spn_rol.adapter = adapter
-                spn_rol.setSelection(binding.employee?.skill ?: 0)
-            }
-        })
-         */
     }
 
     /*
