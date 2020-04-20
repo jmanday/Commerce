@@ -30,8 +30,8 @@ val managementModuleDependencies = module {
 
     // ViewModel instances
     viewModel { LoginDialogViewModel(get()) }
-    viewModel { EmployeeViewModel(get()) }
-    viewModel { EmployeeDetailViewModel(get()) }
+    viewModel { EmployeeViewModel(get(), get()) }
+    viewModel { EmployeeDetailViewModel(get(), get()) }
     viewModel { TaskDetailViewModel(get()) }
     viewModel { TaskViewModel(get()) }
 
