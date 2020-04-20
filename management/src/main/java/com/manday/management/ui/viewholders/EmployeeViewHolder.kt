@@ -12,7 +12,7 @@ internal class EmployeeViewHolder(itemView: View): BaseViewHolder<EmployeeModel>
     override fun onBind(employee: EmployeeModel, f: (employee: EmployeeModel, view: View) -> Unit) {
         itemView.transitionName = employee.name
         itemView.tvNameEmployee.text = String.format("%s %s", employee.name, employee.surname)
-        itemView.tvSkill.text = employee.surname
+        itemView.tvSkill.text = employee.typeEmployeeDescription
         Glide.with(itemView)
             .load(employee.image)
             .centerCrop()
