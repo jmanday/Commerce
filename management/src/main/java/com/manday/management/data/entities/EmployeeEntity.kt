@@ -50,4 +50,4 @@ data class EmployeeEntity(
 ): Serializable
 
 fun EmployeeEntity.toEmployee() =
-    EmployeeModel(this.name, this.surname, this.email, this.typeEmployee, this.image)
+    EmployeeModel(this.name, this.surname, this.email, this.typeEmployee, String(), this.image)

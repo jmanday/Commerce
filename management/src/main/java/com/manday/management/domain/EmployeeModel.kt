@@ -7,5 +7,6 @@ data class EmployeeModel (
     var surname: String,
     var email: String,
     var typeEmployee: Int,
+    var typeEmployeeDescription: String,
     var image: String
 ): Serializable
