@@ -1,25 +1,29 @@
 package com.manday.management.ui.viewmodels
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.Observer
+import androidx.lifecycle.MutableLiveData
 import com.manday.coredata.ExecutorViewModel
-import com.manday.coredata.utils.addSourceNotNull
-import com.manday.coredata.utils.removeSourceNotNull
+import com.manday.coredata.utils.addMultipleSourceNotNull
 import com.manday.management.domain.EmployeeModel
 import com.manday.management.repository.EmployeeRepository
+import com.manday.management.repository.SkillRepository
 
 internal class EmployeeViewModel(
-    val employeeRepository: EmployeeRepository
+    val employeeRepository: EmployeeRepository,
+    val skillRepository: SkillRepository
 ) : ExecutorViewModel() {
 
-    private val employees = MediatorLiveData<List<EmployeeModel>?>()
+    private val employees = MutableLiveData<List<EmployeeModel>?>()
 
     fun employees(): LiveData<List<EmployeeModel>?> {
-        employees.addSourceNotNull(employeeRepository.getEmployees(), Observer<List<EmployeeModel>?> { t ->
-            employees.removeSourceNotNull(employeeRepository.getEmployees())
-            employees.postValue(t)
-        })
+        addMultipleSourceNotNull(employeeRepository.getEmployees(), skillRepository.getListSkill()) { listEmployees, listSkills ->
+            listEmployees?.map {
+                it.typeEmployeeDescription = listSkills?.find { skill ->
+                    skill.id == it.typeEmployee
+                }?.name ?: ""
+            }
+            employees.postValue(listEmployees)
+        }
 
         return employees
     }
