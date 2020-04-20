@@ -30,7 +30,6 @@ class EmployeeDetailFragment : BaseFragment() {
     private val viewModel: EmployeeDetailViewModel by inject(EmployeeDetailViewModel::class.java)
     private lateinit var binding: FragmentEmployeeDetailBinding
     private lateinit var mapInputText: Map<EmployeeDetailViewModel.ErrorField, TextInputLayout>
-    private var employeeModel: EmployeeModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,9 +47,10 @@ class EmployeeDetailFragment : BaseFragment() {
     ): View? {
         binding = FragmentEmployeeDetailBinding.inflate(inflater)
             .apply {
-                employeeModel = arguments?.get(ARGUMENT_EXTRA_EMPLOYEE) as EmployeeModel
+                val employeeModel = arguments?.get(ARGUMENT_EXTRA_EMPLOYEE) as EmployeeModel
+                viewModel.initialize(employeeModel)
                 employee = employeeModel
-                root.transitionName = employeeModel?.name
+                root.transitionName = employeeModel.name
             }
 
         listener.hideNavigationBottomView()
@@ -68,13 +68,13 @@ class EmployeeDetailFragment : BaseFragment() {
         (binding.inputSkill.editText as? AutoCompleteTextView)?.setAdapter(adapter)
 
         Glide.with(binding.root)
-            .load(employeeModel?.image)
+            .load(viewModel.employeeModel?.image)
             .centerCrop()
             .placeholder(R.mipmap.placeholder)
             .into(binding.root.imgMain)
 
         Glide.with(binding.root)
-            .load(employeeModel?.image)
+            .load(viewModel.employeeModel?.image)
             .centerCrop()
             .placeholder(R.mipmap.placeholder)
             .into(binding.root.imgProfile)
