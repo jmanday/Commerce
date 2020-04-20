@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -61,6 +63,9 @@ class EmployeeDetailFragment : BaseFragment() {
             listener.onNavigationUp()
         }
 
+        val items = listOf("Material", "Design", "Components", "Android")
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
+        (binding.inputSkill.editText as? AutoCompleteTextView)?.setAdapter(adapter)
 
         Glide.with(binding.root)
             .load(employeeModel?.image)
