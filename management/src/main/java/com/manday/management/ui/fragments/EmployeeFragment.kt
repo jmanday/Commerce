@@ -36,27 +36,20 @@ class EmployeeFragment : BaseFragment() {
     }
 
     override fun initialize() {
-        //onButtonAddClicked(R.id.action_mainFragment_to_detailEmployeeFragment)
         mainRecyclerView.showShimmer()
-        viewModel.getEmployees().observe(this, Observer {
+        viewModel.employees().observe(this, Observer { employees ->
             mainRecyclerView.hideShimmer()
-            when (it.typeError) {
-                TypeError.SUCCESS -> {
-                    it.resp?.let {
-                        mainRecyclerView.adapter = EmployeeAdapter(it) {employeeModel, view ->
-                            listener.onNavigationPush(R.id.btnAdd,
-                                Bundle().apply {
-                                    putSerializable(ARGUMENT_EXTRA_EMPLOYEE, employeeModel)
-                                }, view)
-                        }
-                    }
-                }
-                TypeError.NOT_FOUND, TypeError.DATASOURCE -> {
-                    if (it.text.isNotEmpty())
-                        showMessage(it.text, false)
+            if (employees != null) {
+                mainRecyclerView.adapter = EmployeeAdapter(employees) {employeeModel, view ->
+                    listener.onNavigationPush(R.id.btnAdd,
+                        Bundle().apply {
+                            putSerializable(ARGUMENT_EXTRA_EMPLOYEE, employeeModel)
+                        }, view)
                 }
             }
+            else {
+                showMessage(getString(R.string.error_get_datas), false)
+            }
         })
-
     }
 }
