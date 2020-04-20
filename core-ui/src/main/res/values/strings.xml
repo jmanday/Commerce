@@ -38,6 +38,9 @@
     <string name="text_state_busy">Ocupado en la tarea %s</string>
     <string name="text_filter">Filtar por: </string>
 
+
+    <string name="error_get_datas">Ocurrió un error al recuperar los datos</string>
+
     <string-array name="filter_by">
         <item>Todas</item>
         <item>Pendientes</item>
