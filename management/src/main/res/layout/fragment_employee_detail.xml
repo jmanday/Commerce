@@ -69,7 +69,7 @@
                 android:textColorLink="@color/colorBlack"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:text="@={employee.name}"
+                android:text="@{@string/text_name_surname(employee.name, employee.surname)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imgCircular"
                 app:layout_constraintTop_toTopOf="@+id/imgCircular"
@@ -83,7 +83,7 @@
                 android:layout_marginBottom="4dp"
                 android:textSize="12sp"
                 android:textStyle="italic"
-                android:text="@={employee.surname}"
+                android:text="@{employee.typeEmployeeDescription}"
                 app:layout_constraintBottom_toBottomOf="@+id/imgCircular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imgCircular"
@@ -103,7 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.65" />
+                    app:layout_constraintGuide_percent="0.7" />
 
                 <ImageView
                     android:id="@+id/ivName"
@@ -180,7 +180,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/inputPhone"
                     app:layout_constraintBottom_toBottomOf="@id/inputPhone"
-                    app:srcCompat="@drawable/ic_phone_black_24dp" />
+                    app:srcCompat="@drawable/ic_mail_black_24dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/inputPhone"
@@ -189,7 +189,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="9dp"
                     android:layout_marginEnd="8dp"
-                    android:hint="@string/label_text_phone"
+                    android:hint="@string/label_text_email"
                     app:errorEnabled="true"
                     app:errorTextColor="@color/colorRed"
                     app:helperTextEnabled="true"
@@ -202,7 +202,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/colorLigthGrey2"
-                        android:text="@={employee.surname}"
+                        android:text="@={employee.email}"
                         android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -257,6 +257,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/inputPhone">
 
                     <AutoCompleteTextView
+                        android:id="@+id/autocompleteType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"
