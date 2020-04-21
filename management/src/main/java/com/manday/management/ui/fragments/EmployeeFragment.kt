@@ -1,6 +1,10 @@
 package com.manday.management.ui.fragments
 
 import android.os.Bundle
+import android.transition.AutoTransition
+import android.transition.Explode
+import android.transition.Fade
+import android.transition.Slide
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +28,8 @@ class EmployeeFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //exitTransition = Hold()
+
+        //exitTransition = Fade()
     }
 
     override fun onCreateView(
