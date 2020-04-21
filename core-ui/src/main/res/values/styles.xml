@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:indeterminateTint">@color/colorPrimaryDark</item>
+    </style>
+</resources>

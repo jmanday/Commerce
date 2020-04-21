@@ -1,2 +1,6 @@
 include ':app'
 rootProject.name='Commerce'
+include ':core-data'
+include ':core-ui'
+include ':fruit'
+include ':management'

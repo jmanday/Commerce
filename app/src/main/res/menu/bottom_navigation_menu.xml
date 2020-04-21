@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_employee"
+        android:title="@string/menu_text_employee"
+        android:icon="@drawable/ic_person_black_48dp" />
+
+    <item
+        android:id="@+id/action_task"
+        android:title="@string/menu_text_task"
+        android:icon="@drawable/ic_description_black_24dp"/>
+
+    <item
+        android:id="@+id/action_setting"
+        android:title="@string/menu_text_setting"
+        android:icon="@drawable/ic_build_black_24dp"/>
+</menu>
