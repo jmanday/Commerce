@@ -8,6 +8,7 @@ import com.manday.management.data.datasource.EmployeeDatabaseDataSource
 import com.manday.management.data.entities.EmployeeEntity
 import com.manday.management.data.entities.toEmployee
 import com.manday.management.domain.EmployeeModel
+import com.manday.management.domain.toEmployeeEntity
 
 internal class EmployeeRepositoryImpl(private val dataSource: EmployeeDatabaseDataSource):
     EmployeeRepository {
@@ -23,8 +24,8 @@ internal class EmployeeRepositoryImpl(private val dataSource: EmployeeDatabaseDa
         }
 
 
-    override fun addEmployee(employeeEntity: EmployeeEntity) {
-        dataSource.addEmployee(employeeEntity)
+    override fun addEmployee(employeeModel: EmployeeModel) {
+        dataSource.addEmployee(employeeModel.toEmployeeEntity())
     }
 
     override fun updateEmployee(employeeEntity: EmployeeEntity?) {
