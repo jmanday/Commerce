@@ -24,6 +24,13 @@ class HandlerResponseViewModel<T> private constructor(){
 
             return handleError
         }
+
+        fun<T> createResponseForm(message: String? = null, resp: T? = null): ResponseFormViewModel<T> {
+            return if (resp != null)
+                ResponseFormViewModel(message, resp, TypeError.ERROR)
+            else
+                ResponseFormViewModel(message, resp, TypeError.SUCCESS)
+        }
     }
 }
 
@@ -33,6 +40,12 @@ data class ReponseViewModel<T> (
     var typeError: TypeError
 )
 
+data class ResponseFormViewModel<T> (
+    var message: String?,
+    var resp: T?,
+    var typeError: TypeError
+)
+
 enum class TypeError {
-    SUCCESS, DATASOURCE, NOT_FOUND
+    SUCCESS, DATASOURCE, NOT_FOUND, ERROR
 }
