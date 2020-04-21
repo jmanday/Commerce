@@ -2,9 +2,11 @@ package com.manday.management.ui.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.manday.coredata.ExecutorViewModel
 import com.manday.coredata.HandlerResponseViewModel
+import com.manday.coredata.ResponseFormViewModel
 import com.manday.coredata.utils.addSourceNotNull
 import com.manday.coredata.utils.removeSourceNotNull
 import com.manday.management.data.entities.EmployeeEntity
@@ -20,9 +22,8 @@ internal class EmployeeDetailViewModel(
 ): ExecutorViewModel() {
 
     private val errorFieldList = mutableListOf<ErrorField>()
-    private lateinit var responseViewModelEntity: HandlerResponseViewModel<List<ErrorField>>
-    var employeeModel: EmployeeModel? = null
     private var skills = MediatorLiveData<List<SkillEntity>>()
+    var employeeModel: EmployeeModel? = null
 
     fun initialize(employee: EmployeeModel) {
         this.employeeModel = employee
@@ -38,40 +39,35 @@ internal class EmployeeDetailViewModel(
     }
 
 
-    fun onButtonAddClicked(employee: EmployeeModel): HandlerResponseViewModel<List<ErrorField>> {
-        employee.let {
+    fun buttonSaveClicked(): LiveData<ResponseFormViewModel<List<ErrorField>>> {
+        val responseViewModel = MutableLiveData<ResponseFormViewModel<List<ErrorField>>>()
+        errorFieldList.clear()
+        employeeModel?.let {
             if (it.name.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_NAME)
             if (it.surname.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_SURNAME)
             if (it.email.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_EMAIL)
-            //if (it.phone.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_PHONE)
-            //if (it.pass.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_PASS)
-            //if (it.birthdate.isDateValidate() || it.birthdate.isEmpty()) errorFieldList.add(
-              //  ErrorField.ERROR_FIELD_DATE
-            //)
+            if (it.country.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_COUNTRY)
+            if (it.typeEmployeeDescription.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_SKILL)
         }
 
-        /*
         if (errorFieldList.isEmpty()) {
-            doFirstInBackground({
-                employeeRepository.addEmployee(employee)
+            doInBackgroundAndContinue({
+                employeeModel?.let {
+                    employeeRepository.addEmployee(it)
+                }
             }, {
-                responseViewModelEntity = HandlerResponseViewModel.createResponse("Empleado añadido correctamente")
+                responseViewModel.postValue(HandlerResponseViewModel.createResponseForm("Los cambios han sido guardados"))
             })
         }
-        else {
-            responseViewModelEntity =
-                HandlerResponseViewModel.createResponse("Campo incorrecto", errorFieldList)
-        }
+        else
+            responseViewModel.postValue(HandlerResponseViewModel.createResponseForm("Campo vacío", resp = errorFieldList))
 
-         */
-
-        return responseViewModelEntity
+        return responseViewModel
     }
 
-    //fun getListSkills() = skillRepository.getListSkill()
 
     enum class ErrorField {
-        ERROR_FIELD_NAME, ERROR_FIELD_SURNAME, ERROR_FIELD_EMAIL, ERROR_FIELD_PHONE, ERROR_FIELD_DATE, ERROR_FIELD_PASS
+        ERROR_FIELD_NAME, ERROR_FIELD_SURNAME, ERROR_FIELD_EMAIL, ERROR_FIELD_PHONE, ERROR_FIELD_COUNTRY, ERROR_FIELD_SKILL
     }
 }
 
