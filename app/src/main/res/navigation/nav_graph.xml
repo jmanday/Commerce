@@ -15,8 +15,10 @@
             app:destination="@id/employeeFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
+            app:launchSingleTop="true"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/employeeFragment"
@@ -29,21 +31,12 @@
     </fragment>
     <fragment
         android:id="@+id/taskFragment"
-        android:name="com.sdos.commerce.ui.fragments.TaskFragment"
+        android:name="com.manday.management.ui.fragments.TaskFragment"
         android:label="fragment_task"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_task">
         <action
-            android:id="@+id/action_taskFragment_to_detailTaskFragment"
-            app:destination="@id/detailTaskFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/settingFragment"
-        android:name="com.sdos.commerce.ui.fragments.SettingFragment"
-        android:label="fragment_setting"
-        tools:layout="@layout/fragment_setting" >
-        <action
-            android:id="@+id/action_settingFragment_to_fruitFragment"
-            app:destination="@id/fruitFragment" />
+            android:id="@+id/action_taskFragment_to_taskDetailFragment"
+            app:destination="@id/taskDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailEmployeeFragment"
@@ -57,19 +50,13 @@
             android:defaultValue="@null" />
     </fragment>
     <fragment
-        android:id="@+id/detailTaskFragment"
-        android:name="com.sdos.commerce.ui.fragments.DetailTaskFragment"
-        android:label="DetailTaskFragment"
-        tools:layout="@layout/fragment_detail_task">
-        <argument
-            android:name="task"
-            app:argType="com.manday.management.data.entities.TaskEntity"
-            app:nullable="true"
-            android:defaultValue="@null" />
-    </fragment>
-    <fragment
         android:id="@+id/fruitFragment"
         android:name="com.manday.fruit.ui.fragment.FruitFragment"
         android:label="FruitFragment"
         tools:layout="@layout/fragment_fruit"/>
+    <fragment
+        android:id="@+id/taskDetailFragment"
+        android:name="com.manday.management.ui.fragments.TaskDetailFragment"
+        android:label="TaskDetailFragment"
+        tools:layout="@layout/fragment_task_detail"/>
 </navigation>
