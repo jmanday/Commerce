@@ -9,6 +9,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.ui.NavigationUI
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.loginuser.injector.LoginUserViewInjector
 import com.manday.management.domain.EmployeeModel
@@ -29,30 +30,16 @@ class MainActivity : AppCompatActivity(), FragmentListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initialize()
+        setUpNavigation()
     }
 
-    private fun initialize() {
-        bottomNavigation.visibility = GONE
-        bottomNavigation.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.action_employee -> {
-                    if (navController.currentDestination?.id != R.id.employeeFragment)
-                        navController.navigate(R.id.employeeFragment)
-                    true
-                }
-                R.id.action_task -> {
-                    if (navController.currentDestination?.id != R.id.taskFragment)
-                        navController.navigate(R.id.taskFragment)
-                    true
-                }
-                R.id.action_setting -> {
-                    if (navController.currentDestination?.id != R.id.settingFragment)
-                        navController.navigate(R.id.settingFragment)
-                    true
-                }
-                else -> true
-            }
+    private fun setUpNavigation() {
+        bottomNavigationView.visibility = GONE
+        NavigationUI.setupWithNavController(bottomNavigationView, navController)
+
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            val a = 22
+            //controller.popBackStack()
         }
     }
 
@@ -75,15 +62,15 @@ class MainActivity : AppCompatActivity(), FragmentListener {
                 .build())
 
         loginUserInjector.provideLoginDialogView().show(supportFragmentManager, "")
-        bottomNavigation.visibility = VISIBLE
+        bottomNavigationView.visibility = VISIBLE
     }
 
     override fun hideNavigationBottomView() {
-        bottomNavigation.visibility = GONE
+        bottomNavigationView.visibility = GONE
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        bottomNavigation.visibility = VISIBLE
+        bottomNavigationView.visibility = VISIBLE
     }
 }
