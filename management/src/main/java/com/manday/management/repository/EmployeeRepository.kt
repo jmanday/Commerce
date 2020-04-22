@@ -10,7 +10,7 @@ internal interface EmployeeRepository {
 
     fun getEmployees(): LiveData<List<EmployeeModel>?>?
 
-    fun addEmployee(employeeEntity: EmployeeEntity)
+    fun addEmployee(employeeModel: EmployeeModel)
 
     fun updateEmployee(employeeEntity: EmployeeEntity?)
 }

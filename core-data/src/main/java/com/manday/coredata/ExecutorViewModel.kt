@@ -19,11 +19,12 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
         }
     }
 
-    protected fun doFirstInBackground(background: suspend () -> Unit, foreground: suspend () -> Unit) {
+    protected fun doInBackgroundAndContinue(background: suspend () -> Unit, foreground: suspend () -> Unit) {
         launch(coroutineContext) {
             withContext(Dispatchers.IO) {
                 background.invoke()
             }
+            Thread.sleep(3000)
             foreground.invoke()
         }
     }

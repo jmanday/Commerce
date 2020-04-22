@@ -16,9 +16,10 @@
             android:id="@+id/imgMain"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:src="@mipmap/placeholder_plain"/>
+            android:src="@mipmap/placeholder_plain" />
 
 
         <com.google.android.material.card.MaterialCardView
@@ -43,7 +44,7 @@
 
         <TextView
             android:id="@+id/tvNameEmployee"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
@@ -51,19 +52,21 @@
             android:textColorLink="@color/colorBlack"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgCircular"
             app:layout_constraintTop_toTopOf="@+id/imgCircular"
             tools:text="Antonio" />
 
         <TextView
             android:id="@+id/tvSkill"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="4dp"
             android:textSize="12sp"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="@+id/imgCircular"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgCircular"
             tools:text="Molino Fernández" />
 
