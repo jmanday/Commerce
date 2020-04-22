@@ -1,8 +1,6 @@
 package com.manday.coredata.utils
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.*
 
 fun<T, U> transformWhenItChanges(source: LiveData<T>?, f: (T?) -> U): LiveData<U> {
     val liveDataTransformed = MutableLiveData<U>()
@@ -31,6 +29,45 @@ fun<T, U> transformMap(source: List<T>, f: (T) -> U): List<U> {
     return transform
 }
 
+fun<T> MediatorLiveData<T>.addSourceNotNull(source: LiveData<T>?, observer: Observer<T>) {
+    source?.let {
+        this.addSource(source, observer)
+    }
+}
+
+fun<T> MediatorLiveData<T>.removeSourceNotNull(source: LiveData<T>?) {
+    source?.let {
+        this.removeSource(source)
+    }
+}
+
+fun<T, U> addMultipleSourceNotNull(sourceA: LiveData<T>?, sourceB: LiveData<U>?, f:(T?, U?) -> Unit) {
+    var resultA : T? = null
+    var resultB : U? = null
+
+    fun update() {
+        if (resultA != null && resultB != null) {
+            f(resultA, resultB)
+        }
+    }
+
+    sourceA?.observeForever {
+        resultA = it
+        update()
+    }
+
+    sourceB?.observeForever {
+        resultB = it
+        update()
+    }
+}
+
+
+fun<T, U> transformationsNotNull(source: LiveData<T>?, f: (T) -> U?): LiveData<U?>? {
+    return source?.let {
+        Transformations.map(it, f)
+    }
+}
 /*
  * Function that observer the source and take three options:
  *  - if "source" is null the response will be NULL

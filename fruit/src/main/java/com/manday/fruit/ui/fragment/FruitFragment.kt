@@ -34,7 +34,9 @@ class FruitFragment : BaseFragment() {
             when (response.typeError) {
                 TypeError.SUCCESS -> {
                     response.resp?.let {
-                        val adapter = FruitAdapter(it) {}
+                        val adapter = FruitAdapter(it) { fruitModel, view ->
+
+                        }
                         mainRecyclerView.adapter = adapter
                     }
                 }

@@ -36,12 +36,12 @@ abstract class BaseFragment: Fragment(), ViewModelListener {
             listener.onNavigationUp()
     }
 
-    protected fun onItemClicked(actionId: Int, bundle: Bundle) {
-        listener.onNavigationPush(actionId, bundle)
+    protected fun onItemClicked(actionId: Int, bundle: Bundle, view: View) {
+        listener.onNavigationPush(actionId, bundle, view)
     }
 
     protected fun onButtonAddClicked(actionId: Int) {
-        listener.onNavigationPush(actionId, null)
+        //listener.onNavigationPush(actionId, null)
     }
 
     protected fun onDatabasePopulated() {
