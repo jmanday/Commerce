@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
-import com.google.android.material.textfield.TextInputLayout
+//import com.google.android.material.textfield.TextInputLayout
 import java.util.*
 import java.util.regex.Pattern
 
@@ -17,6 +17,9 @@ fun String.isDateValidate(): Boolean {
     return (this.isNotEmpty() && matcher.matches())
 }
 
+/*
 fun TextInputLayout.showMessageError(msg: String) {
     this.error = msg
 }
+
+ */

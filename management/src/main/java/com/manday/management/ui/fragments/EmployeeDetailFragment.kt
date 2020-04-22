@@ -12,12 +12,11 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.transition.MaterialContainerTransform
 import com.manday.coredata.TypeError
-import com.manday.coredata.utils.showMessageError
+//import com.manday.coredata.utils.showMessageError
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.coreui.ui.DateDialogView
 import com.manday.coreui.ui.DateDialogView.Companion.TAG_DATE_DIALOG
@@ -134,7 +133,7 @@ class EmployeeDetailFragment : BaseFragment() {
                     it.resp?.let { response ->
                         response.forEach { errorField ->
                             it.message?.let { message ->
-                                mapInputText[errorField]?.showMessageError(message)
+                                //mapInputText[errorField]?.showMessageError(message)
                             }
                         }
                     }
