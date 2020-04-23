@@ -18,6 +18,7 @@ import com.sdos.commerce.CommerceApp
 import com.sdos.commerce.R
 import com.sdos.commerce.di.ModuleInjector
 import com.sdos.commerce.listeners.FragmentListener
+import com.sdos.commerce.util.CustomFragmentNavigator
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -34,13 +35,31 @@ class MainActivity : AppCompatActivity(), FragmentListener {
     }
 
     private fun setUpNavigation() {
+        //navController.navigatorProvider.addNavigator(CustomFragmentNavigator(this, nav_host_fragment.childFragmentManager, R.id.nav_host_fragment))
         bottomNavigationView.visibility = GONE
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            val a = 22
-            //controller.popBackStack()
+        bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
+            val id = menuItem.itemId
+
+            if (menuItem.isChecked)
+                return@setOnNavigationItemSelectedListener false
+
+            when (id) {
+                R.id.employeeFragment -> {
+                    navController.navigate(R.id.action_employeeFragment_self)
+                }
+                R.id.taskFragment -> {
+                    navController.navigate(R.id.action_taskFragment_self)
+                }
+                R.id.fruitFragment -> {
+                    navController.navigate(R.id.action_fruitFragment_self)
+                }
+            }
+
+            true
         }
+
     }
 
     override fun onNavigationPush(actionId: Int, bundle: Bundle?, itemView: View) {
@@ -53,6 +72,7 @@ class MainActivity : AppCompatActivity(), FragmentListener {
 
     override fun onNavigationUp() {
         navController.navigateUp()
+        bottomNavigationView.visibility = VISIBLE
     }
 
     override fun onDatabasePopulated() {
