@@ -2,33 +2,26 @@ package com.manday.management.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.EditText
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.transition.MaterialContainerTransform
 import com.manday.coredata.TypeError
-//import com.manday.coredata.utils.showMessageError
+import com.manday.coredata.utils.showMessageError
 import com.manday.coreui.fragment.BaseFragment
-import com.manday.coreui.ui.DateDialogView
-import com.manday.coreui.ui.DateDialogView.Companion.TAG_DATE_DIALOG
 import com.manday.management.R
-import com.manday.management.data.entities.SkillEntity
 import com.manday.management.databinding.FragmentEmployeeDetailBinding
 
 import com.manday.management.domain.EmployeeModel
 import com.manday.management.ui.viewmodels.EmployeeDetailViewModel
 import kotlinx.android.synthetic.main.fragment_employee_detail.*
 import kotlinx.android.synthetic.main.fragment_employee_detail.view.*
-import kotlinx.android.synthetic.main.fragment_employee_detail.view.toolbar
 import org.koin.java.KoinJavaComponent.inject
 
 class EmployeeDetailFragment : BaseFragment() {
@@ -133,7 +126,7 @@ class EmployeeDetailFragment : BaseFragment() {
                     it.resp?.let { response ->
                         response.forEach { errorField ->
                             it.message?.let { message ->
-                                //mapInputText[errorField]?.showMessageError(message)
+                                mapInputText[errorField]?.showMessageError(message)
                             }
                         }
                     }

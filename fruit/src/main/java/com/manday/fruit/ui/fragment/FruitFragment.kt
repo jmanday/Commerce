@@ -19,16 +19,6 @@ class  FruitFragment : BaseFragment() {
 
     private val viewModel: FruitViewModel by inject(FruitViewModel::class.java)
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val a = 3
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val a = 22
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -70,21 +60,6 @@ class  FruitFragment : BaseFragment() {
         })
 
          */
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        val a = 45
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        val a = 22
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        val a =44
     }
 
 }

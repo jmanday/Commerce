@@ -30,8 +30,4 @@ class FruitViewModel(
         const val ITEM = "Peaches"
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        val a = 22
-    }
 }
