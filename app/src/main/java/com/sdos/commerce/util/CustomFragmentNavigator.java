@@ -66,9 +66,6 @@ public class CustomFragmentNavigator extends Navigator<androidx.navigation.fragm
     private final FragmentManager mFragmentManager;
     private final int mContainerId;
     private ArrayDeque<Integer> mBackStack = new ArrayDeque<>();
-    private int startDestination = -1;
-    private int lastDestination = -1;
-    private Boolean isFirstTime = false, canDoPop = false;
 
     public CustomFragmentNavigator(@NonNull Context context, @NonNull FragmentManager manager,
                              int containerId) {
@@ -92,7 +89,6 @@ public class CustomFragmentNavigator extends Navigator<androidx.navigation.fragm
     @Override
     public boolean popBackStack() {
         if (mBackStack.isEmpty()) {
-            isFirstTime = true;
             return false;
         }
 
@@ -102,14 +98,11 @@ public class CustomFragmentNavigator extends Navigator<androidx.navigation.fragm
             return false;
         }
 
-        if (canDoPop || isFirstTime) {
-            mFragmentManager.popBackStack(
-                    generateBackStackName(mBackStack.size(), mBackStack.peekLast()),
-                    FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            mBackStack.removeLast();
-            return true;
-        }
-        return false;
+        mFragmentManager.popBackStack(
+                generateBackStackName(mBackStack.size(), mBackStack.peekLast()),
+                FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        mBackStack.removeLast();
+        return true;
     }
 
     @NonNull
@@ -191,17 +184,6 @@ public class CustomFragmentNavigator extends Navigator<androidx.navigation.fragm
         ft.setPrimaryNavigationFragment(frag);
 
         final @IdRes int destId = destination.getId();
-        /*
-        if (!isFirstTime && mBackStack.size() != 0) {
-            lastDestination = destId;
-        }
-        if (isFirstTime) {
-            startDestination = destId;
-            isFirstTime = false;
-        }
-
-         */
-
         final boolean initialNavigation = mBackStack.isEmpty();
         // TODO Build first class singleTop behavior for fragments
         final boolean isSingleTopReplacement = navOptions != null && !initialNavigation
