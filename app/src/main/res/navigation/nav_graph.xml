@@ -53,10 +53,26 @@
         android:id="@+id/fruitFragment"
         android:name="com.manday.fruit.ui.fragment.FruitFragment"
         android:label="FruitFragment"
-        tools:layout="@layout/fragment_fruit"/>
+        tools:layout="@layout/fragment_fruit">
+    </fragment>
     <fragment
         android:id="@+id/taskDetailFragment"
         android:name="com.manday.management.ui.fragments.TaskDetailFragment"
         android:label="TaskDetailFragment"
         tools:layout="@layout/fragment_task_detail"/>
+    <action
+        android:id="@+id/action_fruitFragment_self"
+        app:destination="@id/fruitFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/fruitFragment" />
+    <action
+        android:id="@+id/action_taskFragment_self"
+        app:destination="@id/taskFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/taskFragment" />
+    <action
+        android:id="@+id/action_employeeFragment_self"
+        app:destination="@id/employeeFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/employeeFragment" />
 </navigation>
