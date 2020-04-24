@@ -24,6 +24,7 @@
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@color/colorLigthGrey"
             android:singleLine="true"
             android:textColor="@color/colorBlack"
             android:textSize="18sp"
@@ -37,6 +38,7 @@
             android:id="@+id/category"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@color/colorLigthGrey"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/name"
@@ -53,6 +55,7 @@
             android:id="@+id/businness"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@color/colorLigthGrey"
             android:textSize="12sp"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -61,11 +64,12 @@
             tools:text="Cobrador" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/ivMap"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@color/colorLigthGrey"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_google_maps"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.transformation.TransformationChildCard>
