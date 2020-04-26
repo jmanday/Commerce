@@ -11,7 +11,7 @@ import com.manday.management.domain.EmployeeModel
 internal class EmployeeAdapter(listEmployee: List<EmployeeModel>, listener: (EmployeeModel, View) -> Unit): BaseAdapter<EmployeeModel, EmployeeViewHolder>(listEmployee, listener) {
 
     override fun generateViewHolder(parent: ViewGroup, viewType: Int): EmployeeViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_view, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.view_item_employee, parent, false)
         return EmployeeViewHolder(itemView)
     }
 }

@@ -23,7 +23,7 @@ internal class EmployeeDetailViewModel(
 
     private val errorFieldList = mutableListOf<ErrorField>()
     private var skills = MediatorLiveData<List<SkillEntity>>()
-    var employeeModel: EmployeeModel? = null
+    lateinit var employeeModel: EmployeeModel
 
     fun initialize(employee: EmployeeModel) {
         this.employeeModel = employee
@@ -42,17 +42,17 @@ internal class EmployeeDetailViewModel(
     fun buttonSaveClicked(): LiveData<ResponseFormViewModel<List<ErrorField>>> {
         val responseViewModel = MutableLiveData<ResponseFormViewModel<List<ErrorField>>>()
         errorFieldList.clear()
-        employeeModel?.let {
+        employeeModel.let {
             if (it.name.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_NAME)
             if (it.surname.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_SURNAME)
             if (it.email.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_EMAIL)
             if (it.country.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_COUNTRY)
-            if (it.typeEmployeeDescription.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_SKILL)
+            if (it.skillEmployeeDescription.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_SKILL)
         }
 
         if (errorFieldList.isEmpty()) {
             doInBackgroundAndContinue({
-                employeeModel?.let {
+                employeeModel.let {
                     employeeRepository.addEmployee(it)
                 }
             }, {
