@@ -22,20 +22,18 @@ internal class EmployeeDetailViewModel(
 ): ExecutorViewModel() {
 
     private val errorFieldList = mutableListOf<ErrorField>()
-    private var skills = MediatorLiveData<List<SkillEntity>>()
+    val skills = MediatorLiveData<List<SkillEntity>>()
     lateinit var employeeModel: EmployeeModel
 
-    fun initialize(employee: EmployeeModel) {
-        this.employeeModel = employee
-    }
-
-    fun skills(): LiveData<List<SkillEntity>> {
+    init {
         skills.addSourceNotNull(skillRepository.getListSkill(), Observer {
             skills.removeSourceNotNull(skillRepository.getListSkill())
             skills.postValue(it)
         })
+    }
 
-        return skills
+    fun initialize(employee: EmployeeModel) {
+        this.employeeModel = employee
     }
 
 

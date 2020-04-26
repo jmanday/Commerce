@@ -70,7 +70,7 @@ class EmployeeDetailFragment : BaseFragment() {
         prepareListeners()
         populateMap()
 
-        viewModel.skills().observe(this, Observer {
+        viewModel.skills.observe(this, Observer {
             it?.let {
                 val adapter = ArrayAdapter(requireContext(), R.layout.list_item, it.map { it.name })
                 (binding.inputSkill.editText as? AutoCompleteTextView)?.setAdapter(adapter)
