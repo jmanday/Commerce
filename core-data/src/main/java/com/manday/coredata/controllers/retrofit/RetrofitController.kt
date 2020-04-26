@@ -1,5 +1,6 @@
 package com.manday.coredata.controllers.retrofit
 
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -16,4 +17,7 @@ object RetrofitController {
     }
 
     inline fun<reified T: Any> createRequest(): T = retrofit.create(T::class.java)
+
+    inline fun <T, U> Response<T>.unwrapResponse(f: T.() -> List<U>) =
+        body()?.f()
 }
