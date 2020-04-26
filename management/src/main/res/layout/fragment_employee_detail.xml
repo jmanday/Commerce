@@ -83,7 +83,7 @@
                 android:layout_marginBottom="4dp"
                 android:textSize="12sp"
                 android:textStyle="italic"
-                android:text="@{employee.typeEmployeeDescription}"
+                android:text="@{employee.skillEmployeeDescription}"
                 app:layout_constraintBottom_toBottomOf="@+id/imgCircular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imgCircular"
@@ -259,7 +259,8 @@
                         android:id="@+id/autocompleteType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none" />
+                        android:inputType="none"
+                        android:text="@={employee.skillEmployeeDescription}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 

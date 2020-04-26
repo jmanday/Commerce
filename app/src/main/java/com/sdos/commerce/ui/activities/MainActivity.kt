@@ -12,6 +12,8 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.ui.NavigationUI
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.loginuser.injector.LoginUserViewInjector
+import com.manday.management.Constants.ARGUMENT_EXTRA_EMPLOYEE
+import com.manday.management.Constants.ARGUMENT_EXTRA_NAME_TRANSITION
 import com.manday.management.domain.EmployeeModel
 import com.manday.management.ui.fragments.EmployeeDetailFragment
 import com.sdos.commerce.CommerceApp
@@ -63,10 +65,13 @@ class MainActivity : AppCompatActivity(), FragmentListener {
     }
 
     override fun onNavigationPush(actionId: Int, bundle: Bundle?, itemView: View) {
-        val employeeModel = bundle?.get(BaseFragment.ARGUMENT_EXTRA_EMPLOYEE) as EmployeeModel
-        val extras = FragmentNavigatorExtras(itemView to employeeModel.name)
+        var extras: FragmentNavigator.Extras? = null
+        bundle?.let {
+            it.getString(ARGUMENT_EXTRA_NAME_TRANSITION)?.let { nameTransition ->
+                extras = FragmentNavigatorExtras(itemView to nameTransition)
+            }
+        }
 
-        //navController.navigate(EmployeeFragmentDirections.actionMainFragmentToDetailEmployeeFragment(employeeModel), extras)
         navController.navigate(R.id.action_mainFragment_to_detailEmployeeFragment, bundle, null, extras)
     }
 

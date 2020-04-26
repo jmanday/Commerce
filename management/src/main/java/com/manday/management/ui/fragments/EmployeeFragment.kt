@@ -1,24 +1,22 @@
 package com.manday.management.ui.fragments
 
 import android.os.Bundle
-import android.transition.AutoTransition
-import android.transition.Explode
-import android.transition.Fade
-import android.transition.Slide
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import android.transition.Fade
+import com.google.android.material.transition.FadeThrough
 import com.google.android.material.transition.Hold
-import com.manday.coredata.TypeError
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.employee.ui.adapters.EmployeeAdapter
+import com.manday.management.Constants.ARGUMENT_EXTRA_EMPLOYEE
+import com.manday.management.Constants.ARGUMENT_EXTRA_NAME_TRANSITION
+import com.manday.management.Constants.NAME_GENERAL_TRANSITION
 import com.manday.management.R
 import com.manday.management.databinding.FragmentEmployeeBinding
 import com.manday.management.ui.viewmodels.EmployeeViewModel
 import kotlinx.android.synthetic.main.fragment_employee.*
-import kotlinx.android.synthetic.main.list_item_view.*
-import kotlinx.coroutines.runBlocking
 import org.koin.java.KoinJavaComponent.inject
 
 class EmployeeFragment : BaseFragment() {
@@ -29,7 +27,7 @@ class EmployeeFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //exitTransition = Fade()
+        exitTransition = FadeThrough()
     }
 
     override fun onCreateView(
@@ -41,14 +39,22 @@ class EmployeeFragment : BaseFragment() {
     }
 
     override fun initialize() {
+        btnAdd.setOnClickListener {
+            it.transitionName = NAME_GENERAL_TRANSITION
+            listener.onNavigationPush(R.id.btnAdd,
+                Bundle().apply {
+                    putString(ARGUMENT_EXTRA_NAME_TRANSITION, NAME_GENERAL_TRANSITION)
+                }, it)
+        }
         mainRecyclerView.showShimmer()
-        viewModel.employees().observe(this, Observer { employees ->
+        viewModel.employees.observe(this, Observer { employees ->
             mainRecyclerView.hideShimmer()
             if (employees != null) {
                 mainRecyclerView.adapter = EmployeeAdapter(employees) {employeeModel, view ->
                     listener.onNavigationPush(R.id.btnAdd,
                         Bundle().apply {
                             putSerializable(ARGUMENT_EXTRA_EMPLOYEE, employeeModel)
+                            putString(ARGUMENT_EXTRA_NAME_TRANSITION, employeeModel.name)
                         }, view)
                 }
             }

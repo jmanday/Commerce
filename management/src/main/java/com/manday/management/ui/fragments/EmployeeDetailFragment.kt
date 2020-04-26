@@ -15,6 +15,8 @@ import com.google.android.material.transition.MaterialContainerTransform
 import com.manday.coredata.TypeError
 import com.manday.coredata.utils.showMessageError
 import com.manday.coreui.fragment.BaseFragment
+import com.manday.management.Constants.ARGUMENT_EXTRA_EMPLOYEE
+import com.manday.management.Constants.ARGUMENT_EXTRA_NAME_TRANSITION
 import com.manday.management.R
 import com.manday.management.databinding.FragmentEmployeeDetailBinding
 
@@ -28,6 +30,7 @@ class EmployeeDetailFragment : BaseFragment() {
 
     private val viewModel: EmployeeDetailViewModel by inject(EmployeeDetailViewModel::class.java)
     private lateinit var binding: FragmentEmployeeDetailBinding
+    private var employeeModel = EmployeeModel()
     private lateinit var mapInputText: Map<EmployeeDetailViewModel.ErrorField, TextInputLayout>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,12 +49,18 @@ class EmployeeDetailFragment : BaseFragment() {
     ): View? {
         binding = FragmentEmployeeDetailBinding.inflate(inflater)
             .apply {
-                val employeeModel = arguments?.get(ARGUMENT_EXTRA_EMPLOYEE) as EmployeeModel
-                viewModel.initialize(employeeModel)
+                arguments?.let { it ->
+                    it.get(ARGUMENT_EXTRA_EMPLOYEE)?.let { argEmployee ->
+                        employeeModel = argEmployee as EmployeeModel
+                    }
+                    it.getString(ARGUMENT_EXTRA_NAME_TRANSITION)?.let { nameTransition ->
+                        root.transitionName = nameTransition
+                    }
+                }
                 employee = employeeModel
-                root.transitionName = employeeModel.name
             }
 
+        viewModel.initialize(employeeModel)
         listener.hideNavigationBottomView()
 
         return binding.root
@@ -61,23 +70,21 @@ class EmployeeDetailFragment : BaseFragment() {
         prepareListeners()
         populateMap()
 
-        viewModel.skills().observe(this, Observer {
+        viewModel.skills.observe(this, Observer {
             it?.let {
                 val adapter = ArrayAdapter(requireContext(), R.layout.list_item, it.map { it.name })
                 (binding.inputSkill.editText as? AutoCompleteTextView)?.setAdapter(adapter)
             }
         })
 
-        binding.autocompleteType.setText(viewModel.employeeModel?.typeEmployeeDescription)
-
         Glide.with(binding.root)
-            .load(viewModel.employeeModel?.image)
+            .load(viewModel.employeeModel.image)
             .centerCrop()
             .placeholder(R.mipmap.placeholder)
             .into(binding.root.imgMain)
 
         Glide.with(binding.root)
-            .load(viewModel.employeeModel?.image)
+            .load(viewModel.employeeModel.image)
             .centerCrop()
             .placeholder(R.mipmap.placeholder)
             .into(binding.root.imgProfile)
@@ -108,6 +115,10 @@ class EmployeeDetailFragment : BaseFragment() {
                     false
                 }
             }
+        }
+        binding.inputSkill.autocompleteType.setOnItemClickListener { parent, view, position, id ->
+            employeeModel.skillEmployeeDescription = parent.adapter.getItem(position) as String
+            employeeModel.skillEmployee = position
         }
     }
 

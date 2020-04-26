@@ -9,23 +9,21 @@ import com.manday.management.repository.EmployeeRepository
 import com.manday.management.repository.SkillRepository
 
 internal class EmployeeViewModel(
-    val employeeRepository: EmployeeRepository,
-    val skillRepository: SkillRepository
+    employeeRepository: EmployeeRepository,
+    skillRepository: SkillRepository
 ) : ExecutorViewModel() {
 
-    private val employees = MutableLiveData<List<EmployeeModel>?>()
+    val employees = MutableLiveData<List<EmployeeModel>?>()
 
-    fun employees(): LiveData<List<EmployeeModel>?> {
+    init {
         addMultipleSourceNotNull(employeeRepository.getEmployees(), skillRepository.getListSkill()) { listEmployees, listSkills ->
             listEmployees?.map {
-                it.typeEmployeeDescription = listSkills?.find { skill ->
-                    skill.id == it.typeEmployee
+                it.skillEmployeeDescription = listSkills?.find { skill ->
+                    skill.id == it.skillEmployee
                 }?.name ?: ""
             }
             employees.postValue(listEmployees)
         }
-
-        return employees
     }
 
 }
