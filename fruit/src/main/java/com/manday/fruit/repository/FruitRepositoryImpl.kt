@@ -1,6 +1,6 @@
 package com.manday.fruit.repository
 
-import com.manday.coredata.utils.transformMapResponse
+import com.manday.coredata.utils.transformationsNotNull
 import com.manday.fruit.datasource.net.FruitNetDataSource
 
 class FruitRepositoryImpl(
@@ -8,7 +8,7 @@ class FruitRepositoryImpl(
 ): FruitRepository {
 
     override fun getAllFruits(category: String, item: String) =
-        transformMapResponse(dataSource.getFruits(category, item)){
+        transformationsNotNull(dataSource.getFruits(category, item)){
             it.map { it.mapToFruitModel() }
         }
 }

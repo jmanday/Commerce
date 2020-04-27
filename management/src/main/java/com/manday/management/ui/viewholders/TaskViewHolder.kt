@@ -1,30 +1,49 @@
 package com.manday.management.ui.viewholders
 
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
-import com.manday.management.data.entities.TaskEntity
 import com.manday.coreui.viewholder.BaseViewHolder
 import com.manday.management.R
-import kotlinx.android.synthetic.main.list_item_employee_view.view.*
+import com.manday.management.domain.TaskModel
+import com.manday.management.domain.TaskState
+import kotlinx.android.synthetic.main.view_item_task.view.*
 
-class TaskViewHolder(itemView: View): BaseViewHolder<TaskEntity>(itemView) {
 
-    override fun onBind(task: TaskEntity, f: (task: TaskEntity, v: View) -> Unit) {
-        itemView.name.text = task.name
-        itemView.state.text = String.format(task.duration.toString(), " horas")
-        itemView.text_type.visibility = View.VISIBLE
-        itemView.text_type.text = "Duración"
-        itemView.setOnClickListener {
-            f(task, itemView)
+class TaskViewHolder(itemView: View) : BaseViewHolder<TaskModel>(itemView) {
+
+    override fun onBind(task: TaskModel, f: (task: TaskModel, v: View) -> Unit) {
+        itemView.tvTitle.text = task.title
+        itemView.tvDate.text =
+            String.format(itemView.context.getString(R.string.text_date), task.date)
+        itemView.tvPriority.text = String.format(
+            itemView.context.getString(R.string.text_priority),
+            task.priority.toString()
+        )
+
+        if (task.imgEmployee.isNotEmpty()) {
+            Glide.with(itemView)
+                .load(task.imgEmployee)
+                .centerCrop()
+                .placeholder(R.mipmap.placeholder)
+                .into(itemView.imgEmployee)
         }
-        Glide.with(itemView)
-            .load(task.image)
-            .centerCrop()
-            .placeholder(R.mipmap.placeholder)
-            .into(itemView.img)
 
-        itemView.setOnClickListener {
-            f(task, itemView)
+        when (task.state) {
+            TaskState.OPEN -> {
+                itemView.setOnClickListener {
+                    f(task, itemView)
+                }
+            }
+            TaskState.CLOSE -> {
+                itemView.clTask.setBackgroundColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.colorLigthGrey
+                    )
+                )
+            }
         }
     }
+
 }

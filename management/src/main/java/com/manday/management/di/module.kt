@@ -8,8 +8,6 @@ import com.manday.loginuser.viewmodels.LoginDialogViewModel
 import com.manday.management.data.datasource.EmployeeDatabaseDataSource
 import com.manday.management.data.datasource.EmployeeDatabaseDataSourceImpl
 import com.manday.management.repository.*
-import com.manday.management.repository.EmployeeRepository
-import com.manday.management.repository.EmployeeRepositoryImpl
 import com.manday.management.ui.viewmodels.EmployeeDetailViewModel
 import com.manday.management.ui.viewmodels.EmployeeViewModel
 import com.manday.management.ui.viewmodels.TaskDetailViewModel
@@ -33,6 +31,6 @@ val managementModuleDependencies = module {
     viewModel { EmployeeViewModel(get(), get()) }
     viewModel { EmployeeDetailViewModel(get(), get()) }
     viewModel { TaskDetailViewModel(get()) }
-    viewModel { TaskViewModel(get()) }
+    viewModel { TaskViewModel(get(), get()) }
 
 }

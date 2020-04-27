@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_employee"
+        android:id="@+id/employeeFragment"
         android:title="@string/menu_text_employee"
         android:icon="@drawable/ic_person_black_48dp" />
 
     <item
-        android:id="@+id/action_task"
+        android:id="@+id/taskFragment"
         android:title="@string/menu_text_task"
         android:icon="@drawable/ic_description_black_24dp"/>
 
     <item
-        android:id="@+id/action_setting"
-        android:title="@string/menu_text_setting"
-        android:icon="@drawable/ic_build_black_24dp"/>
+        android:id="@+id/fruitFragment"
+        android:title="@string/menu_text_web"
+        android:icon="@drawable/ic_web_black_24dp"/>
 </menu>

@@ -9,15 +9,18 @@ import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.ui.NavigationUI
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.loginuser.injector.LoginUserViewInjector
+import com.manday.management.Constants.ARGUMENT_EXTRA_EMPLOYEE
+import com.manday.management.Constants.ARGUMENT_EXTRA_NAME_TRANSITION
 import com.manday.management.domain.EmployeeModel
 import com.manday.management.ui.fragments.EmployeeDetailFragment
-import com.manday.management.ui.fragments.EmployeeFragmentDirections
 import com.sdos.commerce.CommerceApp
 import com.sdos.commerce.R
 import com.sdos.commerce.di.ModuleInjector
 import com.sdos.commerce.listeners.FragmentListener
+import com.sdos.commerce.util.CustomFragmentNavigator
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -30,43 +33,51 @@ class MainActivity : AppCompatActivity(), FragmentListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initialize()
+        setUpNavigation()
     }
 
-    private fun initialize() {
-        bottomNavigation.visibility = GONE
-        bottomNavigation.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.action_employee -> {
-                    if (navController.currentDestination?.id != R.id.employeeFragment)
-                        navController.navigate(R.id.employeeFragment)
-                    true
+    private fun setUpNavigation() {
+        //navController.navigatorProvider.addNavigator(CustomFragmentNavigator(this, nav_host_fragment.childFragmentManager, R.id.nav_host_fragment))
+        bottomNavigationView.visibility = GONE
+        NavigationUI.setupWithNavController(bottomNavigationView, navController)
+
+        bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
+            val id = menuItem.itemId
+
+            if (menuItem.isChecked)
+                return@setOnNavigationItemSelectedListener false
+
+            when (id) {
+                R.id.employeeFragment -> {
+                    navController.navigate(R.id.action_employeeFragment_self)
                 }
-                R.id.action_task -> {
-                    if (navController.currentDestination?.id != R.id.taskFragment)
-                        navController.navigate(R.id.taskFragment)
-                    true
+                R.id.taskFragment -> {
+                    navController.navigate(R.id.action_taskFragment_self)
                 }
-                R.id.action_setting -> {
-                    if (navController.currentDestination?.id != R.id.settingFragment)
-                        navController.navigate(R.id.settingFragment)
-                    true
+                R.id.fruitFragment -> {
+                    navController.navigate(R.id.action_fruitFragment_self)
                 }
-                else -> true
             }
+
+            true
         }
+
     }
 
     override fun onNavigationPush(actionId: Int, bundle: Bundle?, itemView: View) {
-        val employeeModel = bundle?.get(BaseFragment.ARGUMENT_EXTRA_EMPLOYEE) as EmployeeModel
-        val extras = FragmentNavigatorExtras(itemView to employeeModel.name)
+        var extras: FragmentNavigator.Extras? = null
+        bundle?.let {
+            it.getString(ARGUMENT_EXTRA_NAME_TRANSITION)?.let { nameTransition ->
+                extras = FragmentNavigatorExtras(itemView to nameTransition)
+            }
+        }
 
-        //navController.navigate(EmployeeFragmentDirections.actionMainFragmentToDetailEmployeeFragment(employeeModel), extras)
         navController.navigate(R.id.action_mainFragment_to_detailEmployeeFragment, bundle, null, extras)
     }
 
     override fun onNavigationUp() {
         navController.navigateUp()
+        bottomNavigationView.visibility = VISIBLE
     }
 
     override fun onDatabasePopulated() {
@@ -76,15 +87,15 @@ class MainActivity : AppCompatActivity(), FragmentListener {
                 .build())
 
         loginUserInjector.provideLoginDialogView().show(supportFragmentManager, "")
-        bottomNavigation.visibility = VISIBLE
+        bottomNavigationView.visibility = VISIBLE
     }
 
     override fun hideNavigationBottomView() {
-        bottomNavigation.visibility = GONE
+        bottomNavigationView.visibility = GONE
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        bottomNavigation.visibility = VISIBLE
+        bottomNavigationView.visibility = VISIBLE
     }
 }

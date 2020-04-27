@@ -3,6 +3,8 @@ package com.manday.management.data.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.manday.management.domain.TaskModel
+import com.manday.management.domain.TaskState
 import java.io.Serializable
 
 @Entity(tableName = "tasks")
@@ -30,5 +32,22 @@ data class TaskEntity(
     var image: String = String(),
 
     @ColumnInfo(name = "state")
-    var state: Int = 0
+    var state: Int = 0,
+
+    @ColumnInfo(name = "priority")
+    var priority: Int = 0,
+
+    @ColumnInfo(name = "date")
+    var date: String? = null
 ): Serializable
+
+fun TaskEntity.toTaskModel() =
+    TaskModel(
+        id = this.id,
+        title = this.name,
+        employeeId = this.idEmployee,
+        state = TaskState.getState(this.state),
+        priority = this.priority,
+        imgEmployee = this.image,
+        date = this.date ?: String()
+    )
