@@ -19,9 +19,9 @@ object Generator {
     )
 
     fun getTasks() = listOf(
-        TaskEntity(null, "Cambiar pantalla portatil", "Se necesita realizar un cambio de pantalla en un portatil debido a una caída", 0.3, 4, null, "https://img.milanuncios.com/fg/2664/30/266430484_1.jpg?VersionId=WgwgSsXSXZEY_jXNjzzLbiuQKgVxAx4W"),
-        TaskEntity(null, "Instalar batería", "Se debe realizar el cambio de alimentación para la batería de un portatil Acer SP12-4", 0.3, 4, null, "https://www.tel2u.com/951789/bateria-para-laptop-para-dell.jpg"),
-        TaskEntity(null, "Configurar consola", "Se necesita configurar el nuevo firmware de una Play Station 4", 0.3, 4, null, "https://media.ldlc.com/r1600/ld/products/00/03/83/27/LD0003832755_2.jpg")
+        TaskEntity(null, "Cambiar pantalla portatil", "Se necesita realizar un cambio de pantalla en un portatil debido a una caída", 0.3, 4, null, "", 0, 2, "23/04/2020"),
+        TaskEntity(null, "Instalar batería", "Se debe realizar el cambio de alimentación para la batería de un portatil Acer SP12-4", 0.3, 4, null, "", 0, 2, "12/04/2020"),
+        TaskEntity(null, "Configurar consola", "Se necesita configurar el nuevo firmware de una Play Station 4", 0.3, 4, 3, "", 1, 2, "24/04/2020")
     )
 
     fun getTypeEmployee() = listOf(
