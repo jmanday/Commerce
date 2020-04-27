@@ -46,11 +46,11 @@ class EmployeeFragment : BaseFragment() {
                     putString(ARGUMENT_EXTRA_NAME_TRANSITION, NAME_GENERAL_TRANSITION)
                 }, it)
         }
-        mainRecyclerView.showShimmer()
+        employeeRecyclerView.showShimmer()
         viewModel.employees.observe(this, Observer { employees ->
-            mainRecyclerView.hideShimmer()
+            employeeRecyclerView.hideShimmer()
             if (employees != null) {
-                mainRecyclerView.adapter = EmployeeAdapter(employees) {employeeModel, view ->
+                employeeRecyclerView.adapter = EmployeeAdapter(employees) {employeeModel, view ->
                     listener.onNavigationPush(R.id.btnAdd,
                         Bundle().apply {
                             putSerializable(ARGUMENT_EXTRA_EMPLOYEE, employeeModel)
