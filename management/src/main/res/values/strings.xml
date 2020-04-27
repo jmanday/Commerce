@@ -4,4 +4,6 @@
     <string name="text_button_login_dialog">Login</string>
     <string name="text_header_login_dialog">Bienvenido</string>
     <string name="text_name_surname">%s %s</string>
+    <string name="text_date">Fecha: %s</string>
+    <string name="text_priority">Prioridad: %s</string>
 </resources>
