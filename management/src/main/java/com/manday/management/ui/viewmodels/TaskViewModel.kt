@@ -1,38 +1,35 @@
 package com.manday.management.ui.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.Observer
+
+import androidx.lifecycle.MutableLiveData
 import com.manday.coredata.ExecutorViewModel
-import com.manday.management.data.entities.TaskEntity
+import com.manday.coredata.utils.addMultipleSourceNotNull
+import com.manday.management.domain.TaskModel
+import com.manday.management.repository.EmployeeRepository
 import com.manday.management.repository.TaskRepository
 
-class TaskViewModel(
-    private val taskRespository: TaskRepository
+internal class TaskViewModel(
+    employeeRepository: EmployeeRepository,
+    taskRespository: TaskRepository
 ) : ExecutorViewModel() {
 
-    private val tasks = MediatorLiveData<List<TaskEntity>>()
+    val tasks = MutableLiveData<List<TaskModel>>()
 
-    /*
-    fun getTasks(): LiveData<List<TaskEntity>> {
-        tasks.addSourceNotNull(taskRespository.getAllTasks(), object : Observer<List<TaskEntity>> {
-            override fun onChanged(t: List<TaskEntity>?) {
-                doInBackground {
-                    tasks.removeSourceNotNull(taskRespository.getAllTasks())
-                    tasks.postValue(t)
+    init {
+        addMultipleSourceNotNull(
+            employeeRepository.getEmployees(),
+            taskRespository.getTasks()
+        ) { listEmployees, listTasks ->
+            listTasks?.map {
+                if (it.employeeId != null) {
+                    it.imgEmployee = listEmployees?.find { employeeModel ->
+                        employeeModel.id == it.employeeId
+                    }?.image.toString()
                 }
             }
-        })
 
-        return tasks
+            tasks.postValue(listTasks)
+        }
     }
-
-     */
-
-    fun getPendingTasks() = tasks.value?.filter { it.state == 0 }
-
-    fun getCompletedTasks() = tasks.value?.filter { it.state == 1 }
-
-    fun getAllTasks() =  tasks.value
 
 }
