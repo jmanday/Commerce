@@ -3,10 +3,11 @@ package com.manday.management.repository
 import androidx.lifecycle.LiveData
 import com.manday.management.data.entities.TaskEntity
 import com.manday.management.data.entities.TypeTaskEntity
+import com.manday.management.domain.TaskModel
 
-interface TaskRepository {
+internal interface TaskRepository {
 
-    fun getAllTasks(): LiveData<List<TaskEntity>>?
+    fun getTasks(): LiveData<List<TaskModel>?>?
 
     fun getAllTypeTasks(): LiveData<List<TypeTaskEntity>>?
 

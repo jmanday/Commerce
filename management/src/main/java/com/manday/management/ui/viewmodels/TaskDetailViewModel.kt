@@ -8,7 +8,7 @@ import com.manday.management.data.entities.TypeTaskEntity
 import com.manday.management.repository.TaskRepository
 import com.sdos.commerce.listeners.ViewModelListener
 
-class TaskDetailViewModel(
+internal class TaskDetailViewModel(
     private val taskRepository: TaskRepository
 ): ExecutorViewModel() {
 
