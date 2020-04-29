@@ -1,6 +1,6 @@
-package com.sdos.commerce.di
+package com.jmanday.commerce.di
 
-import com.sdos.commerce.ui.viewmodels.SplashViewModel
+import com.jmanday.commerce.ui.viewmodels.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

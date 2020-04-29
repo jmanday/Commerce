@@ -1,4 +1,4 @@
-package com.sdos.commerce.util;
+package com.jmanday.commerce.util;
 
 /*
  * Copyright (C) 2017 The Android Open Source Project
@@ -37,7 +37,7 @@ import androidx.navigation.NavOptions;
 import androidx.navigation.Navigator;
 import androidx.navigation.NavigatorProvider;
 
-import com.sdos.commerce.R;
+import com.jmanday.commerce.R;
 
 import java.util.ArrayDeque;
 import java.util.Collections;

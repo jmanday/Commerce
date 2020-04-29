@@ -1,12 +1,12 @@
 package com.manday.management.ui.viewmodels
 
 import androidx.lifecycle.Observer
+import com.jmanday.commerce.listeners.ViewModelListener
 import com.manday.coredata.ExecutorViewModel
 import com.manday.management.data.entities.EmployeeEntity
 import com.manday.management.data.entities.TaskEntity
 import com.manday.management.data.entities.TypeTaskEntity
 import com.manday.management.repository.TaskRepository
-import com.sdos.commerce.listeners.ViewModelListener
 
 internal class TaskDetailViewModel(
     private val taskRepository: TaskRepository

@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.sdos.commerce.listeners.FragmentListener
-import com.sdos.commerce.listeners.ViewModelListener
+import com.jmanday.commerce.listeners.FragmentListener
+import com.jmanday.commerce.listeners.ViewModelListener
 
 
 abstract class BaseFragment: Fragment(), ViewModelListener {

@@ -1,4 +1,4 @@
-package com.sdos.commerce.di
+package com.jmanday.commerce.di
 
 import com.manday.loginuser.injector.LoginUserViewInjector
 

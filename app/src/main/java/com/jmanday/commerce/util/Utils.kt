@@ -1,8 +1,7 @@
-package com.sdos.commerce.util
+package com.jmanday.commerce.util
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import java.util.*

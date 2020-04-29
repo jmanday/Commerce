@@ -1,13 +1,13 @@
-package com.sdos.commerce.ui.fragments
+package com.jmanday.commerce.ui.fragments
 
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.jmanday.commerce.R
+import com.jmanday.commerce.ui.viewmodels.SplashViewModel
 import com.manday.coreui.fragment.BaseFragment
-import com.sdos.commerce.R
-import com.sdos.commerce.ui.viewmodels.SplashViewModel
 import org.koin.java.KoinJavaComponent.inject
 
 class SplashFragment : BaseFragment() {

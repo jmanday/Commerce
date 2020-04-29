@@ -1,4 +1,4 @@
-package com.sdos.commerce.ui.viewmodels
+package com.jmanday.commerce.ui.viewmodels
 
 import android.content.Context
 import com.manday.coredata.ExecutorViewModel

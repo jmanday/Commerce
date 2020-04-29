@@ -1,4 +1,4 @@
-package com.sdos.commerce.util
+package com.jmanday.commerce.util
 
 import android.util.Log
 import android.view.View

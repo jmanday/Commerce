@@ -1,4 +1,4 @@
-package com.sdos.commerce.ui.activities
+package com.jmanday.commerce.ui.activities
 
 import android.os.Bundle
 import android.view.View
@@ -10,17 +10,12 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.ui.NavigationUI
-import com.manday.coreui.fragment.BaseFragment
+import com.jmanday.commerce.CommerceApp
+import com.jmanday.commerce.R
+import com.jmanday.commerce.di.ModuleInjector
+import com.jmanday.commerce.listeners.FragmentListener
 import com.manday.loginuser.injector.LoginUserViewInjector
-import com.manday.management.Constants.ARGUMENT_EXTRA_EMPLOYEE
 import com.manday.management.Constants.ARGUMENT_EXTRA_NAME_TRANSITION
-import com.manday.management.domain.EmployeeModel
-import com.manday.management.ui.fragments.EmployeeDetailFragment
-import com.sdos.commerce.CommerceApp
-import com.sdos.commerce.R
-import com.sdos.commerce.di.ModuleInjector
-import com.sdos.commerce.listeners.FragmentListener
-import com.sdos.commerce.util.CustomFragmentNavigator
 import kotlinx.android.synthetic.main.activity_main.*
 
 

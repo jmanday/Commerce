@@ -1,12 +1,12 @@
-package com.sdos.commerce
+package com.jmanday.commerce
 
 import android.app.Application
+import com.jmanday.commerce.di.ModuleInjector
+import com.jmanday.commerce.di.appModuleDependencies
 import com.manday.fruit.di.fruitModuleDependencies
 import com.manday.loginuser.injector.LoginUserViewInjector
 import com.manday.loginuser.injector.LoginUserViewInjectorImp
 import com.manday.management.di.managementModuleDependencies
-import com.sdos.commerce.di.ModuleInjector
-import com.sdos.commerce.di.appModuleDependencies
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
