@@ -1,5 +1,7 @@
 package com.manday.fruit.di
 
+import com.manday.fruit.datasource.database.FruitDatabaseDataSource
+import com.manday.fruit.datasource.database.FruitRoomDataSourceImpl
 import com.manday.fruit.datasource.net.FruitNetDataSource
 import com.manday.fruit.datasource.net.FruitNetDataSourceImpl
 import com.manday.fruit.repository.FruitRepository
@@ -12,8 +14,9 @@ val fruitModuleDependencies = module {
 
     // Single instances
     single<FruitNetDataSource> { FruitNetDataSourceImpl() }
+    single<FruitDatabaseDataSource> { FruitRoomDataSourceImpl() }
 
-    single<FruitRepository> { FruitRepositoryImpl(get()) }
+    single<FruitRepository> { FruitRepositoryImpl(get(), get()) }
 
     // ViewModel instances
     viewModel { FruitViewModel(get()) }

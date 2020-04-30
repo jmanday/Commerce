@@ -88,3 +88,31 @@ fun<T, U> transformMapResponse(source: LiveData<T>?, f: (T) -> U): LiveData<U?>?
     }
     return null
 }
+
+fun <T, U> addMultipleDataSource(
+    source1: LiveData<T?>,
+    source2: LiveData<T?>?,
+    update: (T) -> Unit,
+    function: (T) -> U
+): LiveData<U?> {
+    val result = MediatorLiveData<U>()
+
+    result.addSource(source1) { it ->
+        if (it != null) {
+            update(it)
+            result.value = function(it)
+        } else {
+            source2?.let {
+                result.addSource(source2) {
+                    if (it != null) {
+                        result.value = function(it)
+                    } else {
+                        result.value = null
+                    }
+                }
+            }
+        }
+    }
+
+    return result
+}
