@@ -7,5 +7,5 @@ interface FruitDatabaseDataSource {
 
     fun addFruits(list: List<FruitEntity>)
 
-    fun getAllLocalFruits(): LiveData<List<FruitEntity>>
+    fun getAllLocalFruits(): LiveData<List<FruitEntity>?>?
 }
