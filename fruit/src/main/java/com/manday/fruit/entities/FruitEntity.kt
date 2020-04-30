@@ -14,44 +14,52 @@ data class FruitEntity (
 
     @SerializedName("farm_name")
     @ColumnInfo(name = "farmName")
-    var farmName: String,
+    var farmName: String? = null,
 
     @SerializedName("category")
     @ColumnInfo(name = "category")
-    var category: String,
+    var category: String? = null,
 
     @SerializedName("item")
     @ColumnInfo(name = "item")
-    var item: String,
+    var item: String? = null,
 
     @SerializedName("farmer_id")
     @ColumnInfo(name = "farmerId")
-    var farmerId: Int,
+    var farmerId: Int? = null,
 
     @SerializedName("website")
     @ColumnInfo(name = "website")
-    var website: WebsiteEntity,
+    var website: WebsiteEntity? = null,
 
     @SerializedName("zipcode")
     @ColumnInfo(name = "zipcode")
-    var zipcode: String,
+    var zipcode: String? = null,
 
     @SerializedName("phone1")
     @ColumnInfo(name = "phone1")
-    var phone1: String,
+    var phone1: String? = null,
 
     @SerializedName("business")
     @ColumnInfo(name = "business")
-    var business: String,
+    var business: String? = null,
 
     @SerializedName("l")
     @ColumnInfo(name = "lNumber")
-    var lNumber: Int,
+    var lNumber: Int? = null,
 
     @SerializedName("location_1")
     @ColumnInfo(name = "location")
-    var locationL: LocationEntity
+    var locationL: LocationEntity? = null
 ) {
-    fun mapToFruitModel() =
-        FruitModel(farmName, category, item, business, locationL.latitude, locationL.longitude)
+
+    fun isEnabled() = (!this.farmName.isNullOrEmpty() && !this.category.isNullOrEmpty() &&
+            !this.item.isNullOrEmpty() && !this.business.isNullOrEmpty() && !this.locationL?.latitude.isNullOrEmpty()
+            && !this.locationL?.longitude.isNullOrEmpty())
 }
+
+fun FruitEntity.mapToFruitModel() =
+    FruitModel(
+        this.farmName, this.category, this.item, this.business,
+        this.locationL?.latitude, this.locationL?.longitude
+    )
