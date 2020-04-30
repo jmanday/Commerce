@@ -14,6 +14,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:shimmer_recycler_layout="@layout/view_item_task"
             app:shimmer_recycler_item_count="10" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
