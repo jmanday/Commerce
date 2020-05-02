@@ -1,21 +1,12 @@
 package com.manday.coredata.datasource
 
 import androidx.lifecycle.LiveData
-import com.manday.management.data.controllers.RoomController
-import com.manday.management.data.dao.TaskDao
-import com.manday.management.data.dao.TypeTaskDao
+import com.manday.management.data.datasource.ManagementRoomDataSource
 import com.manday.management.data.entities.TaskEntity
 import com.manday.management.data.entities.TypeTaskEntity
 
 
-class TaskDatabaseDataSourceImpl: TaskDatabaseDataSource {
-
-    private var taskDao: TaskDao? = null
-    private var typeTaskDao: TypeTaskDao? = null
-
-    init {
-        taskDao = RoomController.getInstance()?.taskDao()
-    }
+class TaskRoomDataSource : TaskDatabaseDataSource, ManagementRoomDataSource() {
 
     override fun addTask(task: TaskEntity) {
         taskDao?.addTask(task)

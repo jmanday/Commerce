@@ -1,12 +1,12 @@
 package com.manday.management.di
 
 import com.manday.coredata.datasource.SkillDatabaseDataSource
-import com.manday.coredata.datasource.SkillDatabaseDataSourceImpl
+import com.manday.coredata.datasource.SkillRoomDataSource
 import com.manday.coredata.datasource.TaskDatabaseDataSource
-import com.manday.coredata.datasource.TaskDatabaseDataSourceImpl
+import com.manday.coredata.datasource.TaskRoomDataSource
 import com.manday.loginuser.viewmodels.LoginDialogViewModel
 import com.manday.management.data.datasource.EmployeeDatabaseDataSource
-import com.manday.management.data.datasource.EmployeeDatabaseDataSourceImpl
+import com.manday.management.data.datasource.EmployeeRoomDataSource
 import com.manday.management.repository.*
 import com.manday.management.ui.viewmodels.EmployeeDetailViewModel
 import com.manday.management.ui.viewmodels.EmployeeViewModel
@@ -18,9 +18,9 @@ import org.koin.dsl.module
 val managementModuleDependencies = module {
 
     // Single instances
-    single<EmployeeDatabaseDataSource> { EmployeeDatabaseDataSourceImpl() }
-    single<SkillDatabaseDataSource> { SkillDatabaseDataSourceImpl() }
-    single<TaskDatabaseDataSource> { TaskDatabaseDataSourceImpl() }
+    single<EmployeeDatabaseDataSource> { EmployeeRoomDataSource() }
+    single<SkillDatabaseDataSource> { SkillRoomDataSource() }
+    single<TaskDatabaseDataSource> { TaskRoomDataSource() }
 
     single<EmployeeRepository> { EmployeeRepositoryImpl(get()) }
     single<SkillRepository> { SkillRepositoryImpl(get()) }

@@ -6,17 +6,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitController {
 
-    private const val BASE_URL = "https://data.ct.gov/resource/"
-    var retrofit: Retrofit
+    val connections = mutableMapOf<String, Retrofit>()
 
-    init {
-        retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+    fun createConnection(baseUrl: String) {
+        connections[baseUrl] = Retrofit.Builder()
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    inline fun<reified T: Any> createRequest(): T = retrofit.create(T::class.java)
+    inline fun <reified T : Any> createRequest(baseUrl: String): T? =
+        connections.get(baseUrl)?.create(T::class.java)
 
     inline fun <T, U> Response<T>.unwrapResponse(f: T.() -> List<U>) =
         body()?.f()

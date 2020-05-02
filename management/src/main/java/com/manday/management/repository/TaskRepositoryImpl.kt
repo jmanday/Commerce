@@ -7,7 +7,9 @@ import com.manday.management.data.entities.TaskEntity
 import com.manday.management.data.entities.TypeTaskEntity
 import com.manday.management.data.entities.toTaskModel
 
-class TaskRepositoryImpl(private val databaseDataSource: TaskDatabaseDataSource): TaskRepository {
+class TaskRepositoryImpl(
+    private val databaseDataSource: TaskDatabaseDataSource
+) : TaskRepository {
 
     override fun getTasks() =
         transformationsNotNull(databaseDataSource.getTasks()) {
