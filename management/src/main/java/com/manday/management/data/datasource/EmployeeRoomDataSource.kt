@@ -1,18 +1,10 @@
 package com.manday.management.data.datasource
 
 import androidx.lifecycle.LiveData
-import com.manday.management.data.controllers.RoomController
-import com.manday.management.data.dao.EmployeeDao
 import com.manday.management.data.entities.EmployeeEntity
 
-internal class EmployeeDatabaseDataSourceImpl:
-    EmployeeDatabaseDataSource {
-
-    private var employeeDao: EmployeeDao? = null
-
-    init {
-        employeeDao = RoomController.getInstance()?.employeeDao()
-    }
+internal class EmployeeRoomDataSource :
+    EmployeeDatabaseDataSource, ManagementRoomDataSource() {
 
     override fun login(param1: String, param2: String): LiveData<EmployeeEntity?>? {
         return employeeDao?.getEmployee(param1, param2)

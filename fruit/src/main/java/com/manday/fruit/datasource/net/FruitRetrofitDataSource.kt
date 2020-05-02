@@ -10,19 +10,26 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FruitNetDataSourceImpl:
+class FruitRetrofitDataSource :
     FruitNetDataSource {
+
+    private var services: FruitAPI?
+
+    init {
+        RetrofitController.createConnection(BASE_URL)
+        services = RetrofitController.createRequest(BASE_URL)
+    }
 
     override fun getFruits(category: String, item: String): LiveData<List<FruitEntity>?> {
         val data = MutableLiveData<List<FruitEntity>?>()
-        val service = RetrofitController.createRequest<FruitAPI>()
 
-        val call = service.getAllFruits(hashMapOf(
+        val call = services?.getAllFruits(
+            hashMapOf(
             "category" to category,
             "item" to item
         ))
 
-        call.enqueue(object : Callback<List<FruitEntity>> {
+        call?.enqueue(object : Callback<List<FruitEntity>> {
             override fun onFailure(call: Call<List<FruitEntity>>, t: Throwable) {
                 Log.d("Retrofit Error", t.message)
                 data.value = null
@@ -38,4 +45,8 @@ class FruitNetDataSourceImpl:
         return data
     }
 
+    companion object {
+        private const val BASE_URL = "https://data.ct.gov/resource/"
+
+    }
 }

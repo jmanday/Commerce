@@ -5,7 +5,7 @@ import com.manday.fruit.controllers.FruitRoomController
 import com.manday.fruit.dao.FruitDao
 import com.manday.fruit.entities.FruitEntity
 
-class FruitRoomDataSourceImpl : FruitDatabaseDataSource {
+class FruitRoomDataSource : FruitDatabaseDataSource {
 
     private var fruitDao: FruitDao? = null
 
