@@ -1,6 +1,5 @@
 package com.manday.coredata
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
@@ -76,6 +75,21 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
     }
 
     protected fun doInParallel(t1: () -> Unit, t2: () -> Unit, foreground: () -> Unit) {
+        runBlocking {
+            val job = launch(coroutineContext) {
+                launch(coroutineContext) {
+                    t1.invoke()
+                }
+
+                launch(coroutineContext) {
+                    t2.invoke()
+                }
+            }
+
+            job.join()
+            foreground.invoke()
+        }
+        /*
         launch(coroutineContext) {
             val res1 = async(Dispatchers.IO) {
                 t1.invoke()
@@ -89,6 +103,7 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
 
             foreground.invoke()
         }
+         */
     }
 
     protected fun cancelExecutor() {

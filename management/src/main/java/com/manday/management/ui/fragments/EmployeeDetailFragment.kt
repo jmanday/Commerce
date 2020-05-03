@@ -94,7 +94,8 @@ class EmployeeDetailFragment : BaseFragment() {
         mapInputText = mapOf(
             EmployeeDetailViewModel.ErrorField.ERROR_FIELD_NAME to inputName,
             EmployeeDetailViewModel.ErrorField.ERROR_FIELD_SURNAME to inputSurname,
-            EmployeeDetailViewModel.ErrorField.ERROR_FIELD_EMAIL to inputPhone,
+            EmployeeDetailViewModel.ErrorField.ERROR_FIELD_PHONE to inputPhone,
+            EmployeeDetailViewModel.ErrorField.ERROR_FIELD_EMAIL to inputMail,
             EmployeeDetailViewModel.ErrorField.ERROR_FIELD_COUNTRY to inputCountry,
             EmployeeDetailViewModel.ErrorField.ERROR_FIELD_SKILL to inputSkill
         )

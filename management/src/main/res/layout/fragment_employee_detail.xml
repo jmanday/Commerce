@@ -7,280 +7,316 @@
             name="employee"
             type="com.manday.management.domain.EmployeeModel" />
     </data>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgMain"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@mipmap/placeholder_plain" />
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/colorTransparent"
+            app:elevation="0dp">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:menu="@menu/toolbar_menu"
+                app:navigationIcon="@drawable/ic_arrow_back_black_24dp" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/imgCircular"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:cardCornerRadius="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgMain">
 
             <ImageView
-                android:id="@+id/imgMain"
+                android:id="@+id/imgProfile"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:src="@mipmap/placeholder_plain"/>
+                android:src="@mipmap/placeholder_plain" />
+        </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvNameEmployee"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/colorBlack"
+            android:textColorLink="@color/colorBlack"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:text="@{@string/text_name_surname(employee.name, employee.surname)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgCircular"
+            app:layout_constraintTop_toTopOf="@+id/imgCircular"
+            tools:text="Antonio" />
+
+        <TextView
+            android:id="@+id/tvSkill"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="4dp"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            android:text="@{employee.skillEmployeeDescription}"
+            app:layout_constraintBottom_toBottomOf="@+id/imgCircular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgCircular"
+            tools:text="Molino Fernández" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clInfo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgCircular"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.7" />
+
+            <ImageView
+                android:id="@+id/ivName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/colorDarkGrey2"
                 app:layout_constraintStart_toStartOf="parent"
-                android:background="@color/colorTransparent"
-                app:elevation="0dp">
+                app:layout_constraintTop_toTopOf="@+id/inputName"
+                app:layout_constraintBottom_toBottomOf="@+id/inputName"
+                app:srcCompat="@drawable/ic_person_black_24dp" />
 
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:menu="@menu/toolbar_menu"
-                    app:navigationIcon="@drawable/ic_arrow_back_black_24dp" />
-
-            </com.google.android.material.appbar.AppBarLayout>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/imgCircular"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                app:cardCornerRadius="25dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imgMain">
-
-                <ImageView
-                    android:id="@+id/imgProfile"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/placeholder_plain" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <TextView
-                android:id="@+id/tvNameEmployee"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/colorBlack"
-                android:textColorLink="@color/colorBlack"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:text="@{@string/text_name_surname(employee.name, employee.surname)}"
+                android:hint="@string/label_text_name"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorRed"
+                app:helperTextEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/imgCircular"
-                app:layout_constraintTop_toTopOf="@+id/imgCircular"
-                tools:text="Antonio" />
+                app:layout_constraintStart_toEndOf="@+id/ivName"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tvSkill"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorLigthGrey2"
+                    android:text="@={employee.name}"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/ivSurname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/colorDarkGrey2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/inputSurname"
+                app:layout_constraintBottom_toBottomOf="@id/inputSurname"
+                app:srcCompat="@drawable/ic_group_black_24dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputSurname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginBottom="4dp"
-                android:textSize="12sp"
-                android:textStyle="italic"
-                android:text="@{employee.skillEmployeeDescription}"
-                app:layout_constraintBottom_toBottomOf="@+id/imgCircular"
+                android:layout_marginTop="9dp"
+                android:hint="@string/label_text_surname"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorRed"
+                app:helperTextEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/imgCircular"
-                tools:text="Molino Fernández" />
+                app:layout_constraintStart_toEndOf="@+id/ivSurname"
+                app:layout_constraintTop_toBottomOf="@+id/inputName"
+                app:layout_constraintBottom_toTopOf="@id/inputPhone">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clInfo"
-                android:layout_width="match_parent"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edSurname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorLigthGrey2"
+                    android:text="@={employee.surname}"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/ivPhone"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:tint="@color/colorDarkGrey2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgCircular">
+                app:layout_constraintTop_toTopOf="@id/inputPhone"
+                app:layout_constraintBottom_toBottomOf="@id/inputPhone"
+                app:srcCompat="@drawable/ic_phone_black_24dp" />
 
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.7" />
-
-                <ImageView
-                    android:id="@+id/ivName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:tint="@color/colorDarkGrey2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/inputName"
-                    app:layout_constraintBottom_toBottomOf="@+id/inputName"
-                    app:srcCompat="@drawable/ic_person_black_24dp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/inputName"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:hint="@string/label_text_name"
-                    app:errorEnabled="true"
-                    app:errorTextColor="@color/colorRed"
-                    app:helperTextEnabled="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/ivName"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/colorLigthGrey2"
-                        android:text="@={employee.name}"
-                        android:textSize="16sp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageView
-                    android:id="@+id/ivSurname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:tint="@color/colorDarkGrey2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/inputSurname"
-                    app:layout_constraintBottom_toBottomOf="@id/inputSurname"
-                    app:srcCompat="@drawable/ic_group_black_24dp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/inputSurname"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="9dp"
-                    android:hint="@string/label_text_surname"
-                    app:errorEnabled="true"
-                    app:errorTextColor="@color/colorRed"
-                    app:helperTextEnabled="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/ivSurname"
-                    app:layout_constraintTop_toBottomOf="@+id/inputName">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edSurname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/colorLigthGrey2"
-                        android:text="@={employee.surname}"
-                        android:textSize="16sp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageView
-                    android:id="@+id/ivPhone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:tint="@color/colorDarkGrey2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/inputPhone"
-                    app:layout_constraintBottom_toBottomOf="@id/inputPhone"
-                    app:srcCompat="@drawable/ic_mail_black_24dp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/inputPhone"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="9dp"
-                    android:layout_marginEnd="8dp"
-                    android:hint="@string/label_text_email"
-                    app:errorEnabled="true"
-                    app:errorTextColor="@color/colorRed"
-                    app:helperTextEnabled="true"
-                    app:layout_constraintEnd_toEndOf="@id/guideline2"
-                    app:layout_constraintStart_toEndOf="@+id/ivPhone"
-                    app:layout_constraintTop_toBottomOf="@+id/inputSurname">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edPhone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/colorLigthGrey2"
-                        android:text="@={employee.email}"
-                        android:textSize="16sp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/inputCountry"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:hint="@string/label_text_country"
-                    app:errorEnabled="true"
-                    app:errorTextColor="@color/colorRed"
-                    app:helperTextEnabled="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/guideline2"
-                    app:layout_constraintTop_toTopOf="@+id/inputPhone">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edCountry"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/colorLigthGrey2"
-                        android:text="@={employee.country}"
-                        android:textSize="16sp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageView
-                    android:id="@+id/ivSkill"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:tint="@color/colorDarkGrey2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/inputSkill"
-                    app:layout_constraintBottom_toBottomOf="@id/inputSkill"
-                    app:srcCompat="@drawable/ic_work_black_24dp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/inputSkill"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="9dp"
-                    android:hint="@string/label_text_type"
-                    app:errorEnabled="true"
-                    app:errorTextColor="@color/colorRed"
-                    app:helperTextEnabled="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/ivSkill"
-                    app:layout_constraintTop_toBottomOf="@+id/inputPhone">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/autocompleteType"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:text="@={employee.skillEmployeeDescription}"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="@style/ProgressBar"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputPhone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:indeterminate="true"
-                android:max="100"
-                android:progress="0"
-                android:visibility="gone"
-                android:maxHeight="4dp"
-                android:minHeight="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/label_text_phone"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorRed"
+                app:helperTextEnabled="true"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toEndOf="@+id/ivPhone"
+                app:layout_constraintTop_toBottomOf="@+id/inputSurname"
+                app:layout_constraintBottom_toTopOf="@id/inputMail">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorLigthGrey2"
+                    android:text="@={employee.phone}"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <ImageView
+                android:id="@+id/ivMail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/colorDarkGrey2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgMain" />
+                app:layout_constraintTop_toTopOf="@id/inputMail"
+                app:layout_constraintBottom_toBottomOf="@id/inputMail"
+                app:srcCompat="@drawable/ic_mail_black_24dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputMail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/label_text_email"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorRed"
+                app:helperTextEnabled="true"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toEndOf="@+id/ivMail"
+                app:layout_constraintTop_toBottomOf="@+id/inputPhone"
+                app:layout_constraintBottom_toTopOf="@id/inputSkill">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edMail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorLigthGrey2"
+                    android:text="@={employee.email}"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputCountry"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:hint="@string/label_text_country"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorRed"
+                app:helperTextEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/guideline2"
+                app:layout_constraintTop_toTopOf="@+id/inputMail">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorLigthGrey2"
+                    android:text="@={employee.country}"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/ivSkill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/colorDarkGrey2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/inputSkill"
+                app:layout_constraintBottom_toBottomOf="@id/inputSkill"
+                app:srcCompat="@drawable/ic_work_black_24dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputSkill"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="9dp"
+                android:hint="@string/label_text_type"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorRed"
+                app:helperTextEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivSkill"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autocompleteType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:text="@={employee.skillEmployeeDescription}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/ProgressBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:max="100"
+            android:progress="0"
+            android:visibility="gone"
+            android:maxHeight="4dp"
+            android:minHeight="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgMain" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
