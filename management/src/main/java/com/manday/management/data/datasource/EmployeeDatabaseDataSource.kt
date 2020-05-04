@@ -9,6 +9,6 @@ internal interface EmployeeDatabaseDataSource {
 
     fun getEmployees(): LiveData<List<EmployeeEntity>?>?
 
-    fun addEmployee(employee: EmployeeEntity)
+    fun addEmployee(employee: EmployeeEntity): Long?
 
 }
