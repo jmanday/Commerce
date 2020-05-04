@@ -18,9 +18,4 @@ internal class EmployeeRoomDataSource :
         return employeeDao?.getAllEmployees()
     }
 
-    override fun updateEmployee(employee: EmployeeEntity?) {
-        employee?.let {
-            employeeDao?.addEmployee(it)
-        }
-    }
 }
