@@ -57,14 +57,16 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
         }
 
 
-
-    protected fun doInBackgroundAndContinue(background: suspend () -> Unit, foreground: suspend () -> Unit) {
+    protected fun <T> doInBackgroundAndContinue(
+        background: suspend () -> T,
+        foreground: suspend (T) -> Unit
+    ) {
         launch(coroutineContext) {
-            withContext(Dispatchers.IO) {
+            val res = withContext(Dispatchers.IO) {
+                Thread.sleep(DELAY)
                 background.invoke()
             }
-            Thread.sleep(3000)
-            foreground.invoke()
+            foreground.invoke(res)
         }
     }
 
