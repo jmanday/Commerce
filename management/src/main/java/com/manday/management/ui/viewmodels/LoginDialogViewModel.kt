@@ -11,5 +11,8 @@ internal class LoginDialogViewModel(
 
 
     fun loginUser(param1: String, param2: String) =
-        HandlerResponseViewModel.createResponse(employeeRepository.login(param1, param2))
+        doInBackground {
+            HandlerResponseViewModel.createResponse(employeeRepository.login(param1, param2))
+        }
+
 }
