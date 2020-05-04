@@ -2,6 +2,7 @@ package com.manday.coredata.utils
 
 
 import com.google.android.material.textfield.TextInputLayout
+import com.manday.coredata.TypeResponse
 import java.util.regex.Pattern
 
 private const val regex = "^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$"
@@ -16,8 +17,8 @@ fun TextInputLayout.showMessageError(msg: String) {
     this.error = msg
 }
 
-fun Long.toStatusRoom() =
+fun Long.toTypeResponse() =
     if (this != 0L)
-        RoomTypeErrors.INSERT_OK
+        TypeResponse.INSERT_OK
     else
-        RoomTypeErrors.INSERT_ERROR
+        TypeResponse.INSERT_ERROR
