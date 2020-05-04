@@ -15,3 +15,9 @@ fun String.isDateValidate(): Boolean {
 fun TextInputLayout.showMessageError(msg: String) {
     this.error = msg
 }
+
+fun Long.toStatusRoom() =
+    if (this != 0L)
+        RoomTypeErrors.INSERT_OK
+    else
+        RoomTypeErrors.INSERT_ERROR
