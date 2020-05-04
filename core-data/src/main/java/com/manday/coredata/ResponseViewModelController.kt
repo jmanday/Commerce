@@ -7,33 +7,26 @@ class ResponseViewModelController<T> private constructor() {
 
     companion object {
 
-        fun <T : Any> createResponse(source: LiveData<T?>?) =
+        fun <T : Any> createResponseSource(source: LiveData<T?>?) =
             transformationsMapNotNull(source) { res ->
-                val typeError = if (res != null) TypeError.SUCCESS else TypeError.NOT_FOUND
-                ReponseViewModel(res, typeError)
+                val typeResponse = if (res != null) TypeResponse.SUCCESS else TypeResponse.NOT_FOUND
+                ResponseViewModel(res, typeResponse)
             }
 
-        fun<T> createResponseForm(message: String? = null, resp: T? = null): ResponseFormViewModel<T> {
-            return if (resp != null)
-                ResponseFormViewModel(message, resp, TypeError.ERROR)
-            else
-                ResponseFormViewModel(message, resp, TypeError.SUCCESS)
+        fun <T> createResponse(data: T?, typeResponse: TypeResponse?): ResponseViewModel<T> {
+            val typeResponseLocal = if (data == null) typeResponse else TypeResponse.NO_DATA
+
+            return ResponseViewModel(resp = data, typeResponse = typeResponseLocal)
         }
     }
 }
 
-data class ReponseViewModel<T> (
+data class ResponseViewModel<T>(
     var resp: T? = null,
-    var typeError: TypeError
+    var typeResponse: TypeResponse?
 )
 
-data class ResponseFormViewModel<T> (
-    var message: String?,
-    var resp: T?,
-    var typeError: TypeError
-)
-
-enum class TypeError {
-    SUCCESS, DATASOURCE, NOT_FOUND, ERROR
+enum class TypeResponse {
+    SUCCESS, INSERT_OK, DELETE_OK, INSERT_ERROR, DELETE_ERROR, NO_DATA, NOT_FOUND
 }
 
