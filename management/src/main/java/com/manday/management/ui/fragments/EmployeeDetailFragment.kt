@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.transition.MaterialContainerTransform
-import com.manday.coredata.TypeError
+import com.manday.coredata.TypeResponse
 import com.manday.coredata.utils.showMessageError
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.management.Constants.ARGUMENT_EXTRA_EMPLOYEE
@@ -128,18 +128,14 @@ class EmployeeDetailFragment : BaseFragment() {
         binding.root.isEnabled = false
         viewModel.buttonSaveClicked().observe(this, Observer {
             binding.progressBar.visibility = GONE
-            when (it.typeError) {
-                TypeError.SUCCESS -> {
-                    it.message?.let {
-                        showMessage(it, true)
-                    }
+            when (it.typeResponse) {
+                TypeResponse.INSERT_OK -> {
+                    showMessage("Los cambios han sido guardados correctamente", true)
                 }
-                TypeError.ERROR, TypeError.NOT_FOUND, TypeError.DATASOURCE -> {
+                TypeResponse.NO_DATA -> {
                     it.resp?.let { response ->
                         response.forEach { errorField ->
-                            it.message?.let { message ->
-                                mapInputText[errorField]?.showMessageError(message)
-                            }
+                            mapInputText[errorField]?.showMessageError("Debe rellenar los campos")
                         }
                     }
                 }

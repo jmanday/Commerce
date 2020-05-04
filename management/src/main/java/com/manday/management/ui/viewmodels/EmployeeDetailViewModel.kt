@@ -5,7 +5,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.manday.coredata.ExecutorViewModel
-import com.manday.coredata.ResponseFormViewModel
+import com.manday.coredata.ResponseViewModel
 import com.manday.coredata.ResponseViewModelController
 import com.manday.coredata.utils.addSourceNotNull
 import com.manday.coredata.utils.removeSourceNotNull
@@ -34,9 +34,8 @@ internal class EmployeeDetailViewModel(
         this.employeeModel = employee
     }
 
-
-    fun buttonSaveClicked(): LiveData<ResponseFormViewModel<List<ErrorField>>> {
-        val responseViewModel = MutableLiveData<ResponseFormViewModel<List<ErrorField>>>()
+    fun buttonSaveClicked(): LiveData<ResponseViewModel<List<ErrorField>>> {
+        val responseViewModel = MutableLiveData<ResponseViewModel<List<ErrorField>>>()
         errorFieldList.clear()
         employeeModel.let {
             if (it.name.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_NAME)
@@ -49,18 +48,21 @@ internal class EmployeeDetailViewModel(
 
         if (errorFieldList.isEmpty()) {
             doInBackgroundAndContinue({
-                employeeModel.let {
-                    employeeRepository.addEmployee(it)
-                }
-            }, {
-                responseViewModel.postValue(ResponseViewModelController.createResponseForm("Los cambios han sido guardados"))
+                employeeRepository.addEmployee(employeeModel)
+            }, { res ->
+                responseViewModel.postValue(
+                    ResponseViewModelController.createResponse(
+                        null,
+                        typeResponse = res
+                    )
+                )
             })
         }
         else
             responseViewModel.postValue(
-                ResponseViewModelController.createResponseForm(
-                    "Campo vacío",
-                    resp = errorFieldList
+                ResponseViewModelController.createResponse(
+                    errorFieldList,
+                    null
                 )
             )
 
