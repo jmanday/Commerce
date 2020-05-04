@@ -5,8 +5,8 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.manday.coredata.ExecutorViewModel
-import com.manday.coredata.HandlerResponseViewModel
 import com.manday.coredata.ResponseFormViewModel
+import com.manday.coredata.ResponseViewModelController
 import com.manday.coredata.utils.addSourceNotNull
 import com.manday.coredata.utils.removeSourceNotNull
 import com.manday.management.data.entities.SkillEntity
@@ -53,11 +53,16 @@ internal class EmployeeDetailViewModel(
                     employeeRepository.addEmployee(it)
                 }
             }, {
-                responseViewModel.postValue(HandlerResponseViewModel.createResponseForm("Los cambios han sido guardados"))
+                responseViewModel.postValue(ResponseViewModelController.createResponseForm("Los cambios han sido guardados"))
             })
         }
         else
-            responseViewModel.postValue(HandlerResponseViewModel.createResponseForm("Campo vacío", resp = errorFieldList))
+            responseViewModel.postValue(
+                ResponseViewModelController.createResponseForm(
+                    "Campo vacío",
+                    resp = errorFieldList
+                )
+            )
 
         return responseViewModel
     }

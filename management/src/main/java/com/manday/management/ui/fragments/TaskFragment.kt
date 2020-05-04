@@ -28,7 +28,7 @@ class TaskFragment : BaseFragment() {
 
     override fun initialize() {
         taskRecyclerView.showShimmer()
-        viewModel.tasks.observe(this, Observer { tasks ->
+        viewModel.tasks?.observe(this, Observer { tasks ->
             taskRecyclerView.hideShimmer()
             if (tasks != null) {
                 taskRecyclerView.adapter = TaskAdapter(tasks) { taskEntity, view ->

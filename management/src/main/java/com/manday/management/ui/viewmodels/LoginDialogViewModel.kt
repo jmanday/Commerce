@@ -1,7 +1,7 @@
 package com.manday.loginuser.viewmodels
 
 import com.manday.coredata.ExecutorViewModel
-import com.manday.coredata.HandlerResponseViewModel
+import com.manday.coredata.ResponseViewModelController
 import com.manday.management.repository.EmployeeRepository
 
 
@@ -12,7 +12,7 @@ internal class LoginDialogViewModel(
 
     fun loginUser(param1: String, param2: String) =
         doInBackground {
-            HandlerResponseViewModel.createResponse(employeeRepository.login(param1, param2))
+            ResponseViewModelController.createResponse(employeeRepository.login(param1, param2))
         }
 
 }

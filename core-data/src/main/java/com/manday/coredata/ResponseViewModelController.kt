@@ -3,7 +3,7 @@ package com.manday.coredata
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
-class HandlerResponseViewModel<T> private constructor(){
+class ResponseViewModelController<T> private constructor() {
 
     companion object {
 

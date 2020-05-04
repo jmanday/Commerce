@@ -57,13 +57,6 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
         }
 
 
-    protected fun<Result> doInBackground(background: suspend () -> Result) {
-        launch(coroutineContext) {
-            withContext(Dispatchers.IO) {
-                background.invoke()
-            }
-        }
-    }
 
     protected fun doInBackgroundAndContinue(background: suspend () -> Unit, foreground: suspend () -> Unit) {
         launch(coroutineContext) {
@@ -92,25 +85,6 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
         }
     }
 
-    protected fun<Result> doInBackgroundAndReturn(background: suspend () -> Result): Result {
-        val task = async(Dispatchers.IO) {
-            background.invoke()
-        }
-        return runBlocking {
-            task.await()
-        }
-    }
-
-    protected fun<Result> doInBackgroundAndReturn2(background: suspend () -> Result, foreground: suspend (Result) -> Unit) {
-        launch(coroutineContext) {
-            val task = async(Dispatchers.IO) {
-                background.invoke()
-            }
-
-            val res = task.await()
-            foreground.invoke(res)
-        }
-    }
 
     protected fun waitAndRunInForeground(foreground: suspend () -> Unit) {
         launch(coroutineContext) {
