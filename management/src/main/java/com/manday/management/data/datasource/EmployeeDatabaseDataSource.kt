@@ -11,5 +11,4 @@ internal interface EmployeeDatabaseDataSource {
 
     fun addEmployee(employee: EmployeeEntity)
 
-    fun updateEmployee(employee: EmployeeEntity?)
 }
