@@ -9,7 +9,7 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
 
     private val job = Job()
     override val coroutineContext: CoroutineContext
-        get() = job + viewModelScope.coroutineContext + Dispatchers.IO
+        get() = job + Dispatchers.Main
 
 
     /*
@@ -18,7 +18,7 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
      *
      */
     protected fun <T> doInBackground(background: suspend () -> LiveData<T>?) =
-        liveData<T>(coroutineContext) {
+        liveData<T>(context = viewModelScope.coroutineContext + Dispatchers.IO) {
             background.invoke()?.let {
                 emitSource(it)
             }
@@ -36,7 +36,7 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
         function2: suspend () -> LiveData<U>?,
         function3: (T?, U?) -> T
     ): LiveData<T> {
-        return liveData<T>(coroutineContext) {
+        return liveData<T>(context = viewModelScope.coroutineContext + Dispatchers.IO) {
             function2.invoke()?.switchMap { skills ->
                 transformNoSwitchMap(funcion1.invoke()) { employees ->
                     function3.invoke(employees, skills)
