@@ -63,11 +63,13 @@ fun<T, U> addMultipleSourceNotNull(sourceA: LiveData<T>?, sourceB: LiveData<U>?,
 }
 
 
-fun<T, U> transformationsNotNull(source: LiveData<T>?, f: (T) -> U?): LiveData<U?>? {
+fun <T, U> transformationsMapNotNull(source: LiveData<T>?, f: (T) -> U?): LiveData<U?>? {
     return source?.let {
         Transformations.map(it, f)
     }
 }
+
+
 /*
  * Function that observer the source and take three options:
  *  - if "source" is null the response will be NULL
@@ -115,4 +117,16 @@ fun <T, U> addMultipleDataSource(
     }
 
     return result
+}
+
+fun <T> transformNoSwitchMap(source: LiveData<T>?, f: (T) -> T): LiveData<T> {
+    val res = MutableLiveData<T>()
+
+    source?.let { source ->
+        source.observeForever {
+            res.postValue(f(it))
+        }
+    }
+
+    return res
 }
