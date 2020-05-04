@@ -1,6 +1,7 @@
 package com.manday.management.repository
 
 import androidx.lifecycle.LiveData
+import com.manday.coredata.TypeResponse
 import com.manday.management.domain.EmployeeModel
 
 internal interface EmployeeRepository {
@@ -9,6 +10,6 @@ internal interface EmployeeRepository {
 
     fun getEmployees(): LiveData<List<EmployeeModel>?>?
 
-    fun addEmployee(employeeModel: EmployeeModel)
+    fun addEmployee(employeeModel: EmployeeModel): TypeResponse?
 
 }
