@@ -1,6 +1,7 @@
 package com.manday.coredata
 
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.manday.coredata.utils.transformNoSwitchMap
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
@@ -8,7 +9,53 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
 
     private val job = Job()
     override val coroutineContext: CoroutineContext
-        get() = job + Dispatchers.Main
+        get() = job + viewModelScope.coroutineContext + Dispatchers.IO
+
+
+    /*
+     * This function runs the task in background and it returns the result via emit to the Main thread.
+     *  It always returns a LiveData.
+     *
+     */
+    protected fun <T> doInBackground(background: suspend () -> LiveData<T>?) =
+        liveData<T>(coroutineContext) {
+            background.invoke()?.let {
+                emitSource(it)
+            }
+        }
+
+    /*
+     * This function runs two tasks in background. It runs the first one and when the result is got, then
+     *  it runs the second one. When it already has both results then It can run the function map for both and
+     *  return the result from this function map.
+     *  It always returns a LiveData.
+     *
+     */
+    protected fun <T, U> doBothInBackgroundAndMap(
+        funcion1: () -> LiveData<T>?,
+        function2: suspend () -> LiveData<U>?,
+        function3: (T?, U?) -> T
+    ): LiveData<T> {
+        return liveData<T>(coroutineContext) {
+            function2.invoke()?.switchMap { skills ->
+                transformNoSwitchMap(funcion1.invoke()) { employees ->
+                    function3.invoke(employees, skills)
+                }
+            }?.let {
+                emitSource(
+                    it
+                )
+            }
+        }
+    }
+
+    protected fun <T> doInBackgroundWithoutSource(background: suspend () -> T?) =
+        liveData<T>(coroutineContext) {
+            background.invoke()?.let {
+                emit(it)
+            }
+        }
+
 
     protected fun<Result> doInBackground(background: suspend () -> Result) {
         launch(coroutineContext) {
