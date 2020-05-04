@@ -1,29 +1,17 @@
 package com.manday.coredata
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import com.manday.coredata.utils.transformationsMapNotNull
 
 class ResponseViewModelController<T> private constructor() {
 
     companion object {
 
-        fun<T> createResponse(source: LiveData<T?>?): LiveData<ReponseViewModel<T>> {
-            val handleError = MutableLiveData<ReponseViewModel<T>>()
-
-            if (source == null)
-                handleError.value = ReponseViewModel("", null, TypeError.DATASOURCE)
-            else {
-                source.observeForever { res ->
-                    if (res == null)
-                        handleError.value = ReponseViewModel("", null, TypeError.NOT_FOUND)
-                    else {
-                        handleError.value = ReponseViewModel("", res, TypeError.SUCCESS)
-                    }
-                }
+        fun <T : Any> createResponse(source: LiveData<T?>?) =
+            transformationsMapNotNull(source) { res ->
+                val typeError = if (res != null) TypeError.SUCCESS else TypeError.NOT_FOUND
+                ReponseViewModel(res, typeError)
             }
-
-            return handleError
-        }
 
         fun<T> createResponseForm(message: String? = null, resp: T? = null): ResponseFormViewModel<T> {
             return if (resp != null)
@@ -35,7 +23,6 @@ class ResponseViewModelController<T> private constructor() {
 }
 
 data class ReponseViewModel<T> (
-    var text: String,
     var resp: T? = null,
     var typeError: TypeError
 )
@@ -49,3 +36,4 @@ data class ResponseFormViewModel<T> (
 enum class TypeError {
     SUCCESS, DATASOURCE, NOT_FOUND, ERROR
 }
+
