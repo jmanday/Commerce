@@ -3,6 +3,7 @@ package com.manday.management.ui.fragments
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -123,8 +124,8 @@ class EmployeeDetailFragment : BaseFragment() {
 
     private fun buttonSaveClicked() {
         binding.progressBar.visibility = VISIBLE
-        binding.root.isEnabled = false
         viewModel.fields().observe(this, Observer {
+            binding.progressBar.visibility = GONE
             if (it.isEmpty()) {
                 viewModel.buttonSaveClicked().observe(this, Observer {
                     if (it != null) {
