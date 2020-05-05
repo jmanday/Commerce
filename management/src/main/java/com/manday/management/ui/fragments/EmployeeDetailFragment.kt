@@ -3,7 +3,6 @@ package com.manday.management.ui.fragments
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -12,14 +11,13 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.transition.MaterialContainerTransform
-import com.manday.coredata.TypeResponse
+import com.manday.coredata.utils.TypeResponse
 import com.manday.coredata.utils.showMessageError
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.management.Constants.ARGUMENT_EXTRA_EMPLOYEE
 import com.manday.management.Constants.ARGUMENT_EXTRA_NAME_TRANSITION
 import com.manday.management.R
 import com.manday.management.databinding.FragmentEmployeeDetailBinding
-
 import com.manday.management.domain.EmployeeModel
 import com.manday.management.ui.viewmodels.EmployeeDetailViewModel
 import kotlinx.android.synthetic.main.fragment_employee_detail.*
@@ -126,18 +124,20 @@ class EmployeeDetailFragment : BaseFragment() {
     private fun buttonSaveClicked() {
         binding.progressBar.visibility = VISIBLE
         binding.root.isEnabled = false
-        viewModel.buttonSaveClicked().observe(this, Observer {
-            binding.progressBar.visibility = GONE
-            when (it.typeResponse) {
-                TypeResponse.INSERT_OK -> {
-                    showMessage("Los cambios han sido guardados correctamente", true)
-                }
-                TypeResponse.NO_DATA -> {
-                    it.resp?.let { response ->
-                        response.forEach { errorField ->
-                            mapInputText[errorField]?.showMessageError("Debe rellenar los campos")
+        viewModel.fields().observe(this, Observer {
+            if (it.isEmpty()) {
+                viewModel.buttonSaveClicked().observe(this, Observer {
+                    if (it != null) {
+                        when (it) {
+                            TypeResponse.INSERT_OK -> {
+                                showMessage("Los cambios han sido guardados correctamente", true)
+                            }
                         }
                     }
+                })
+            } else {
+                it.forEach { errorField ->
+                    mapInputText[errorField]?.showMessageError("Debe rellenar los campos")
                 }
             }
         })

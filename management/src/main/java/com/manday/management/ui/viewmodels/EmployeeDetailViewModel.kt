@@ -5,8 +5,6 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.manday.coredata.ExecutorViewModel
-import com.manday.coredata.ResponseViewModel
-import com.manday.coredata.ResponseViewModelController
 import com.manday.coredata.utils.addSourceNotNull
 import com.manday.coredata.utils.removeSourceNotNull
 import com.manday.management.data.entities.SkillEntity
@@ -34,8 +32,9 @@ internal class EmployeeDetailViewModel(
         this.employeeModel = employee
     }
 
-    fun buttonSaveClicked(): LiveData<ResponseViewModel<List<ErrorField>>> {
-        val responseViewModel = MutableLiveData<ResponseViewModel<List<ErrorField>>>()
+    fun fields(): LiveData<List<ErrorField>> {
+        val responseViewModel = MutableLiveData<List<ErrorField>>()
+
         errorFieldList.clear()
         employeeModel.let {
             if (it.name.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_NAME)
@@ -46,28 +45,15 @@ internal class EmployeeDetailViewModel(
             if (it.skillEmployeeDescription.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_SKILL)
         }
 
-        if (errorFieldList.isEmpty()) {
-            doInBackgroundAndContinue({
-                employeeRepository.addEmployee(employeeModel)
-            }, { res ->
-                responseViewModel.postValue(
-                    ResponseViewModelController.createResponse(
-                        null,
-                        typeResponse = res
-                    )
-                )
-            })
-        }
-        else
-            responseViewModel.postValue(
-                ResponseViewModelController.createResponse(
-                    errorFieldList,
-                    null
-                )
-            )
+        responseViewModel.postValue(errorFieldList)
 
         return responseViewModel
     }
+
+    fun buttonSaveClicked() =
+        doInBackgroundAndReturn({
+            employeeRepository.addEmployee(employeeModel)
+        })
 
 
     enum class ErrorField {

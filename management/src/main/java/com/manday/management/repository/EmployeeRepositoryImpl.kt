@@ -1,6 +1,7 @@
 package com.manday.management.repository
 
 import com.manday.coredata.utils.toTypeResponse
+import com.manday.coredata.utils.transformInLiveData
 import com.manday.coredata.utils.transformationsMapNotNull
 import com.manday.management.data.datasource.EmployeeDatabaseDataSource
 import com.manday.management.data.entities.toEmployee
@@ -22,6 +23,7 @@ internal class EmployeeRepositoryImpl(private val databseDataSource: EmployeeDat
 
 
     override fun addEmployee(employeeModel: EmployeeModel) =
-        databseDataSource.addEmployee(employeeModel.toEmployeeEntity())?.toTypeResponse()
-
+        transformInLiveData(databseDataSource.addEmployee(employeeModel.toEmployeeEntity())) {
+            it.toTypeResponse()
+        }
 }
