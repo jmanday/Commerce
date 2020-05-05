@@ -49,31 +49,22 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
         }
     }
 
-    protected fun <T> doInBackgroundWithoutSource(background: suspend () -> T?) =
-        liveData<T>(coroutineContext) {
-            background.invoke()?.let {
-                emit(it)
-            }
+
+    protected fun <T> doInBackgroundAndReturn(
+        background: suspend () -> LiveData<T?>
+    ) = runBlocking {
+        val res = async(Dispatchers.IO + job) {
+            Thread.sleep(1500)
+            background.invoke()
         }
 
-
-    protected fun <T> doInBackgroundAndContinue(
-        background: suspend () -> T,
-        foreground: suspend (T) -> Unit
-    ) {
-        launch(coroutineContext) {
-            val res = withContext(Dispatchers.IO) {
-                Thread.sleep(DELAY)
-                background.invoke()
-            }
-            foreground.invoke(res)
-        }
+        res.await()
     }
 
     protected fun<T> doFirstInBackgroundWithResult(background: suspend () -> T, foreground: suspend (T) -> Unit) {
         launch(coroutineContext) {
             val res = withContext(Dispatchers.IO) {
-                return@withContext background.invoke()
+                background.invoke()
             }
             foreground.invoke(res)
         }
