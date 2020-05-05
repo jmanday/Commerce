@@ -69,6 +69,15 @@ fun <T, U> transformationsMapNotNull(source: LiveData<T>?, f: (T) -> U?): LiveDa
     }
 }
 
+fun <T, U> transformInLiveData(value: T?, f: (T) -> U): LiveData<U?> {
+    val response = MutableLiveData<U>()
+    val localValue = if (value == null) null else f(value)
+
+    response.postValue(localValue)
+
+    return response
+}
+
 
 /*
  * Function that observer the source and take three options:
