@@ -1,33 +1,10 @@
 package com.manday.coredata.utils
 
 import androidx.lifecycle.*
-
-fun<T, U> transformWhenItChanges(source: LiveData<T>?, f: (T?) -> U): LiveData<U> {
-    val liveDataTransformed = MutableLiveData<U>()
-
-    source?.let { source ->
-        source.observeForever {
-            if (it == null) {
-                liveDataTransformed.value = f(null)
-            }
-            else {
-                liveDataTransformed.value = f(it)
-            }
-        }
-    }
-
-    return liveDataTransformed
-}
-
-fun<T, U> transformMap(source: List<T>, f: (T) -> U): List<U> {
-    val transform = mutableListOf<U>()
-
-    source.forEach {
-        transform.add(f(it))
-    }
-
-    return transform
-}
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 fun<T> MediatorLiveData<T>.addSourceNotNull(source: LiveData<T>?, observer: Observer<T>) {
     source?.let {
@@ -41,34 +18,17 @@ fun<T> MediatorLiveData<T>.removeSourceNotNull(source: LiveData<T>?) {
     }
 }
 
-fun<T, U> addMultipleSourceNotNull(sourceA: LiveData<T>?, sourceB: LiveData<U>?, f:(T?, U?) -> Unit) {
-    var resultA : T? = null
-    var resultB : U? = null
-
-    fun update() {
-        if (resultA != null && resultB != null) {
-            f(resultA, resultB)
-        }
-    }
-
-    sourceA?.observeForever {
-        resultA = it
-        update()
-    }
-
-    sourceB?.observeForever {
-        resultB = it
-        update()
-    }
-}
-
-
 fun <T, U> transformationsMapNotNull(source: LiveData<T>?, f: (T) -> U?): LiveData<U?>? {
     return source?.let {
         Transformations.map(it, f)
     }
 }
 
+/*
+ * The value received is returned on a LiveData as
+ *   - null if the value is null
+ *   - passed to a function and the value returned for that is assigned to the LiveData
+ */
 fun <T, U> transformInLiveData(value: T?, f: (T) -> U): LiveData<U?> {
     val response = MutableLiveData<U>()
     val localValue = if (value == null) null else f(value)
@@ -80,48 +40,41 @@ fun <T, U> transformInLiveData(value: T?, f: (T) -> U): LiveData<U?> {
 
 
 /*
- * Function that observer the source and take three options:
- *  - if "source" is null the response will be NULL
- *  - if "source" is not null and it observers its change, if the value observered is null then return a livedata with value null
- *  - if "source" is not null and it observers its change, the value observered is not null then return a livedata with value
+ * Function that take two sources<T> and return a LiveData<U>
+ *  - It runs the source1 and if the result != null, call to the function update and set the value in the liveData calling to function
+ *  - If source1 returns a null, then source2 is launched and if the result is set on the LiveData, calling to function or not.
+ *  - update() needs to be run in background
  */
-fun<T, U> transformMapResponse(source: LiveData<T>?, f: (T) -> U): LiveData<U?>? {
-    source?.let {
-        val liveDataItem = MutableLiveData<U?>()
-        it.observeForever { newValue ->
-            newValue?.let {
-                liveDataItem.value = f(newValue)
-            }
-            liveDataItem.value = null
-        }
-
-        return liveDataItem
-    }
-    return null
-}
-
 fun <T, U> addMultipleDataSource(
     source1: LiveData<T?>,
     source2: LiveData<T?>?,
-    update: (T) -> Unit,
-    function: (T) -> U
+    update: suspend (T) -> Unit,
+    function: (T?) -> U?
 ): LiveData<U?> {
     val result = MediatorLiveData<U>()
+    val scope = CoroutineScope(Dispatchers.IO)
+    var job: Job? = null
 
-    result.addSource(source1) { it ->
-        if (it != null) {
-            update(it)
-            result.value = function(it)
+    result.addSource(source1) { res1 ->
+        if (res1 != null) {
+            job = scope.launch {
+                update(res1)
+            }
+            result.value = function(res1)
+
         } else {
             source2?.let {
-                result.addSource(source2) {
-                    if (it != null) {
-                        result.value = function(it)
-                    } else {
-                        result.value = null
-                    }
+                result.addSource(source2) { res2 ->
+                    result.value = function(res2)
                 }
             }
+        }
+    }
+
+    job?.let {
+        if (it.isCompleted) {
+            it.cancel()
+            scope.coroutineContext
         }
     }
 
