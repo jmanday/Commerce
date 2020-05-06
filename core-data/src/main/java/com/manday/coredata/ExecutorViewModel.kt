@@ -50,6 +50,9 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
     }
 
 
+    /*
+     *
+     */
     protected fun <T> doInBackgroundAndReturn(
         background: suspend () -> LiveData<T?>
     ) = runBlocking {
