@@ -131,14 +131,14 @@ class EmployeeDetailFragment : BaseFragment() {
                     if (it != null) {
                         when (it) {
                             TypeResponse.INSERT_OK -> {
-                                showMessage("Los cambios han sido guardados correctamente", true)
+                                showMessage(getString(R.string.text_saved), true)
                             }
                         }
                     }
                 })
             } else {
                 it.forEach { errorField ->
-                    mapInputText[errorField]?.showMessageError("Debe rellenar los campos")
+                    mapInputText[errorField]?.showMessageError(getString(R.string.text_empty_fields))
                 }
             }
         })
