@@ -63,3 +63,14 @@ fun FruitEntity.mapToFruitModel() =
         this.farmName, this.category, this.item, this.business,
         this.locationL?.latitude, this.locationL?.longitude
     )
+
+fun List<FruitEntity>.mapToListFruitModel(): List<FruitModel> {
+    val listFruitModel = mutableListOf<FruitModel>()
+
+    this.forEach {
+        if (it.isEnabled())
+            listFruitModel.add(it.mapToFruitModel())
+    }
+
+    return listFruitModel
+}
