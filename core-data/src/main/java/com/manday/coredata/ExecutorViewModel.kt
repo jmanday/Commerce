@@ -3,14 +3,10 @@ package com.manday.coredata
 import androidx.lifecycle.*
 import com.manday.coredata.utils.transformNoSwitchMap
 import kotlinx.coroutines.*
-import kotlin.coroutines.CoroutineContext
 
-open class ExecutorViewModel: ViewModel(), CoroutineScope {
+open class ExecutorViewModel : ViewModel() {
 
-    private val job = Job()
-    override val coroutineContext: CoroutineContext
-        get() = job + Dispatchers.Main
-
+    private val contextBackground = viewModelScope.coroutineContext + Dispatchers.IO
 
     /*
      * This function runs the task in background and it returns the result via emit to the Main thread.
@@ -18,7 +14,7 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
      *
      */
     protected fun <T> doInBackground(background: suspend () -> LiveData<T>?) =
-        liveData<T>(context = viewModelScope.coroutineContext + Dispatchers.IO) {
+        liveData<T>(context = contextBackground) {
             background.invoke()?.let {
                 emitSource(it)
             }
@@ -36,7 +32,7 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
         function2: suspend () -> LiveData<U>?,
         function3: (T?, U?) -> T
     ): LiveData<T> {
-        return liveData<T>(context = viewModelScope.coroutineContext + Dispatchers.IO) {
+        return liveData<T>(context = contextBackground) {
             function2.invoke()?.switchMap { skills ->
                 transformNoSwitchMap(funcion1.invoke()) { employees ->
                     function3.invoke(employees, skills)
@@ -50,13 +46,14 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
     }
 
 
-    /*
+    /* This function performances a task in background and it returns a result. The running is blocked until the
+     *  result is available, it wait for the result
      *
      */
     protected fun <T> doInBackgroundAndReturn(
         background: suspend () -> LiveData<T?>
     ) = runBlocking {
-        val res = async(Dispatchers.IO + job) {
+        val res = viewModelScope.async(Dispatchers.IO) {
             Thread.sleep(1500)
             background.invoke()
         }
@@ -64,17 +61,8 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
         res.await()
     }
 
-    protected fun<T> doFirstInBackgroundWithResult(background: suspend () -> T, foreground: suspend (T) -> Unit) {
-        launch(coroutineContext) {
-            val res = withContext(Dispatchers.IO) {
-                background.invoke()
-            }
-            foreground.invoke(res)
-        }
-    }
-
     protected fun doInBackgroundAndWait(background: suspend () -> Unit) {
-        launch(coroutineContext) {
+        viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 background.invoke()
             }
@@ -83,7 +71,7 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
 
 
     protected fun waitAndRunInForeground(foreground: suspend () -> Unit) {
-        launch(coroutineContext) {
+        viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 Thread.sleep(DELAY)
             }
@@ -93,12 +81,12 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
 
     protected fun doInParallel(t1: () -> Unit, t2: () -> Unit, foreground: () -> Unit) {
         runBlocking {
-            val job = launch(coroutineContext) {
-                launch(coroutineContext) {
+            val job = viewModelScope.launch {
+                viewModelScope.launch {
                     t1.invoke()
                 }
 
-                launch(coroutineContext) {
+                viewModelScope.launch {
                     t2.invoke()
                 }
             }
@@ -108,10 +96,10 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
         }
         /*
         launch(coroutineContext) {
-            val res1 = async(Dispatchers.IO) {
+            val res1 = viewModelScope.async(Dispatchers.IO) {
                 t1.invoke()
             }
-            val res2 = async(Dispatchers.IO) {
+            val res2 = viewModelScope.async(Dispatchers.IO) {
                 t2.invoke()
             }
 
@@ -123,9 +111,6 @@ open class ExecutorViewModel: ViewModel(), CoroutineScope {
          */
     }
 
-    protected fun cancelExecutor() {
-        job.cancel()
-    }
 
     companion object {
         private const val DELAY = 5000L

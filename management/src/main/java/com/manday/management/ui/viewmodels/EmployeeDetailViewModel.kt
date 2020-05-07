@@ -51,7 +51,7 @@ internal class EmployeeDetailViewModel(
     }
 
     fun buttonSaveClicked() =
-        doInBackgroundAndReturn({
+        doInBackground({
             employeeRepository.addEmployee(employeeModel)
         })
 

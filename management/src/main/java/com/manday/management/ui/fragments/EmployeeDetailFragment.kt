@@ -124,8 +124,11 @@ class EmployeeDetailFragment : BaseFragment() {
 
     private fun buttonSaveClicked() {
         binding.progressBar.visibility = VISIBLE
+        binding.clInfo.isEnabled = false
         viewModel.fields().observe(this, Observer {
             binding.progressBar.visibility = GONE
+            binding.clInfo.isEnabled = true
+
             if (it.isEmpty()) {
                 viewModel.buttonSaveClicked().observe(this, Observer {
                     if (it != null) {
