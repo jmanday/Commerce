@@ -5,8 +5,6 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.manday.coredata.ExecutorViewModel
-import com.manday.coredata.HandlerResponseViewModel
-import com.manday.coredata.ResponseFormViewModel
 import com.manday.coredata.utils.addSourceNotNull
 import com.manday.coredata.utils.removeSourceNotNull
 import com.manday.management.data.entities.SkillEntity
@@ -34,9 +32,9 @@ internal class EmployeeDetailViewModel(
         this.employeeModel = employee
     }
 
+    fun fields(): LiveData<List<ErrorField>> {
+        val responseViewModel = MutableLiveData<List<ErrorField>>()
 
-    fun buttonSaveClicked(): LiveData<ResponseFormViewModel<List<ErrorField>>> {
-        val responseViewModel = MutableLiveData<ResponseFormViewModel<List<ErrorField>>>()
         errorFieldList.clear()
         employeeModel.let {
             if (it.name.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_NAME)
@@ -47,20 +45,15 @@ internal class EmployeeDetailViewModel(
             if (it.skillEmployeeDescription.isEmpty()) errorFieldList.add(ErrorField.ERROR_FIELD_SKILL)
         }
 
-        if (errorFieldList.isEmpty()) {
-            doInBackgroundAndContinue({
-                employeeModel.let {
-                    employeeRepository.addEmployee(it)
-                }
-            }, {
-                responseViewModel.postValue(HandlerResponseViewModel.createResponseForm("Los cambios han sido guardados"))
-            })
-        }
-        else
-            responseViewModel.postValue(HandlerResponseViewModel.createResponseForm("Campo vacío", resp = errorFieldList))
+        responseViewModel.postValue(errorFieldList)
 
         return responseViewModel
     }
+
+    fun buttonSaveClicked() =
+        doInBackground({
+            employeeRepository.addEmployee(employeeModel)
+        })
 
 
     enum class ErrorField {

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import com.manday.coredata.TypeError
 import com.manday.loginuser.BaseLoginDialogView
 import com.manday.loginuser.viewmodels.LoginDialogViewModel
 import com.manday.management.BuildConfig
@@ -35,18 +34,19 @@ internal class LoginDialogView: BaseLoginDialogView() {
 
     private fun initializeListeners() {
         btnDone.setOnClickListener {
-            if (BuildConfig.DEBUG)
+            if (BuildConfig.DEBUG) {
                 this.dismiss()
-            else {
-                val response = loginDialogViewModel.loginUser(edUsername.text.toString(), edPass.text.toString())
+            } else {
+                val response =
+                    loginDialogViewModel.loginUser(
+                        edUsername.text.toString(),
+                        edPass.text.toString()
+                    )
                 response.observe(this.viewLifecycleOwner, Observer {
-                    when (it.typeError) {
-                        TypeError.SUCCESS -> {
-                            this.dismiss()
-                        }
-                        TypeError.DATASOURCE, TypeError.NOT_FOUND -> {
-                            message.visibility = VISIBLE
-                        }
+                    if (it != null) {
+                        this.dismiss()
+                    } else {
+                        message.visibility = VISIBLE
                     }
                 })
             }

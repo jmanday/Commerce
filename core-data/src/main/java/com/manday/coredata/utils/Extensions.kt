@@ -15,3 +15,9 @@ fun String.isDateValidate(): Boolean {
 fun TextInputLayout.showMessageError(msg: String) {
     this.error = msg
 }
+
+fun Long.toTypeResponse() =
+    if (this != 0L)
+        TypeResponse.INSERT_OK
+    else
+        TypeResponse.INSERT_ERROR

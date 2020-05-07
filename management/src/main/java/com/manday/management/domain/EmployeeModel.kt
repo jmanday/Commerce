@@ -21,6 +21,7 @@ fun EmployeeModel.toEmployeeEntity() =
         it.id = this.id
         it.name = this.name
         it.surname = this.surname
+        it.phone = this.phone
         it.email = this.email
         it.image = this.image
         it.skill = this.skillEmployee.plus(1)

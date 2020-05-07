@@ -12,14 +12,13 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.transition.MaterialContainerTransform
-import com.manday.coredata.TypeError
+import com.manday.coredata.utils.TypeResponse
 import com.manday.coredata.utils.showMessageError
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.management.Constants.ARGUMENT_EXTRA_EMPLOYEE
 import com.manday.management.Constants.ARGUMENT_EXTRA_NAME_TRANSITION
 import com.manday.management.R
 import com.manday.management.databinding.FragmentEmployeeDetailBinding
-
 import com.manday.management.domain.EmployeeModel
 import com.manday.management.ui.viewmodels.EmployeeDetailViewModel
 import kotlinx.android.synthetic.main.fragment_employee_detail.*
@@ -125,23 +124,24 @@ class EmployeeDetailFragment : BaseFragment() {
 
     private fun buttonSaveClicked() {
         binding.progressBar.visibility = VISIBLE
-        binding.root.isEnabled = false
-        viewModel.buttonSaveClicked().observe(this, Observer {
+        binding.clInfo.isEnabled = false
+        viewModel.fields().observe(this, Observer {
             binding.progressBar.visibility = GONE
-            when (it.typeError) {
-                TypeError.SUCCESS -> {
-                    it.message?.let {
-                        showMessage(it, true)
-                    }
-                }
-                TypeError.ERROR, TypeError.NOT_FOUND, TypeError.DATASOURCE -> {
-                    it.resp?.let { response ->
-                        response.forEach { errorField ->
-                            it.message?.let { message ->
-                                mapInputText[errorField]?.showMessageError(message)
+            binding.clInfo.isEnabled = true
+
+            if (it.isEmpty()) {
+                viewModel.buttonSaveClicked().observe(this, Observer {
+                    if (it != null) {
+                        when (it) {
+                            TypeResponse.INSERT_OK -> {
+                                showMessage(getString(R.string.text_saved), true)
                             }
                         }
                     }
+                })
+            } else {
+                it.forEach { errorField ->
+                    mapInputText[errorField]?.showMessageError(getString(R.string.text_empty_fields))
                 }
             }
         })

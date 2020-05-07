@@ -1,9 +1,8 @@
 package com.manday.management.ui.viewmodels
 
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import com.manday.coredata.ExecutorViewModel
-import com.manday.coredata.utils.addMultipleSourceNotNull
 import com.manday.management.domain.TaskModel
 import com.manday.management.repository.EmployeeRepository
 import com.manday.management.repository.TaskRepository
@@ -13,23 +12,28 @@ internal class TaskViewModel(
     taskRespository: TaskRepository
 ) : ExecutorViewModel() {
 
-    val tasks = MutableLiveData<List<TaskModel>>()
+    var tasks: LiveData<List<TaskModel>?>? = null
 
     init {
-        addMultipleSourceNotNull(
-            employeeRepository.getEmployees(),
-            taskRespository.getTasks()
-        ) { listEmployees, listTasks ->
-            listTasks?.map {
-                if (it.employeeId != null) {
-                    it.imgEmployee = listEmployees?.find { employeeModel ->
-                        employeeModel.id == it.employeeId
-                    }?.image.toString()
+        tasks = doBothInBackgroundAndMap(
+            {
+                taskRespository.getTasks()
+            },
+            {
+                employeeRepository.getEmployees()
+            },
+            { listTasks, listEmployees ->
+                listTasks?.map {
+                    if (it.employeeId != null) {
+                        it.imgEmployee = listEmployees?.find { employeeModel ->
+                            employeeModel.id == it.employeeId
+                        }?.image.toString()
+                    }
                 }
-            }
 
-            tasks.postValue(listTasks)
-        }
+                listTasks
+            }
+        )
     }
 
 }

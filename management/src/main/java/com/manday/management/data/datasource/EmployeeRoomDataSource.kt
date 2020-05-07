@@ -10,17 +10,12 @@ internal class EmployeeRoomDataSource :
         return employeeDao?.getEmployee(param1, param2)
     }
 
-    override fun addEmployee(employee: EmployeeEntity) {
-        employeeDao?.addEmployee(employee)
+    override fun addEmployee(employee: EmployeeEntity): Long? {
+        return employeeDao?.addEmployee(employee)
     }
 
     override fun getEmployees(): LiveData<List<EmployeeEntity>?>? {
         return employeeDao?.getAllEmployees()
     }
 
-    override fun updateEmployee(employee: EmployeeEntity?) {
-        employee?.let {
-            employeeDao?.addEmployee(it)
-        }
-    }
 }
