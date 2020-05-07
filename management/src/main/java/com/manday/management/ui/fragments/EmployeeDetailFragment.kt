@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.transition.MaterialContainerTransform
@@ -23,11 +24,12 @@ import com.manday.management.domain.EmployeeModel
 import com.manday.management.ui.viewmodels.EmployeeDetailViewModel
 import kotlinx.android.synthetic.main.fragment_employee_detail.*
 import kotlinx.android.synthetic.main.fragment_employee_detail.view.*
-import org.koin.java.KoinJavaComponent.inject
 
 class EmployeeDetailFragment : BaseFragment() {
 
-    private val viewModel: EmployeeDetailViewModel by inject(EmployeeDetailViewModel::class.java)
+    private val viewModel: EmployeeDetailViewModel by lazy {
+        ViewModelProvider(this).get(EmployeeDetailViewModel::class.java)
+    }
     private lateinit var binding: FragmentEmployeeDetailBinding
     private var employeeModel = EmployeeModel()
     private lateinit var mapInputText: Map<EmployeeDetailViewModel.ErrorField, TextInputLayout>

@@ -6,12 +6,12 @@ import com.manday.coredata.ExecutorViewModel
 import com.manday.management.domain.TaskModel
 import com.manday.management.repository.EmployeeRepository
 import com.manday.management.repository.TaskRepository
+import org.koin.java.KoinJavaComponent.inject
 
-internal class TaskViewModel(
-    employeeRepository: EmployeeRepository,
-    taskRespository: TaskRepository
-) : ExecutorViewModel() {
+internal class TaskViewModel : ExecutorViewModel() {
 
+    private val employeeRepository: EmployeeRepository by inject(EmployeeRepository::class.java)
+    private val taskRespository: TaskRepository by inject(TaskRepository::class.java)
     var tasks: LiveData<List<TaskModel>?>? = null
 
     init {

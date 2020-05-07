@@ -5,13 +5,13 @@ import com.manday.coredata.ExecutorViewModel
 import com.manday.management.domain.EmployeeModel
 import com.manday.management.repository.EmployeeRepository
 import com.manday.management.repository.SkillRepository
+import org.koin.java.KoinJavaComponent.inject
 
 
-internal class EmployeeViewModel(
-    employeeRepository: EmployeeRepository,
-    skillRepository: SkillRepository
-) : ExecutorViewModel() {
+internal class EmployeeViewModel : ExecutorViewModel() {
 
+    private val employeeRepository: EmployeeRepository by inject(EmployeeRepository::class.java)
+    private val skillRepository: SkillRepository by inject(SkillRepository::class.java)
     var employees: LiveData<List<EmployeeModel>?>
 
     init {
