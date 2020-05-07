@@ -6,16 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.fruit.databinding.FragmentFruitBinding
 import com.manday.fruit.ui.adapter.FruitAdapter
 import com.manday.fruit.ui.viewmodel.FruitViewModel
 import kotlinx.android.synthetic.main.fragment_fruit.*
-import org.koin.java.KoinJavaComponent.inject
 
 class  FruitFragment : BaseFragment() {
 
-    private val viewModel: FruitViewModel by inject(FruitViewModel::class.java)
+    private val viewModel: FruitViewModel by lazy {
+        ViewModelProvider(this).get(FruitViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

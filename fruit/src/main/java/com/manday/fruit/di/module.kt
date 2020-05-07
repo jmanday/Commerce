@@ -6,8 +6,6 @@ import com.manday.fruit.datasource.net.FruitNetDataSource
 import com.manday.fruit.datasource.net.FruitRetrofitDataSource
 import com.manday.fruit.repository.FruitRepository
 import com.manday.fruit.repository.FruitRepositoryImpl
-import com.manday.fruit.ui.viewmodel.FruitViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val fruitModuleDependencies = module {
@@ -18,6 +16,4 @@ val fruitModuleDependencies = module {
 
     single<FruitRepository> { FruitRepositoryImpl(get(), get()) }
 
-    // ViewModel instances
-    viewModel { FruitViewModel(get()) }
 }

@@ -6,17 +6,19 @@ import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.manday.loginuser.BaseLoginDialogView
 import com.manday.loginuser.viewmodels.LoginDialogViewModel
 import com.manday.management.BuildConfig
 import com.manday.management.R
 import kotlinx.android.synthetic.main.login_custom_view.*
-import org.koin.java.KoinJavaComponent.inject
 
 
 internal class LoginDialogView: BaseLoginDialogView() {
 
-    private val loginDialogViewModel: LoginDialogViewModel by inject(LoginDialogViewModel::class.java)
+    private val loginDialogViewModel: LoginDialogViewModel by lazy {
+        ViewModelProvider(this).get(LoginDialogViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

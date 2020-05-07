@@ -5,9 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import android.transition.Fade
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.transition.FadeThrough
-import com.google.android.material.transition.Hold
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.employee.ui.adapters.EmployeeAdapter
 import com.manday.management.Constants.ARGUMENT_EXTRA_EMPLOYEE
@@ -17,12 +16,12 @@ import com.manday.management.R
 import com.manday.management.databinding.FragmentEmployeeBinding
 import com.manday.management.ui.viewmodels.EmployeeViewModel
 import kotlinx.android.synthetic.main.fragment_employee.*
-import org.koin.java.KoinJavaComponent.inject
 
 class EmployeeFragment : BaseFragment() {
 
-    private val viewModel: EmployeeViewModel by inject(
-        EmployeeViewModel::class.java)
+    private val viewModel: EmployeeViewModel by lazy {
+        ViewModelProvider(this).get(EmployeeViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

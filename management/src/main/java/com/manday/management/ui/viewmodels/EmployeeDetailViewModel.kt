@@ -11,11 +11,12 @@ import com.manday.management.data.entities.SkillEntity
 import com.manday.management.domain.EmployeeModel
 import com.manday.management.repository.EmployeeRepository
 import com.manday.management.repository.SkillRepository
+import org.koin.java.KoinJavaComponent.inject
 
-internal class EmployeeDetailViewModel(
-    private val employeeRepository: EmployeeRepository,
-    private val skillRepository: SkillRepository
-): ExecutorViewModel() {
+internal class EmployeeDetailViewModel : ExecutorViewModel() {
+
+    private val employeeRepository: EmployeeRepository by inject(EmployeeRepository::class.java)
+    private val skillRepository: SkillRepository by inject(SkillRepository::class.java)
 
     private val errorFieldList = mutableListOf<ErrorField>()
     val skills = MediatorLiveData<List<SkillEntity>>()
