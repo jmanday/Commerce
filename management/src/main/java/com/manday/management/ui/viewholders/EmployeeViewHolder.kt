@@ -1,10 +1,7 @@
 package com.manday.employee.ui.viewholders
 
 import android.view.View
-import android.view.ViewGroup
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.marginBottom
+import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.manday.coreui.viewholder.BaseViewHolder
 import com.manday.management.R
@@ -27,7 +24,7 @@ internal class EmployeeViewHolder(itemView: View): BaseViewHolder<EmployeeModel>
             .load(employee.image)
             .centerCrop()
             .placeholder(R.mipmap.placeholder)
-            .into(itemView.imgProfile)
+            .into(itemView.imgProfile as ImageView)
 
         itemView.setOnClickListener {
             f(employee, itemView)

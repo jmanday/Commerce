@@ -1,6 +1,7 @@
 package com.manday.management.ui.viewholders
 
 import android.view.View
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.manday.coreui.viewholder.BaseViewHolder
@@ -26,7 +27,7 @@ class TaskViewHolder(itemView: View) : BaseViewHolder<TaskModel>(itemView) {
                 .load(task.imgEmployee)
                 .centerCrop()
                 .placeholder(R.mipmap.placeholder)
-                .into(itemView.imgEmployee)
+                .into(itemView.imgEmployee as ImageView)
         }
 
         when (task.state) {
