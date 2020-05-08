@@ -12,10 +12,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
-import com.google.android.material.transition.MaterialContainerTransform
+import com.google.android.material.transition.MaterialContainerTransform.FADE_MODE_CROSS
+import com.manday.coredata.transitions.ContainerTransformFade
+import com.manday.coredata.transitions.TransitionMode
 import com.manday.coredata.utils.TypeResponse
 import com.manday.coredata.utils.showMessageError
 import com.manday.coreui.fragment.BaseFragment
+import com.manday.coreui.transitions.ContainerTransformData
+import com.manday.coreui.transitions.TransitionData
 import com.manday.management.Constants.ARGUMENT_EXTRA_EMPLOYEE
 import com.manday.management.Constants.ARGUMENT_EXTRA_NAME_TRANSITION
 import com.manday.management.R
@@ -24,6 +28,7 @@ import com.manday.management.domain.EmployeeModel
 import com.manday.management.ui.viewmodels.EmployeeDetailViewModel
 import kotlinx.android.synthetic.main.fragment_employee_detail.*
 import kotlinx.android.synthetic.main.fragment_employee_detail.view.*
+import org.koin.java.KoinJavaComponent.inject
 
 class EmployeeDetailFragment : BaseFragment() {
 
@@ -33,14 +38,12 @@ class EmployeeDetailFragment : BaseFragment() {
     private lateinit var binding: FragmentEmployeeDetailBinding
     private var employeeModel = EmployeeModel()
     private lateinit var mapInputText: Map<EmployeeDetailViewModel.ErrorField, TextInputLayout>
+    private val transition: TransitionMode by inject(ContainerTransformFade::class.java)
+    private val data: TransitionData = ContainerTransformData(FADE_MODE_CROSS)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val transformation = MaterialContainerTransform(requireContext()).apply {
-            fadeMode = MaterialContainerTransform.FADE_MODE_CROSS
-            duration = 500
-        }
-        sharedElementEnterTransition = transformation
+        sharedElementEnterTransition = transition.make(requireContext(), data)
     }
 
     override fun onCreateView(
