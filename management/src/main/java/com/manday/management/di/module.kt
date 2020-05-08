@@ -4,6 +4,7 @@ import com.manday.coredata.datasource.SkillDatabaseDataSource
 import com.manday.coredata.datasource.SkillRoomDataSource
 import com.manday.coredata.datasource.TaskDatabaseDataSource
 import com.manday.coredata.datasource.TaskRoomDataSource
+import com.manday.coredata.transitions.ContainerTransformFade
 import com.manday.management.data.datasource.EmployeeDatabaseDataSource
 import com.manday.management.data.datasource.EmployeeRoomDataSource
 import com.manday.management.repository.*
@@ -19,5 +20,7 @@ val managementModuleDependencies = module {
     single<EmployeeRepository> { EmployeeRepositoryImpl(get()) }
     single<SkillRepository> { SkillRepositoryImpl(get()) }
     single<TaskRepository> { TaskRepositoryImpl(get()) }
+
+    factory { ContainerTransformFade() }
 
 }
