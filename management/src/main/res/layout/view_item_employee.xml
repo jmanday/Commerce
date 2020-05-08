@@ -34,12 +34,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgMain">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgProfile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/placeholder_plain"/>
+                android:src="@mipmap/placeholder_plain" />
+
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
