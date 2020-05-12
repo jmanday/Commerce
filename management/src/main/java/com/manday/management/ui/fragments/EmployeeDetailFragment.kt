@@ -1,6 +1,7 @@
 package com.manday.management.ui.fragments
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -43,7 +44,9 @@ class EmployeeDetailFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedElementEnterTransition = transition.make(requireContext(), data)
+        //sharedElementEnterTransition = transition.make(requireContext(), data)
+        sharedElementEnterTransition =
+            TransitionInflater.from(this.activity).inflateTransition(android.R.transition.move)
     }
 
     override fun onCreateView(
@@ -57,6 +60,7 @@ class EmployeeDetailFragment : BaseFragment() {
                     it.get(ARGUMENT_EXTRA_EMPLOYEE)?.let { argEmployee ->
                         employeeModel = argEmployee as EmployeeModel
                     }
+
                     it.getString(ARGUMENT_EXTRA_NAME_TRANSITION)?.let { nameTransition ->
                         root.transitionName = nameTransition
                     }
@@ -117,7 +121,7 @@ class EmployeeDetailFragment : BaseFragment() {
                     true
                 }
                 else -> {
-                    false
+                    true
                 }
             }
         }
