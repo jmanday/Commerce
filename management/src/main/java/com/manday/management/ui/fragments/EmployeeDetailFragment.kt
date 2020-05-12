@@ -1,7 +1,6 @@
 package com.manday.management.ui.fragments
 
 import android.os.Bundle
-import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -11,18 +10,16 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
-import com.google.android.material.transition.MaterialContainerTransform.FADE_MODE_CROSS
+import com.google.android.material.transition.MaterialContainerTransform
 import com.manday.coredata.transitions.ContainerTransformFade
 import com.manday.coredata.transitions.TransitionMode
 import com.manday.coredata.utils.TypeResponse
 import com.manday.coredata.utils.showMessageError
 import com.manday.coreui.fragment.BaseFragment
-import com.manday.coreui.transitions.ContainerTransformData
-import com.manday.coreui.transitions.TransitionData
-import com.manday.management.Constants.ARGUMENT_EXTRA_EMPLOYEE
-import com.manday.management.Constants.ARGUMENT_EXTRA_NAME_TRANSITION
+import com.manday.coreui.transitions.TransitionAttributes
 import com.manday.management.R
 import com.manday.management.databinding.FragmentEmployeeDetailBinding
 import com.manday.management.domain.EmployeeModel
@@ -38,15 +35,15 @@ class EmployeeDetailFragment : BaseFragment() {
     }
     private lateinit var binding: FragmentEmployeeDetailBinding
     private var employeeModel = EmployeeModel()
+    val args: EmployeeDetailFragmentArgs by navArgs()
     private lateinit var mapInputText: Map<EmployeeDetailViewModel.ErrorField, TextInputLayout>
     private val transition: TransitionMode by inject(ContainerTransformFade::class.java)
-    private val data: TransitionData = ContainerTransformData(FADE_MODE_CROSS)
+    private val attributes: TransitionAttributes =
+        TransitionAttributes(mode = MaterialContainerTransform.FADE_MODE_CROSS)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //sharedElementEnterTransition = transition.make(requireContext(), data)
-        sharedElementEnterTransition =
-            TransitionInflater.from(this.activity).inflateTransition(android.R.transition.move)
+        sharedElementEnterTransition = transition.make(requireContext(), attributes)
     }
 
     override fun onCreateView(
@@ -55,23 +52,20 @@ class EmployeeDetailFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentEmployeeDetailBinding.inflate(inflater)
-            .apply {
-                arguments?.let { it ->
-                    it.get(ARGUMENT_EXTRA_EMPLOYEE)?.let { argEmployee ->
-                        employeeModel = argEmployee as EmployeeModel
-                    }
-
-                    it.getString(ARGUMENT_EXTRA_NAME_TRANSITION)?.let { nameTransition ->
-                        root.transitionName = nameTransition
-                    }
-                }
-                employee = employeeModel
-            }
-
-        viewModel.initialize(employeeModel)
-        listener.hideNavigationBottomView()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        args.employee?.let {
+            employeeModel = it
+        }
+        binding.root.transitionName = args.transitionName
+        binding.employee = employeeModel
+        viewModel.initialize(employeeModel)
+        listener.hideNavigationBottomView()
     }
 
     override fun initialize() {
