@@ -24,9 +24,10 @@
             android:defaultValue="@null"
             app:argType="com.manday.management.domain.EmployeeModel"
             app:nullable="true" />
-        <action
-            android:id="@+id/action_detailEmployeeFragment_to_taskFragment"
-            app:destination="@id/taskFragment" />
+        <argument
+            android:name="transitionName"
+            app:argType="string"
+            android:defaultValue='""' />
     </fragment>
     <fragment
         android:id="@+id/taskFragment"
