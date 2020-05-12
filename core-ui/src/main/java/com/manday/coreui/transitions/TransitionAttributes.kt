@@ -4,5 +4,6 @@ import com.manday.coreui.R
 
 data class TransitionAttributes(
     var mode: Int = 0,
-    var colorScrim: Int = R.color.colorTransparent
+    var colorScrim: Int = R.color.colorTransparent,
+    var duration: Long = 500
 )

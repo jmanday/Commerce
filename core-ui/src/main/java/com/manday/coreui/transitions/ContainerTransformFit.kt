@@ -10,7 +10,7 @@ class ContainerTransformFit : TransitionMode {
     override fun make(context: Context, attributes: TransitionAttributes) =
         MaterialContainerTransform(context).apply {
             fitMode = attributes.mode
-            duration = 800
+            duration = attributes.duration
             scrimColor = ContextCompat.getColor(context, attributes.colorScrim)
         }
 }
