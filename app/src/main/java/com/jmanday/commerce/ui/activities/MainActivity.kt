@@ -14,6 +14,7 @@ import com.jmanday.commerce.CommerceApp
 import com.jmanday.commerce.R
 import com.jmanday.commerce.di.ModuleInjector
 import com.jmanday.commerce.listeners.FragmentListener
+import com.manday.coredata.navigation.Navigate
 import com.manday.loginuser.injector.LoginUserViewInjector
 import com.manday.management.Constants.ARGUMENT_EXTRA_NAME_TRANSITION
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity(), FragmentListener {
 
     private fun setUpNavigation() {
         //navController.navigatorProvider.addNavigator(CustomFragmentNavigator(this, nav_host_fragment.childFragmentManager, R.id.nav_host_fragment))
+        Navigate.navController = navController
         bottomNavigationView.visibility = GONE
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
@@ -46,8 +48,8 @@ class MainActivity : AppCompatActivity(), FragmentListener {
                 R.id.employeeFragment -> {
                     navController.navigate(R.id.action_employeeFragment_self)
                 }
-                R.id.taskFragment -> {
-                    navController.navigate(R.id.action_taskFragment_self)
+                R.id.blankFragment -> {
+                    navController.navigate(R.id.action_blankFragment_self)
                 }
                 R.id.fruitFragment -> {
                     navController.navigate(R.id.action_fruitFragment_self)
@@ -67,7 +69,7 @@ class MainActivity : AppCompatActivity(), FragmentListener {
             }
         }
 
-        navController.navigate(R.id.action_mainFragment_to_detailEmployeeFragment, bundle, null, extras)
+        navController.navigate(actionId, bundle, null, extras)
     }
 
     override fun onNavigationUp() {
@@ -76,7 +78,8 @@ class MainActivity : AppCompatActivity(), FragmentListener {
     }
 
     override fun onDatabasePopulated() {
-        navController.navigate(R.id.employeeFragment, null,
+        navController.navigate(
+            R.id.nav_graph_management, null,
             NavOptions.Builder()
                 .setPopUpTo(R.id.splashFragment, true)
                 .build())
