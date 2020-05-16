@@ -5,24 +5,25 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.manday.coreui.viewholder.BaseViewHolder
 import com.manday.management.R
-import com.manday.management.ui.adapters.EmployeeItemAdapter
+import com.manday.management.domain.EmployeeAdapterModel
 import kotlinx.android.synthetic.main.view_item_employee.view.*
 
-sealed class EmployeeManagementViewHolder(itemView: View) :
-    BaseViewHolder<EmployeeItemAdapter>(itemView) {
-    internal class EmployeeViewHolder(
+internal sealed class EmployeeViewHolder(itemView: View) :
+    BaseViewHolder<EmployeeAdapterModel>(itemView) {
+
+    internal class ItemEmployeeViewHolder(
         itemView: View
-    ) : EmployeeManagementViewHolder(itemView) {
+    ) : EmployeeViewHolder(itemView) {
 
         override fun onBind(
-            employee: EmployeeItemAdapter,
-            f: (employee: EmployeeItemAdapter, view: View) -> Unit
+            employee: EmployeeAdapterModel,
+            f: (employee: EmployeeAdapterModel, view: View) -> Unit
         ) {
             when (employee) {
 
             }
             itemView.transitionName =
-                (employee as EmployeeItemAdapter.EmployeeModelItemAdapter).name
+                (employee as EmployeeAdapterModel.EmployeeItemAdapterModel).name
             itemView.tvNameEmployee.text = employee.name
             itemView.tvSkill.text = employee.skill
 
@@ -45,11 +46,11 @@ sealed class EmployeeManagementViewHolder(itemView: View) :
 
     internal class NewTaskViewHolder(
         itemView: View
-    ) : EmployeeManagementViewHolder(itemView) {
+    ) : EmployeeViewHolder(itemView) {
 
         override fun onBind(
-            headerItem: EmployeeItemAdapter,
-            f: (t: EmployeeItemAdapter, v: View) -> Unit
+            headerItem: EmployeeAdapterModel,
+            f: (t: EmployeeAdapterModel, v: View) -> Unit
         ) {
 
             itemView.setOnClickListener {

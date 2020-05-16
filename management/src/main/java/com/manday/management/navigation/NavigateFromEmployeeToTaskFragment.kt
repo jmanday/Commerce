@@ -2,12 +2,12 @@ package com.manday.management.navigation
 
 import android.view.View
 import com.manday.coredata.navigation.Navigate
-import com.manday.management.ui.adapters.EmployeeItemAdapter
+import com.manday.management.domain.EmployeeAdapterModel
 import com.manday.management.ui.fragments.EmployeeFragmentDirections
 
-class NavigateFromEmployeeToTaskFragment : Navigate<EmployeeItemAdapter> {
+class NavigateFromEmployeeToTaskFragment : Navigate<EmployeeAdapterModel> {
 
-    override fun navigate(itemView: View?, employeeItemAdapter: EmployeeItemAdapter?) {
+    override fun navigate(itemView: View?, employeeItemAdapter: EmployeeAdapterModel?) {
         val action = EmployeeFragmentDirections.actionEmployeeFragmentToTaskFragment()
 
         Navigate.navController?.navigate(action)

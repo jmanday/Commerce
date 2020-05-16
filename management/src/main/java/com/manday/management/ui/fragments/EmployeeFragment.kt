@@ -12,11 +12,11 @@ import com.manday.coreui.fragment.BaseFragment
 import com.manday.employee.ui.adapters.EmployeeAdapter
 import com.manday.management.R
 import com.manday.management.databinding.FragmentEmployeeBinding
+import com.manday.management.domain.EmployeeAdapterModel
 import com.manday.management.domain.EmployeeModel
 import com.manday.management.mapper.EmployeeItemAdapterMapper
 import com.manday.management.navigation.NavigateFromEmployeeToDetailFragment
 import com.manday.management.navigation.NavigateFromEmployeeToTaskFragment
-import com.manday.management.ui.adapters.EmployeeItemAdapter
 import com.manday.management.ui.viewmodels.EmployeeViewModel
 import kotlinx.android.synthetic.main.fragment_employee.*
 import org.koin.java.KoinJavaComponent.inject
@@ -29,7 +29,7 @@ class EmployeeFragment : BaseFragment() {
     private val navigateToDetailFragment: Navigate<EmployeeModel> by inject(
         NavigateFromEmployeeToDetailFragment::class.java
     )
-    private val navigateToTaskFragment: Navigate<EmployeeItemAdapter> by inject(
+    private val navigateToTaskFragment: Navigate<EmployeeAdapterModel> by inject(
         NavigateFromEmployeeToTaskFragment::class.java
     )
 
@@ -59,12 +59,12 @@ class EmployeeFragment : BaseFragment() {
                 employeeRecyclerView.adapter =
                     EmployeeAdapter(employeesItemAdapter) { employee, view ->
                         when (employee) {
-                            is EmployeeItemAdapter.EmployeeModelItemAdapter -> {
+                            is EmployeeAdapterModel.EmployeeItemAdapterModel -> {
                                 navigateToDetailFragment.navigate(
                                     view,
                                     employees.find { it.id == employee.id })
                             }
-                            is EmployeeItemAdapter.HeaderItemAdapter -> {
+                            is EmployeeAdapterModel.HeaderItemAdapterModel -> {
                                 navigateToTaskFragment.navigate()
                             }
                         }

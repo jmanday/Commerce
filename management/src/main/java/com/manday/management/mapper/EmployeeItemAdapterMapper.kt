@@ -1,16 +1,16 @@
 package com.manday.management.mapper
 
+import com.manday.management.domain.EmployeeAdapterModel
 import com.manday.management.domain.EmployeeModel
 import com.manday.management.domain.toEmployeeModelItemAdapter
-import com.manday.management.ui.adapters.EmployeeItemAdapter
 
 class EmployeeItemAdapterMapper {
 
     companion object {
 
-        fun mapTo(employees: List<EmployeeModel>?): List<EmployeeItemAdapter> {
-            val list = mutableListOf<EmployeeItemAdapter>()
-            val header = EmployeeItemAdapter.HeaderItemAdapter
+        fun mapTo(employees: List<EmployeeModel>?): List<EmployeeAdapterModel> {
+            val list = mutableListOf<EmployeeAdapterModel>()
+            val header = EmployeeAdapterModel.HeaderItemAdapterModel
 
             list.add(header)
             employees?.let {

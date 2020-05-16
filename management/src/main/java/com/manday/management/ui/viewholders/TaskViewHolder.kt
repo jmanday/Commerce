@@ -11,7 +11,7 @@ import com.manday.management.domain.TaskState
 import kotlinx.android.synthetic.main.view_item_task.view.*
 
 
-class TaskViewHolder(itemView: View) : BaseViewHolder<TaskModel>(itemView) {
+internal class TaskViewHolder(itemView: View) : BaseViewHolder<TaskModel>(itemView) {
 
     override fun onBind(task: TaskModel, f: (task: TaskModel, v: View) -> Unit) {
         itemView.tvTitle.text = task.title

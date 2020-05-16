@@ -6,28 +6,28 @@ import android.view.ViewGroup
 import com.manday.coredata.utils.ordinal
 import com.manday.coreui.adapter.BaseAdapter
 import com.manday.management.R
-import com.manday.management.ui.adapters.EmployeeItemAdapter
-import com.manday.management.ui.viewholders.EmployeeManagementViewHolder
+import com.manday.management.domain.EmployeeAdapterModel
+import com.manday.management.ui.viewholders.EmployeeViewHolder
 
 internal class EmployeeAdapter(
-    var listEmployee: List<EmployeeItemAdapter>,
-    listener: (EmployeeItemAdapter, View) -> Unit
-) : BaseAdapter<EmployeeItemAdapter, EmployeeManagementViewHolder>(listEmployee, listener) {
+    var listEmployee: List<EmployeeAdapterModel>,
+    listener: (EmployeeAdapterModel, View) -> Unit
+) : BaseAdapter<EmployeeAdapterModel, EmployeeViewHolder>(listEmployee, listener) {
 
     override fun generateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): EmployeeManagementViewHolder {
+    ): EmployeeViewHolder {
         return when (viewType) {
-            EmployeeItemAdapter.HeaderItemAdapter.ordinal() -> {
+            EmployeeAdapterModel.HeaderItemAdapterModel.ordinal() -> {
                 val itemView = LayoutInflater.from(parent.context)
                     .inflate(R.layout.view_item_new_task, parent, false)
-                EmployeeManagementViewHolder.NewTaskViewHolder(itemView)
+                EmployeeViewHolder.NewTaskViewHolder(itemView)
             }
-            EmployeeItemAdapter.EmployeeModelItemAdapter.ordinal() -> {
+            EmployeeAdapterModel.EmployeeItemAdapterModel.ordinal() -> {
                 val itemView = LayoutInflater.from(parent.context)
                     .inflate(R.layout.view_item_employee, parent, false)
-                EmployeeManagementViewHolder.EmployeeViewHolder(itemView)
+                EmployeeViewHolder.ItemEmployeeViewHolder(itemView)
             }
             else -> {
                 throw IllegalStateException()

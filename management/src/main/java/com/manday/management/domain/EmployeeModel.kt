@@ -1,7 +1,6 @@
 package com.manday.management.domain
 
 import com.manday.management.data.entities.EmployeeEntity
-import com.manday.management.ui.adapters.EmployeeItemAdapter
 import java.io.Serializable
 
 data class EmployeeModel (
@@ -29,7 +28,7 @@ fun EmployeeModel.toEmployeeEntity() =
     }
 
 fun EmployeeModel.toEmployeeModelItemAdapter() =
-    EmployeeItemAdapter.EmployeeModelItemAdapter(
+    EmployeeAdapterModel.EmployeeItemAdapterModel(
         this.id ?: 0, String.format("%s %s", this.name, this.surname),
         this.skillEmployeeDescription, this.image
     )
