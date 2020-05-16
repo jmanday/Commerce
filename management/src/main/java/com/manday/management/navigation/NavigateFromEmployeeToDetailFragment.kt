@@ -11,21 +11,21 @@ import com.manday.management.ui.fragments.EmployeeFragmentDirections
 
 open class NavigateFromEmployeeToDetailFragment : Navigate<EmployeeModel> {
 
-    override fun navigate(itemView: View?, t: EmployeeModel?) {
+    override fun navigate(itemView: View?, employeeModel: EmployeeModel?) {
         var localTransitionName = NAME_GENERAL_TRANSITION
         var extras: FragmentNavigator.Extras = FragmentNavigatorExtras()
 
-        if (t != null) {
-            localTransitionName = t.name
+        employeeModel?.let {
+            localTransitionName = it.name
         }
 
-        if (itemView != null) {
-            itemView.transitionName = localTransitionName
-            extras = FragmentNavigatorExtras(itemView to itemView.transitionName)
+        itemView?.let {
+            it.transitionName = localTransitionName
+            extras = FragmentNavigatorExtras(it to it.transitionName)
         }
 
         val action = EmployeeFragmentDirections.actionMainFragmentToDetailEmployeeFragment(
-            t,
+            employeeModel,
             localTransitionName
         )
 
