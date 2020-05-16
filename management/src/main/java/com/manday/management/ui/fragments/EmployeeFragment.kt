@@ -15,6 +15,7 @@ import com.manday.management.databinding.FragmentEmployeeBinding
 import com.manday.management.domain.EmployeeModel
 import com.manday.management.mapper.EmployeeItemAdapterMapper
 import com.manday.management.navigation.NavigateFromEmployeeToDetailFragment
+import com.manday.management.navigation.NavigateFromEmployeeToTaskFragment
 import com.manday.management.ui.adapters.EmployeeItemAdapter
 import com.manday.management.ui.viewmodels.EmployeeViewModel
 import kotlinx.android.synthetic.main.fragment_employee.*
@@ -27,6 +28,9 @@ class EmployeeFragment : BaseFragment() {
     }
     private val navigateToDetailFragment: Navigate<EmployeeModel> by inject(
         NavigateFromEmployeeToDetailFragment::class.java
+    )
+    private val navigateToTaskFragment: Navigate<EmployeeItemAdapter> by inject(
+        NavigateFromEmployeeToTaskFragment::class.java
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,9 +58,17 @@ class EmployeeFragment : BaseFragment() {
                 val employeesItemAdapter = EmployeeItemAdapterMapper.mapTo(employees)
                 employeeRecyclerView.adapter =
                     EmployeeAdapter(employeesItemAdapter) { employee, view ->
-                        navigateToDetailFragment.navigate(
-                            view,
-                            employees.find { it.id == (employee as EmployeeItemAdapter.EmployeeModelItemAdapter).id })
+                        when (employee) {
+                            is EmployeeItemAdapter.EmployeeModelItemAdapter -> {
+                                navigateToDetailFragment.navigate(
+                                    view,
+                                    employees.find { it.id == employee.id })
+                            }
+                            is EmployeeItemAdapter.HeaderItemAdapter -> {
+                                navigateToTaskFragment.navigate()
+                            }
+                        }
+
                 }
             }
             else {
