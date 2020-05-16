@@ -13,7 +13,9 @@ import com.manday.employee.ui.adapters.EmployeeAdapter
 import com.manday.management.R
 import com.manday.management.databinding.FragmentEmployeeBinding
 import com.manday.management.domain.EmployeeModel
+import com.manday.management.mapper.EmployeeItemAdapterMapper
 import com.manday.management.navigation.NavigateFromEmployeeToDetailFragment
+import com.manday.management.ui.adapters.EmployeeItemAdapter
 import com.manday.management.ui.viewmodels.EmployeeViewModel
 import kotlinx.android.synthetic.main.fragment_employee.*
 import org.koin.java.KoinJavaComponent.inject
@@ -49,8 +51,12 @@ class EmployeeFragment : BaseFragment() {
         viewModel.employees.observe(this, Observer { employees ->
             employeeRecyclerView.hideShimmer()
             if (employees != null) {
-                employeeRecyclerView.adapter = EmployeeAdapter(employees) {employeeModel, view ->
-                    navigateToDetailFragment.navigate(view, employeeModel)
+                val employeesItemAdapter = EmployeeItemAdapterMapper.mapTo(employees)
+                employeeRecyclerView.adapter =
+                    EmployeeAdapter(employeesItemAdapter) { employee, view ->
+                        navigateToDetailFragment.navigate(
+                            view,
+                            employees.find { it.id == (employee as EmployeeItemAdapter.EmployeeModelItemAdapter).id })
                 }
             }
             else {
