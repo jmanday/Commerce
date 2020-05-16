@@ -8,6 +8,7 @@ import com.manday.coredata.transitions.ContainerTransformFade
 import com.manday.management.data.datasource.EmployeeDatabaseDataSource
 import com.manday.management.data.datasource.EmployeeRoomDataSource
 import com.manday.management.navigation.NavigateFromEmployeeToDetailFragment
+import com.manday.management.navigation.NavigateFromEmployeeToTaskFragment
 import com.manday.management.repository.*
 import org.koin.dsl.module
 
@@ -24,5 +25,6 @@ val managementModuleDependencies = module {
 
     factory { ContainerTransformFade() }
     factory { NavigateFromEmployeeToDetailFragment() }
+    factory { NavigateFromEmployeeToTaskFragment() }
 
 }
