@@ -1,6 +1,7 @@
 package com.manday.management.ui.viewholders
 
 import android.view.View
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.manday.coreui.viewholder.BaseViewHolder
@@ -10,7 +11,7 @@ import com.manday.management.domain.TaskState
 import kotlinx.android.synthetic.main.view_item_task.view.*
 
 
-class TaskViewHolder(itemView: View) : BaseViewHolder<TaskModel>(itemView) {
+internal class TaskViewHolder(itemView: View) : BaseViewHolder<TaskModel>(itemView) {
 
     override fun onBind(task: TaskModel, f: (task: TaskModel, v: View) -> Unit) {
         itemView.tvTitle.text = task.title
@@ -26,7 +27,7 @@ class TaskViewHolder(itemView: View) : BaseViewHolder<TaskModel>(itemView) {
                 .load(task.imgEmployee)
                 .centerCrop()
                 .placeholder(R.mipmap.placeholder)
-                .into(itemView.imgEmployee)
+                .into(itemView.imgEmployee as ImageView)
         }
 
         when (task.state) {

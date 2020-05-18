@@ -1,17 +1,17 @@
 package com.manday.management.ui.viewmodels
 
 import androidx.lifecycle.Observer
+import com.jmanday.commerce.listeners.ViewModelListener
 import com.manday.coredata.ExecutorViewModel
 import com.manday.management.data.entities.EmployeeEntity
 import com.manday.management.data.entities.TaskEntity
 import com.manday.management.data.entities.TypeTaskEntity
 import com.manday.management.repository.TaskRepository
-import com.sdos.commerce.listeners.ViewModelListener
+import org.koin.java.KoinJavaComponent.inject
 
-internal class TaskDetailViewModel(
-    private val taskRepository: TaskRepository
-): ExecutorViewModel() {
+internal class TaskDetailViewModel : ExecutorViewModel() {
 
+    private val taskRepository: TaskRepository by inject((TaskRepository::class.java))
     private lateinit var baseView: ViewModelListener
     private lateinit var listEmployees: List<EmployeeEntity>
     private lateinit var typeTasks: List<TypeTaskEntity>

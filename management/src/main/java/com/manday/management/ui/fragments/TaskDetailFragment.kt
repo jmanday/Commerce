@@ -7,20 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
-import com.manday.management.data.entities.TaskEntity
+import androidx.lifecycle.ViewModelProvider
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.management.R
+import com.manday.management.data.entities.TaskEntity
 import com.manday.management.databinding.FragmentTaskDetailBinding
 import com.manday.management.ui.viewmodels.TaskDetailViewModel
 import kotlinx.android.synthetic.main.fragment_task_detail.*
-import org.koin.java.KoinJavaComponent.inject
 
 
 class TaskDetailFragment : BaseFragment() {
 
     private var task = TaskEntity()
     private lateinit var binding: FragmentTaskDetailBinding
-    private val viewModel: TaskDetailViewModel by inject(TaskDetailViewModel::class.java)
+    private val viewModel: TaskDetailViewModel by lazy {
+        ViewModelProvider(this).get(TaskDetailViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

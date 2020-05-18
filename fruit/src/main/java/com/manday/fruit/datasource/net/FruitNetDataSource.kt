@@ -5,5 +5,5 @@ import com.manday.fruit.entities.FruitEntity
 
 interface FruitNetDataSource {
 
-    fun getFruits(category: String, item: String): LiveData<List<FruitEntity>>?
+    fun getFruits(category: String, item: String): LiveData<List<FruitEntity>?>
 }

@@ -1,28 +1,17 @@
 package com.manday.fruit.ui.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.Observer
 import com.manday.coredata.ExecutorViewModel
-import com.manday.coredata.utils.addSourceNotNull
-import com.manday.coredata.utils.removeSourceNotNull
-import com.manday.fruit.models.FruitModel
 import com.manday.fruit.repository.FruitRepository
+import org.koin.java.KoinJavaComponent.inject
 
-class FruitViewModel(
-    private val repository: FruitRepository
-): ExecutorViewModel() {
+class FruitViewModel : ExecutorViewModel() {
 
-    private val fruitsList = MediatorLiveData<List<FruitModel>?>()
+    private val repository: FruitRepository by inject(FruitRepository::class.java)
 
-    fun fruits(): LiveData<List<FruitModel>?> {
-        fruitsList.addSourceNotNull(repository.getAllFruits(CATEGORY, ITEM), Observer<List<FruitModel>?> {
-            fruitsList.removeSourceNotNull(repository.getAllFruits(CATEGORY, ITEM))
-            fruitsList.postValue(it)
-        })
-
-        return fruitsList
-    }
+    fun fruits() =
+        doInBackground {
+            repository.getAllFruits(CATEGORY, ITEM)
+        }
 
 
     companion object {

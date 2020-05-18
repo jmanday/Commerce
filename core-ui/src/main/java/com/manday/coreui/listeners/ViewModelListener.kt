@@ -1,4 +1,4 @@
-package com.sdos.commerce.listeners
+package com.jmanday.commerce.listeners
 
 interface ViewModelListener {
 

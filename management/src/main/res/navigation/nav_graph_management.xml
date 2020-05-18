@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_management"
+    app:startDestination="@id/employeeFragment">
+
+    <fragment
+        android:id="@+id/employeeFragment"
+        android:name="com.manday.management.ui.fragments.EmployeeFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/fragment_employee">
+        <action
+            android:id="@+id/action_mainFragment_to_detailEmployeeFragment"
+            app:destination="@id/detailEmployeeFragment" />
+        <action
+            android:id="@+id/action_employeeFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailEmployeeFragment"
+        android:name="com.manday.management.ui.fragments.EmployeeDetailFragment"
+        android:label="fragment_detail_employee"
+        tools:layout="@layout/fragment_employee_detail">
+        <argument
+            android:name="employee"
+            android:defaultValue="@null"
+            app:argType="com.manday.management.domain.EmployeeModel"
+            app:nullable="true" />
+        <argument
+            android:name="transitionName"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.manday.management.ui.fragments.TaskFragment"
+        android:label="fragment_task"
+        tools:layout="@layout/fragment_task">
+        <action
+            android:id="@+id/action_taskFragment_to_taskDetailFragment"
+            app:destination="@id/taskDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskDetailFragment"
+        android:name="com.manday.management.ui.fragments.TaskDetailFragment"
+        android:label="TaskDetailFragment"
+        tools:layout="@layout/fragment_task_detail" />
+
+</navigation>

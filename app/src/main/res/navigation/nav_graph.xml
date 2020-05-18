@@ -7,72 +7,51 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.sdos.commerce.ui.fragments.SplashFragment"
+        android:name="com.jmanday.commerce.ui.fragments.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_mainFragment"
-            app:destination="@id/employeeFragment"
+            app:destination="@id/nav_graph_management"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:launchSingleTop="true"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpToInclusive="false" />
+
     </fragment>
-    <fragment
-        android:id="@+id/employeeFragment"
-        android:name="com.manday.management.ui.fragments.EmployeeFragment"
-        android:label="main_fragment"
-        tools:layout="@layout/fragment_employee">
-        <action
-            android:id="@+id/action_mainFragment_to_detailEmployeeFragment"
-            app:destination="@id/detailEmployeeFragment"/>
-    </fragment>
-    <fragment
-        android:id="@+id/taskFragment"
-        android:name="com.manday.management.ui.fragments.TaskFragment"
-        android:label="fragment_task"
-        tools:layout="@layout/fragment_task">
-        <action
-            android:id="@+id/action_taskFragment_to_taskDetailFragment"
-            app:destination="@id/taskDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailEmployeeFragment"
-        android:name="com.manday.management.ui.fragments.EmployeeDetailFragment"
-        android:label="fragment_detail_employee"
-        tools:layout="@layout/fragment_employee_detail" >
-        <argument
-            android:name="employee"
-            app:argType="com.manday.management.domain.EmployeeModel"
-            app:nullable="true"
-            android:defaultValue="@null" />
-    </fragment>
+
+    <include app:graph="@navigation/nav_graph_management" />
+
     <fragment
         android:id="@+id/fruitFragment"
         android:name="com.manday.fruit.ui.fragment.FruitFragment"
         android:label="FruitFragment"
         tools:layout="@layout/fragment_fruit">
     </fragment>
+
     <fragment
-        android:id="@+id/taskDetailFragment"
-        android:name="com.manday.management.ui.fragments.TaskDetailFragment"
-        android:label="TaskDetailFragment"
-        tools:layout="@layout/fragment_task_detail"/>
+        android:id="@+id/blankFragment"
+        android:name="com.jmanday.commerce.ui.fragments.BlankFragment"
+        android:label="BlankFragment" />
+
+    <action
+        android:id="@+id/action_employeeFragment_self"
+        app:destination="@id/nav_graph_management"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/employeeFragment" />
+
     <action
         android:id="@+id/action_fruitFragment_self"
         app:destination="@id/fruitFragment"
         app:launchSingleTop="true"
         app:popUpTo="@id/fruitFragment" />
+
     <action
-        android:id="@+id/action_taskFragment_self"
-        app:destination="@id/taskFragment"
+        android:id="@+id/action_blankFragment_self"
+        app:destination="@id/blankFragment"
         app:launchSingleTop="true"
-        app:popUpTo="@id/taskFragment" />
-    <action
-        android:id="@+id/action_employeeFragment_self"
-        app:destination="@id/employeeFragment"
-        app:launchSingleTop="true"
-        app:popUpTo="@id/employeeFragment" />
+        app:popUpTo="@id/blankFragment" />
+
 </navigation>

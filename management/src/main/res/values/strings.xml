@@ -6,4 +6,6 @@
     <string name="text_name_surname">%s %s</string>
     <string name="text_date">Fecha: %s</string>
     <string name="text_priority">Prioridad: %s</string>
+    <string name="text_empty_fields">Debe rellenar esta información</string>
+    <string name="text_saved">Los cambios han sido guardados correctamente</string>
 </resources>

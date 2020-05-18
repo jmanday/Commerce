@@ -13,5 +13,5 @@ data class WebsiteEntity (
 
     @SerializedName("url")
     @ColumnInfo(name = "url")
-    private var url: String
+    var url: String
 )

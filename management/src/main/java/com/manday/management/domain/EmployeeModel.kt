@@ -21,8 +21,14 @@ fun EmployeeModel.toEmployeeEntity() =
         it.id = this.id
         it.name = this.name
         it.surname = this.surname
+        it.phone = this.phone
         it.email = this.email
         it.image = this.image
         it.skill = this.skillEmployee.plus(1)
     }
 
+fun EmployeeModel.toEmployeeModelItemAdapter() =
+    EmployeeAdapterModel.EmployeeItemAdapterModel(
+        this.id ?: 0, String.format("%s %s", this.name, this.surname),
+        this.skillEmployeeDescription, this.image
+    )

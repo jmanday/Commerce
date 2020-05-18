@@ -8,7 +8,7 @@ import com.manday.management.R
 import com.manday.management.domain.TaskModel
 import com.manday.management.ui.viewholders.TaskViewHolder
 
-class TaskAdapter(var listTask: List<TaskModel>, var listener: (TaskModel, View) -> Unit) :
+internal class TaskAdapter(var listTask: List<TaskModel>, var listener: (TaskModel, View) -> Unit) :
     BaseAdapter<TaskModel, TaskViewHolder>(listTask, listener) {
 
     override fun generateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {

@@ -15,3 +15,28 @@ fun String.isDateValidate(): Boolean {
 fun TextInputLayout.showMessageError(msg: String) {
     this.error = msg
 }
+
+fun Long.toTypeResponse() =
+    if (this != 0L)
+        TypeResponse.INSERT_OK
+    else
+        TypeResponse.INSERT_ERROR
+
+
+/*
+ * This method is used for a Sealed class and it says the order of a subclass
+ * inside the sealed class
+ */
+inline fun <reified T : Any> T.ordinal(): Int {
+    if (T::class.isSealed) {
+        return T::class.java.classes.indexOfFirst { sub -> sub == javaClass }
+    }
+
+    val klass = if (T::class.isCompanion) {
+        javaClass.declaringClass
+    } else {
+        javaClass
+    }
+
+    return klass?.superclass?.classes?.indexOfFirst { it == klass } ?: -1
+}

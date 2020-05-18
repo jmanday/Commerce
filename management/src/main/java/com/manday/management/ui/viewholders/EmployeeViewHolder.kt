@@ -1,36 +1,58 @@
-package com.manday.employee.ui.viewholders
+package com.manday.management.ui.viewholders
 
 import android.view.View
-import android.view.ViewGroup
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.marginBottom
+import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.manday.coreui.viewholder.BaseViewHolder
 import com.manday.management.R
-import com.manday.management.domain.EmployeeModel
+import com.manday.management.domain.EmployeeAdapterModel
 import kotlinx.android.synthetic.main.view_item_employee.view.*
 
-internal class EmployeeViewHolder(itemView: View): BaseViewHolder<EmployeeModel>(itemView) {
+internal sealed class EmployeeViewHolder(itemView: View) :
+    BaseViewHolder<EmployeeAdapterModel>(itemView) {
 
-    override fun onBind(employee: EmployeeModel, f: (employee: EmployeeModel, view: View) -> Unit) {
-        itemView.transitionName = employee.name
-        itemView.tvNameEmployee.text = String.format("%s %s", employee.name, employee.surname)
-        itemView.tvSkill.text = employee.skillEmployeeDescription
+    internal class ItemEmployeeViewHolder(
+        itemView: View
+    ) : EmployeeViewHolder(itemView) {
 
-        Glide.with(itemView)
-            .load(employee.image)
-            .centerCrop()
-            .placeholder(R.mipmap.placeholder)
-            .into(itemView.imgMain)
-        Glide.with(itemView)
-            .load(employee.image)
-            .centerCrop()
-            .placeholder(R.mipmap.placeholder)
-            .into(itemView.imgProfile)
+        override fun onBind(
+            employee: EmployeeAdapterModel,
+            f: (employee: EmployeeAdapterModel, view: View) -> Unit
+        ) {
+            itemView.transitionName =
+                (employee as EmployeeAdapterModel.EmployeeItemAdapterModel).name
+            itemView.tvNameEmployee.text = employee.name
+            itemView.tvSkill.text = employee.skill
 
-        itemView.setOnClickListener {
-            f(employee, itemView)
+            Glide.with(itemView)
+                .load(employee.image)
+                .centerCrop()
+                .placeholder(R.mipmap.placeholder)
+                .into(itemView.imgMain)
+            Glide.with(itemView)
+                .load(employee.image)
+                .centerCrop()
+                .placeholder(R.mipmap.placeholder)
+                .into(itemView.imgProfile as ImageView)
+
+            itemView.setOnClickListener {
+                f(employee, itemView)
+            }
+        }
+    }
+
+    internal class NewTaskViewHolder(
+        itemView: View
+    ) : EmployeeViewHolder(itemView) {
+
+        override fun onBind(
+            headerItem: EmployeeAdapterModel,
+            f: (t: EmployeeAdapterModel, v: View) -> Unit
+        ) {
+
+            itemView.setOnClickListener {
+                f(headerItem, itemView)
+            }
         }
     }
 }
