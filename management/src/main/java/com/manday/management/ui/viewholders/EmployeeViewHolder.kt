@@ -19,9 +19,6 @@ internal sealed class EmployeeViewHolder(itemView: View) :
             employee: EmployeeAdapterModel,
             f: (employee: EmployeeAdapterModel, view: View) -> Unit
         ) {
-            when (employee) {
-
-            }
             itemView.transitionName =
                 (employee as EmployeeAdapterModel.EmployeeItemAdapterModel).name
             itemView.tvNameEmployee.text = employee.name
