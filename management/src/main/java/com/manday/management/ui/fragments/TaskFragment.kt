@@ -28,6 +28,11 @@ class TaskFragment : BaseFragment() {
         return FragmentTaskBinding.inflate(inflater).root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        listener.hideNavigationBottomView()
+    }
+
     override fun initialize() {
         taskRecyclerView.showShimmer()
         viewModel.tasks?.observe(this, Observer { tasks ->
