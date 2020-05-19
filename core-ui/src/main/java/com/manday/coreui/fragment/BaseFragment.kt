@@ -20,11 +20,6 @@ abstract class BaseFragment: Fragment(), ViewModelListener {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        retrieveArguments()
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initialize()
@@ -48,12 +43,6 @@ abstract class BaseFragment: Fragment(), ViewModelListener {
         listener.onDatabasePopulated()
     }
 
-    open protected fun retrieveArguments() {}
-
     abstract fun initialize()
 
-    companion object {
-        const val ARGUMENT_EXTRA_TASK = "ARGUMENT_EXTRA_TASK"
-        const val ARGUMENT_EXTRA_LIST_FRUITS = "ARGUMENT_EXTRA_LIST_FRUITS"
-    }
 }
