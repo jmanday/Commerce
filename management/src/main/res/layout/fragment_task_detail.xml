@@ -3,7 +3,7 @@
     <data>
         <variable
             name="task"
-            type="com.manday.management.data.entities.TaskEntity" />
+            type="com.manday.management.domain.TaskModel" />
     </data>
     <ScrollView
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:layout_margin="16dp">
 
             <TextView
-                android:id="@+id/text_head"
+                android:id="@+id/textHead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -25,40 +25,17 @@
                 android:textSize="28sp"
                 android:textStyle="bold"
                 android:layout_marginTop="4dp"
-                android:text="@string/text_header_detail_task"
+                android:text="@={task.title}"
                 android:textColor="@color/colorBlack"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/label_text_name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_head"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:helperTextEnabled="true"
-                app:errorEnabled="true"
-                app:errorTextColor="@color/colorRed"
-                app:counterEnabled="true"
-                app:counterMaxLength="45"
-                app:startIconDrawable="@drawable/ic_title_black_24dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ed_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@={task.name}"
-                    android:textSize="16sp"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/label_text_description"
+                android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_name"
+                app:layout_constraintTop_toBottomOf="@id/textHead"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:counterEnabled="true"
                 app:counterMaxLength="150"
@@ -71,7 +48,6 @@
                     android:id="@+id/ed_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={task.description}"
                     android:textSize="16sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
