@@ -8,7 +8,7 @@ data class TaskModel(
     var priority: Int,
     var imgEmployee: String,
     var date: String
-)
+) : SerializableSerializable
 
 enum class TaskState(var id: Int) {
     OPEN(0),
