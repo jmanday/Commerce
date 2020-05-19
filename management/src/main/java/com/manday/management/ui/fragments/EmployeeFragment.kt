@@ -36,7 +36,6 @@ class EmployeeFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         exitTransition = FadeThrough()
     }
 

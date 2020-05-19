@@ -60,13 +60,12 @@ class TaskDetailFragment : BaseFragment() {
     }
 
     override fun initialize() {
-        viewModel.setListener(this)
         val stateAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, resources.getStringArray(R.array.task_state))
         val durationAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, resources.getStringArray(R.array.duration))
         var employeesAdapter: ArrayAdapter<String>
         var typeTaskAdapter: ArrayAdapter<String>
 
-        viewModel.getTypeTasks()?.observe(this, Observer {
+        viewModel.typeTasks()?.observe(this, Observer {
             it?.let {
                 typeTaskAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, it.map { it.name })
                 typeTaskAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
