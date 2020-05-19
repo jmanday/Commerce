@@ -8,20 +8,35 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
+import com.google.android.material.transition.MaterialContainerTransform
+import com.manday.coredata.transitions.ContainerTransformFade
+import com.manday.coredata.transitions.TransitionMode
 import com.manday.coreui.fragment.BaseFragment
+import com.manday.coreui.transitions.TransitionAttributes
 import com.manday.management.R
-import com.manday.management.data.entities.TaskEntity
 import com.manday.management.databinding.FragmentTaskDetailBinding
+import com.manday.management.domain.TaskModel
 import com.manday.management.ui.viewmodels.TaskDetailViewModel
 import kotlinx.android.synthetic.main.fragment_task_detail.*
+import org.koin.java.KoinJavaComponent
 
 
 class TaskDetailFragment : BaseFragment() {
 
-    private var task = TaskEntity()
+    private lateinit var taskModel: TaskModel
+    private val args: TaskDetailFragmentArgs by navArgs()
     private lateinit var binding: FragmentTaskDetailBinding
     private val viewModel: TaskDetailViewModel by lazy {
         ViewModelProvider(this).get(TaskDetailViewModel::class.java)
+    }
+    private val transition: TransitionMode by KoinJavaComponent.inject(ContainerTransformFade::class.java)
+    private val attributes: TransitionAttributes =
+        TransitionAttributes(mode = MaterialContainerTransform.FADE_MODE_CROSS)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = transition.make(requireContext(), attributes)
     }
 
     override fun onCreateView(
@@ -35,15 +50,13 @@ class TaskDetailFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.task = task
-    }
 
-    override fun retrieveArguments() {
-        arguments?.let {
-            it.get(ARGUMENT_EXTRA_TASK)?.let {emp ->
-                task = emp as TaskEntity
-            }
+        args.taskModel?.let {
+            taskModel = it
         }
+
+        binding.root.transitionName = args.transitionName
+        binding.task = taskModel
     }
 
     override fun initialize() {
@@ -91,9 +104,10 @@ class TaskDetailFragment : BaseFragment() {
 
         spn_state.adapter = stateAdapter
         spn_duration.adapter = durationAdapter
-        setListeners()
+        //setListeners()
     }
 
+    /*
     private fun setListeners() {
         btnDone.setOnClickListener {
             task.duration = resources.getStringArray(R.array.duration).get(spn_duration.selectedItemPosition).split(" ").first().toDouble()
@@ -104,4 +118,6 @@ class TaskDetailFragment : BaseFragment() {
             viewModel.addTask(task)
         }
     }
+
+     */
 }
