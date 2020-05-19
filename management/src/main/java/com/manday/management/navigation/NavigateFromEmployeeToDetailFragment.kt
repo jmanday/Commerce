@@ -1,32 +1,21 @@
 package com.manday.management.navigation
 
 import android.view.View
-import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.FragmentNavigatorExtras
-import com.manday.coredata.navigation.Navigate
+import com.manday.coredata.navigation.MotionNavigate
 import com.manday.coredata.navigation.Navigate.Companion.navController
 import com.manday.management.Constants.NAME_GENERAL_TRANSITION
 import com.manday.management.domain.EmployeeModel
 import com.manday.management.ui.fragments.EmployeeFragmentDirections
 
-open class NavigateFromEmployeeToDetailFragment : Navigate<EmployeeModel> {
+internal class NavigateFromEmployeeToDetailFragment : MotionNavigate<EmployeeModel> {
 
-    override fun navigate(itemView: View?, employeeModel: EmployeeModel?) {
-        var localTransitionName = NAME_GENERAL_TRANSITION
-        var extras: FragmentNavigator.Extras = FragmentNavigatorExtras()
-
-        employeeModel?.let {
-            localTransitionName = it.name
-        }
-
-        itemView?.let {
-            it.transitionName = localTransitionName
-            extras = FragmentNavigatorExtras(it to it.transitionName)
-        }
-
+    override fun navigate(itemView: View, employeeModel: EmployeeModel?) {
+        itemView.transitionName = itemView.transitionName ?: NAME_GENERAL_TRANSITION
+        val extras = FragmentNavigatorExtras(itemView to itemView.transitionName)
         val action = EmployeeFragmentDirections.actionMainFragmentToDetailEmployeeFragment(
             employeeModel,
-            localTransitionName
+            itemView.transitionName
         )
 
         navController?.navigate(action, extras)
