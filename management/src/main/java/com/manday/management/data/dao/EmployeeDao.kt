@@ -22,4 +22,7 @@ interface EmployeeDao {
     @Query("SELECT * FROM employees WHERE name = :mName AND pass = :mPass")
     fun getEmployee(mName: String, mPass: String): LiveData<EmployeeEntity?>
 
+    @Query("SELECT * FROM employees WHERE skill = :skillId")
+    fun getEmployeeBySkill(skillId: Int): LiveData<List<EmployeeEntity>?>
+
 }

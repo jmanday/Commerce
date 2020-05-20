@@ -19,7 +19,7 @@ internal class EmployeeDetailViewModel : ExecutorViewModel() {
     private val skillRepository: SkillRepository by inject(SkillRepository::class.java)
 
     private val errorFieldList = mutableListOf<ErrorField>()
-    val skills = MediatorLiveData<List<SkillEntity>>()
+    val skills = MediatorLiveData<List<SkillEntity>?>()
     lateinit var employeeModel: EmployeeModel
 
     init {

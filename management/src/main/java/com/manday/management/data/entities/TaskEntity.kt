@@ -49,5 +49,6 @@ fun TaskEntity.toTaskModel() =
         state = TaskState.getState(this.state),
         priority = this.priority,
         imgEmployee = this.image,
+        type = this.type,
         date = this.date ?: String()
     )

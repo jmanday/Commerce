@@ -79,23 +79,8 @@ open class ExecutorViewModel : ViewModel() {
         }
     }
 
-    protected fun doInParallel(t1: () -> Unit, t2: () -> Unit, foreground: () -> Unit) {
-        runBlocking {
-            val job = viewModelScope.launch {
-                viewModelScope.launch {
-                    t1.invoke()
-                }
-
-                viewModelScope.launch {
-                    t2.invoke()
-                }
-            }
-
-            job.join()
-            foreground.invoke()
-        }
-        /*
-        launch(coroutineContext) {
+    protected fun <T, U> doInParallel(t1: () -> T, t2: () -> U, foreground: (T, U) -> Unit) {
+        viewModelScope.launch(Dispatchers.Main) {
             val res1 = viewModelScope.async(Dispatchers.IO) {
                 t1.invoke()
             }
@@ -103,12 +88,8 @@ open class ExecutorViewModel : ViewModel() {
                 t2.invoke()
             }
 
-            res1.await()
-            res2.await()
-
-            foreground.invoke()
+            foreground.invoke(res1.await(), res2.await())
         }
-         */
     }
 
 

@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.view_item_task.view.*
 internal class TaskViewHolder(itemView: View) : BaseViewHolder<TaskModel>(itemView) {
 
     override fun onBind(task: TaskModel, f: (task: TaskModel, v: View) -> Unit) {
+        itemView.transitionName = task.title
         itemView.tvTitle.text = task.title
         itemView.tvDate.text =
             String.format(itemView.context.getString(R.string.text_date), task.date)

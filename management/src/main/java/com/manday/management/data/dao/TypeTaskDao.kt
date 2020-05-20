@@ -14,5 +14,5 @@ interface TypeTaskDao{
     fun insert(typeTasks: List<TypeTaskEntity>)
 
     @Query("SELECT * FROM type_tasks ")
-    fun getAllTypeTasks(): LiveData<List<TypeTaskEntity>>
+    fun getAllTypeTasks(): LiveData<List<TypeTaskEntity>?>
 }

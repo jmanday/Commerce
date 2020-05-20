@@ -7,7 +7,7 @@ import com.manday.management.data.entities.SkillEntity
 class SkillRepositoryImpl(private val databseDataSource: SkillDatabaseDataSource) :
     SkillRepository {
 
-    override fun getListSkill(): LiveData<List<SkillEntity>>? {
+    override fun getListSkill(): LiveData<List<SkillEntity>?>? {
         return databseDataSource.getListSkill()
     }
 }

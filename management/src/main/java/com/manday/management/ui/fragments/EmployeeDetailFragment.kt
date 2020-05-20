@@ -35,7 +35,7 @@ class EmployeeDetailFragment : BaseFragment() {
     }
     private lateinit var binding: FragmentEmployeeDetailBinding
     private var employeeModel = EmployeeModel()
-    val args: EmployeeDetailFragmentArgs by navArgs()
+    private val args: EmployeeDetailFragmentArgs by navArgs()
     private lateinit var mapInputText: Map<EmployeeDetailViewModel.ErrorField, TextInputLayout>
     private val transition: TransitionMode by inject(ContainerTransformFade::class.java)
     private val attributes: TransitionAttributes =

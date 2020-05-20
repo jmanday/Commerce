@@ -16,7 +16,7 @@ class TaskRoomDataSource : TaskDatabaseDataSource, ManagementRoomDataSource() {
         return taskDao?.getAllTasks()
     }
 
-    override fun getTypeTasks(): LiveData<List<TypeTaskEntity>>? {
+    override fun getTypeTasks(): LiveData<List<TypeTaskEntity>?>? {
         return typeTaskDao?.getAllTypeTasks()
     }
 }
