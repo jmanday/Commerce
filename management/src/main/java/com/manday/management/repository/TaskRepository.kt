@@ -9,7 +9,7 @@ internal interface TaskRepository {
 
     fun getTasks(): LiveData<List<TaskModel>?>?
 
-    fun getAllTypeTasks(): LiveData<List<TypeTaskEntity>>?
+    fun getAllTypeTasks(): LiveData<List<TypeTaskEntity>?>?
 
     fun addTask(taskEntity: TaskEntity)
 }

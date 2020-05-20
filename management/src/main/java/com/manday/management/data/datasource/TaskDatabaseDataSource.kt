@@ -8,7 +8,7 @@ interface TaskDatabaseDataSource {
 
     fun getTasks(): LiveData<List<TaskEntity>>?
 
-    fun getTypeTasks(): LiveData<List<TypeTaskEntity>>?
+    fun getTypeTasks(): LiveData<List<TypeTaskEntity>?>?
 
     fun addTask(task: TaskEntity)
 }
