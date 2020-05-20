@@ -18,4 +18,7 @@ internal class EmployeeRoomDataSource :
         return employeeDao?.getAllEmployees()
     }
 
+    override fun getEmployeeBySkill(skill: Int): LiveData<List<EmployeeEntity>?>? {
+        return employeeDao?.getEmployeeBySkill(skill)
+    }
 }
