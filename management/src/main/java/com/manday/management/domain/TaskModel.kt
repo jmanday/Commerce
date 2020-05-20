@@ -9,6 +9,7 @@ data class TaskModel(
     var state: TaskState,
     var priority: Int,
     var imgEmployee: String,
+    var type: Int,
     var date: String
 ) : Serializable
 
