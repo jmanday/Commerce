@@ -51,6 +51,7 @@ class EmployeeFragment : BaseFragment() {
         btnAdd.setOnClickListener {
             navigateToDetailFragment.navigate(it)
         }
+
         employeeRecyclerView.showShimmer()
         viewModel.employees.observe(this, Observer { employees ->
             employeeRecyclerView.hideShimmer()
