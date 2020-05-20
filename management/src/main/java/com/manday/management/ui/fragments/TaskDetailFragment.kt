@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +18,7 @@ import com.manday.coreui.transitions.TransitionAttributes
 import com.manday.management.R
 import com.manday.management.databinding.FragmentTaskDetailBinding
 import com.manday.management.domain.TaskModel
+import com.manday.management.ui.adapters.SpinnerAdapter
 import com.manday.management.ui.viewmodels.TaskDetailViewModel
 import kotlinx.android.synthetic.main.fragment_task_detail.*
 import org.koin.java.KoinJavaComponent
@@ -57,6 +59,7 @@ class TaskDetailFragment : BaseFragment() {
 
         binding.root.transitionName = args.transitionName
         binding.task = taskModel
+        viewModel.setTypeTask(taskModel.type)
     }
 
     override fun initialize() {
@@ -65,49 +68,58 @@ class TaskDetailFragment : BaseFragment() {
         var employeesAdapter: ArrayAdapter<String>
         var typeTaskAdapter: ArrayAdapter<String>
 
-        viewModel.typeTasks()?.observe(this, Observer {
+        viewModel.typeTasks.observe(this, Observer {
             it?.let {
                 typeTaskAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, it.map { it.name })
                 typeTaskAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
-                spn_type.adapter = typeTaskAdapter
+                spnTypeTask.adapter = typeTaskAdapter
             }
         })
 
-        /*
-        viewModel.getListEmployees()?.observe(this, Observer {
+        viewModel.listEmployees.observe(this, Observer {
             it?.let {
-                spn_type.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(
-                        parent: AdapterView<*>?,
-                        view: View?,
-                        position: Int,
-                        id: Long
-                    ) {
-                        employeesAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item,
-                            viewModel.getEmployeeBySkill(viewModel.getSkillFromTask(position)).map { it.name })
-                        employeesAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
-                        spn_selected_employee.adapter = employeesAdapter
-                    }
-
-                    override fun onNothingSelected(parent: AdapterView<*>?) {
-
-                    }
+                if (it.size == 0) {
+                    employeesAdapter = SpinnerAdapter(
+                        requireContext(),
+                        R.layout.support_simple_spinner_dropdown_item,
+                        listOf("")
+                    )
+                    (employeesAdapter as SpinnerAdapter).setError("No existen empleados para esta tarea")
+                } else {
+                    employeesAdapter = SpinnerAdapter(
+                        requireContext(),
+                        R.layout.support_simple_spinner_dropdown_item,
+                        it.map { it.name })
                 }
+
+                spnSelectedEmployee.adapter = employeesAdapter
             }
         })
-
-         */
 
         stateAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
         durationAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
 
         spn_state.adapter = stateAdapter
         spn_duration.adapter = durationAdapter
-        //setListeners()
+        setListeners()
     }
 
-    /*
     private fun setListeners() {
+        spnTypeTask.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                viewModel.setTypeTask(position)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        })
+        /*
         btnDone.setOnClickListener {
             task.duration = resources.getStringArray(R.array.duration).get(spn_duration.selectedItemPosition).split(" ").first().toDouble()
             task.state = spn_state.selectedItemPosition
@@ -116,7 +128,7 @@ class TaskDetailFragment : BaseFragment() {
                 .get(spn_selected_employee.selectedItemPosition).id
             viewModel.addTask(task)
         }
-    }
 
-     */
+         */
+    }
 }
