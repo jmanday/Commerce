@@ -26,4 +26,9 @@ internal class EmployeeRepositoryImpl(private val databseDataSource: EmployeeDat
         transformInLiveData(databseDataSource.addEmployee(employeeModel.toEmployeeEntity())) {
             it.toTypeResponse()
         }
+
+    override fun getEmployeeBySkill(skillId: Int) =
+        transformationsMapNotNull(databseDataSource.getEmployeeBySkill(skillId)) {
+            it?.map { it.toEmployee() }
+        }
 }
