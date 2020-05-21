@@ -21,9 +21,6 @@ enum class TaskState(var id: Int) {
 
         fun getState(id: Int) =
             when (id) {
-                0 -> {
-                    OPEN
-                }
                 1 -> {
                     CLOSE
                 }
