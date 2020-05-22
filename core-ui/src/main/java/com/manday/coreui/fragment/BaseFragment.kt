@@ -2,7 +2,6 @@ package com.manday.coreui.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.jmanday.commerce.listeners.FragmentListener
@@ -29,14 +28,6 @@ abstract class BaseFragment: Fragment(), ViewModelListener {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
         if (withNavigation)
             listener.onNavigationUp()
-    }
-
-    protected fun onItemClicked(actionId: Int, bundle: Bundle, view: View) {
-        listener.onNavigationPush(actionId, bundle, view)
-    }
-
-    protected fun onButtonAddClicked(actionId: Int) {
-        //listener.onNavigationPush(actionId, null)
     }
 
     protected fun onDatabasePopulated() {
