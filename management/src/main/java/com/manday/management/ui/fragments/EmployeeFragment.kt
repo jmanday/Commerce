@@ -48,6 +48,7 @@ class EmployeeFragment : BaseFragment() {
     }
 
     override fun initialize() {
+        listener.showNavigationBottomView()
         btnAdd.setOnClickListener {
             navigateToDetailFragment.navigate(it)
         }
