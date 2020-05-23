@@ -7,6 +7,7 @@ import com.manday.coredata.utils.addSourceNotNull
 import com.manday.coredata.utils.removeSourceNotNull
 import com.manday.management.data.entities.TypeTaskEntity
 import com.manday.management.domain.EmployeeModel
+import com.manday.management.domain.TaskModel
 import com.manday.management.repository.EmployeeRepository
 import com.manday.management.repository.TaskRepository
 import org.koin.java.KoinJavaComponent.inject
@@ -37,5 +38,11 @@ internal class TaskDetailViewModel : ExecutorViewModel() {
             listEmployees.removeSourceNotNull(source)
             listEmployees.postValue(it)
         })
+    }
+
+    fun updateTask(taskModel: TaskModel) {
+        taskModel.apply {
+            //employeeId = listEmployees.value?.get(employeeId).id
+        }
     }
 }

@@ -17,7 +17,9 @@ import com.manday.coreui.fragment.BaseFragment
 import com.manday.coreui.transitions.TransitionAttributes
 import com.manday.management.R
 import com.manday.management.databinding.FragmentTaskDetailBinding
+import com.manday.management.domain.EmployeeModel
 import com.manday.management.domain.TaskModel
+import com.manday.management.domain.TaskState
 import com.manday.management.ui.adapters.SpinnerAdapter
 import com.manday.management.ui.viewmodels.TaskDetailViewModel
 import kotlinx.android.synthetic.main.fragment_task_detail.*
@@ -35,6 +37,7 @@ class TaskDetailFragment : BaseFragment() {
     private val transition: TransitionMode by KoinJavaComponent.inject(ContainerTransformFade::class.java)
     private val attributes: TransitionAttributes =
         TransitionAttributes(mode = MaterialContainerTransform.FADE_MODE_CROSS)
+    private var employeesAvailable: List<EmployeeModel>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,6 +80,7 @@ class TaskDetailFragment : BaseFragment() {
         })
 
         viewModel.listEmployees.observe(this, Observer {
+            employeesAvailable = it
             it?.let {
                 if (it.size == 0) {
                     employeesAdapter = SpinnerAdapter(
@@ -119,16 +123,22 @@ class TaskDetailFragment : BaseFragment() {
 
             }
         })
-        /*
-        btnDone.setOnClickListener {
-            task.duration = resources.getStringArray(R.array.duration).get(spn_duration.selectedItemPosition).split(" ").first().toDouble()
-            task.state = spn_state.selectedItemPosition
-            task.type = viewModel.getTypeTask(spn_type.selectedItemPosition).id ?: 0
-            task.idEmployee = viewModel.getEmployeeBySkill(viewModel.getSkillFromTask(task.type))
-                .get(spn_selected_employee.selectedItemPosition).id
-            viewModel.addTask(task)
-        }
 
-         */
+        btnDone.setOnClickListener {
+            //taskModel.duration = resources.getStringArray(R.array.duration).get(spn_duration.selectedItemPosition).split(" ").first().toDouble()
+            taskModel.state = TaskState.getState(spn_state.selectedItemPosition)
+            taskModel.type = spnTypeTask.selectedItemPosition
+            if (employeesAvailable != null && employeesAvailable?.size != 0) {
+                taskModel.employeeId =
+                    employeesAvailable?.get(spnSelectedEmployee.selectedItemPosition)?.id
+                taskModel.imgEmployee =
+                    employeesAvailable?.get(spnSelectedEmployee.selectedItemPosition)?.image ?: ""
+            } else {
+                taskModel.employeeId = null
+                taskModel.imgEmployee = ""
+            }
+
+            viewModel.updateTask(taskModel)
+        }
     }
 }
