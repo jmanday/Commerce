@@ -10,5 +10,5 @@ interface TaskDatabaseDataSource {
 
     fun getTypeTasks(): LiveData<List<TypeTaskEntity>?>?
 
-    fun addTask(task: TaskEntity)
+    fun addTask(task: TaskEntity): Long?
 }
