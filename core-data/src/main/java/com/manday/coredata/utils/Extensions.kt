@@ -18,9 +18,9 @@ fun TextInputLayout.showMessageError(msg: String) {
 
 fun Long.toTypeResponse() =
     if (this != 0L)
-        TypeResponse.INSERT_OK
+        TypeResponse.Success()
     else
-        TypeResponse.INSERT_ERROR
+        TypeResponse.InsertError()
 
 
 /*
