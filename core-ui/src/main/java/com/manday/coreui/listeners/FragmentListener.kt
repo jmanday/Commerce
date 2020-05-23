@@ -6,5 +6,7 @@ interface FragmentListener {
 
     fun onDatabasePopulated()
 
+    fun showNavigationBottomView()
+
     fun hideNavigationBottomView()
 }
