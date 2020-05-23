@@ -59,7 +59,6 @@ class MainActivity : AppCompatActivity(), FragmentListener {
 
     override fun onNavigationUp() {
         navController.navigateUp()
-        bottomNavigationView.visibility = VISIBLE
     }
 
     override fun onDatabasePopulated() {
@@ -73,12 +72,11 @@ class MainActivity : AppCompatActivity(), FragmentListener {
         bottomNavigationView.visibility = VISIBLE
     }
 
-    override fun hideNavigationBottomView() {
-        bottomNavigationView.visibility = GONE
+    override fun showNavigationBottomView() {
+        bottomNavigationView.visibility = VISIBLE
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        bottomNavigationView.visibility = VISIBLE
+    override fun hideNavigationBottomView() {
+        bottomNavigationView.visibility = GONE
     }
 }
