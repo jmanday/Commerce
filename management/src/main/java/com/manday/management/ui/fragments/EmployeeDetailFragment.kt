@@ -136,7 +136,7 @@ class EmployeeDetailFragment : BaseFragment() {
                 viewModel.buttonSaveClicked().observe(this, Observer {
                     if (it != null) {
                         when (it) {
-                            TypeResponse.INSERT_OK -> {
+                            is TypeResponse.Success -> {
                                 showMessage(getString(R.string.text_saved), true)
                             }
                         }
