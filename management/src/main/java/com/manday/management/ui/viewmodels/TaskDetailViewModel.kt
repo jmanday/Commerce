@@ -40,9 +40,8 @@ internal class TaskDetailViewModel : ExecutorViewModel() {
         })
     }
 
-    fun updateTask(taskModel: TaskModel) {
-        taskModel.apply {
-            //employeeId = listEmployees.value?.get(employeeId).id
+    fun updateTask(taskModel: TaskModel) =
+        doInBackground {
+            taskRepository.addTask(taskModel)
         }
-    }
 }
