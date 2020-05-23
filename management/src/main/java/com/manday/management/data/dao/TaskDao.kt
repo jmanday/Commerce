@@ -1,7 +1,10 @@
 package com.manday.management.data.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.manday.management.data.entities.TaskEntity
 
 @Dao
@@ -14,7 +17,7 @@ interface TaskDao {
     fun getAllTasks(): LiveData<List<TaskEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addTask(task: TaskEntity)
+    fun addTask(task: TaskEntity): Long?
 /*
     @Query("SELECT * FROM employees WHERE name = :mName AND pass = :mPass")
     fun getEmployee(mName: String, mPass: String): LiveData<Employee>
