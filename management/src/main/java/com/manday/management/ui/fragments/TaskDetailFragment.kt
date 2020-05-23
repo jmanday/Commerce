@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.transition.MaterialContainerTransform
 import com.manday.coredata.transitions.ContainerTransformFade
 import com.manday.coredata.transitions.TransitionMode
+import com.manday.coredata.utils.TypeResponse
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.coreui.transitions.TransitionAttributes
 import com.manday.management.R
@@ -138,7 +139,15 @@ class TaskDetailFragment : BaseFragment() {
                 taskModel.imgEmployee = ""
             }
 
-            viewModel.updateTask(taskModel)
+            viewModel.updateTask(taskModel).observe(this, Observer {
+                if (it != null) {
+                    when (it) {
+                        is TypeResponse.Success -> {
+                            showMessage(getString(R.string.text_saved), true)
+                        }
+                    }
+                }
+            })
         }
     }
 }
