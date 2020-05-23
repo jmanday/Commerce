@@ -1,5 +1,6 @@
 package com.manday.management.domain
 
+import com.manday.management.data.entities.TaskEntity
 import java.io.Serializable
 
 data class TaskModel(
@@ -30,3 +31,15 @@ enum class TaskState(var id: Int) {
             }
     }
 }
+
+fun TaskModel.toTaskEntity() =
+    TaskEntity().apply {
+        id = this@toTaskEntity.id
+        name = this@toTaskEntity.title
+        idEmployee = this@toTaskEntity.employeeId
+        state = this@toTaskEntity.state.id
+        date = this@toTaskEntity.date
+        type = this@toTaskEntity.type
+        image = this@toTaskEntity.imgEmployee
+        priority = this@toTaskEntity.priority
+    }
