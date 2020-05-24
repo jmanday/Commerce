@@ -5,7 +5,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_empty"></string>
     <string name="menu_text_employee">Empleados</string>
-    <string name="menu_text_task">Tareas</string>
+    <string name="menu_text_task">Tarea</string>
     <string name="menu_text_setting">Ajustes</string>
     <string name="menu_text_web">Web</string>
     <string name="menu_text_other">In construction</string>
@@ -16,6 +16,7 @@
     <string name="text_type_task">Gestionar los tipos de tareas</string>
     <string name="text_type_skill">Gestionar los tipos de habilidades</string>
     <string name="text_about">Sobre la app</string>
+    <string name="label_text_task">Tarea</string>
     <string name="label_text_username">Usuario</string>
     <string name="label_text_pass">Contraseña</string>
     <string name="label_text_name">Nombre</string>
