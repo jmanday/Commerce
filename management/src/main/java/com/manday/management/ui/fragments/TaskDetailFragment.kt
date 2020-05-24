@@ -31,7 +31,7 @@ import org.koin.java.KoinJavaComponent.inject
 
 class TaskDetailFragment : BaseFragment() {
 
-    private lateinit var taskModel: TaskModel
+    private var taskModel = TaskModel()
     private val args: TaskDetailFragmentArgs by navArgs()
     private lateinit var binding: FragmentTaskDetailBinding
     private val viewModel: TaskDetailViewModel by lazy {
