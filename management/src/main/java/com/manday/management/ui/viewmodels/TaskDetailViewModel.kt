@@ -30,14 +30,16 @@ internal class TaskDetailViewModel : ExecutorViewModel() {
 
     }
 
-    fun setTypeTask(taskType: Int) {
-        val source = doInBackground {
-            employeeRepository.getEmployeeBySkill(taskType)
+    fun setTypeTask(taskType: Int?) {
+        taskType?.let {
+            val source = doInBackground {
+                employeeRepository.getEmployeeBySkill(taskType)
+            }
+            listEmployees.addSourceNotNull(source, Observer {
+                listEmployees.removeSourceNotNull(source)
+                listEmployees.postValue(it)
+            })
         }
-        listEmployees.addSourceNotNull(source, Observer {
-            listEmployees.removeSourceNotNull(source)
-            listEmployees.postValue(it)
-        })
     }
 
     fun updateTask(taskModel: TaskModel) =
