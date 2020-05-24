@@ -5,5 +5,5 @@ import com.manday.management.data.entities.SkillEntity
 
 interface SkillDatabaseDataSource {
 
-    fun getListSkill(): LiveData<List<SkillEntity>>?
+    fun getListSkill(): LiveData<List<SkillEntity>?>?
 }

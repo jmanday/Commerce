@@ -45,9 +45,11 @@ fun TaskEntity.toTaskModel() =
     TaskModel(
         id = this.id,
         title = this.name,
+        description = this.description,
         employeeId = this.idEmployee,
         state = TaskState.getState(this.state),
         priority = this.priority,
         imgEmployee = this.image,
+        type = this.type,
         date = this.date ?: String()
     )

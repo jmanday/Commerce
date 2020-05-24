@@ -1,14 +1,11 @@
 package com.jmanday.commerce.ui.activities
 
 import android.os.Bundle
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.FragmentNavigator
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.ui.NavigationUI
 import com.jmanday.commerce.CommerceApp
 import com.jmanday.commerce.R
@@ -16,7 +13,6 @@ import com.jmanday.commerce.di.ModuleInjector
 import com.jmanday.commerce.listeners.FragmentListener
 import com.manday.coredata.navigation.Navigate
 import com.manday.loginuser.injector.LoginUserViewInjector
-import com.manday.management.Constants.ARGUMENT_EXTRA_NAME_TRANSITION
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -61,22 +57,6 @@ class MainActivity : AppCompatActivity(), FragmentListener {
 
     }
 
-    override fun onNavigationPush(actionId: Int, bundle: Bundle?, itemView: View) {
-        var extras: FragmentNavigator.Extras? = null
-        bundle?.let {
-            it.getString(ARGUMENT_EXTRA_NAME_TRANSITION)?.let { nameTransition ->
-                extras = FragmentNavigatorExtras(itemView to nameTransition)
-            }
-        }
-
-        navController.navigate(actionId, bundle, null, extras)
-    }
-
-    override fun onNavigationUp() {
-        navController.navigateUp()
-        bottomNavigationView.visibility = VISIBLE
-    }
-
     override fun onDatabasePopulated() {
         navController.navigate(
             R.id.nav_graph_management, null,
@@ -88,12 +68,11 @@ class MainActivity : AppCompatActivity(), FragmentListener {
         bottomNavigationView.visibility = VISIBLE
     }
 
-    override fun hideNavigationBottomView() {
-        bottomNavigationView.visibility = GONE
+    override fun showNavigationBottomView() {
+        bottomNavigationView.visibility = VISIBLE
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        bottomNavigationView.visibility = VISIBLE
+    override fun hideNavigationBottomView() {
+        bottomNavigationView.visibility = GONE
     }
 }

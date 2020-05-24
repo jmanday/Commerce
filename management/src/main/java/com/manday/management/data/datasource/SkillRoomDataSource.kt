@@ -7,7 +7,7 @@ import com.manday.management.data.entities.SkillEntity
 
 class SkillRoomDataSource : SkillDatabaseDataSource, ManagementRoomDataSource() {
 
-    override fun getListSkill(): LiveData<List<SkillEntity>>? {
+    override fun getListSkill(): LiveData<List<SkillEntity>?>? {
         return skillDao?.getAllSkills()
     }
 }

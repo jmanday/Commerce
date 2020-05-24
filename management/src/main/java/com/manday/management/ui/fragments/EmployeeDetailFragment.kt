@@ -23,6 +23,7 @@ import com.manday.coreui.transitions.TransitionAttributes
 import com.manday.management.R
 import com.manday.management.databinding.FragmentEmployeeDetailBinding
 import com.manday.management.domain.EmployeeModel
+import com.manday.management.navigation.NavigateToBack
 import com.manday.management.ui.viewmodels.EmployeeDetailViewModel
 import kotlinx.android.synthetic.main.fragment_employee_detail.*
 import kotlinx.android.synthetic.main.fragment_employee_detail.view.*
@@ -35,8 +36,9 @@ class EmployeeDetailFragment : BaseFragment() {
     }
     private lateinit var binding: FragmentEmployeeDetailBinding
     private var employeeModel = EmployeeModel()
-    val args: EmployeeDetailFragmentArgs by navArgs()
+    private val args: EmployeeDetailFragmentArgs by navArgs()
     private lateinit var mapInputText: Map<EmployeeDetailViewModel.ErrorField, TextInputLayout>
+    private val navigateToBack: NavigateToBack by inject(NavigateToBack::class.java)
     private val transition: TransitionMode by inject(ContainerTransformFade::class.java)
     private val attributes: TransitionAttributes =
         TransitionAttributes(mode = MaterialContainerTransform.FADE_MODE_CROSS)
@@ -105,7 +107,7 @@ class EmployeeDetailFragment : BaseFragment() {
 
     private fun prepareListeners() {
         toolbar.setNavigationOnClickListener {
-            listener.onNavigationUp()
+            navigateToBack.navigate()
         }
 
         toolbar.setOnMenuItemClickListener {
@@ -136,8 +138,9 @@ class EmployeeDetailFragment : BaseFragment() {
                 viewModel.buttonSaveClicked().observe(this, Observer {
                     if (it != null) {
                         when (it) {
-                            TypeResponse.INSERT_OK -> {
-                                showMessage(getString(R.string.text_saved), true)
+                            is TypeResponse.Success -> {
+                                showMessage(getString(R.string.text_saved))
+                                navigateToBack.navigate()
                             }
                         }
                     }

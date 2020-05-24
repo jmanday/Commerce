@@ -12,4 +12,6 @@ internal interface EmployeeRepository {
 
     fun addEmployee(employeeModel: EmployeeModel): LiveData<TypeResponse?>
 
+    fun getEmployeeBySkill(skillId: Int): LiveData<List<EmployeeModel>?>?
+
 }

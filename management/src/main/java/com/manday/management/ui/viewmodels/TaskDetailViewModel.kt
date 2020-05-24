@@ -1,62 +1,49 @@
 package com.manday.management.ui.viewmodels
 
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
-import com.jmanday.commerce.listeners.ViewModelListener
 import com.manday.coredata.ExecutorViewModel
-import com.manday.management.data.entities.EmployeeEntity
-import com.manday.management.data.entities.TaskEntity
+import com.manday.coredata.utils.addSourceNotNull
+import com.manday.coredata.utils.removeSourceNotNull
 import com.manday.management.data.entities.TypeTaskEntity
+import com.manday.management.domain.EmployeeModel
+import com.manday.management.domain.TaskModel
+import com.manday.management.repository.EmployeeRepository
 import com.manday.management.repository.TaskRepository
 import org.koin.java.KoinJavaComponent.inject
 
 internal class TaskDetailViewModel : ExecutorViewModel() {
 
+    private val employeeRepository: EmployeeRepository by inject(EmployeeRepository::class.java)
     private val taskRepository: TaskRepository by inject((TaskRepository::class.java))
-    private lateinit var baseView: ViewModelListener
-    private lateinit var listEmployees: List<EmployeeEntity>
-    private lateinit var typeTasks: List<TypeTaskEntity>
-    private val listEmployeeObserver = Observer<List<EmployeeEntity>> {
-        listEmployees = it
-    }
-    private val typeTasksObserver = Observer<List<TypeTaskEntity>> {
-        typeTasks = it
-    }
+    val listEmployees = MediatorLiveData<List<EmployeeModel>?>()
+    val typeTasks = MediatorLiveData<List<TypeTaskEntity>?>()
 
     init {
-        //employeeRepository.getEmployees()?.observeForever(listEmployeeObserver)
-        taskRepository.getAllTypeTasks()?.observeForever(typeTasksObserver)
+        val source = doInBackground {
+            taskRepository.getAllTypeTasks()
+        }
+        typeTasks.addSourceNotNull(source, Observer {
+            typeTasks.removeSourceNotNull(source)
+            typeTasks.postValue(it)
+        })
+
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        //employeeRepository.getEmployees()?.removeObserver(listEmployeeObserver)
-        taskRepository.getAllTypeTasks()?.removeObserver(typeTasksObserver)
-    }
-
-    fun setListener(baseView: ViewModelListener) {
-        this.baseView = baseView
-    }
-
-    //fun getListEmployees() = employeeRepository.getEmployees()
-
-    fun getTypeTasks() = taskRepository.getAllTypeTasks()
-
-    fun getEmployeeBySkill(skills: List<Int>) = listEmployees.filter { skills.contains(it.skill) }
-
-    fun getSkillFromTask(idTypeTask: Int) = typeTasks.get(idTypeTask).skillNeeded
-
-    fun getTypeTask(position: Int) = typeTasks.get(position)
-
-    fun addTask(task: TaskEntity) {
-        doInParallel (
-            {
-                taskRepository.addTask(task)
-            },
-            {
-                //employeeRepository.updateEmployee(listEmployees.find { it.id == task.idEmployee })
-            },
-            {
-                baseView.showMessage("La tarea ha sido añadida correctamente", true)
+    fun setTypeTask(taskType: Int?) {
+        taskType?.let {
+            val source = doInBackground {
+                employeeRepository.getEmployeeBySkill(taskType)
+            }
+            listEmployees.addSourceNotNull(source, Observer {
+                listEmployees.removeSourceNotNull(source)
+                listEmployees.postValue(it)
             })
+        }
     }
+
+    fun updateTask(taskModel: TaskModel) =
+        doInBackground {
+            taskRepository.addTask(taskModel)
+        }
 }

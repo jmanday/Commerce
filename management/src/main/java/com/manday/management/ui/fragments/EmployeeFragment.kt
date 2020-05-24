@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.transition.FadeThrough
-import com.manday.coredata.navigation.Navigate
+import com.manday.coredata.navigation.AutoNavigate
+import com.manday.coredata.navigation.MotionNavigate
 import com.manday.coreui.fragment.BaseFragment
 import com.manday.employee.ui.adapters.EmployeeAdapter
 import com.manday.management.R
@@ -26,16 +27,15 @@ class EmployeeFragment : BaseFragment() {
     private val viewModel: EmployeeViewModel by lazy {
         ViewModelProvider(this).get(EmployeeViewModel::class.java)
     }
-    private val navigateToDetailFragment: Navigate<EmployeeModel> by inject(
+    private val navigateToDetailFragment: MotionNavigate<EmployeeModel> by inject(
         NavigateFromEmployeeToDetailFragment::class.java
     )
-    private val navigateToTaskFragment: Navigate<EmployeeAdapterModel> by inject(
+    private val navigateToTaskFragment: AutoNavigate<EmployeeAdapterModel> by inject(
         NavigateFromEmployeeToTaskFragment::class.java
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         exitTransition = FadeThrough()
     }
 
@@ -48,9 +48,11 @@ class EmployeeFragment : BaseFragment() {
     }
 
     override fun initialize() {
+        listener.showNavigationBottomView()
         btnAdd.setOnClickListener {
-            navigateToDetailFragment.navigate(it, null)
+            navigateToDetailFragment.navigate(it)
         }
+
         employeeRecyclerView.showShimmer()
         viewModel.employees.observe(this, Observer { employees ->
             employeeRecyclerView.hideShimmer()
@@ -72,7 +74,7 @@ class EmployeeFragment : BaseFragment() {
                 }
             }
             else {
-                showMessage(getString(R.string.error_get_datas), false)
+                showMessage(getString(R.string.error_get_datas))
             }
         })
     }

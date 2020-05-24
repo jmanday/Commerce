@@ -45,6 +45,15 @@
         android:id="@+id/taskDetailFragment"
         android:name="com.manday.management.ui.fragments.TaskDetailFragment"
         android:label="TaskDetailFragment"
-        tools:layout="@layout/fragment_task_detail" />
+        tools:layout="@layout/fragment_task_detail">
+        <argument
+            android:name="taskModel"
+            app:argType="com.manday.management.domain.TaskModel"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="transitionName"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.view_item_task.view.*
 internal class TaskViewHolder(itemView: View) : BaseViewHolder<TaskModel>(itemView) {
 
     override fun onBind(task: TaskModel, f: (task: TaskModel, v: View) -> Unit) {
+        itemView.transitionName = task.title
         itemView.tvTitle.text = task.title
         itemView.tvDate.text =
             String.format(itemView.context.getString(R.string.text_date), task.date)
@@ -22,27 +23,31 @@ internal class TaskViewHolder(itemView: View) : BaseViewHolder<TaskModel>(itemVi
             task.priority.toString()
         )
 
-        if (task.imgEmployee.isNotEmpty()) {
-            Glide.with(itemView)
-                .load(task.imgEmployee)
-                .centerCrop()
-                .placeholder(R.mipmap.placeholder)
-                .into(itemView.imgEmployee as ImageView)
-        }
-
-        when (task.state) {
-            TaskState.OPEN -> {
-                itemView.setOnClickListener {
-                    f(task, itemView)
+        task.apply {
+            imgEmployee?.let { img ->
+                if (img.isNotEmpty()) {
+                    Glide.with(itemView)
+                        .load(img)
+                        .centerCrop()
+                        .placeholder(R.mipmap.placeholder)
+                        .into(itemView.imgEmployee as ImageView)
                 }
             }
-            TaskState.CLOSE -> {
-                itemView.clTask.setBackgroundColor(
-                    ContextCompat.getColor(
-                        itemView.context,
-                        R.color.colorLigthGrey
+
+            when (state) {
+                TaskState.OPEN -> {
+                    itemView.setOnClickListener {
+                        f(task, itemView)
+                    }
+                }
+                TaskState.CLOSE -> {
+                    itemView.clTask.setBackgroundColor(
+                        ContextCompat.getColor(
+                            itemView.context,
+                            R.color.colorLigthGrey
+                        )
                     )
-                )
+                }
             }
         }
     }

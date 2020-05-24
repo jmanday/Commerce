@@ -11,4 +11,6 @@ internal interface EmployeeDatabaseDataSource {
 
     fun addEmployee(employee: EmployeeEntity): Long?
 
+    fun getEmployeeBySkill(skill: Int): LiveData<List<EmployeeEntity>?>?
+
 }
