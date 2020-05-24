@@ -24,13 +24,16 @@ class TaskFragment : BaseFragment() {
     private val navigateToDetailFragment: NavigateFromTaskToDetailFragment by inject(
         NavigateFromTaskToDetailFragment::class.java
     )
+    private lateinit var binding: FragmentTaskBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return FragmentTaskBinding.inflate(inflater).root
+        binding = FragmentTaskBinding.inflate(inflater)
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,8 +50,12 @@ class TaskFragment : BaseFragment() {
                     navigateToDetailFragment.navigate(view, taskModel)
                 }
             } else {
-                showMessage(getString(R.string.error_get_datas), false)
+                showMessage(getString(R.string.error_get_datas))
             }
         })
+
+        btnAdd.setOnClickListener {
+            navigateToDetailFragment.navigate(itemView = it)
+        }
     }
 }

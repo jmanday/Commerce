@@ -23,27 +23,31 @@ internal class TaskViewHolder(itemView: View) : BaseViewHolder<TaskModel>(itemVi
             task.priority.toString()
         )
 
-        if (task.imgEmployee.isNotEmpty()) {
-            Glide.with(itemView)
-                .load(task.imgEmployee)
-                .centerCrop()
-                .placeholder(R.mipmap.placeholder)
-                .into(itemView.imgEmployee as ImageView)
-        }
-
-        when (task.state) {
-            TaskState.OPEN -> {
-                itemView.setOnClickListener {
-                    f(task, itemView)
+        task.apply {
+            imgEmployee?.let { img ->
+                if (img.isNotEmpty()) {
+                    Glide.with(itemView)
+                        .load(img)
+                        .centerCrop()
+                        .placeholder(R.mipmap.placeholder)
+                        .into(itemView.imgEmployee as ImageView)
                 }
             }
-            TaskState.CLOSE -> {
-                itemView.clTask.setBackgroundColor(
-                    ContextCompat.getColor(
-                        itemView.context,
-                        R.color.colorLigthGrey
+
+            when (state) {
+                TaskState.OPEN -> {
+                    itemView.setOnClickListener {
+                        f(task, itemView)
+                    }
+                }
+                TaskState.CLOSE -> {
+                    itemView.clTask.setBackgroundColor(
+                        ContextCompat.getColor(
+                            itemView.context,
+                            R.color.colorLigthGrey
+                        )
                     )
-                )
+                }
             }
         }
     }

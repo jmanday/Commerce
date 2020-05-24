@@ -48,6 +48,7 @@ class EmployeeFragment : BaseFragment() {
     }
 
     override fun initialize() {
+        listener.showNavigationBottomView()
         btnAdd.setOnClickListener {
             navigateToDetailFragment.navigate(it)
         }
@@ -73,7 +74,7 @@ class EmployeeFragment : BaseFragment() {
                 }
             }
             else {
-                showMessage(getString(R.string.error_get_datas), false)
+                showMessage(getString(R.string.error_get_datas))
             }
         })
     }

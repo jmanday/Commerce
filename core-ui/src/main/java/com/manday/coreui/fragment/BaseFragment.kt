@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.jmanday.commerce.listeners.FragmentListener
-import com.jmanday.commerce.listeners.ViewModelListener
 
 
-abstract class BaseFragment: Fragment(), ViewModelListener {
+abstract class BaseFragment : Fragment() {
 
     protected lateinit var listener: FragmentListener
 
@@ -24,10 +23,8 @@ abstract class BaseFragment: Fragment(), ViewModelListener {
         initialize()
     }
 
-    override fun showMessage(message: String, withNavigation: Boolean) {
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-        if (withNavigation)
-            listener.onNavigationUp()
+    protected fun showMessage(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
     protected fun onDatabasePopulated() {
