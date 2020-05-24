@@ -57,10 +57,6 @@ class MainActivity : AppCompatActivity(), FragmentListener {
 
     }
 
-    override fun onNavigationUp() {
-        navController.navigateUp()
-    }
-
     override fun onDatabasePopulated() {
         navController.navigate(
             R.id.nav_graph_management, null,

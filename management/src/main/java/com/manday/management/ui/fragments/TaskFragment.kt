@@ -47,7 +47,7 @@ class TaskFragment : BaseFragment() {
                     navigateToDetailFragment.navigate(view, taskModel)
                 }
             } else {
-                showMessage(getString(R.string.error_get_datas), false)
+                showMessage(getString(R.string.error_get_datas))
             }
         })
     }

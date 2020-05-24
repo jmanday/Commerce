@@ -23,10 +23,8 @@ abstract class BaseFragment : Fragment() {
         initialize()
     }
 
-    protected fun showMessage(message: String, withNavigation: Boolean) {
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-        if (withNavigation)
-            listener.onNavigationUp()
+    protected fun showMessage(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
     protected fun onDatabasePopulated() {

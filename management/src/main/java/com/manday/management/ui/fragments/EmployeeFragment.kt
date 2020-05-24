@@ -74,7 +74,7 @@ class EmployeeFragment : BaseFragment() {
                 }
             }
             else {
-                showMessage(getString(R.string.error_get_datas), false)
+                showMessage(getString(R.string.error_get_datas))
             }
         })
     }

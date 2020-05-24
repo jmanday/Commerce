@@ -22,10 +22,11 @@ import com.manday.management.databinding.FragmentTaskDetailBinding
 import com.manday.management.domain.EmployeeModel
 import com.manday.management.domain.TaskModel
 import com.manday.management.domain.TaskState
+import com.manday.management.navigation.NavigateToBack
 import com.manday.management.ui.adapters.SpinnerAdapter
 import com.manday.management.ui.viewmodels.TaskDetailViewModel
 import kotlinx.android.synthetic.main.fragment_task_detail.*
-import org.koin.java.KoinJavaComponent
+import org.koin.java.KoinJavaComponent.inject
 
 
 class TaskDetailFragment : BaseFragment() {
@@ -36,7 +37,8 @@ class TaskDetailFragment : BaseFragment() {
     private val viewModel: TaskDetailViewModel by lazy {
         ViewModelProvider(this).get(TaskDetailViewModel::class.java)
     }
-    private val transition: TransitionMode by KoinJavaComponent.inject(ContainerTransformFade::class.java)
+    private val navigateToBack: NavigateToBack by inject(NavigateToBack::class.java)
+    private val transition: TransitionMode by inject(ContainerTransformFade::class.java)
     private val attributes: TransitionAttributes =
         TransitionAttributes(mode = MaterialContainerTransform.FADE_MODE_CROSS)
     private var employeesAvailable: List<EmployeeModel>? = null
@@ -141,7 +143,8 @@ class TaskDetailFragment : BaseFragment() {
                 if (it != null) {
                     when (it) {
                         is TypeResponse.Success -> {
-                            showMessage(getString(R.string.text_saved), true)
+                            showMessage(getString(R.string.text_saved))
+                            navigateToBack.navigate()
                         }
                     }
                 }
