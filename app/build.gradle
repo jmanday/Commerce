@@ -51,6 +51,7 @@ dependencies {
     implementation project(':core-ui')
     implementation project(':fruit')
     implementation project(':management')
+    implementation project(':palestra')
 
 
     testImplementation 'junit:junit:4.12'

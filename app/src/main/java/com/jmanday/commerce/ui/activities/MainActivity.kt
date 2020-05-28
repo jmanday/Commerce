@@ -42,13 +42,13 @@ class MainActivity : AppCompatActivity(), FragmentListener {
 
             when (id) {
                 R.id.employeeFragment -> {
-                    navController.navigate(R.id.action_employeeFragment_self)
-                }
-                R.id.blankFragment -> {
-                    navController.navigate(R.id.action_blankFragment_self)
+                    navController.navigate(R.id.nav_graph_management)
                 }
                 R.id.fruitFragment -> {
-                    navController.navigate(R.id.action_fruitFragment_self)
+                    navController.navigate(R.id.nav_graph_fruit)
+                }
+                R.id.palestraFragment -> {
+                    navController.navigate(R.id.nav_graph_palestra)
                 }
             }
 
