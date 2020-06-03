@@ -11,7 +11,8 @@ import com.manday.management.ui.fragments.TaskFragmentDirections
 class NavigateFromTaskToDetailFragment : MotionNavigate<TaskModel> {
 
     override fun navigate(itemView: View, taskModel: TaskModel?) {
-        itemView.transitionName = itemView.transitionName ?: NAME_GENERAL_TRANSITION
+        itemView.transitionName = if (itemView.transitionName.isNullOrEmpty()) NAME_GENERAL_TRANSITION
+            else itemView.transitionName
         val extras = FragmentNavigatorExtras(itemView to itemView.transitionName)
         val action = TaskFragmentDirections.actionTaskFragmentToTaskDetailFragment(
             taskModel,

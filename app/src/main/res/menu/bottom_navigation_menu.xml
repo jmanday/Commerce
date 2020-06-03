@@ -11,7 +11,7 @@
         android:icon="@drawable/ic_web_black_24dp"/>
 
     <item
-        android:id="@+id/blankFragment"
+        android:id="@+id/palestraFragment"
         android:title="@string/menu_text_other"
         android:icon="@drawable/ic_do_not_disturb_black_24dp" />
 </menu>
