@@ -17,17 +17,25 @@ internal class EmployeeDetailViewModel : ExecutorViewModel() {
 
     private val employeeRepository: EmployeeRepository by inject(EmployeeRepository::class.java)
     private val skillRepository: SkillRepository by inject(SkillRepository::class.java)
-
     private val errorFieldList = mutableListOf<ErrorField>()
-    val skills = MediatorLiveData<List<SkillEntity>?>()
+    private lateinit var _skills: MediatorLiveData<List<SkillEntity>?>
     lateinit var employeeModel: EmployeeModel
 
-    init {
-        skills.addSourceNotNull(skillRepository.getListSkill(), Observer {
-            skills.removeSourceNotNull(skillRepository.getListSkill())
-            skills.postValue(it)
-        })
-    }
+    val skills: LiveData<List<SkillEntity>?>
+        get() {
+            if (!::_skills.isInitialized) {
+                _skills = MediatorLiveData()
+                skillRepository.getListSkill()?.let {source ->
+                    _skills.addSource(source) {
+                        _skills.removeSourceNotNull(source)
+                        _skills.postValue(it)
+                    }
+                }
+            }
+
+            return _skills
+        }
+
 
     fun initialize(employee: EmployeeModel) {
         this.employeeModel = employee
@@ -52,9 +60,9 @@ internal class EmployeeDetailViewModel : ExecutorViewModel() {
     }
 
     fun buttonSaveClicked() =
-        doInBackground({
+        doInBackground {
             employeeRepository.addEmployee(employeeModel)
-        })
+        }
 
 
     enum class ErrorField {

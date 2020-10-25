@@ -41,4 +41,6 @@ fun EmployeeModel.update(employeeModel: EmployeeModel) = with(this) {
     this.image = employeeModel.image
     this.phone = employeeModel.phone
     this.country = employeeModel.country
+    this.skillEmployee = employeeModel.skillEmployee
+    this.skillEmployeeDescription = employeeModel.skillEmployeeDescription
 }

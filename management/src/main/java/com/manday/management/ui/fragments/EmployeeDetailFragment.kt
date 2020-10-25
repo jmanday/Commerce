@@ -123,8 +123,8 @@ class EmployeeDetailFragment : BaseFragment() {
             }
         }
         binding.inputSkill.autocompleteType.setOnItemClickListener { parent, view, position, id ->
-            employeeModel.skillEmployeeDescription = parent.adapter.getItem(position) as String
-            employeeModel.skillEmployee = position
+            binding.employee?.skillEmployeeDescription = parent.adapter.getItem(position) as String
+            binding.employee?.skillEmployee = position
         }
     }
 
