@@ -32,3 +32,13 @@ fun EmployeeModel.toEmployeeModelItemAdapter() =
         this.id ?: 0, String.format("%s %s", this.name, this.surname),
         this.skillEmployeeDescription, this.image
     )
+
+fun EmployeeModel.update(employeeModel: EmployeeModel) = with(this) {
+    this.name = employeeModel.name
+    this.surname = employeeModel.surname
+    this.phone = employeeModel.phone
+    this.email = employeeModel.email
+    this.image = employeeModel.image
+    this.phone = employeeModel.phone
+    this.country = employeeModel.country
+}
