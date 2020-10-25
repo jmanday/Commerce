@@ -1,5 +1,6 @@
 package com.manday.management.ui.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
 import com.manday.coredata.ExecutorViewModel
@@ -16,29 +17,48 @@ internal class TaskDetailViewModel : ExecutorViewModel() {
 
     private val employeeRepository: EmployeeRepository by inject(EmployeeRepository::class.java)
     private val taskRepository: TaskRepository by inject((TaskRepository::class.java))
-    val listEmployees = MediatorLiveData<List<EmployeeModel>?>()
-    val typeTasks = MediatorLiveData<List<TypeTaskEntity>?>()
+    private lateinit var _typeTasks: MediatorLiveData<List<TypeTaskEntity>?>
+    private lateinit var _listEmployees: MediatorLiveData<List<EmployeeModel>?>
+    private lateinit var source: MediatorLiveData<List<EmployeeModel>?>
 
-    init {
-        val source = doInBackground {
-            taskRepository.getAllTypeTasks()
+    val listEmployees: LiveData<List<EmployeeModel>?>
+        get() {
+            if (!::_listEmployees.isInitialized) {
+                _listEmployees = MediatorLiveData()
+                _listEmployees.addSourceNotNull(source, Observer {
+                    _listEmployees.postValue(it)
+                })
+            }
+
+            return _listEmployees
         }
-        typeTasks.addSourceNotNull(source, Observer {
-            typeTasks.removeSourceNotNull(source)
-            typeTasks.postValue(it)
-        })
 
-    }
+    val typeTasks: LiveData<List<TypeTaskEntity>?>
+        get() {
+            if (!::_typeTasks.isInitialized) {
+                _typeTasks = MediatorLiveData()
+                _typeTasks.addSource(
+                    doInBackground {
+                        taskRepository.getAllTypeTasks()
+                    }
+                ) {
+                    _typeTasks.postValue(it)
+                }
+            }
+
+            return  _typeTasks
+        }
 
     fun setTypeTask(taskType: Int?) {
         taskType?.let {
-            val source = doInBackground {
-                employeeRepository.getEmployeeBySkill(taskType)
+            if (!::source.isInitialized) {
+                source = MediatorLiveData()
             }
-            listEmployees.addSourceNotNull(source, Observer {
-                listEmployees.removeSourceNotNull(source)
-                listEmployees.postValue(it)
-            })
+            source.addSource(doInBackground {
+                employeeRepository.getEmployeeBySkill(it)
+            }) {
+                source.postValue(it)
+            }
         }
     }
 

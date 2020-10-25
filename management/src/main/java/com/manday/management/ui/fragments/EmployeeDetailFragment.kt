@@ -23,6 +23,7 @@ import com.manday.coreui.transitions.TransitionAttributes
 import com.manday.management.R
 import com.manday.management.databinding.FragmentEmployeeDetailBinding
 import com.manday.management.domain.EmployeeModel
+import com.manday.management.domain.update
 import com.manday.management.navigation.NavigateToBack
 import com.manday.management.ui.viewmodels.EmployeeDetailViewModel
 import kotlinx.android.synthetic.main.fragment_employee_detail.*
@@ -65,7 +66,7 @@ class EmployeeDetailFragment : BaseFragment() {
             employeeModel = it
         }
         binding.root.transitionName = args.transitionName
-        binding.employee = employeeModel
+        binding.employee = employeeModel.copy()
         viewModel.initialize(employeeModel)
         listener.hideNavigationBottomView()
     }
@@ -122,8 +123,8 @@ class EmployeeDetailFragment : BaseFragment() {
             }
         }
         binding.inputSkill.autocompleteType.setOnItemClickListener { parent, view, position, id ->
-            employeeModel.skillEmployeeDescription = parent.adapter.getItem(position) as String
-            employeeModel.skillEmployee = position
+            binding.employee?.skillEmployeeDescription = parent.adapter.getItem(position) as String
+            binding.employee?.skillEmployee = position
         }
     }
 
@@ -135,6 +136,9 @@ class EmployeeDetailFragment : BaseFragment() {
             binding.clInfo.isEnabled = true
 
             if (it.isEmpty()) {
+                binding.employee?.let {
+                    viewModel.employeeModel.update(it)
+                }
                 viewModel.buttonSaveClicked().observe(this, Observer {
                     if (it != null) {
                         when (it) {
